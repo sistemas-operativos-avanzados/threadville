@@ -1,0 +1,97 @@
+struct THREADVILLE _threadville;
+
+	//Include G nodes: G1, G2, G3, G4, G5, G6
+	//Include Y nodes: Y1, Y2, Y3, Y4, Y5, Y6, Y7, Y8
+	_threadville.nodes = malloc(14 * sizeof(*_threadville.nodes));
+	
+	//**************************G**********************************
+	//G1
+	_threadville.nodes[0].id = "G1";
+	_threadville.nodes[0].capability = 3;
+	_threadville.nodes[0].reachableNodes = malloc(1 * sizeof(*_threadville.nodes[0].reachableNodes));
+	_threadville.nodes[0].reachableNodes[0].id = "A7";
+	
+	//G2
+	_threadville.nodes[1].id = "G2";
+	_threadville.nodes[1].capability = 3;
+	_threadville.nodes[1].reachableNodes = malloc(1 * sizeof(*_threadville.nodes[1].reachableNodes));
+	_threadville.nodes[1].reachableNodes[1].id = "G1";
+
+	//G3
+	_threadville.nodes[2].id = "G3";
+	_threadville.nodes[2].capability = 3;
+	_threadville.nodes[2].reachableNodes = malloc(1 * sizeof(*_threadville.nodes[2].reachableNodes));
+	_threadville.nodes[2].reachableNodes[2].id = "G4";
+
+	//G4
+	_threadville.nodes[3].id = "G4";
+	_threadville.nodes[3].capability = 3;
+	_threadville.nodes[3].reachableNodes = malloc(1 * sizeof(*_threadville.nodes[3].reachableNodes));
+	_threadville.nodes[3].reachableNodes[3].id = "LARRY";
+
+	//G5
+	_threadville.nodes[4].id = "G5";
+	_threadville.nodes[4].capability = 3;
+	_threadville.nodes[4].reachableNodes = malloc(1 * sizeof(*_threadville.nodes[4].reachableNodes));
+	_threadville.nodes[4].reachableNodes[4].id = "G6";
+
+	//G6
+	_threadville.nodes[5].id = "G6";
+	_threadville.nodes[5].capability = 3;
+	_threadville.nodes[5].reachableNodes = malloc(1 * sizeof(*_threadville.nodes[5].reachableNodes));
+	_threadville.nodes[5].reachableNodes[5].id = "A7";
+
+	//*******************************Y******************************
+	//Y1
+	_threadville.nodes[6].id = "Y1";
+	_threadville.nodes[6].capability = 1;
+	_threadville.nodes[6].reachableNodes = malloc(2 * sizeof(*_threadville.nodes[6].reachableNodes));
+	_threadville.nodes[6].reachableNodes[0].id = "Y8";
+	_threadville.nodes[6].reachableNodes[1].id = "G5";
+	
+
+	//Y2
+	_threadville.nodes[7].id = "Y2";
+	_threadville.nodes[7].capability = 1;
+	_threadville.nodes[7].reachableNodes = malloc(1 * sizeof(*_threadville.nodes[7].reachableNodes));
+	_threadville.nodes[7].reachableNodes[0].id = "Z2";
+
+	//Y3
+	_threadville.nodes[8].id = "Y3";
+	_threadville.nodes[8].capability = 1;
+	_threadville.nodes[8].reachableNodes = malloc(1 * sizeof(*_threadville.nodes[8].reachableNodes));
+	_threadville.nodes[8].reachableNodes[0].id = "Z3";
+
+	//Y4
+	_threadville.nodes[9].id = "Y4";
+	_threadville.nodes[9].capability = 1;
+	_threadville.nodes[9].reachableNodes = malloc(1 * sizeof(*_threadville.nodes[9].reachableNodes));
+	_threadville.nodes[9].reachableNodes[0].id = "Z4";
+
+	//Y5
+	_threadville.nodes[10].id = "Y5";
+	_threadville.nodes[10].capability = 1;
+	_threadville.nodes[10].reachableNodes = malloc(1 * sizeof(*_threadville.nodes[10].reachableNodes));
+	_threadville.nodes[10].reachableNodes[0].id = "Z5";
+
+	//Y6
+	_threadville.nodes[11].id = "Y6";
+	_threadville.nodes[12].capability = 1;
+	_threadville.nodes[11].reachableNodes = malloc(1 * sizeof(*_threadville.nodes[11].reachableNodes));
+	_threadville.nodes[11].reachableNodes[0].id = "Y5";
+	_threadville.nodes[11].reachableNodes[2].id = "Y4";
+	_threadville.nodes[11].reachableNodes[3].id = "Y1";
+	
+	//Y7
+	_threadville.nodes[12].id = "Y7";
+	_threadville.nodes[12].capability = 1;
+	_threadville.nodes[12].reachableNodes = malloc(1 * sizeof(*_threadville.nodes[12].reachableNodes));
+	_threadville.nodes[12].reachableNodes[0].id = "Y6";
+
+	//Y8
+	_threadville.nodes[13].id = "Y8";
+	_threadville.nodes[13].capability = 1;
+	_threadville.nodes[13].reachableNodes = malloc(1 * sizeof(*_threadville.nodes[12].reachableNodes));
+	_threadville.nodes[13].reachableNodes[0].id = "Y7";
+
+
