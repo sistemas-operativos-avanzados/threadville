@@ -13,10 +13,10 @@ CFLAGS=-g -O2 -Wall -Wextra -Isrc -rdynamic -DNDEBUG -fPIC $(OPTFLAGS)
 
 all: clean $(EXECUTABLE)
 
-build: $(OBJECTS)
-	$(CC) -shared -o $@ $(OBJECTS)
+build: $(ODIR) $(OBJECTS)
+	$(CC) -shared -o $(ODIR)/tv.a $(OBJECTS)
 
-$(EXECUTABLE): $(ODIR) build
+$(EXECUTABLE): build
 	$(CC) $(OBJECTS) -o $(ODIR)/$@
 
 $(ODIR):

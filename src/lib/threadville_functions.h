@@ -179,8 +179,10 @@ VEHICULE* createBus(char *id){
 
 void releaseVehicule(VEHICULE *car){
 	if(car){
-		if(car->id){free(car->id);}
-	free(car);
+		if(car->id){
+			free(car->id);
+		}
+	    free(car);
 	}
 }
 
@@ -264,7 +266,7 @@ ROUTE* newRoute(STOP *cStop){
 void addRoute(VEHICULE *vehicule){
 	VEHICULE *y = vehicule;
 	STOP *i = vehicule->stops;
-	ROUTE *busyRoute = y->route;
+//	ROUTE *busyRoute = y->route;  <== esta variable no se esta usando. La comento mientras tanto
 
 	//Por cada parada en el mapa
 	/*for(; i != NULL; i = i->next){
