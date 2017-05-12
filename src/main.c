@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include <unistd.h>
+#include <pthread.h>
 
 #include "lib/threadville_functions.h"
 
@@ -1031,21 +1032,53 @@ void singleRun(){
     releaseVehicule(greyBus);
     releaseVehicule(ligthBlueBus);
 }
+
+void* move(void* params){
+    puts("En thread!!");
+    int i = 0;
+    for(i = 0; i < 5; i++){
+        sleep(1);
+        puts("Espero...");
+    }
+    return NULL;
+}
+
+void makeBus(){
+
+//    VEHICULE *redBus = createBus("PERIFERICA-GRANDE");
+//    redBus -> colorSpeed = red;
 //
+//    printf("BUS ID: %s \n", redBus -> id);
+
+//    releaseVehicule(redBus);
+
+    pthread_t aThread;
+    pthread_create(&aThread, NULL, move, NULL);
+    void *result;
+    if(pthread_join(aThread, result) == -1){
+        puts("error en join de thread");
+    }
+}
+
+
+
 void headless(){
+    init();
     char userOpt[3];
     do{
         puts("==> ThreadVille <===");
         puts("[i] Iniciar TV");
+        puts("[a] Crear Bus");
         puts("[s] Salir");
         puts("Opcion: ");
         scanf("%2s", userOpt);
 
         switch (userOpt[0]){
             case 'i':
-                init();
                 singleRun();
-                teardDown();
+                break;
+            case 'a':
+                makeBus();
                 break;
             case 's':
                 break;
@@ -1054,7 +1087,7 @@ void headless(){
         }
 
     } while (userOpt[0] != 's');
-
+    teardDown();
     exit(0);
 }
 
