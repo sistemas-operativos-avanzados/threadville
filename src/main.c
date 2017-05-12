@@ -1033,32 +1033,62 @@ void singleRun(){
     releaseVehicule(ligthBlueBus);
 }
 
-void* move(void* params){
+void* move(void* param){
     puts("En thread!!");
+
+    VEHICULE *v = (VEHICULE *) param;
+
     int i = 0;
-    for(i = 0; i < 5; i++){
+    for(i = 0; i < v->delay; i++){
         sleep(1);
-        puts("Espero...");
+        printf("Vehiculo: %s, color %s, delay %d \n", v->id, v->colorSpeed->color, v -> delay);
     }
+    releaseVehicule(v);
     return NULL;
 }
 
 void makeBus(){
 
-//    VEHICULE *redBus = createBus("PERIFERICA-GRANDE");
-//    redBus -> colorSpeed = red;
-//
-//    printf("BUS ID: %s \n", redBus -> id);
+    VEHICULE *redBus = createBus("PERIFERICA-GRANDE");
+    redBus -> colorSpeed = red;
 
-//    releaseVehicule(redBus);
-
-    pthread_t aThread;
-    pthread_create(&aThread, NULL, move, NULL);
     void *result;
-    if(pthread_join(aThread, result) == -1){
-        puts("error en join de thread");
+    int s;
+    pthread_t aThread;
+
+    s = pthread_create(&aThread, NULL, move, redBus);
+    if(s != 0){
+        printf("fallo en crear thread %d", s);
+    } else {
+        s = pthread_join(aThread, result);
+        if(s != 0){
+            printf("error pthread_join %d", s);
+        }
+        puts("finalizo thread");
     }
 }
+
+void makeAmbulance(){
+
+    VEHICULE *em = createAmbulance("> Emergencias Medicas <");
+    em -> colorSpeed = white;
+    em -> delay = 3;
+
+    pthread_t aThread;
+    pthread_create(&aThread, NULL, move, em);
+}
+
+void makeCar(){
+
+    VEHICULE *em = createAmbulance("== Toyota ==");
+    em -> colorSpeed = black;
+    em -> delay = 1;
+
+    pthread_t aThread;
+    pthread_create(&aThread, NULL, move, em);
+
+}
+
 
 
 
@@ -1066,9 +1096,12 @@ void headless(){
     init();
     char userOpt[3];
     do{
+        printf("\n\n\n\n");
         puts("==> ThreadVille <===");
         puts("[i] Iniciar TV");
-        puts("[a] Crear Bus");
+        puts("[a] Crear Ambulancia");
+        puts("[b] Crear Bus");
+        puts("[c] Crear Carro");
         puts("[s] Salir");
         puts("Opcion: ");
         scanf("%2s", userOpt);
@@ -1078,7 +1111,13 @@ void headless(){
                 singleRun();
                 break;
             case 'a':
+                makeAmbulance();
+                break;
+            case 'b':
                 makeBus();
+                break;
+            case 'c':
+                makeCar();
                 break;
             case 's':
                 break;
