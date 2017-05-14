@@ -47,10 +47,23 @@ typedef struct VEHICULE{
 typedef struct NODE {
 	char *id;
 	int capability;
+	int allowTravel;//Indica si se puede pasar por el nodo, se utiliza cuando un nodo esta en reparaciones o es parte de un puente
 	struct NODE *reachabledNodes;
 	struct NODE *next;
-	struct VEHICULE *vehicules;
+	struct VEHICULE *vehicule_1;
+	struct VEHICULE *vehicule_2;
+	struct VEHICULE *vehicule_3;
 }NODE;
+
+//Estructura que define los puentes, se utiliza 4 nodos para definir la relacion en el mapa de ambas vias a pesar de ser un camino de un solo carril. Cada uno de los nodos tiene capacidad 3, por lo que se cumple que la capacidad de los puentes es de 6 carros
+typedef struct BRIDGE {
+	char *id;
+	struct NODE *northLeftNode;
+	struct NODE *southLeftNode;
+	struct NODE *northRightNode;
+	struct NODE *southRightNode;
+}BRIDGE;
+
 
 //ASIGNACION Y LIBERACION DE MEMORIA DE ESTRUCTURAS
 //STOPS
@@ -111,23 +124,6 @@ void releaseColor(COLORSPEED *colorSpeed){
 	}
 }
 
-
-//NODES
-NODE* createNode(char *id, int capability){
-	NODE *node = malloc(sizeof(NODE));
-	node->id = strdup(id);
-	node->capability = capability;
-	node->reachabledNodes = NULL;
-	return node;
-}
-
-void releaseNode(NODE *node){
-	if(node){
-		if(node->id){free(node->id);}
-	free(node);
-	}
-}
-
 //VEHICULES
 VEHICULE* createCar(char *id){
 	VEHICULE *car = malloc(sizeof(VEHICULE));
@@ -185,6 +181,55 @@ void releaseVehicule(VEHICULE *car){
 	    free(car);
 	}
 }
+
+//NODES
+NODE* createNode(char *id, int capability){
+	NODE *node = malloc(sizeof(NODE));
+	node->id = strdup(id);
+	node->capability = capability;
+	node->reachabledNodes = NULL;
+
+	//Reservar espacio en memoria para los vehiculos que puede albergar el nodo
+	switch(capability){
+		case 1: {
+			node->vehicule_1 = createCar("new");
+			break;
+		}
+		default:{
+			node->vehicule_1 = createCar("new");
+			node->vehicule_2 = createCar("new");
+			node->vehicule_3 = createCar("new");
+			break;
+		}
+	}
+	return node;
+}
+
+void releaseNode(NODE *node){
+	if(node){
+		if(node->id){free(node->id);}
+	free(node);
+	}
+}
+
+//BRIDGES
+BRIDGE* createBridge(char *id, NODE *southLeft_node, NODE *northLeft_node, NODE *southRight_node, NODE *northRight_node){
+	BRIDGE *bridge = malloc(sizeof(BRIDGE));
+	bridge->id = strdup(id);
+	bridge->southLeftNode = southLeft_node;
+	bridge->northLeftNode = northLeft_node;	
+	bridge->southRightNode = southRight_node;
+	bridge->northRightNode = northRight_node;	
+	return bridge;
+}
+
+void releaseBridge(BRIDGE *bridge){
+	if(bridge){
+		if(bridge->id){free(bridge->id);}
+	free(bridge);
+	}
+}
+
 
 //Display structs
 void displayDestinations(DESTINY *destinations){
