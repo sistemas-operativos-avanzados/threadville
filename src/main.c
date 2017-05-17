@@ -1129,7 +1129,7 @@ void singleRun(){
 	STOP *stopC8 = createStop();
 	stopC8->stop = nodeC8;
 	orangeBus->stops->next->next = stopC8;
-    displayStops(orangeBus->stops);
+    	displayStops(orangeBus->stops);
 
     //Crear la Ruta
     //Agregar ruta utilizando todos los stops ordenados
@@ -1138,7 +1138,7 @@ void singleRun(){
 
     DESTINY *routaM2M3 = createDestiny();
     routaM2M3->node = nodeM2;
-    generateRoute(nodeM2, nodeM1, routaM2M3);
+    generateRoute(nodeM2, nodeS3, routaM2M3);
     displayDestinations(routaM2M3);
 
     //Bus
@@ -1168,6 +1168,11 @@ void* move(void* param){
 }
 
 void makeBus(){
+    puts("Ruta de M2 a S8");
+    DESTINY *routaM2S8 = createDestiny();
+    routaM2S8->node = nodeM2;
+    generateRoute(nodeM2->reachabledNodes, nodeS8, routaM2S8);
+    displayDestinations(routaM2S8);
 
     VEHICULE *redBus = createBus("PERIFERICA-GRANDE");
     redBus -> colorSpeed = red;

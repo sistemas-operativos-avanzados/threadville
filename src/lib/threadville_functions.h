@@ -275,21 +275,18 @@ void generateRoute(NODE *from, NODE *to, DESTINY *destinations){
 	NODE *start = from;
 	if(from != NULL && to != NULL){
 
+		DESTINY *destiny = createDestiny();
+		destiny->node = start;
+		destinations->next = destiny;
+
 		if(strcmp(start->id, to->id) == 0){
 			return;
 		}
 		else{	
-		DESTINY *destiny = createDestiny();
-	
-	
 		if(start->reachabledNodes->next == NULL){
-			destiny->node = start->reachabledNodes;
-			destinations->next = destiny;
 			generateRoute(start->reachabledNodes, to, destinations->next);
 		}else{
-			destiny->node = start->reachabledNodes->next;
-			destinations->next = destiny;
-			generateRoute(start->reachabledNodes->next, to, destinations->next);
+			generateRoute(start->reachabledNodes->reachabledNodes, to, destinations->next);
 		}
 	}
 	}	
