@@ -16,7 +16,7 @@ build:
 	mv *.o src/ 
 
 $(EXECUTABLE): $(ODIR) build
-	$(CC) -pthread $(OBJECTS) -o $(ODIR)/$(EXECUTABLE)
+	$(CC) $(OBJECTS) -o $(ODIR)/$(EXECUTABLE)
 
 $(ODIR):
 	mkdir target/

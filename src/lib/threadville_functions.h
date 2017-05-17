@@ -227,26 +227,32 @@ void displayStops(STOP *stops){
 
 //GENERADOR DE RUTAS
 void generateRoute(NODE *from, NODE *to, DESTINY *destinations){
+    printf("FROM = %s \n", from -> id);
 	NODE *start = from;
+
 	if(from != NULL && to != NULL){
 
-		if(strcmp(start->id, to->id) == 0){
+		if(strcmp(start -> id, to -> id) == 0){
+		    printf("Iguales! \n");
 			return;
+		} else{	
+			DESTINY *destiny = createDestiny();
+
+			if(start -> reachabledNodes -> next == NULL){
+				destiny -> node = start -> reachabledNodes;
+				destinations -> next = start -> reachabledNodes;
+//			    printf("start   -> reachableNodes = %s \n", start -> reachabledNodes -> id);
+				printf("destiny -> node = %s \n", destiny -> node -> id);
+				printf("destinations -> next = %s \n", destinations -> next -> node -> id);
+				generateRoute(start->reachabledNodes, to, destinations -> next);
+			}else{
+			    printf("ELSE %s \n", start -> reachabledNodes -> next -> id);
+			    exit(2);
+//				destiny -> node = start -> reachabledNodes -> next;
+//				destinations -> next = destiny;
+//				generateRoute(start -> reachabledNodes -> next, to, destinations -> next);
+			}
 		}
-		else{	
-		DESTINY *destiny = createDestiny();
-	
-	
-		if(start->reachabledNodes->next == NULL){
-			destiny->node = start->reachabledNodes;
-			destinations->next = destiny;
-			generateRoute(start->reachabledNodes, to, destinations->next);
-		}else{
-			destiny->node = start->reachabledNodes->next;
-			destinations->next = destiny;
-			generateRoute(start->reachabledNodes->next, to, destinations->next);
-		}
-	}
 	}	
 };
 

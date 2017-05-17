@@ -497,8 +497,8 @@ void init(){
 	nodeM1->reachabledNodes = nodeY6;
 	nodeM2->reachabledNodes = nodeM3;
 	nodeM3->reachabledNodes = nodeS3;
-	nodeM4S2->reachabledNodes = nodeS3;
-	nodeM4S2->reachabledNodes->next = nodeN5T1;
+	nodeM4S2 -> reachabledNodes = nodeS3;
+	nodeM4S2 ->reachabledNodes -> next = nodeN5T1;
 	nodeM5S1->reachabledNodes = nodeM4S2;
 	nodeM6->reachabledNodes = nodeM1;
 
@@ -1006,20 +1006,34 @@ void singleRun(){
 	orangeBus->stops->next = stopO6;
 
 	//addStop(orangeBus, nodeC8);
-	STOP *stopC8 = createStop();
-	stopC8->stop = nodeC8;
-	orangeBus->stops->next->next = stopC8;
-    displayStops(orangeBus->stops);
+	// STOP *stopC8 = createStop();
+	// stopC8->stop = nodeC8;
+	// orangeBus->stops->next->next = stopC8;
+ //    displayStops(orangeBus->stops);
 
     //Crear la Ruta
     //Agregar ruta utilizando todos los stops ordenados
     //addRoute(orangeBus);
     //displayVehicules(orangeBus);
 
-    DESTINY *routaM2M3 = createDestiny();
-    routaM2M3->node = nodeM2;
-    generateRoute(nodeM2, nodeM1, routaM2M3);
-    displayDestinations(routaM2M3);
+    // DESTINY *routaM2M3 = createDestiny();
+    // routaM2M3->node = nodeM2;
+    // generateRoute(nodeM2, nodeM1, routaM2M3);
+    // displayDestinations(routaM2M3);
+
+//    DESTINY *ruta1 = createDestiny();
+//    ruta1 -> node = nodeM2;
+//    generateRoute(nodeM2, nodeM3, ruta1);
+//    displayDestinations(ruta1);
+//
+//    puts("---------");
+
+    DESTINY *ruta2 = createDestiny();
+    ruta2 -> node = nodeM2;
+    generateRoute(nodeM2, nodeS3, ruta2);
+    displayDestinations(ruta2);
+
+
 
     //Bus
     releaseVehicule(redBus);
@@ -1133,23 +1147,27 @@ void headless(){
 
 int main(int argc, char *argv[]) {
 
-    int opt;
+	init();
+	singleRun();
+	teardDown();
 
-    while ((opt = getopt(argc, argv, ":x")) != -1) {
+    // int opt;
 
-        printf("opt = %d \n", opt);
+    // while ((opt = getopt(argc, argv, ":x")) != -1) {
 
-        switch (opt) {
-            case 'x':
-                puts("levantar UI");
-                break;
-            default:
-                puts("Mensaje de ayuda");
-                break;
-        }
-        return 0;
-    }
+    //     printf("opt = %d \n", opt);
 
-    headless();
+    //     switch (opt) {
+    //         case 'x':
+    //             puts("levantar UI");
+    //             break;
+    //         default:
+    //             puts("Mensaje de ayuda");
+    //             break;
+    //     }
+    //     return 0;
+    // }
+
+    // headless();
     return 0;
 }
