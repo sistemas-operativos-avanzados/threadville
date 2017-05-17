@@ -233,6 +233,41 @@ NODE *nodeZ6;
 NODE *nodeZ7;
 NODE *nodeZ8;
 
+//Puentes Bailey
+//Larry
+BRIDGE *Larry;
+NODE *bridgeNodeG4;//Left North
+NODE *bridgeNodeH5;//Right North
+NODE *bridgeNodeM2;//Left South
+NODE *bridgeNodeN1;//Right South
+
+//Curly
+BRIDGE *Curly;
+NODE *bridgeNodeH4;//Left North
+NODE *bridgeNodeI5;//Right North
+NODE *bridgeNodeN2;//Left South
+NODE *bridgeNodeO1;//Right South
+
+//Moe
+BRIDGE *Moe;
+NODE *bridgeNodeI4;//Left North
+NODE *bridgeNodeJ5;//Right North
+NODE *bridgeNodeO2;//Left South
+NODE *bridgeNodeP1;//Right South
+
+//Shemp
+BRIDGE *Shemp;
+NODE *bridgeNodeJ4;//Left North
+NODE *bridgeNodeK5;//Right North
+NODE *bridgeNodeP2;//Left South
+NODE *bridgeNodeQ1;//Right South
+
+//Joe
+BRIDGE *Joe;
+NODE *bridgeNodeK4;//Left North
+NODE *bridgeNodeL5;//Right North
+NODE *bridgeNodeQ2;//Left South
+NODE *bridgeNodeR1;//Right South
 
 void init(){
     puts("Iniciando Threadville");
@@ -461,6 +496,42 @@ void init(){
 	nodeZ7 = createNode("Z7", 1);
 	nodeZ8 = createNode("Z8", 1);
 
+	//Puente Bailey
+	//Larry
+	bridgeNodeG4 = createNode("bridgeNodeG4", 3);
+	bridgeNodeH5 = createNode("bridgeNodeH5", 3);
+	bridgeNodeM2 = createNode("bridgeNodeM2", 3);
+	bridgeNodeN1 = createNode("bridgeNodeN1", 3);
+	Larry = createBridge("Larry", bridgeNodeM2, bridgeNodeG4, bridgeNodeN1, bridgeNodeH5);
+
+	//Curly
+	bridgeNodeH4 = createNode("bridgeNodeH4", 3);
+	bridgeNodeI5 = createNode("bridgeNodeI5", 3);
+	bridgeNodeN2 = createNode("bridgeNodeN2", 3);
+	bridgeNodeO1 = createNode("bridgeNodeO1", 3);
+	Curly = createBridge("Curly", bridgeNodeN2, bridgeNodeH4, bridgeNodeO1, bridgeNodeI5);
+
+	//Moe
+	bridgeNodeI4 = createNode("bridgeNodeI4", 3);
+	bridgeNodeJ5 = createNode("bridgeNodeJ5", 3);
+	bridgeNodeO2 = createNode("bridgeNodeO2", 3);
+	bridgeNodeP1 = createNode("bridgeNodeP1", 3);
+	Moe = createBridge("Moe", bridgeNodeO2, bridgeNodeI4, bridgeNodeP1, bridgeNodeJ5);
+
+	//Shemp
+	bridgeNodeJ4 = createNode("bridgeNodeJ4", 3);
+	bridgeNodeK5 = createNode("bridgeNodeK5", 3);
+	bridgeNodeP2 = createNode("bridgeNodeP2", 3);
+	bridgeNodeQ1 = createNode("bridgeNodeQ1", 3);
+	Shemp = createBridge("Shemp", bridgeNodeP2, bridgeNodeJ4, bridgeNodeQ1, bridgeNodeK5);
+
+	//Joe
+	bridgeNodeK4 = createNode("bridgeNodeK4", 3);
+	bridgeNodeL5 = createNode("bridgeNodeL5", 3);
+	bridgeNodeQ2 = createNode("bridgeNodeQ2", 3);
+	bridgeNodeR1 = createNode("bridgeNodeR1", 3);
+	Joe = createBridge("Joe", bridgeNodeQ2, bridgeNodeK4, bridgeNodeR1, bridgeNodeL5);
+	
 	//DEFINICION DE RELACIONES
 	//Nodos alcanzables de Y
 	nodeY1->reachabledNodes = nodeY8;
@@ -489,7 +560,7 @@ void init(){
 
 	//Nodos alcanzables de G
 	nodeG3->reachabledNodes = nodeG4;
-	nodeG4->reachabledNodes = NULL; //Puente Bailey
+	nodeG4->reachabledNodes = bridgeNodeG4; //Puente Bailey
 	nodeG5->reachabledNodes = nodeG6;
 	nodeG6->reachabledNodes = nodeA7;
 
@@ -526,12 +597,12 @@ void init(){
 
 	//Nodos alcanzables de H
 	nodeH3->reachabledNodes = nodeH4;
-	nodeH4->reachabledNodes = NULL;//Puente Bailey
+	nodeH4->reachabledNodes = bridgeNodeH4;//Puente Bailey
 	nodeH5->reachabledNodes = nodeH6;
 	nodeH6->reachabledNodes = nodeB7;
 
 	//Nodos alcanzables de N
-	nodeN1->reachabledNodes = NULL; //Puente Bailey
+	nodeN1->reachabledNodes = bridgeNodeN1; //Puente Bailey
 	nodeN2->reachabledNodes = nodeN3;
 	nodeN3->reachabledNodes = nodeT3;
 	nodeN4T2->reachabledNodes = nodeT3;
@@ -564,12 +635,12 @@ void init(){
 
 	//Nodos alcanzables de I
 	nodeI3->reachabledNodes = nodeI4;
-	nodeI4->reachabledNodes = NULL;//Puente Bailey
+	nodeI4->reachabledNodes = bridgeNodeI4;//Puente Bailey
 	nodeI5->reachabledNodes = nodeI6;
 	nodeI6->reachabledNodes = nodeC7;
 
 	//Nodos alcanzables de O
-	nodeO1->reachabledNodes = NULL; //Puente Bailey
+	nodeO1->reachabledNodes = bridgeNodeO1; //Puente Bailey
 	nodeO2->reachabledNodes = nodeO3;
 	nodeO3->reachabledNodes = nodeU3;
 	nodeO4U2->reachabledNodes = nodeU3;
@@ -602,12 +673,12 @@ void init(){
 
 	//Nodos alcanzables de J
 	nodeJ3->reachabledNodes = nodeJ4;
-	nodeJ4->reachabledNodes = NULL;//Puente Bailey
+	nodeJ4->reachabledNodes = bridgeNodeJ4;//Puente Bailey
 	nodeJ5->reachabledNodes = nodeJ6;
 	nodeJ6->reachabledNodes = nodeD7;
 
 	//Nodos alcanzables de P
-	nodeP1->reachabledNodes = NULL; //Puente Bailey
+	nodeP1->reachabledNodes = bridgeNodeP1; //Puente Bailey
 	nodeP2->reachabledNodes = nodeP3;
 	nodeP3->reachabledNodes = nodeV3;
 	nodeP4V2->reachabledNodes = nodeV3;
@@ -640,12 +711,12 @@ void init(){
 
 	//Nodos alcanzables de K
 	nodeK3->reachabledNodes = nodeK4;
-	nodeK4->reachabledNodes = NULL;//Puente Bailey
+	nodeK4->reachabledNodes = bridgeNodeK4;//Puente Bailey
 	nodeK5->reachabledNodes = nodeK6;
 	nodeK6->reachabledNodes = nodeE7;
 
 	//Nodos alcanzables de Q
-	nodeQ1->reachabledNodes = NULL; //Puente Bailey
+	nodeQ1->reachabledNodes = bridgeNodeQ1; //Puente Bailey
 	nodeQ2->reachabledNodes = nodeQ3;
 	nodeQ3->reachabledNodes = nodeW3;
 	nodeQ4W2->reachabledNodes = nodeW3;
@@ -682,7 +753,7 @@ void init(){
 	nodeL6->reachabledNodes = nodeF7;
 
 	//Nodos alcanzables de R
-	nodeR1->reachabledNodes = NULL; //Puente Bailey
+	nodeR1->reachabledNodes = bridgeNodeR1; //Puente Bailey
 	nodeR2->reachabledNodes = nodeR3;
 	nodeR3->reachabledNodes = nodeX3;
 	nodeR4X2->reachabledNodes = nodeX3;
@@ -711,6 +782,27 @@ void init(){
 	nodeZ6->reachabledNodes->next = nodeN2;
 	nodeZ7->reachabledNodes = nodeZ8;
 	nodeZ8->reachabledNodes = nodeZ1;
+
+	//Puente Bailey
+	//Larry
+	bridgeNodeG4->reachabledNodes = bridgeNodeM2;	
+	bridgeNodeN1->reachabledNodes = bridgeNodeH5;	
+
+	//Curly
+	bridgeNodeH4->reachabledNodes = bridgeNodeN2;
+	bridgeNodeO1->reachabledNodes = bridgeNodeI5;
+
+	//Moe
+	bridgeNodeI4->reachabledNodes = bridgeNodeO2;
+	bridgeNodeP1->reachabledNodes = bridgeNodeJ5;
+
+	//Shemp
+	bridgeNodeJ4->reachabledNodes = bridgeNodeP2;	
+	bridgeNodeQ1->reachabledNodes = bridgeNodeK5;
+
+	//Joe
+	bridgeNodeK4->reachabledNodes = bridgeNodeQ2;
+	bridgeNodeR1->reachabledNodes = bridgeNodeL5;
 }
 
 void teardDown(){
@@ -943,6 +1035,34 @@ void teardDown(){
 	releaseNode(nodeZ7);
 	releaseNode(nodeZ8);
 
+	//Nodes de Puentes
+	releaseNode(bridgeNodeG4);
+	releaseNode(bridgeNodeM2);
+	releaseNode(bridgeNodeN1);
+	releaseNode(bridgeNodeH5);
+	releaseNode(bridgeNodeH4);
+	releaseNode(bridgeNodeN2);
+	releaseNode(bridgeNodeO1);
+	releaseNode(bridgeNodeI5);	
+	releaseNode(bridgeNodeI4);
+	releaseNode(bridgeNodeO2);
+	releaseNode(bridgeNodeP1);
+	releaseNode(bridgeNodeJ5);
+	releaseNode(bridgeNodeJ4);
+	releaseNode(bridgeNodeP2);
+	releaseNode(bridgeNodeQ1);
+	releaseNode(bridgeNodeK5);
+	releaseNode(bridgeNodeK4);
+	releaseNode(bridgeNodeQ2);
+	releaseNode(bridgeNodeR1);
+	releaseNode(bridgeNodeL5);
+
+	//Puentes
+	releaseBridge(Larry);
+	releaseBridge(Curly);
+	releaseBridge(Moe);
+	releaseBridge(Joe);
+	releaseBridge(Shemp);
 }
 
 void singleRun(){
