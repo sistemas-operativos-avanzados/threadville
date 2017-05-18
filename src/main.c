@@ -272,64 +272,64 @@ NODE *bridgeNodeR1;//Right South
 void init(){
     puts("Iniciando Threadville");
 
-	red = createColor("RED", 1);
-	blue = createColor("BLUE", 2);
-	green = createColor("GREEN", 2);
-	white = createColor("WHITE", 3);
-	black = createColor("BLACK", 1);
-	grey = createColor("GREY", 3);
-	pink = createColor("PINK", 1);
-	ligthBlue = createColor("LIGTHBLUE", 3);
-	orange = createColor("ORANGE", 1);
+//	red = createColor("RED", 1);
+//	blue = createColor("BLUE", 2);
+//	green = createColor("GREEN", 2);
+//	white = createColor("WHITE", 3);
+//	black = createColor("BLACK", 1);
+//	grey = createColor("GREY", 3);
+//	pink = createColor("PINK", 1);
+//	ligthBlue = createColor("LIGTHBLUE", 3);
+//	orange = createColor("ORANGE", 1);
 
-	nodeY1 = createNode("Y1", 1);
-	nodeY2 = createNode("Y2", 1);//Pista
-	nodeY3 = createNode("Y3", 1);//Pista
-	nodeY4 = createNode("Y4", 1);//Pista
-	nodeY5 = createNode("Y5", 1);//Pista
-	nodeY6 = createNode("Y6", 1);
-	nodeY7 = createNode("Y7", 1);
-	nodeY8 = createNode("Y8", 1);
+//	nodeY1 = createNode("Y1", 1);
+//	nodeY2 = createNode("Y2", 1);//Pista
+//	nodeY3 = createNode("Y3", 1);//Pista
+//	nodeY4 = createNode("Y4", 1);//Pista
+//	nodeY5 = createNode("Y5", 1);//Pista
+//	nodeY6 = createNode("Y6", 1);
+//	nodeY7 = createNode("Y7", 1);
+//	nodeY8 = createNode("Y8", 1);
 
 	//DEFINICION CALE DE UNA VIA
-	nodeA5G2 = createNode("A5G2", 3);//Comparte la capacidad con G2
-	nodeA6G1 = createNode("A6G1", 3);//Comparte la capacidad con G1
+//	nodeA5G2 = createNode("A5G2", 3);//Comparte la capacidad con G2
+//	nodeA6G1 = createNode("A6G1", 3);//Comparte la capacidad con G1
 	nodeM5S1 = createNode("M5S1", 3);//Comparte la capacidad con M5
 	nodeM4S2 = createNode("M4S2", 3);//Comparte la capacidad con M4
-	nodeB5H2 = createNode("B5H2", 3);//Comparte la capacidad con H2
-	nodeB6H1 = createNode("B6H1", 3);//Comparte la capacidad con H1
-	nodeO4U2 = createNode("O4U2", 3);//Comparte la capacidad con U2
-	nodeO5U1 = createNode("O5U1", 3);//Comparte la capacidad con U1
-	nodeN4T2 = createNode("N4T2", 3);//Comparte la capacidad con T2
-	nodeN5T1 = createNode("N5T1", 3);//Comparte la capacidad con T1
-	nodeC5I2 = createNode("C5I2", 3);//Comparte la capacidad con I2
-	nodeC6I1 = createNode("C6I1", 3);//Comparte la capacidad con I1
-	nodeD5J2 = createNode("D5J2", 3);//Comparte la capacidad con J2
-	nodeD6J1 = createNode("D6J1", 3);//Comparte la capacidad con J1
-	nodeP4V2 = createNode("P4V2", 3);//Comparte la capacidad con V2
-	nodeP5V1 = createNode("P5V1", 3);//Comparte la capacidad con V1
-	nodeE5K2 = createNode("E5K2", 3);//Comparte la capacidad con K2
-	nodeE6K1 = createNode("E6K1", 3);//Comparte la capacidad con K1
-	nodeQ4W2 = createNode("Q4W2", 3);//Comparte la capacidad con W2
-	nodeQ5W1 = createNode("Q5W1", 3);//Comparte la capacidad con W1
-	nodeF6L1 = createNode("F6L1", 3);//Comparte la capacidad con L1
-	nodeF5L2 = createNode("F5L2", 3);//Comparte la capacidad con L2
-	nodeR5X1 = createNode("R5X1", 3);//Comparte la capacidad con X1
-	nodeR4X2 = createNode("R4X2", 3);//Comparte la capacidad con X2
-
-	//Nodos de la A
-	nodeA1 = createNode("A1", 3);
-	nodeA2 = createNode("A2", 3);
-	nodeA3 = createNode("A3", 3);
-	nodeA4 = createNode("A4", 3);
-	nodeA7 = createNode("A7", 3);
-	nodeA8 = createNode("A8", 3);
-
-	//Nodos de la G
-	nodeG3 = createNode("G3", 3);
-	nodeG4 = createNode("G4", 3);
-	nodeG5 = createNode("G5", 3);
-	nodeG6 = createNode("G6", 3);
+//	nodeB5H2 = createNode("B5H2", 3);//Comparte la capacidad con H2
+//	nodeB6H1 = createNode("B6H1", 3);//Comparte la capacidad con H1
+//	nodeO4U2 = createNode("O4U2", 3);//Comparte la capacidad con U2
+//	nodeO5U1 = createNode("O5U1", 3);//Comparte la capacidad con U1
+//	nodeN4T2 = createNode("N4T2", 3);//Comparte la capacidad con T2
+//	nodeN5T1 = createNode("N5T1", 3);//Comparte la capacidad con T1
+//	nodeC5I2 = createNode("C5I2", 3);//Comparte la capacidad con I2
+//	nodeC6I1 = createNode("C6I1", 3);//Comparte la capacidad con I1
+//	nodeD5J2 = createNode("D5J2", 3);//Comparte la capacidad con J2
+//	nodeD6J1 = createNode("D6J1", 3);//Comparte la capacidad con J1
+//	nodeP4V2 = createNode("P4V2", 3);//Comparte la capacidad con V2
+//	nodeP5V1 = createNode("P5V1", 3);//Comparte la capacidad con V1
+//	nodeE5K2 = createNode("E5K2", 3);//Comparte la capacidad con K2
+//	nodeE6K1 = createNode("E6K1", 3);//Comparte la capacidad con K1
+//	nodeQ4W2 = createNode("Q4W2", 3);//Comparte la capacidad con W2
+//	nodeQ5W1 = createNode("Q5W1", 3);//Comparte la capacidad con W1
+//	nodeF6L1 = createNode("F6L1", 3);//Comparte la capacidad con L1
+//	nodeF5L2 = createNode("F5L2", 3);//Comparte la capacidad con L2
+//	nodeR5X1 = createNode("R5X1", 3);//Comparte la capacidad con X1
+//	nodeR4X2 = createNode("R4X2", 3);//Comparte la capacidad con X2
+//
+//	//Nodos de la A
+//	nodeA1 = createNode("A1", 3);
+//	nodeA2 = createNode("A2", 3);
+//	nodeA3 = createNode("A3", 3);
+//	nodeA4 = createNode("A4", 3);
+//	nodeA7 = createNode("A7", 3);
+//	nodeA8 = createNode("A8", 3);
+//
+//	//Nodos de la G
+//	nodeG3 = createNode("G3", 3);
+//	nodeG4 = createNode("G4", 3);
+//	nodeG5 = createNode("G5", 3);
+//	nodeG6 = createNode("G6", 3);
 
 	//Nodos de la M
 	nodeM1 = createNode("M1", 3);
@@ -346,463 +346,468 @@ void init(){
 	nodeS8 = createNode("S8", 3);
 
 	//Nodos de la B
-	nodeB1 = createNode("B1", 3);
-	nodeB2 = createNode("B2", 3);
-	nodeB3 = createNode("B3", 3);
-	nodeB4 = createNode("B4", 3);
-	nodeB7 = createNode("B7", 3);
-	nodeB8 = createNode("B8", 3);
+//	nodeB1 = createNode("B1", 3);
+//	nodeB2 = createNode("B2", 3);
+//	nodeB3 = createNode("B3", 3);
+//	nodeB4 = createNode("B4", 3);
+//	nodeB7 = createNode("B7", 3);
+//	nodeB8 = createNode("B8", 3);
+//
+//	//Nodos de la H
+//	nodeH3 = createNode("H3", 3);
+//	nodeH4 = createNode("H4", 3);
+//	nodeH5 = createNode("H5", 3);
+//	nodeH6 = createNode("H6", 3);
+//
+//	//Nodos de la N
+//	nodeN1 = createNode("N1", 3);
+//	nodeN2 = createNode("N2", 3);
+//	nodeN3 = createNode("N3", 3);
+//	nodeN6 = createNode("N6", 3);
+//
+//	//Nodos de la T
+//	nodeT3 = createNode("T3", 3);
+//	nodeT4 = createNode("T4", 3);
+//	nodeT5 = createNode("T5", 3);
+//	nodeT6 = createNode("T6", 3);
+//	nodeT7 = createNode("T7", 3);
+//	nodeT8 = createNode("T8", 3);
+//
+//	//Nodos de C
+//	nodeC1 = createNode("C1", 3);
+//	nodeC2 = createNode("C2", 3);
+//	nodeC3 = createNode("C3", 3);
+//	nodeC4 = createNode("C4", 3);
+//	nodeC7 = createNode("C7", 3);
+//	nodeC8 = createNode("C8", 3);
+//
+//	//Nodos de I
+//	nodeI3 = createNode("I3", 3);
+//	nodeI4 = createNode("I4", 3);
+//	nodeI5 = createNode("I5", 3);
+//	nodeI6 = createNode("I6", 3);
+//
+//	//Nodos de O
+//	nodeO1 = createNode("O1", 3);
+//	nodeO2 = createNode("O2", 3);
+//	nodeO3 = createNode("O3", 3);
+//	nodeO6 = createNode("O6", 3);
+//
+//	//Nodos de U
+//	nodeU3 = createNode("U3", 3);
+//	nodeU4 = createNode("U4", 3);
+//	nodeU5 = createNode("U5", 3);
+//	nodeU6 = createNode("U6", 3);
+//	nodeU7 = createNode("U7", 3);
+//	nodeU8 = createNode("U8", 3);
+//
+//	//Nodos de D
+//	nodeD1 = createNode("D1", 3);
+//	nodeD2 = createNode("D2", 3);
+//	nodeD3 = createNode("D3", 3);
+//	nodeD4 = createNode("D4", 3);
+//	nodeD7 = createNode("D7", 3);
+//	nodeD8 = createNode("D8", 3);
+//
+//	//Nodos de J
+//	nodeJ3 = createNode("J3", 3);
+//	nodeJ4 = createNode("J4", 3);
+//	nodeJ5 = createNode("J5", 3);
+//	nodeJ6 = createNode("J6", 3);
+//
+//	//Nodos de P
+//	nodeP1 = createNode("P1", 3);
+//	nodeP2 = createNode("P2", 3);
+//	nodeP3 = createNode("P3", 3);
+//	nodeP6 = createNode("P6", 3);
+//
+//	//Nodos de V
+//	nodeV3 = createNode("V3", 3);
+//	nodeV4 = createNode("V4", 3);
+//	nodeV5 = createNode("V5", 3);
+//	nodeV6 = createNode("V6", 3);
+//	nodeV7 = createNode("V7", 3);
+//	nodeV8 = createNode("V8", 3);
+//
+//	//Nodos de E
+//	nodeE1 = createNode("E1", 3);
+//	nodeE2 = createNode("E2", 3);
+//	nodeE3 = createNode("E3", 3);
+//	nodeE4 = createNode("E4", 3);
+//	nodeE7 = createNode("E7", 3);
+//	nodeE8 = createNode("E8", 3);
+//
+//	//Nodos de K
+//	nodeK3 = createNode("K3", 3);
+//	nodeK4 = createNode("K4", 3);
+//	nodeK5 = createNode("K5", 3);
+//	nodeK6 = createNode("K6", 3);
+//
+//	//Nodos de Q
+//	nodeQ1 = createNode("Q1", 3);
+//	nodeQ2 = createNode("Q2", 3);
+//	nodeQ3 = createNode("Q3", 3);
+//	nodeQ6 = createNode("Q6", 3);
+//
+//	//Nodos de W
+//	nodeW3 = createNode("W3", 3);
+//	nodeW4 = createNode("W4", 3);
+//	nodeW5 = createNode("W5", 3);
+//	nodeW6 = createNode("W6", 3);
+//	nodeW7 = createNode("W7", 3);
+//	nodeW8 = createNode("W8", 3);
+//
+//	//Nodos de F
+//	nodeF1 = createNode("F1", 3);
+//	nodeF2 = createNode("F2", 3);
+//	nodeF3 = createNode("F3", 3);
+//	nodeF4 = createNode("F4", 3);
+//	nodeF7 = createNode("F7", 3);
+//	nodeF8 = createNode("F8", 3);
+//
+//	//Nodos de L
+//	nodeL3 = createNode("L3", 3);
+//	nodeL4 = createNode("L4", 3);
+//	nodeL6 = createNode("L6", 3);
+//	nodeL5 = createNode("L5", 3);
+//
+//
+//	//Nodos de R
+//	nodeR1 = createNode("R1", 3);
+//	nodeR2 = createNode("R2", 3);
+//	nodeR3 = createNode("R3", 3);
+//	nodeR6 = createNode("R6", 3);
+//
+//	//Nodos de X
+//	nodeX3 = createNode("X3", 3);
+//	nodeX4 = createNode("X4", 3);
+//	nodeX5 = createNode("X5", 3);
+//	nodeX6 = createNode("X6", 3);
+//	nodeX7 = createNode("X7", 3);
+//	nodeX8 = createNode("X8", 3);
+//
+//	//Nodos de la Z
+//	nodeZ1 = createNode("Z1", 1);
+//	nodeZ2 = createNode("Z2", 1);//Pista
+//	nodeZ3 = createNode("Z3", 1);//Pista
+//	nodeZ4 = createNode("Z4", 1);//Pista
+//	nodeZ5 = createNode("Z5", 1);//Pista
+//	nodeZ6 = createNode("Z6", 1);
+//	nodeZ7 = createNode("Z7", 1);
+//	nodeZ8 = createNode("Z8", 1);
 
-	//Nodos de la H
-	nodeH3 = createNode("H3", 3);
-	nodeH4 = createNode("H4", 3);
-	nodeH5 = createNode("H5", 3);
-	nodeH6 = createNode("H6", 3);
-
-	//Nodos de la N
-	nodeN1 = createNode("N1", 3);
-	nodeN2 = createNode("N2", 3);
-	nodeN3 = createNode("N3", 3);
-	nodeN6 = createNode("N6", 3);
-
-	//Nodos de la T
-	nodeT3 = createNode("T3", 3);
-	nodeT4 = createNode("T4", 3);
-	nodeT5 = createNode("T5", 3);
-	nodeT6 = createNode("T6", 3);
-	nodeT7 = createNode("T7", 3);
-	nodeT8 = createNode("T8", 3);
-
-	//Nodos de C
-	nodeC1 = createNode("C1", 3);
-	nodeC2 = createNode("C2", 3);
-	nodeC3 = createNode("C3", 3);
-	nodeC4 = createNode("C4", 3);
-	nodeC7 = createNode("C7", 3);
-	nodeC8 = createNode("C8", 3);
-
-	//Nodos de I
-	nodeI3 = createNode("I3", 3);
-	nodeI4 = createNode("I4", 3);
-	nodeI5 = createNode("I5", 3);
-	nodeI6 = createNode("I6", 3);
-
-	//Nodos de O
-	nodeO1 = createNode("O1", 3);
-	nodeO2 = createNode("O2", 3);
-	nodeO3 = createNode("O3", 3);
-	nodeO6 = createNode("O6", 3);
-
-	//Nodos de U
-	nodeU3 = createNode("U3", 3);
-	nodeU4 = createNode("U4", 3);
-	nodeU5 = createNode("U5", 3);
-	nodeU6 = createNode("U6", 3);
-	nodeU7 = createNode("U7", 3);
-	nodeU8 = createNode("U8", 3);
-
-	//Nodos de D
-	nodeD1 = createNode("D1", 3);
-	nodeD2 = createNode("D2", 3);
-	nodeD3 = createNode("D3", 3);
-	nodeD4 = createNode("D4", 3);
-	nodeD7 = createNode("D7", 3);
-	nodeD8 = createNode("D8", 3);
-
-	//Nodos de J
-	nodeJ3 = createNode("J3", 3);
-	nodeJ4 = createNode("J4", 3);
-	nodeJ5 = createNode("J5", 3);
-	nodeJ6 = createNode("J6", 3);
-
-	//Nodos de P
-	nodeP1 = createNode("P1", 3);
-	nodeP2 = createNode("P2", 3);
-	nodeP3 = createNode("P3", 3);
-	nodeP6 = createNode("P6", 3);
-
-	//Nodos de V
-	nodeV3 = createNode("V3", 3);
-	nodeV4 = createNode("V4", 3);
-	nodeV5 = createNode("V5", 3);
-	nodeV6 = createNode("V6", 3);
-	nodeV7 = createNode("V7", 3);
-	nodeV8 = createNode("V8", 3);
-
-	//Nodos de E
-	nodeE1 = createNode("E1", 3);
-	nodeE2 = createNode("E2", 3);
-	nodeE3 = createNode("E3", 3);
-	nodeE4 = createNode("E4", 3);
-	nodeE7 = createNode("E7", 3);
-	nodeE8 = createNode("E8", 3);
-
-	//Nodos de K
-	nodeK3 = createNode("K3", 3);
-	nodeK4 = createNode("K4", 3);
-	nodeK5 = createNode("K5", 3);
-	nodeK6 = createNode("K6", 3);
-
-	//Nodos de Q
-	nodeQ1 = createNode("Q1", 3);
-	nodeQ2 = createNode("Q2", 3);
-	nodeQ3 = createNode("Q3", 3);
-	nodeQ6 = createNode("Q6", 3);
-
-	//Nodos de W
-	nodeW3 = createNode("W3", 3);
-	nodeW4 = createNode("W4", 3);
-	nodeW5 = createNode("W5", 3);
-	nodeW6 = createNode("W6", 3);
-	nodeW7 = createNode("W7", 3);
-	nodeW8 = createNode("W8", 3);
-
-	//Nodos de F
-	nodeF1 = createNode("F1", 3);
-	nodeF2 = createNode("F2", 3);
-	nodeF3 = createNode("F3", 3);
-	nodeF4 = createNode("F4", 3);
-	nodeF7 = createNode("F7", 3);
-	nodeF8 = createNode("F8", 3);
-
-	//Nodos de L
-	nodeL3 = createNode("L3", 3);
-	nodeL4 = createNode("L4", 3);
-	nodeL6 = createNode("L6", 3);
-	nodeL5 = createNode("L5", 3);
-
-
-	//Nodos de R
-	nodeR1 = createNode("R1", 3);
-	nodeR2 = createNode("R2", 3);
-	nodeR3 = createNode("R3", 3);
-	nodeR6 = createNode("R6", 3);
-
-	//Nodos de X
-	nodeX3 = createNode("X3", 3);
-	nodeX4 = createNode("X4", 3);
-	nodeX5 = createNode("X5", 3);
-	nodeX6 = createNode("X6", 3);
-	nodeX7 = createNode("X7", 3);
-	nodeX8 = createNode("X8", 3);
-
-	//Nodos de la Z
-	nodeZ1 = createNode("Z1", 1);
-	nodeZ2 = createNode("Z2", 1);//Pista
-	nodeZ3 = createNode("Z3", 1);//Pista
-	nodeZ4 = createNode("Z4", 1);//Pista
-	nodeZ5 = createNode("Z5", 1);//Pista
-	nodeZ6 = createNode("Z6", 1);
-	nodeZ7 = createNode("Z7", 1);
-	nodeZ8 = createNode("Z8", 1);
-
-	//Puente Bailey
-	//Larry
-	bridgeNodeG4 = createNode("bridgeNodeG4", 3);
-	bridgeNodeH5 = createNode("bridgeNodeH5", 3);
-	bridgeNodeM2 = createNode("bridgeNodeM2", 3);
-	bridgeNodeN1 = createNode("bridgeNodeN1", 3);
-	Larry = createBridge("Larry", bridgeNodeM2, bridgeNodeG4, bridgeNodeN1, bridgeNodeH5);
-
-	//Curly
-	bridgeNodeH4 = createNode("bridgeNodeH4", 3);
-	bridgeNodeI5 = createNode("bridgeNodeI5", 3);
-	bridgeNodeN2 = createNode("bridgeNodeN2", 3);
-	bridgeNodeO1 = createNode("bridgeNodeO1", 3);
-	Curly = createBridge("Curly", bridgeNodeN2, bridgeNodeH4, bridgeNodeO1, bridgeNodeI5);
-
-	//Moe
-	bridgeNodeI4 = createNode("bridgeNodeI4", 3);
-	bridgeNodeJ5 = createNode("bridgeNodeJ5", 3);
-	bridgeNodeO2 = createNode("bridgeNodeO2", 3);
-	bridgeNodeP1 = createNode("bridgeNodeP1", 3);
-	Moe = createBridge("Moe", bridgeNodeO2, bridgeNodeI4, bridgeNodeP1, bridgeNodeJ5);
-
-	//Shemp
-	bridgeNodeJ4 = createNode("bridgeNodeJ4", 3);
-	bridgeNodeK5 = createNode("bridgeNodeK5", 3);
-	bridgeNodeP2 = createNode("bridgeNodeP2", 3);
-	bridgeNodeQ1 = createNode("bridgeNodeQ1", 3);
-	Shemp = createBridge("Shemp", bridgeNodeP2, bridgeNodeJ4, bridgeNodeQ1, bridgeNodeK5);
-
-	//Joe
-	bridgeNodeK4 = createNode("bridgeNodeK4", 3);
-	bridgeNodeL5 = createNode("bridgeNodeL5", 3);
-	bridgeNodeQ2 = createNode("bridgeNodeQ2", 3);
-	bridgeNodeR1 = createNode("bridgeNodeR1", 3);
-	Joe = createBridge("Joe", bridgeNodeQ2, bridgeNodeK4, bridgeNodeR1, bridgeNodeL5);
+//	//Puente Bailey
+//	//Larry
+//	bridgeNodeG4 = createNode("bridgeNodeG4", 3);
+//	bridgeNodeH5 = createNode("bridgeNodeH5", 3);
+//	bridgeNodeM2 = createNode("bridgeNodeM2", 3);
+//	bridgeNodeN1 = createNode("bridgeNodeN1", 3);
+//	Larry = createBridge("Larry", bridgeNodeM2, bridgeNodeG4, bridgeNodeN1, bridgeNodeH5);
+//
+//	//Curly
+//	bridgeNodeH4 = createNode("bridgeNodeH4", 3);
+//	bridgeNodeI5 = createNode("bridgeNodeI5", 3);
+//	bridgeNodeN2 = createNode("bridgeNodeN2", 3);
+//	bridgeNodeO1 = createNode("bridgeNodeO1", 3);
+//	Curly = createBridge("Curly", bridgeNodeN2, bridgeNodeH4, bridgeNodeO1, bridgeNodeI5);
+//
+//	//Moe
+//	bridgeNodeI4 = createNode("bridgeNodeI4", 3);
+//	bridgeNodeJ5 = createNode("bridgeNodeJ5", 3);
+//	bridgeNodeO2 = createNode("bridgeNodeO2", 3);
+//	bridgeNodeP1 = createNode("bridgeNodeP1", 3);
+//	Moe = createBridge("Moe", bridgeNodeO2, bridgeNodeI4, bridgeNodeP1, bridgeNodeJ5);
+//
+//	//Shemp
+//	bridgeNodeJ4 = createNode("bridgeNodeJ4", 3);
+//	bridgeNodeK5 = createNode("bridgeNodeK5", 3);
+//	bridgeNodeP2 = createNode("bridgeNodeP2", 3);
+//	bridgeNodeQ1 = createNode("bridgeNodeQ1", 3);
+//	Shemp = createBridge("Shemp", bridgeNodeP2, bridgeNodeJ4, bridgeNodeQ1, bridgeNodeK5);
+//
+//	//Joe
+//	bridgeNodeK4 = createNode("bridgeNodeK4", 3);
+//	bridgeNodeL5 = createNode("bridgeNodeL5", 3);
+//	bridgeNodeQ2 = createNode("bridgeNodeQ2", 3);
+//	bridgeNodeR1 = createNode("bridgeNodeR1", 3);
+//	Joe = createBridge("Joe", bridgeNodeQ2, bridgeNodeK4, bridgeNodeR1, bridgeNodeL5);
 	
 	//DEFINICION DE RELACIONES
 	//Nodos alcanzables de Y
-	nodeY1->reachabledNodes = nodeY8;
-	nodeY1->reachabledNodes->next = nodeG5;
-	nodeY2->reachabledNodes = nodeY1;
-	nodeY3->reachabledNodes = nodeY1;
-	nodeY4->reachabledNodes = nodeZ4;
-	nodeY5->reachabledNodes = nodeZ5;
-	nodeY6->reachabledNodes = nodeY4;
-	nodeY6->reachabledNodes->next = nodeY5;
-	nodeY6->reachabledNodes->next->next = nodeY1;
-	nodeY7->reachabledNodes = nodeY6;
-	nodeY8->reachabledNodes = nodeY7;
+//	nodeY1->reachabledNodes = nodeY8;
+//	nodeY1->reachabledNodes->next = nodeG5;
+//	nodeY2->reachabledNodes = nodeY1;
+//	nodeY3->reachabledNodes = nodeY1;
+//	nodeY4->reachabledNodes = nodeZ4;
+//	nodeY5->reachabledNodes = nodeZ5;
+//	nodeY6->reachabledNodes = nodeY4;
+//	nodeY6->reachabledNodes->next = nodeY5;
+//	nodeY6->reachabledNodes->next->next = nodeY1;
+//	nodeY7->reachabledNodes = nodeY6;
+//	nodeY8->reachabledNodes = nodeY7;
 
 	//Nodos alcanzables de A
-	nodeA1->reachabledNodes = nodeA2;
-	nodeA2->reachabledNodes = nodeA3;
-	nodeA2->reachabledNodes->next = nodeB1;
-	nodeA3->reachabledNodes = nodeA4;
-	nodeA4->reachabledNodes = nodeA5G2;
-	nodeA4->reachabledNodes->next = nodeG3;
-	nodeA5G2->reachabledNodes = nodeA6G1;
-	nodeA6G1->reachabledNodes = nodeA7;
-	nodeA7->reachabledNodes = nodeA8;
-	nodeA8->reachabledNodes = nodeA1;
+//	nodeA1->reachabledNodes = nodeA2;
+//	nodeA2->reachabledNodes = nodeA3;
+//	nodeA2->reachabledNodes->next = nodeB1;
+//	nodeA3->reachabledNodes = nodeA4;
+//	nodeA4->reachabledNodes = nodeA5G2;
+//	nodeA4->reachabledNodes->next = nodeG3;
+//	nodeA5G2->reachabledNodes = nodeA6G1;
+//	nodeA6G1->reachabledNodes = nodeA7;
+//	nodeA7->reachabledNodes = nodeA8;
+//	nodeA8->reachabledNodes = nodeA1;
 
 	//Nodos alcanzables de G
-	nodeG3->reachabledNodes = nodeG4;
-	nodeG4->reachabledNodes = bridgeNodeG4; //Puente Bailey
-	nodeG5->reachabledNodes = nodeG6;
-	nodeG6->reachabledNodes = nodeA7;
+//	nodeG3->reachabledNodes = nodeG4;
+//	nodeG4->reachabledNodes = bridgeNodeG4; //Puente Bailey
+//	nodeG5->reachabledNodes = nodeG6;
+//	nodeG6->reachabledNodes = nodeA7;
 
 	//Nodos alcanzables de M
-	nodeM1->reachabledNodes = nodeY6;
-	nodeM2->reachabledNodes = nodeM3;
-	nodeM3->reachabledNodes = nodeS3;
+	nodeM1 -> reachabledNodes = nodeY6;
+
+	nodeM2 -> reachabledNodes = nodeM3;
+	nodeM2 -> next = nodeM3;
+	nodeM2 -> neighbors = nodeNeigbords;
+
+	nodeM3 -> reachabledNodes = nodeS3;
+	nodeM3 -> next = nodeS3;
 	nodeM4S2 -> reachabledNodes = nodeS3;
 	nodeM4S2 ->reachabledNodes -> next = nodeN5T1;
-	nodeM5S1->reachabledNodes = nodeM4S2;
-	nodeM6->reachabledNodes = nodeM1;
+	nodeM5S1 -> reachabledNodes = nodeM4S2;
+	nodeM6 -> reachabledNodes = nodeM1;
 
 	//Nodos alcanzables de S
-	nodeS3->reachabledNodes = nodeS4;
-	nodeS4->reachabledNodes = nodeS5;
-	nodeS5->reachabledNodes = nodeS6;
-	nodeS6->reachabledNodes = nodeS7;
-	nodeS7->reachabledNodes = nodeS8;
-	nodeS8->reachabledNodes = nodeM5S1;
-	nodeS8->reachabledNodes->next = nodeM6;
+	nodeS3 -> reachabledNodes = nodeS4;
+	nodeS4 -> reachabledNodes = nodeS5;
+	nodeS5 -> reachabledNodes = nodeS6;
+	nodeS6 -> reachabledNodes = nodeS7;
+	nodeS7 -> reachabledNodes = nodeS8;
+	nodeS8 -> reachabledNodes = nodeM5S1;
+	nodeS8 -> reachabledNodes -> next = nodeM6;
 
 	//Nodos alcanzables de B
-	nodeB1->reachabledNodes = nodeB2;
-	nodeB2->reachabledNodes = nodeB3;
-	nodeB2->reachabledNodes->next = nodeC1;
-	nodeB3->reachabledNodes = nodeB4;
-	nodeB4->reachabledNodes = nodeB5H2;
-	nodeB4->reachabledNodes->next = nodeH3;
-	nodeB5H2->reachabledNodes = nodeB6H1;
-	nodeB6H1->reachabledNodes = nodeB7;
-	nodeB6H1->reachabledNodes->next = nodeA5G2;
-	nodeB7->reachabledNodes = nodeB8;
-	nodeB8->reachabledNodes = nodeB1;
-
-	//Nodos alcanzables de H
-	nodeH3->reachabledNodes = nodeH4;
-	nodeH4->reachabledNodes = bridgeNodeH4;//Puente Bailey
-	nodeH5->reachabledNodes = nodeH6;
-	nodeH6->reachabledNodes = nodeB7;
-
-	//Nodos alcanzables de N
-	nodeN1->reachabledNodes = bridgeNodeN1; //Puente Bailey
-	nodeN2->reachabledNodes = nodeN3;
-	nodeN3->reachabledNodes = nodeT3;
-	nodeN4T2->reachabledNodes = nodeT3;
-	nodeN4T2->reachabledNodes->next = nodeO5U1;
-	nodeN5T1->reachabledNodes = nodeN4T2;
-	nodeN6->reachabledNodes = nodeN1;
-
-	//Nodos alcanzables de T
-	nodeT3->reachabledNodes = nodeT4;
-	nodeT4->reachabledNodes = nodeT5;
-	nodeT5->reachabledNodes = nodeT6;
-	nodeT6->reachabledNodes = nodeT7;
-	nodeT6->reachabledNodes->next = nodeS5;
-	nodeT7->reachabledNodes = nodeT8;
-	nodeT8->reachabledNodes = nodeN5T1;
-	nodeT8->reachabledNodes->next = nodeN6;
-
-	//Nodos alcanzables de C
-	nodeC1->reachabledNodes = nodeC2;
-	nodeC2->reachabledNodes = nodeC3;
-	nodeC2->reachabledNodes->next = nodeD1;
-	nodeC3->reachabledNodes = nodeC4;
-	nodeC4->reachabledNodes = nodeC5I2;
-	nodeC4->reachabledNodes->next = nodeI3;
-	nodeC5I2->reachabledNodes = nodeC6I1;
-	nodeC6I1->reachabledNodes = nodeC7;
-	nodeC6I1->reachabledNodes->next = nodeB5H2;
-	nodeC7->reachabledNodes = nodeC8;
-	nodeC8->reachabledNodes = nodeC1;
-
-	//Nodos alcanzables de I
-	nodeI3->reachabledNodes = nodeI4;
-	nodeI4->reachabledNodes = bridgeNodeI4;//Puente Bailey
-	nodeI5->reachabledNodes = nodeI6;
-	nodeI6->reachabledNodes = nodeC7;
-
-	//Nodos alcanzables de O
-	nodeO1->reachabledNodes = bridgeNodeO1; //Puente Bailey
-	nodeO2->reachabledNodes = nodeO3;
-	nodeO3->reachabledNodes = nodeU3;
-	nodeO4U2->reachabledNodes = nodeU3;
-	nodeO4U2->reachabledNodes->next = nodeP5V1;
-	nodeO5U1->reachabledNodes = nodeO4U2;
-	nodeO6->reachabledNodes = nodeO1;
-
-	//Nodos alcanzables de U
-	nodeU3->reachabledNodes = nodeU4;
-	nodeU4->reachabledNodes = nodeU5;
-	nodeU5->reachabledNodes = nodeU6;
-	nodeU6->reachabledNodes = nodeU7;
-	nodeU6->reachabledNodes->next = nodeT5;
-	nodeU7->reachabledNodes = nodeU8;
-	nodeU8->reachabledNodes = nodeO5U1;
-	nodeU8->reachabledNodes->next = nodeO6;
-
-	//Nodos alcanzables de D
-	nodeD1->reachabledNodes = nodeD2;
-	nodeD2->reachabledNodes = nodeD3;
-	nodeD2->reachabledNodes->next = nodeE1;
-	nodeD3->reachabledNodes = nodeD4;
-	nodeD4->reachabledNodes = nodeD5J2;
-	nodeD4->reachabledNodes->next = nodeJ3;
-	nodeD5J2->reachabledNodes = nodeD6J1;
-	nodeD6J1->reachabledNodes = nodeD7;
-	nodeD6J1->reachabledNodes->next = nodeC5I2;
-	nodeD7->reachabledNodes = nodeD8;
-	nodeD8->reachabledNodes = nodeD1;
-
-	//Nodos alcanzables de J
-	nodeJ3->reachabledNodes = nodeJ4;
-	nodeJ4->reachabledNodes = bridgeNodeJ4;//Puente Bailey
-	nodeJ5->reachabledNodes = nodeJ6;
-	nodeJ6->reachabledNodes = nodeD7;
-
-	//Nodos alcanzables de P
-	nodeP1->reachabledNodes = bridgeNodeP1; //Puente Bailey
-	nodeP2->reachabledNodes = nodeP3;
-	nodeP3->reachabledNodes = nodeV3;
-	nodeP4V2->reachabledNodes = nodeV3;
-	nodeP4V2->reachabledNodes->next = nodeQ5W1;
-	nodeP5V1->reachabledNodes = nodeP4V2;
-	nodeP6->reachabledNodes = nodeP1;
-
-	//Nodos alcanzables de V
-	nodeV3->reachabledNodes = nodeV4;
-	nodeV4->reachabledNodes = nodeV5;
-	nodeV5->reachabledNodes = nodeV6;
-	nodeV6->reachabledNodes = nodeV7;
-	nodeV6->reachabledNodes->next = nodeU5;
-	nodeV7->reachabledNodes = nodeV8;
-	nodeV8->reachabledNodes = nodeP5V1;
-	nodeV8->reachabledNodes->next = nodeP6;
-
-	//Nodos alcanzables de E
-	nodeE1->reachabledNodes = nodeE2;
-	nodeE2->reachabledNodes = nodeE3;
-	nodeE2->reachabledNodes->next = nodeF1;
-	nodeE3->reachabledNodes = nodeE4;
-	nodeE4->reachabledNodes = nodeE5K2;
-	nodeE4->reachabledNodes->next = nodeK3;
-	nodeE5K2->reachabledNodes = nodeE6K1;
-	nodeE6K1->reachabledNodes = nodeE7;
-	nodeE6K1->reachabledNodes->next = nodeD5J2;
-	nodeE7->reachabledNodes = nodeE8;
-	nodeE8->reachabledNodes = nodeE1;
-
-	//Nodos alcanzables de K
-	nodeK3->reachabledNodes = nodeK4;
-	nodeK4->reachabledNodes = bridgeNodeK4;//Puente Bailey
-	nodeK5->reachabledNodes = nodeK6;
-	nodeK6->reachabledNodes = nodeE7;
-
-	//Nodos alcanzables de Q
-	nodeQ1->reachabledNodes = bridgeNodeQ1; //Puente Bailey
-	nodeQ2->reachabledNodes = nodeQ3;
-	nodeQ3->reachabledNodes = nodeW3;
-	nodeQ4W2->reachabledNodes = nodeW3;
-	nodeQ4W2->reachabledNodes->next = nodeR5X1;
-	nodeQ5W1->reachabledNodes = nodeQ4W2;
-	nodeQ6->reachabledNodes = nodeQ1;
-
-	//Nodos alcanzables de W
-	nodeW3->reachabledNodes = nodeW4;
-	nodeW4->reachabledNodes = nodeW5;
-	nodeW5->reachabledNodes = nodeW6;
-	nodeW6->reachabledNodes = nodeW7;
-	nodeW6->reachabledNodes->next = nodeV5;
-	nodeW7->reachabledNodes = nodeW8;
-	nodeW8->reachabledNodes = nodeQ5W1;
-	nodeW8->reachabledNodes->next = nodeQ6;
-
-	//Nodos alcanzables de F
-	nodeF1->reachabledNodes = nodeF2;
-	nodeF2->reachabledNodes = nodeF3;
-	nodeF3->reachabledNodes = nodeF4;
-	nodeF4->reachabledNodes = nodeF5L2;
-	nodeF4->reachabledNodes->next = nodeL3;
-	nodeF5L2->reachabledNodes = nodeF6L1;
-	nodeF6L1->reachabledNodes = nodeF7;
-	nodeF6L1->reachabledNodes->next = nodeE5K2;
-	nodeF7->reachabledNodes = nodeF8;
-	nodeF8->reachabledNodes = nodeF1;
-
-	//Nodos alcanzables de L
-	nodeL3->reachabledNodes = nodeL4;
-	nodeL4->reachabledNodes = nodeZ1;
-	nodeL5->reachabledNodes = nodeL6;
-	nodeL6->reachabledNodes = nodeF7;
-
-	//Nodos alcanzables de R
-	nodeR1->reachabledNodes = bridgeNodeR1; //Puente Bailey
-	nodeR2->reachabledNodes = nodeR3;
-	nodeR3->reachabledNodes = nodeX3;
-	nodeR4X2->reachabledNodes = nodeX3;
-	nodeR5X1->reachabledNodes = nodeR4X2;
-	nodeR6->reachabledNodes = nodeR1;
-
-	//Nodos alcanzables de X
-	nodeX3->reachabledNodes = nodeX4;
-	nodeX4->reachabledNodes = nodeX5;
-	nodeX5->reachabledNodes = nodeX6;
-	nodeX6->reachabledNodes = nodeX7;
-	nodeX6->reachabledNodes->next = nodeW5;
-	nodeX7->reachabledNodes = nodeX8;
-	nodeX8->reachabledNodes = nodeR5X1;
-	nodeX8->reachabledNodes->next = nodeR6;
-
-	//Nodos alcanzables de Z
-	nodeZ1->reachabledNodes = nodeZ2;
-	nodeZ1->reachabledNodes->next = nodeZ3;
-	nodeZ1->reachabledNodes->next->next = nodeZ6;
-	nodeZ2->reachabledNodes = nodeY2;
-	nodeZ3->reachabledNodes = nodeY3;
-	nodeZ4->reachabledNodes = nodeZ6;
-	nodeZ5->reachabledNodes = nodeZ6;
-	nodeZ6->reachabledNodes = nodeZ7;
-	nodeZ6->reachabledNodes->next = nodeN2;
-	nodeZ7->reachabledNodes = nodeZ8;
-	nodeZ8->reachabledNodes = nodeZ1;
-
-	//Puente Bailey
-	//Larry
-	bridgeNodeG4->reachabledNodes = bridgeNodeM2;	
-	bridgeNodeN1->reachabledNodes = bridgeNodeH5;	
-
-	//Curly
-	bridgeNodeH4->reachabledNodes = bridgeNodeN2;
-	bridgeNodeO1->reachabledNodes = bridgeNodeI5;
-
-	//Moe
-	bridgeNodeI4->reachabledNodes = bridgeNodeO2;
-	bridgeNodeP1->reachabledNodes = bridgeNodeJ5;
-
-	//Shemp
-	bridgeNodeJ4->reachabledNodes = bridgeNodeP2;	
-	bridgeNodeQ1->reachabledNodes = bridgeNodeK5;
-
-	//Joe
-	bridgeNodeK4->reachabledNodes = bridgeNodeQ2;
-	bridgeNodeR1->reachabledNodes = bridgeNodeL5;
+//	nodeB1->reachabledNodes = nodeB2;
+//	nodeB2->reachabledNodes = nodeB3;
+//	nodeB2->reachabledNodes->next = nodeC1;
+//	nodeB3->reachabledNodes = nodeB4;
+//	nodeB4->reachabledNodes = nodeB5H2;
+//	nodeB4->reachabledNodes->next = nodeH3;
+//	nodeB5H2->reachabledNodes = nodeB6H1;
+//	nodeB6H1->reachabledNodes = nodeB7;
+//	nodeB6H1->reachabledNodes->next = nodeA5G2;
+//	nodeB7->reachabledNodes = nodeB8;
+//	nodeB8->reachabledNodes = nodeB1;
+//
+//	//Nodos alcanzables de H
+//	nodeH3->reachabledNodes = nodeH4;
+//	nodeH4->reachabledNodes = bridgeNodeH4;//Puente Bailey
+//	nodeH5->reachabledNodes = nodeH6;
+//	nodeH6->reachabledNodes = nodeB7;
+//
+//	//Nodos alcanzables de N
+//	nodeN1->reachabledNodes = bridgeNodeN1; //Puente Bailey
+//	nodeN2->reachabledNodes = nodeN3;
+//	nodeN3->reachabledNodes = nodeT3;
+//	nodeN4T2->reachabledNodes = nodeT3;
+//	nodeN4T2->reachabledNodes->next = nodeO5U1;
+//	nodeN5T1->reachabledNodes = nodeN4T2;
+//	nodeN6->reachabledNodes = nodeN1;
+//
+//	//Nodos alcanzables de T
+//	nodeT3->reachabledNodes = nodeT4;
+//	nodeT4->reachabledNodes = nodeT5;
+//	nodeT5->reachabledNodes = nodeT6;
+//	nodeT6->reachabledNodes = nodeT7;
+//	nodeT6->reachabledNodes->next = nodeS5;
+//	nodeT7->reachabledNodes = nodeT8;
+//	nodeT8->reachabledNodes = nodeN5T1;
+//	nodeT8->reachabledNodes->next = nodeN6;
+//
+//	//Nodos alcanzables de C
+//	nodeC1->reachabledNodes = nodeC2;
+//	nodeC2->reachabledNodes = nodeC3;
+//	nodeC2->reachabledNodes->next = nodeD1;
+//	nodeC3->reachabledNodes = nodeC4;
+//	nodeC4->reachabledNodes = nodeC5I2;
+//	nodeC4->reachabledNodes->next = nodeI3;
+//	nodeC5I2->reachabledNodes = nodeC6I1;
+//	nodeC6I1->reachabledNodes = nodeC7;
+//	nodeC6I1->reachabledNodes->next = nodeB5H2;
+//	nodeC7->reachabledNodes = nodeC8;
+//	nodeC8->reachabledNodes = nodeC1;
+//
+//	//Nodos alcanzables de I
+//	nodeI3->reachabledNodes = nodeI4;
+//	nodeI4->reachabledNodes = bridgeNodeI4;//Puente Bailey
+//	nodeI5->reachabledNodes = nodeI6;
+//	nodeI6->reachabledNodes = nodeC7;
+//
+//	//Nodos alcanzables de O
+//	nodeO1->reachabledNodes = bridgeNodeO1; //Puente Bailey
+//	nodeO2->reachabledNodes = nodeO3;
+//	nodeO3->reachabledNodes = nodeU3;
+//	nodeO4U2->reachabledNodes = nodeU3;
+//	nodeO4U2->reachabledNodes->next = nodeP5V1;
+//	nodeO5U1->reachabledNodes = nodeO4U2;
+//	nodeO6->reachabledNodes = nodeO1;
+//
+//	//Nodos alcanzables de U
+//	nodeU3->reachabledNodes = nodeU4;
+//	nodeU4->reachabledNodes = nodeU5;
+//	nodeU5->reachabledNodes = nodeU6;
+//	nodeU6->reachabledNodes = nodeU7;
+//	nodeU6->reachabledNodes->next = nodeT5;
+//	nodeU7->reachabledNodes = nodeU8;
+//	nodeU8->reachabledNodes = nodeO5U1;
+//	nodeU8->reachabledNodes->next = nodeO6;
+//
+//	//Nodos alcanzables de D
+//	nodeD1->reachabledNodes = nodeD2;
+//	nodeD2->reachabledNodes = nodeD3;
+//	nodeD2->reachabledNodes->next = nodeE1;
+//	nodeD3->reachabledNodes = nodeD4;
+//	nodeD4->reachabledNodes = nodeD5J2;
+//	nodeD4->reachabledNodes->next = nodeJ3;
+//	nodeD5J2->reachabledNodes = nodeD6J1;
+//	nodeD6J1->reachabledNodes = nodeD7;
+//	nodeD6J1->reachabledNodes->next = nodeC5I2;
+//	nodeD7->reachabledNodes = nodeD8;
+//	nodeD8->reachabledNodes = nodeD1;
+//
+//	//Nodos alcanzables de J
+//	nodeJ3->reachabledNodes = nodeJ4;
+//	nodeJ4->reachabledNodes = bridgeNodeJ4;//Puente Bailey
+//	nodeJ5->reachabledNodes = nodeJ6;
+//	nodeJ6->reachabledNodes = nodeD7;
+//
+//	//Nodos alcanzables de P
+//	nodeP1->reachabledNodes = bridgeNodeP1; //Puente Bailey
+//	nodeP2->reachabledNodes = nodeP3;
+//	nodeP3->reachabledNodes = nodeV3;
+//	nodeP4V2->reachabledNodes = nodeV3;
+//	nodeP4V2->reachabledNodes->next = nodeQ5W1;
+//	nodeP5V1->reachabledNodes = nodeP4V2;
+//	nodeP6->reachabledNodes = nodeP1;
+//
+//	//Nodos alcanzables de V
+//	nodeV3->reachabledNodes = nodeV4;
+//	nodeV4->reachabledNodes = nodeV5;
+//	nodeV5->reachabledNodes = nodeV6;
+//	nodeV6->reachabledNodes = nodeV7;
+//	nodeV6->reachabledNodes->next = nodeU5;
+//	nodeV7->reachabledNodes = nodeV8;
+//	nodeV8->reachabledNodes = nodeP5V1;
+//	nodeV8->reachabledNodes->next = nodeP6;
+//
+//	//Nodos alcanzables de E
+//	nodeE1->reachabledNodes = nodeE2;
+//	nodeE2->reachabledNodes = nodeE3;
+//	nodeE2->reachabledNodes->next = nodeF1;
+//	nodeE3->reachabledNodes = nodeE4;
+//	nodeE4->reachabledNodes = nodeE5K2;
+//	nodeE4->reachabledNodes->next = nodeK3;
+//	nodeE5K2->reachabledNodes = nodeE6K1;
+//	nodeE6K1->reachabledNodes = nodeE7;
+//	nodeE6K1->reachabledNodes->next = nodeD5J2;
+//	nodeE7->reachabledNodes = nodeE8;
+//	nodeE8->reachabledNodes = nodeE1;
+//
+//	//Nodos alcanzables de K
+//	nodeK3->reachabledNodes = nodeK4;
+//	nodeK4->reachabledNodes = bridgeNodeK4;//Puente Bailey
+//	nodeK5->reachabledNodes = nodeK6;
+//	nodeK6->reachabledNodes = nodeE7;
+//
+//	//Nodos alcanzables de Q
+//	nodeQ1->reachabledNodes = bridgeNodeQ1; //Puente Bailey
+//	nodeQ2->reachabledNodes = nodeQ3;
+//	nodeQ3->reachabledNodes = nodeW3;
+//	nodeQ4W2->reachabledNodes = nodeW3;
+//	nodeQ4W2->reachabledNodes->next = nodeR5X1;
+//	nodeQ5W1->reachabledNodes = nodeQ4W2;
+//	nodeQ6->reachabledNodes = nodeQ1;
+//
+//	//Nodos alcanzables de W
+//	nodeW3->reachabledNodes = nodeW4;
+//	nodeW4->reachabledNodes = nodeW5;
+//	nodeW5->reachabledNodes = nodeW6;
+//	nodeW6->reachabledNodes = nodeW7;
+//	nodeW6->reachabledNodes->next = nodeV5;
+//	nodeW7->reachabledNodes = nodeW8;
+//	nodeW8->reachabledNodes = nodeQ5W1;
+//	nodeW8->reachabledNodes->next = nodeQ6;
+//
+//	//Nodos alcanzables de F
+//	nodeF1->reachabledNodes = nodeF2;
+//	nodeF2->reachabledNodes = nodeF3;
+//	nodeF3->reachabledNodes = nodeF4;
+//	nodeF4->reachabledNodes = nodeF5L2;
+//	nodeF4->reachabledNodes->next = nodeL3;
+//	nodeF5L2->reachabledNodes = nodeF6L1;
+//	nodeF6L1->reachabledNodes = nodeF7;
+//	nodeF6L1->reachabledNodes->next = nodeE5K2;
+//	nodeF7->reachabledNodes = nodeF8;
+//	nodeF8->reachabledNodes = nodeF1;
+//
+//	//Nodos alcanzables de L
+//	nodeL3->reachabledNodes = nodeL4;
+//	nodeL4->reachabledNodes = nodeZ1;
+//	nodeL5->reachabledNodes = nodeL6;
+//	nodeL6->reachabledNodes = nodeF7;
+//
+//	//Nodos alcanzables de R
+//	nodeR1->reachabledNodes = bridgeNodeR1; //Puente Bailey
+//	nodeR2->reachabledNodes = nodeR3;
+//	nodeR3->reachabledNodes = nodeX3;
+//	nodeR4X2->reachabledNodes = nodeX3;
+//	nodeR5X1->reachabledNodes = nodeR4X2;
+//	nodeR6->reachabledNodes = nodeR1;
+//
+//	//Nodos alcanzables de X
+//	nodeX3->reachabledNodes = nodeX4;
+//	nodeX4->reachabledNodes = nodeX5;
+//	nodeX5->reachabledNodes = nodeX6;
+//	nodeX6->reachabledNodes = nodeX7;
+//	nodeX6->reachabledNodes->next = nodeW5;
+//	nodeX7->reachabledNodes = nodeX8;
+//	nodeX8->reachabledNodes = nodeR5X1;
+//	nodeX8->reachabledNodes->next = nodeR6;
+//
+//	//Nodos alcanzables de Z
+//	nodeZ1->reachabledNodes = nodeZ2;
+//	nodeZ1->reachabledNodes->next = nodeZ3;
+//	nodeZ1->reachabledNodes->next->next = nodeZ6;
+//	nodeZ2->reachabledNodes = nodeY2;
+//	nodeZ3->reachabledNodes = nodeY3;
+//	nodeZ4->reachabledNodes = nodeZ6;
+//	nodeZ5->reachabledNodes = nodeZ6;
+//	nodeZ6->reachabledNodes = nodeZ7;
+//	nodeZ6->reachabledNodes->next = nodeN2;
+//	nodeZ7->reachabledNodes = nodeZ8;
+//	nodeZ8->reachabledNodes = nodeZ1;
+//
+//	//Puente Bailey
+//	//Larry
+//	bridgeNodeG4->reachabledNodes = bridgeNodeM2;
+//	bridgeNodeN1->reachabledNodes = bridgeNodeH5;
+//
+//	//Curly
+//	bridgeNodeH4->reachabledNodes = bridgeNodeN2;
+//	bridgeNodeO1->reachabledNodes = bridgeNodeI5;
+//
+//	//Moe
+//	bridgeNodeI4->reachabledNodes = bridgeNodeO2;
+//	bridgeNodeP1->reachabledNodes = bridgeNodeJ5;
+//
+//	//Shemp
+//	bridgeNodeJ4->reachabledNodes = bridgeNodeP2;
+//	bridgeNodeQ1->reachabledNodes = bridgeNodeK5;
+//
+//	//Joe
+//	bridgeNodeK4->reachabledNodes = bridgeNodeQ2;
+//	bridgeNodeR1->reachabledNodes = bridgeNodeL5;
 }
 
 void teardDown(){
@@ -813,41 +818,41 @@ void teardDown(){
 	//Hay que liberar la memoria cuando se libera un vehicule
 
 	//Colors
-	releaseColor(red);
-	releaseColor(blue);
-	releaseColor(green);
-	releaseColor(white);
-	releaseColor(black);
-	releaseColor(pink);
-	releaseColor(orange);
-	releaseColor(grey);
-	releaseColor(ligthBlue);
-
-	//Nodos de Y
-	releaseNode(nodeY1);
-	releaseNode(nodeY2);
-	releaseNode(nodeY3);
-	releaseNode(nodeY4);
-	releaseNode(nodeY5);
-	releaseNode(nodeY6);
-	releaseNode(nodeY7);
-	releaseNode(nodeY8);
-
-	//Nodos de A
-	releaseNode(nodeA1);
-	releaseNode(nodeA2);
-	releaseNode(nodeA3);
-	releaseNode(nodeA4);
-	releaseNode(nodeA6G1);
-	releaseNode(nodeA5G2);
-	releaseNode(nodeA7);
-	releaseNode(nodeA8);
-
-	//Nodos de G
-	releaseNode(nodeG3);
-	releaseNode(nodeG4);
-	releaseNode(nodeG5);
-	releaseNode(nodeG6);
+//	releaseColor(red);
+//	releaseColor(blue);
+//	releaseColor(green);
+//	releaseColor(white);
+//	releaseColor(black);
+//	releaseColor(pink);
+//	releaseColor(orange);
+//	releaseColor(grey);
+//	releaseColor(ligthBlue);
+//
+//	//Nodos de Y
+//	releaseNode(nodeY1);
+//	releaseNode(nodeY2);
+//	releaseNode(nodeY3);
+//	releaseNode(nodeY4);
+//	releaseNode(nodeY5);
+//	releaseNode(nodeY6);
+//	releaseNode(nodeY7);
+//	releaseNode(nodeY8);
+//
+//	//Nodos de A
+//	releaseNode(nodeA1);
+//	releaseNode(nodeA2);
+//	releaseNode(nodeA3);
+//	releaseNode(nodeA4);
+//	releaseNode(nodeA6G1);
+//	releaseNode(nodeA5G2);
+//	releaseNode(nodeA7);
+//	releaseNode(nodeA8);
+//
+//	//Nodos de G
+//	releaseNode(nodeG3);
+//	releaseNode(nodeG4);
+//	releaseNode(nodeG5);
+//	releaseNode(nodeG6);
 
 	//Nodos de M
 	releaseNode(nodeM1);
@@ -866,264 +871,264 @@ void teardDown(){
 	releaseNode(nodeS8);
 
 	//Nodos de B
-	releaseNode(nodeB1);
-	releaseNode(nodeB2);
-	releaseNode(nodeB3);
-	releaseNode(nodeB4);
-	releaseNode(nodeB5H2);
-	releaseNode(nodeB6H1);
-	releaseNode(nodeB7);
-	releaseNode(nodeB8);
-
-	//Nodos de H
-	releaseNode(nodeH3);
-	releaseNode(nodeH4);
-	releaseNode(nodeH5);
-	releaseNode(nodeH6);
-
-	//Nodos de N
-	releaseNode(nodeN1);
-	releaseNode(nodeN2);
-	releaseNode(nodeN3);
-	releaseNode(nodeN4T2);
-	releaseNode(nodeN5T1);
-	releaseNode(nodeN6);
-
-	//Nodos de T
-	releaseNode(nodeT3);
-	releaseNode(nodeT4);
-	releaseNode(nodeT5);
-	releaseNode(nodeT6);
-	releaseNode(nodeT7);
-	releaseNode(nodeT8);
-
-	//Nodos de C
-	releaseNode(nodeC1);
-	releaseNode(nodeC2);
-	releaseNode(nodeC3);
-	releaseNode(nodeC4);
-	releaseNode(nodeC5I2);
-	releaseNode(nodeC6I1);
-	releaseNode(nodeC7);
-	releaseNode(nodeC8);
-
-	//Nodos de I
-	releaseNode(nodeI3);
-	releaseNode(nodeI4);
-	releaseNode(nodeI5);
-	releaseNode(nodeI6);
-
-	//Nodos de O
-	releaseNode(nodeO1);
-	releaseNode(nodeO2);
-	releaseNode(nodeO3);
-	releaseNode(nodeO4U2);
-	releaseNode(nodeO5U1);
-	releaseNode(nodeO6);
-
-	//Nodos de U
-	releaseNode(nodeU3);
-	releaseNode(nodeU4);
-	releaseNode(nodeU5);
-	releaseNode(nodeU6);
-	releaseNode(nodeU7);
-	releaseNode(nodeU8);
-
-	//Nodos de D
-	releaseNode(nodeD1);
-	releaseNode(nodeD2);
-	releaseNode(nodeD3);
-	releaseNode(nodeD4);
-	releaseNode(nodeD5J2);
-	releaseNode(nodeD6J1);
-	releaseNode(nodeD7);
-	releaseNode(nodeD8);
-
-	//Nodos de J
-	releaseNode(nodeJ3);
-	releaseNode(nodeJ4);
-	releaseNode(nodeJ5);
-	releaseNode(nodeJ6);
-
-	//Nodos de P
-	releaseNode(nodeP1);
-	releaseNode(nodeP2);
-	releaseNode(nodeP3);
-	releaseNode(nodeP4V2);
-	releaseNode(nodeP5V1);
-	releaseNode(nodeP6);
-
-	//Nodos de V
-	releaseNode(nodeV3);
-	releaseNode(nodeV4);
-	releaseNode(nodeV5);
-	releaseNode(nodeV6);
-	releaseNode(nodeV7);
-	releaseNode(nodeV8);
-
-	//Nodos de E
-	releaseNode(nodeE1);
-	releaseNode(nodeE2);
-	releaseNode(nodeE3);
-	releaseNode(nodeE5K2);
-	releaseNode(nodeE6K1);
-	releaseNode(nodeE4);
-	releaseNode(nodeE7);
-	releaseNode(nodeE8);
-
-	//Nodos de K
-	releaseNode(nodeK3);
-	releaseNode(nodeK4);
-	releaseNode(nodeK5);
-	releaseNode(nodeK6);
-
-	//Nodos de Q
-	releaseNode(nodeQ1);
-	releaseNode(nodeQ2);
-	releaseNode(nodeQ3);
-	releaseNode(nodeQ5W1);
-	releaseNode(nodeQ4W2);
-	releaseNode(nodeQ6);
-
-	//Nodos de W
-	releaseNode(nodeW3);
-	releaseNode(nodeW4);
-	releaseNode(nodeW5);
-	releaseNode(nodeW6);
-	releaseNode(nodeW7);
-	releaseNode(nodeW8);
-
-	//Nodos de F
-	releaseNode(nodeF1);
-	releaseNode(nodeF2);
-	releaseNode(nodeF3);
-	releaseNode(nodeF6L1);
-	releaseNode(nodeF5L2);
-	releaseNode(nodeF4);
-	releaseNode(nodeF7);
-	releaseNode(nodeF8);
-
-	//Nodos de L
-	releaseNode(nodeL3);
-	releaseNode(nodeL4);
-	releaseNode(nodeL5);
-	releaseNode(nodeL6);
-
-	//Nodos de R
-	releaseNode(nodeR1);
-	releaseNode(nodeR2);
-	releaseNode(nodeR3);
-	releaseNode(nodeR4X2);
-	releaseNode(nodeR5X1);
-	releaseNode(nodeR6);
-
-	//Nodos de X
-	releaseNode(nodeX3);
-	releaseNode(nodeX4);
-	releaseNode(nodeX5);
-	releaseNode(nodeX6);
-	releaseNode(nodeX7);
-	releaseNode(nodeX8);
-
-	//Nodos de la Z
-	releaseNode(nodeZ1);
-	releaseNode(nodeZ2);
-	releaseNode(nodeZ3);
-	releaseNode(nodeZ4);
-	releaseNode(nodeZ5);
-	releaseNode(nodeZ6);
-	releaseNode(nodeZ7);
-	releaseNode(nodeZ8);
-
-	//Nodes de Puentes
-	releaseNode(bridgeNodeG4);
-	releaseNode(bridgeNodeM2);
-	releaseNode(bridgeNodeN1);
-	releaseNode(bridgeNodeH5);
-	releaseNode(bridgeNodeH4);
-	releaseNode(bridgeNodeN2);
-	releaseNode(bridgeNodeO1);
-	releaseNode(bridgeNodeI5);	
-	releaseNode(bridgeNodeI4);
-	releaseNode(bridgeNodeO2);
-	releaseNode(bridgeNodeP1);
-	releaseNode(bridgeNodeJ5);
-	releaseNode(bridgeNodeJ4);
-	releaseNode(bridgeNodeP2);
-	releaseNode(bridgeNodeQ1);
-	releaseNode(bridgeNodeK5);
-	releaseNode(bridgeNodeK4);
-	releaseNode(bridgeNodeQ2);
-	releaseNode(bridgeNodeR1);
-	releaseNode(bridgeNodeL5);
-
-	//Puentes
-	releaseBridge(Larry);
-	releaseBridge(Curly);
-	releaseBridge(Moe);
-	releaseBridge(Joe);
-	releaseBridge(Shemp);
+//	releaseNode(nodeB1);
+//	releaseNode(nodeB2);
+//	releaseNode(nodeB3);
+//	releaseNode(nodeB4);
+//	releaseNode(nodeB5H2);
+//	releaseNode(nodeB6H1);
+//	releaseNode(nodeB7);
+//	releaseNode(nodeB8);
+//
+//	//Nodos de H
+//	releaseNode(nodeH3);
+//	releaseNode(nodeH4);
+//	releaseNode(nodeH5);
+//	releaseNode(nodeH6);
+//
+//	//Nodos de N
+//	releaseNode(nodeN1);
+//	releaseNode(nodeN2);
+//	releaseNode(nodeN3);
+//	releaseNode(nodeN4T2);
+//	releaseNode(nodeN5T1);
+//	releaseNode(nodeN6);
+//
+//	//Nodos de T
+//	releaseNode(nodeT3);
+//	releaseNode(nodeT4);
+//	releaseNode(nodeT5);
+//	releaseNode(nodeT6);
+//	releaseNode(nodeT7);
+//	releaseNode(nodeT8);
+//
+//	//Nodos de C
+//	releaseNode(nodeC1);
+//	releaseNode(nodeC2);
+//	releaseNode(nodeC3);
+//	releaseNode(nodeC4);
+//	releaseNode(nodeC5I2);
+//	releaseNode(nodeC6I1);
+//	releaseNode(nodeC7);
+//	releaseNode(nodeC8);
+//
+//	//Nodos de I
+//	releaseNode(nodeI3);
+//	releaseNode(nodeI4);
+//	releaseNode(nodeI5);
+//	releaseNode(nodeI6);
+//
+//	//Nodos de O
+//	releaseNode(nodeO1);
+//	releaseNode(nodeO2);
+//	releaseNode(nodeO3);
+//	releaseNode(nodeO4U2);
+//	releaseNode(nodeO5U1);
+//	releaseNode(nodeO6);
+//
+//	//Nodos de U
+//	releaseNode(nodeU3);
+//	releaseNode(nodeU4);
+//	releaseNode(nodeU5);
+//	releaseNode(nodeU6);
+//	releaseNode(nodeU7);
+//	releaseNode(nodeU8);
+//
+//	//Nodos de D
+//	releaseNode(nodeD1);
+//	releaseNode(nodeD2);
+//	releaseNode(nodeD3);
+//	releaseNode(nodeD4);
+//	releaseNode(nodeD5J2);
+//	releaseNode(nodeD6J1);
+//	releaseNode(nodeD7);
+//	releaseNode(nodeD8);
+//
+//	//Nodos de J
+//	releaseNode(nodeJ3);
+//	releaseNode(nodeJ4);
+//	releaseNode(nodeJ5);
+//	releaseNode(nodeJ6);
+//
+//	//Nodos de P
+//	releaseNode(nodeP1);
+//	releaseNode(nodeP2);
+//	releaseNode(nodeP3);
+//	releaseNode(nodeP4V2);
+//	releaseNode(nodeP5V1);
+//	releaseNode(nodeP6);
+//
+//	//Nodos de V
+//	releaseNode(nodeV3);
+//	releaseNode(nodeV4);
+//	releaseNode(nodeV5);
+//	releaseNode(nodeV6);
+//	releaseNode(nodeV7);
+//	releaseNode(nodeV8);
+//
+//	//Nodos de E
+//	releaseNode(nodeE1);
+//	releaseNode(nodeE2);
+//	releaseNode(nodeE3);
+//	releaseNode(nodeE5K2);
+//	releaseNode(nodeE6K1);
+//	releaseNode(nodeE4);
+//	releaseNode(nodeE7);
+//	releaseNode(nodeE8);
+//
+//	//Nodos de K
+//	releaseNode(nodeK3);
+//	releaseNode(nodeK4);
+//	releaseNode(nodeK5);
+//	releaseNode(nodeK6);
+//
+//	//Nodos de Q
+//	releaseNode(nodeQ1);
+//	releaseNode(nodeQ2);
+//	releaseNode(nodeQ3);
+//	releaseNode(nodeQ5W1);
+//	releaseNode(nodeQ4W2);
+//	releaseNode(nodeQ6);
+//
+//	//Nodos de W
+//	releaseNode(nodeW3);
+//	releaseNode(nodeW4);
+//	releaseNode(nodeW5);
+//	releaseNode(nodeW6);
+//	releaseNode(nodeW7);
+//	releaseNode(nodeW8);
+//
+//	//Nodos de F
+//	releaseNode(nodeF1);
+//	releaseNode(nodeF2);
+//	releaseNode(nodeF3);
+//	releaseNode(nodeF6L1);
+//	releaseNode(nodeF5L2);
+//	releaseNode(nodeF4);
+//	releaseNode(nodeF7);
+//	releaseNode(nodeF8);
+//
+//	//Nodos de L
+//	releaseNode(nodeL3);
+//	releaseNode(nodeL4);
+//	releaseNode(nodeL5);
+//	releaseNode(nodeL6);
+//
+//	//Nodos de R
+//	releaseNode(nodeR1);
+//	releaseNode(nodeR2);
+//	releaseNode(nodeR3);
+//	releaseNode(nodeR4X2);
+//	releaseNode(nodeR5X1);
+//	releaseNode(nodeR6);
+//
+//	//Nodos de X
+//	releaseNode(nodeX3);
+//	releaseNode(nodeX4);
+//	releaseNode(nodeX5);
+//	releaseNode(nodeX6);
+//	releaseNode(nodeX7);
+//	releaseNode(nodeX8);
+//
+//	//Nodos de la Z
+//	releaseNode(nodeZ1);
+//	releaseNode(nodeZ2);
+//	releaseNode(nodeZ3);
+//	releaseNode(nodeZ4);
+//	releaseNode(nodeZ5);
+//	releaseNode(nodeZ6);
+//	releaseNode(nodeZ7);
+//	releaseNode(nodeZ8);
+//
+//	//Nodes de Puentes
+//	releaseNode(bridgeNodeG4);
+//	releaseNode(bridgeNodeM2);
+//	releaseNode(bridgeNodeN1);
+//	releaseNode(bridgeNodeH5);
+//	releaseNode(bridgeNodeH4);
+//	releaseNode(bridgeNodeN2);
+//	releaseNode(bridgeNodeO1);
+//	releaseNode(bridgeNodeI5);
+//	releaseNode(bridgeNodeI4);
+//	releaseNode(bridgeNodeO2);
+//	releaseNode(bridgeNodeP1);
+//	releaseNode(bridgeNodeJ5);
+//	releaseNode(bridgeNodeJ4);
+//	releaseNode(bridgeNodeP2);
+//	releaseNode(bridgeNodeQ1);
+//	releaseNode(bridgeNodeK5);
+//	releaseNode(bridgeNodeK4);
+//	releaseNode(bridgeNodeQ2);
+//	releaseNode(bridgeNodeR1);
+//	releaseNode(bridgeNodeL5);
+//
+//	//Puentes
+//	releaseBridge(Larry);
+//	releaseBridge(Curly);
+//	releaseBridge(Moe);
+//	releaseBridge(Joe);
+//	releaseBridge(Shemp);
 }
 
 void singleRun(){
 
-	//BUSES
-	//Periferica Grande - Roja
-	//A1, D1, F2, L4, Z (dandole la vuelta), R2, X5, U5, S6, M1, Y (dandole la vuelta)
-	VEHICULE *redBus = createBus("PERIFERICA-GRANDE");
-	redBus->colorSpeed = red;
-
-
-	//Periferica Norte - Verde
-	//E2, L3*, F2, L4, Z (dandole la vuelta), toma la pista hacia el Oeste Y (dandole la vuelta), G6, B1, E2
-	VEHICULE *greenBus = createBus("PERIFERICA-NORTE");
-	greenBus->colorSpeed = green;
-
-	//Periferica Sur - Azul
-	//R3, W5, T6, M6, Y (dandole la vuelta), toma la pista hacia el Este Z (dandole la vuelta), R3
-	VEHICULE *blueBus = createBus("PERIFERICA-SUR");
-	blueBus->colorSpeed = blue;
-
-	//Bus Blanco
-	//I4, O3, T5, N1, H6, C1, I4
-	VEHICULE *whiteBus = createBus("BUS-BLANCO");
-	whiteBus->colorSpeed = white;
-
-	//Bus Gris
-	//U5, O1, I6, D1, J4, P3, U5
-	VEHICULE *greyBus = createBus("BUS-GRIS");
-	greyBus->colorSpeed = grey;
-
-	//Bus Negro
-	//J6, E1, K4, Q3, V5, P1, J6
-	VEHICULE *blackBus = createBus("BUS-NEGRO");
-	blackBus->colorSpeed = black;
-
-	//Bus Rosa
-	//F5L1, A6, A1, F2, F5L1
-	VEHICULE *pinkBus = createBus("BUS-ROSA");
-	pinkBus->colorSpeed = pink;
-
-	//Bus Celeste
-	//S6, M5S1, R4X2, X5, S6
-	VEHICULE *ligthBlueBus = createBus("BUS-CELESTE");
-	ligthBlueBus->colorSpeed = ligthBlue;
-
-	//Bus Lombriz - Naranja
-	//M3, O6, C8, C3, O3, Q6, E8, E3, Q3, X4, X7, L6, J3, V4, J6, H3, T4, T7, H6, A8, A3, M3
-	VEHICULE *orangeBus = createBus("BUS-NARANJA");
-	orangeBus->colorSpeed = orange;
-
-	//Crear una paradas - Destinos
-	//addStop(orangeBus, nodeM3);
-	STOP *stopM3 = createStop();
-	stopM3->stop = nodeM3;
-	orangeBus->stops = stopM3;
-
-	//addStop(orangeBus, nodeO6);
-	STOP *stopO6 = createStop();
-	stopO6->stop = nodeO6;
-	orangeBus->stops->next = stopO6;
+//	//BUSES
+//	//Periferica Grande - Roja
+//	//A1, D1, F2, L4, Z (dandole la vuelta), R2, X5, U5, S6, M1, Y (dandole la vuelta)
+//	VEHICULE *redBus = createBus("PERIFERICA-GRANDE");
+//	redBus->colorSpeed = red;
+//
+//
+//	//Periferica Norte - Verde
+//	//E2, L3*, F2, L4, Z (dandole la vuelta), toma la pista hacia el Oeste Y (dandole la vuelta), G6, B1, E2
+//	VEHICULE *greenBus = createBus("PERIFERICA-NORTE");
+//	greenBus->colorSpeed = green;
+//
+//	//Periferica Sur - Azul
+//	//R3, W5, T6, M6, Y (dandole la vuelta), toma la pista hacia el Este Z (dandole la vuelta), R3
+//	VEHICULE *blueBus = createBus("PERIFERICA-SUR");
+//	blueBus->colorSpeed = blue;
+//
+//	//Bus Blanco
+//	//I4, O3, T5, N1, H6, C1, I4
+//	VEHICULE *whiteBus = createBus("BUS-BLANCO");
+//	whiteBus->colorSpeed = white;
+//
+//	//Bus Gris
+//	//U5, O1, I6, D1, J4, P3, U5
+//	VEHICULE *greyBus = createBus("BUS-GRIS");
+//	greyBus->colorSpeed = grey;
+//
+//	//Bus Negro
+//	//J6, E1, K4, Q3, V5, P1, J6
+//	VEHICULE *blackBus = createBus("BUS-NEGRO");
+//	blackBus->colorSpeed = black;
+//
+//	//Bus Rosa
+//	//F5L1, A6, A1, F2, F5L1
+//	VEHICULE *pinkBus = createBus("BUS-ROSA");
+//	pinkBus->colorSpeed = pink;
+//
+//	//Bus Celeste
+//	//S6, M5S1, R4X2, X5, S6
+//	VEHICULE *ligthBlueBus = createBus("BUS-CELESTE");
+//	ligthBlueBus->colorSpeed = ligthBlue;
+//
+//	//Bus Lombriz - Naranja
+//	//M3, O6, C8, C3, O3, Q6, E8, E3, Q3, X4, X7, L6, J3, V4, J6, H3, T4, T7, H6, A8, A3, M3
+//	VEHICULE *orangeBus = createBus("BUS-NARANJA");
+//	orangeBus->colorSpeed = orange;
+//
+//	//Crear una paradas - Destinos
+//	//addStop(orangeBus, nodeM3);
+//	STOP *stopM3 = createStop();
+//	stopM3->stop = nodeM3;
+//	orangeBus->stops = stopM3;
+//
+//	//addStop(orangeBus, nodeO6);
+//	STOP *stopO6 = createStop();
+//	stopO6->stop = nodeO6;
+//	orangeBus->stops->next = stopO6;
 
 	//addStop(orangeBus, nodeC8);
 	// STOP *stopC8 = createStop();
@@ -1141,30 +1146,60 @@ void singleRun(){
     // generateRoute(nodeM2, nodeM1, routaM2M3);
     // displayDestinations(routaM2M3);
 
+//    #################################################
+
+
+    DESTINY *ruta0 = createDestiny();
+    ruta0 -> node = nodeM2;
+    generateRoute(nodeM2, nodeM2, ruta0);
+//    displayDestinations(ruta0);
+//    puts("----------");
+
 //    DESTINY *ruta1 = createDestiny();
 //    ruta1 -> node = nodeM2;
 //    generateRoute(nodeM2, nodeM3, ruta1);
 //    displayDestinations(ruta1);
+
+//    puts("---------");
+//
+//    DESTINY *ruta2 = createDestiny();
+//    ruta2 -> node = nodeM2;
+//    generateRoute(nodeM2, nodeS3, ruta2);
+//    displayDestinations(ruta2);
+
+//    puts("---------");
+//
+//    DESTINY *ruta3 = createDestiny();
+//    ruta3 -> node = nodeM2;
+//    generateRoute(nodeM2, nodeS4, ruta3);
+//    displayDestinations(ruta3);
 //
 //    puts("---------");
+//
+//    DESTINY *ruta4 = createDestiny();
+//    ruta4 -> node = nodeM2;
+//    generateRoute(nodeM2, nodeM1, ruta4);
+//    displayDestinations(ruta4);
 
-    DESTINY *ruta2 = createDestiny();
-    ruta2 -> node = nodeM2;
-    generateRoute(nodeM2, nodeS3, ruta2);
-    displayDestinations(ruta2);
+//    puts("---------");
+//
+//    DESTINY *ruta5 = createDestiny();
+//    ruta5 -> node = nodeM2;
+//    generateRoute(nodeM2, nodeM5S1, ruta5);
+//    displayDestinations(ruta5);
 
 
 
-    //Bus
-    releaseVehicule(redBus);
-    releaseVehicule(blueBus);
-    releaseVehicule(greenBus);
-    releaseVehicule(whiteBus);
-    releaseVehicule(blackBus);
-    releaseVehicule(pinkBus);
-    releaseVehicule(orangeBus);
-    releaseVehicule(greyBus);
-    releaseVehicule(ligthBlueBus);
+//    //Bus
+//    releaseVehicule(redBus);
+//    releaseVehicule(blueBus);
+//    releaseVehicule(greenBus);
+//    releaseVehicule(whiteBus);
+//    releaseVehicule(blackBus);
+//    releaseVehicule(pinkBus);
+//    releaseVehicule(orangeBus);
+//    releaseVehicule(greyBus);
+//    releaseVehicule(ligthBlueBus);
 }
 
 void* move(void* param){

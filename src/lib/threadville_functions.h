@@ -271,35 +271,59 @@ void displayStops(STOP *stops){
 }
 
 //GENERADOR DE RUTAS
+
+
+
 void generateRoute(NODE *from, NODE *to, DESTINY *destinations){
-    printf("FROM = %s \n", from -> id);
+    printf("FROM = %s, TO = %s \n", from -> id, to -> id);
 	NODE *start = from;
 
-	if(from != NULL && to != NULL){
 
-		if(strcmp(start -> id, to -> id) == 0){
-		    printf("Iguales! \n");
-			return;
-		} else{	
-			DESTINY *destiny = createDestiny();
 
-			if(start -> reachabledNodes -> next == NULL){
-				destiny -> node = start -> reachabledNodes;
-				destinations -> next = start -> reachabledNodes;
+    if(from != NULL && to != NULL){
+        if(strcmp(from -> id, to -> id) == 0){
+            printf("0 -> %s \n", from -> id);
+        } else {
+            if(from -> next != NULL){
+                generateRoute(from -> next, to, destinations);
+            } else {
+                puts("from -> next = NULL");
+            }
+        }
+
+//        if(strcmp(from -> next -> id, to -> id) == 0){
+//            printf("1 -> %s, %s \n", from -> id, to -> id);
+//        }
+
+
+    }
+
+
+//	if(from != NULL && to != NULL){
+
+//		if(strcmp(start -> id, to -> id) == 0){
+//		    printf("Iguales! \n");
+//			return;
+//		} else{
+//		    puts("x aqui");
+//			DESTINY *destiny = createDestiny();
+//			puts("x aqui 2");
+//			if(start -> reachabledNodes -> next == NULL){
+//				destiny -> node = start -> reachabledNodes;
+//				destinations -> next = destiny;
 //			    printf("start   -> reachableNodes = %s \n", start -> reachabledNodes -> id);
-				printf("destiny -> node = %s \n", destiny -> node -> id);
-				printf("destinations -> next = %s \n", destinations -> next -> node -> id);
-				generateRoute(start->reachabledNodes, to, destinations -> next);
-			}else{
-			    printf("ELSE %s \n", start -> reachabledNodes -> next -> id);
-			    exit(2);
+//				printf("destiny -> node = %s \n", destiny -> node -> id);
+//				printf("destinations -> next = %s \n", destinations -> next -> node -> id);
+//				generateRoute(start -> reachabledNodes, to, destinations -> next);
+//			}else{
+//			    printf("ELSE %s \n", start -> reachabledNodes -> next -> id);
 //				destiny -> node = start -> reachabledNodes -> next;
 //				destinations -> next = destiny;
 //				generateRoute(start -> reachabledNodes -> next, to, destinations -> next);
-			}
-		}
-	}	
-};
+//			}
+//		}
+//	}
+}
 
 ROUTE* newRoute(STOP *cStop){
 	STOP *currentStop = cStop;
