@@ -278,25 +278,20 @@ void generateRoute(NODE *from, NODE *to, DESTINY *destinations){
     printf("FROM = %s, TO = %s \n", from -> id, to -> id);
 	NODE *start = from;
 
-
-
-    if(from != NULL && to != NULL){
-        if(strcmp(from -> id, to -> id) == 0){
-            printf("0 -> %s \n", from -> id);
-        } else {
-            if(from -> next != NULL){
-                generateRoute(from -> next, to, destinations);
-            } else {
-                puts("from -> next = NULL");
-            }
-        }
-
-//        if(strcmp(from -> next -> id, to -> id) == 0){
-//            printf("1 -> %s, %s \n", from -> id, to -> id);
+//<<<<<<< HEAD
+//
+//
+//    if(from != NULL && to != NULL){
+//        if(strcmp(from -> id, to -> id) == 0){
+//            printf("0 -> %s \n", from -> id);
+//        } else {
+//            if(from -> next != NULL){
+//                generateRoute(from -> next, to, destinations);
+//            } else {
+//                puts("from -> next = NULL");
+//            }
 //        }
-
-
-    }
+//    }
 
 
 //	if(from != NULL && to != NULL){
@@ -323,7 +318,24 @@ void generateRoute(NODE *from, NODE *to, DESTINY *destinations){
 //			}
 //		}
 //	}
-}
+//}
+   	if(from != NULL && to != NULL){
+		DESTINY *destiny = createDestiny();
+		destiny->node = start;
+		destinations->next = destiny;
+
+		if(strcmp(start->id, to->id) == 0){
+			return;
+		}
+		else{	
+		    if(start->reachabledNodes->next == NULL){
+			    generateRoute(start->reachabledNodes, to, destinations->next);
+		    }else{
+			    generateRoute(start->reachabledNodes->reachabledNodes, to, destinations->next);
+		    }
+	    }
+	}
+};
 
 ROUTE* newRoute(STOP *cStop){
 	STOP *currentStop = cStop;
