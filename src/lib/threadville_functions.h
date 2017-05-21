@@ -49,6 +49,7 @@ typedef struct NODE {
 	int id;
 	int capability;
 	int allowTravel;//Indica si se puede pasar por el nodo, se utiliza cuando un nodo esta en reparaciones o es parte de un puente
+	//int *reacheabledNodes[3];
 	struct NODE *next;
 	struct VEHICULE *vehicule_1;
 	struct VEHICULE *vehicule_2;
@@ -203,6 +204,7 @@ void releaseVehicule(VEHICULE *car){
 NODE* createNode(int id, char *name, int capability){
 	NODE *node = malloc(sizeof(NODE));
 	node->id = id;
+	//node->reacheabledNodes = reacheabledNodes;
 	node->name = strdup(name);
 	node->capability = capability;
 
@@ -252,7 +254,7 @@ void releaseBridge(BRIDGE *bridge){
 void displayDestinations(DESTINY *destinations){
 	DESTINY *i = destinations;
 	for(; i != NULL; i = i->next){
-		printf("DESTINY ID:  %s\n", i->node->name);
+		printf("DESTINY - NODE NAME:  %s\n", i->node->name);
 	}
 }
 

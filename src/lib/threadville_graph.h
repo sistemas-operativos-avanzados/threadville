@@ -3,6 +3,7 @@
 #define TV_GRAPH
 
 
+//#define V 180
 #define V 10
 
 // Otro grafo de ejemplo
@@ -33,6 +34,25 @@ int graph[V][V] = {
                     {1, 0, 1, 0, 0, 0, 0, 0, 0, 0}, //S8
                   };
 
+//int graph[V][V];
+
+//Llenar la matriz con segun las relaciones de Threadville
+/*void fillGraph(int nodeID, int relations[], int size){
+	for(int i = 0; i < size; i++){		
+		graph[nodeID][relations[i]] = 1;
+		printf("GRAPH POSITION %i\n", graph[nodeID][relations[i]]);
+	}
+};*/
+
+/*void fillGraph(NODE *node, int size){
+	int nodeID = node->id;
+	int reachabledNodes[size] = node->reachabledNodes;
+	
+	for(int i = 0; i < size; i++){		
+		graph[nodeID][reachabledNodes[i]] = 1;
+		printf("GRAPH POSITION %i\n", graph[nodeID][reachabledNodes[i]]);
+	}
+};*/
 
 //Funcion para encontrar el vertice con la distancia minima de un conjunto de vertices un no incluidos en el
 //shortest path tree
@@ -161,7 +181,6 @@ void dijkstra(int graph[V][V], int src, int paths[]){
 
 	printSolution(dist, paths, V);
 }
-
 
 
 #endif
