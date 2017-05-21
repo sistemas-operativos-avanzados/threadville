@@ -45,15 +45,19 @@ typedef struct VEHICULE{
 
 //Estructura que define cada punto en el mapa
 typedef struct NODE {
-	char *id;
+	char *name;
+	int id;
 	int capability;
 	int allowTravel;//Indica si se puede pasar por el nodo, se utiliza cuando un nodo esta en reparaciones o es parte de un puente
-	struct NODE *reachabledNodes;
 	struct NODE *next;
 	struct VEHICULE *vehicule_1;
 	struct VEHICULE *vehicule_2;
 	struct VEHICULE *vehicule_3;
 }NODE;
+
+typedef struct THREADVILLE {
+	struct NODE *nodes;
+}THREADVILLE;
 
 //Estructura que define los puentes, se utiliza 4 nodos para definir la relacion en el mapa de ambas vias a pesar de ser un camino de un solo carril. Cada uno de los nodos tiene capacidad 3, por lo que se cumple que la capacidad de los puentes es de 6 carros
 typedef struct BRIDGE {
@@ -66,6 +70,19 @@ typedef struct BRIDGE {
 
 
 //ASIGNACION Y LIBERACION DE MEMORIA DE ESTRUCTURAS
+//STOPS
+THREADVILLE* createThreadville(){
+	THREADVILLE *threadville = malloc(sizeof(THREADVILLE));
+	threadville->nodes = NULL;
+	return threadville;
+}
+
+void releaseThreadville(THREADVILLE *threadville){
+	if(threadville){
+		free(threadville);
+	}
+}
+
 //STOPS
 STOP* createStop(){
 	STOP *stop = malloc(sizeof(STOP));
@@ -183,11 +200,11 @@ void releaseVehicule(VEHICULE *car){
 }
 
 //NODES
-NODE* createNode(char *id, int capability){
+NODE* createNode(int id, char *name, int capability){
 	NODE *node = malloc(sizeof(NODE));
-	node->id = strdup(id);
+	node->id = id;
+	node->name = strdup(name);
 	node->capability = capability;
-	node->reachabledNodes = NULL;
 
 	//Reservar espacio en memoria para los vehiculos que puede albergar el nodo
 	switch(capability){
@@ -207,7 +224,7 @@ NODE* createNode(char *id, int capability){
 
 void releaseNode(NODE *node){
 	if(node){
-		if(node->id){free(node->id);}
+		if(node->name){free(node->name);}
 	free(node);
 	}
 }
@@ -235,7 +252,7 @@ void releaseBridge(BRIDGE *bridge){
 void displayDestinations(DESTINY *destinations){
 	DESTINY *i = destinations;
 	for(; i != NULL; i = i->next){
-		printf("DESTINY ID:  %s\n", i->node->id);
+		printf("DESTINY ID:  %s\n", i->node->name);
 	}
 }
 
@@ -259,83 +276,30 @@ void displayVehicules(VEHICULE *vehicules){
 void displayNodes(NODE *nodes){
 	NODE *i = nodes;
 	for(; i != NULL; i = i->next){
-		printf("NODE ID:  %s\n", i->id);
+		printf("NODE ID:  %s\n", i->name);
 	}
 }
 
 void displayStops(STOP *stops){
 	STOP *i = stops;
 	for(; i != NULL; i = i->next){
-		printf("STOP -> NODE ID:  %s\n", i->stop->id);
+		printf("STOP -> NODE ID:  %s\n", i->stop->name);
 	}
 }
 
 //GENERADOR DE RUTAS
-
-
-
-void generateRoute(NODE *from, NODE *to, DESTINY *destinations){
-    printf("FROM = %s, TO = %s \n", from -> id, to -> id);
-	NODE *start = from;
-
-//<<<<<<< HEAD
-//
-//
-//    if(from != NULL && to != NULL){
-//        if(strcmp(from -> id, to -> id) == 0){
-//            printf("0 -> %s \n", from -> id);
-//        } else {
-//            if(from -> next != NULL){
-//                generateRoute(from -> next, to, destinations);
-//            } else {
-//                puts("from -> next = NULL");
-//            }
-//        }
-//    }
-
-
-//	if(from != NULL && to != NULL){
-
-//		if(strcmp(start -> id, to -> id) == 0){
-//		    printf("Iguales! \n");
-//			return;
-//		} else{
-//		    puts("x aqui");
-//			DESTINY *destiny = createDestiny();
-//			puts("x aqui 2");
-//			if(start -> reachabledNodes -> next == NULL){
-//				destiny -> node = start -> reachabledNodes;
-//				destinations -> next = destiny;
-//			    printf("start   -> reachableNodes = %s \n", start -> reachabledNodes -> id);
-//				printf("destiny -> node = %s \n", destiny -> node -> id);
-//				printf("destinations -> next = %s \n", destinations -> next -> node -> id);
-//				generateRoute(start -> reachabledNodes, to, destinations -> next);
-//			}else{
-//			    printf("ELSE %s \n", start -> reachabledNodes -> next -> id);
-//				destiny -> node = start -> reachabledNodes -> next;
-//				destinations -> next = destiny;
-//				generateRoute(start -> reachabledNodes -> next, to, destinations -> next);
-//			}
-//		}
-//	}
-//}
-   	if(from != NULL && to != NULL){
-		DESTINY *destiny = createDestiny();
-		destiny->node = start;
-		destinations->next = destiny;
-
-		if(strcmp(start->id, to->id) == 0){
-			return;
+//Buscar un nodo de threadville via Index
+NODE* findNode(int index, THREADVILLE *threadville){
+	NODE *i = threadville->nodes;
+	for(; i != NULL; i = i->next){
+		if(i->id == index){
+			printf("NODE NAME:  %s\n", i->name);
+			return i;			
 		}
-		else{	
-		    if(start->reachabledNodes->next == NULL){
-			    generateRoute(start->reachabledNodes, to, destinations->next);
-		    }else{
-			    generateRoute(start->reachabledNodes->reachabledNodes, to, destinations->next);
-		    }
-	    }
+		
 	}
-};
+}
+
 
 ROUTE* newRoute(STOP *cStop){
 	STOP *currentStop = cStop;
@@ -345,41 +309,10 @@ ROUTE* newRoute(STOP *cStop){
 	newRoute->destinations = destinations;
 	destinations->node = currentStop->stop;	
 	if(currentStop->next != NULL){
-		generateRoute(currentStop->stop, currentStop->next->stop, newRoute->destinations);
+		//generateRoute(currentStop->stop, currentStop->next->stop, newRoute->destinations);
 	}
 	return newRoute;
 }
-
-void addRoute(VEHICULE *vehicule){
-	VEHICULE *y = vehicule;
-	STOP *i = vehicule->stops;
-//	ROUTE *busyRoute = y->route;  <== esta variable no se esta usando. La comento mientras tanto
-
-	//Por cada parada en el mapa
-	/*for(; i != NULL; i = i->next){
-		//En el caso de que sea la ultima para
-		if(i->next != NULL){
-			for(; busyRoute != NULL; busyRoute = busyRoute->next){}
-			ROUTE *newGeneratedRoute = newRoute(i);
-			busyRoute = createRoute();
-			busyRoute = newGeneratedRoute;			
-		}	
-	}*/
-
-	//RUTA 1
-	y->route = createRoute();
-	y->route = newRoute(i);
-
-	//RUTA 2
-	y->route->next = createRoute();
-	y->route->next = newRoute(i->next);
-
-	//RUTA 3
-	y->route->next->next = createRoute();
-	y->route->next->next = newRoute(i->next->next);
-
-};
-
 
 void addStop(VEHICULE *vehicule, NODE *stop){
 	STOP *newStop = createStop();
