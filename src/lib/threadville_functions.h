@@ -3,6 +3,7 @@
 #ifndef TV_ADT
 
 #define TV_ADT
+#define RN 3
 
 //Estructura para color y velocidad de un vehiculo
 typedef struct COLORSPEED{
@@ -49,7 +50,7 @@ typedef struct NODE {
 	int id;
 	int capability;
 	int allowTravel;//Indica si se puede pasar por el nodo, se utiliza cuando un nodo esta en reparaciones o es parte de un puente
-	//int *reacheabledNodes[3];
+	int reacheabledNodes[RN];
 	struct NODE *next;
 	struct VEHICULE *vehicule_1;
 	struct VEHICULE *vehicule_2;
@@ -201,12 +202,16 @@ void releaseVehicule(VEHICULE *car){
 }
 
 //NODES
-NODE* createNode(int id, char *name, int capability){
+NODE* createNode(int id, char *name, int capability, int reacheabledNodes[]){
 	NODE *node = malloc(sizeof(NODE));
 	node->id = id;
-	//node->reacheabledNodes = reacheabledNodes;
 	node->name = strdup(name);
 	node->capability = capability;
+
+	//Assignar nodo alcanzables
+	for(int i = 0; i < RN; i++){	
+		node->reacheabledNodes[i] = reacheabledNodes[i];
+	}
 
 	//Reservar espacio en memoria para los vehiculos que puede albergar el nodo
 	switch(capability){

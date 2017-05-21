@@ -287,257 +287,469 @@ void init(){
 //	ligthBlue = createColor("LIGTHBLUE", 3);
 //	orange = createColor("ORANGE", 1);
 
-	//DEFINICION CALE DE UNA VIA
-	nodeA5G2 = createNode(0, "A5G2", 3);//Comparte la capacidad con G2
-	nodeA6G1 = createNode(1, "A6G1", 3);//Comparte la capacidad con G1
-	nodeM5S1 = createNode(2, "M5S1", 3);//Comparte la capacidad con M5
-	nodeM4S2 = createNode(3, "M4S2", 3);//Comparte la capacidad con M4
-	nodeB5H2 = createNode(4, "B5H2", 3);//Comparte la capacidad con H2
-	nodeB6H1 = createNode(5, "B6H1", 3);//Comparte la capacidad con H1
-	nodeO4U2 = createNode(6, "O4U2", 3);//Comparte la capacidad con U2
-	nodeO5U1 = createNode(7, "O5U1", 3);//Comparte la capacidad con U1
-	nodeN4T2 = createNode(8, "N4T2", 3);//Comparte la capacidad con T2
-	nodeN5T1 = createNode(9, "N5T1", 3);//Comparte la capacidad con T1
-	nodeC5I2 = createNode(10, "C5I2", 3);//Comparte la capacidad con I2
-	nodeC6I1 = createNode(11, "C6I1", 3);//Comparte la capacidad con I1
-	nodeD5J2 = createNode(12, "D5J2", 3);//Comparte la capacidad con J2
-	nodeD6J1 = createNode(13, "D6J1", 3);//Comparte la capacidad con J1
-	nodeP4V2 = createNode(14, "P4V2", 3);//Comparte la capacidad con V2
-	nodeP5V1 = createNode(15, "P5V1", 3);//Comparte la capacidad con V1
-	nodeE5K2 = createNode(16, "E5K2", 3);//Comparte la capacidad con K2
-	nodeE6K1 = createNode(17, "E6K1", 3);//Comparte la capacidad con K1
-	nodeQ4W2 = createNode(18, "Q4W2", 3);//Comparte la capacidad con W2
-	nodeQ5W1 = createNode(19, "Q5W1", 3);//Comparte la capacidad con W1
-	nodeF6L1 = createNode(20, "F6L1", 3);//Comparte la capacidad con L1
-	nodeF5L2 = createNode(21, "F5L2", 3);//Comparte la capacidad con L2
-	nodeR5X1 = createNode(22, "R5X1", 3);//Comparte la capacidad con X1
-	nodeR4X2 = createNode(23, "R4X2", 3);//Comparte la capacidad con X2
+	//Array de nodos alcanzables
+	int nodeA5G2Relations[RN] = {1, -1, -1};
+	int nodeA6G1Relations[RN] = {36, -1, -1};
+	int nodeM5S1Relations[RN] = {3, -1, -1};
+	int nodeM4S2Relations[RN] = {46, 9, -1};
+	int nodeB5H2Relations[RN] = {5, -1, -1};
+	int nodeB6H1Relations[RN] = {56, 0, -1};
+	int nodeO4U2Relations[RN] = {86, 15, -1};
+	int nodeO5U1Relations[RN] = {6, -1, -1};
+	int nodeN4T2Relations[RN] = {66, 7, -1};
+	int nodeN5T1Relations[RN] = {8, -1, -1};
+	int nodeC5I2Relations[RN] = {11, -1, -1};
+	int nodeC6I1Relations[RN] = {76, 4, -1};
+	int nodeD5J2Relations[RN] = {13, -1, -1};
+	int nodeD6J1Relations[RN] = {96, 10, -1};
+	int nodeP4V2Relations[RN] = {106, 19, -1};
+	int nodeP5V1Relations[RN] = {14, -1, -1};
+	int nodeE5K2Relations[RN] = {17, -1, -1};
+	int nodeE6K1Relations[RN] = {116, 12, -1};
+	int nodeQ4W2Relations[RN] = {126, 22, -1};
+	int nodeQ5W1Relations[RN] = {18, -1, -1};
+	int nodeF6L1Relations[RN] = {136, 16, -1};
+	int nodeF5L2Relations[RN] = {20, -1, -1};
+	int nodeR5X1Relations[RN] = {23, -1, -1};
+	int nodeR4X2Relations[RN] = {146, -1, -1};
+
+	int nodeY1Relations[RN] = {31, 40, -1};
+	int nodeY2Relations[RN] = {24, -1, -1};
+	int nodeY3Relations[RN] = {24, -1, -1};
+	int nodeY4Relations[RN] = {155, -1, -1};
+	int nodeY5Relations[RN] = {156, -1, -1};
+	int nodeY6Relations[RN] = {27, 28, 24};
+	int nodeY7Relations[RN] = {29, -1, -1};
+	int nodeY8Relations[RN] = {30, -1, -1};
+	
+	int nodeA1Relations[RN] = {33, -1, -1};
+	int nodeA2Relations[RN] = {34, 52, -1};
+	int nodeA3Relations[RN] = {35, -1, -1};
+	int nodeA4Relations[RN] = {0, 38, -1};
+	int nodeA7Relations[RN] = {37, -1, -1};
+	int nodeA8Relations[RN] = {32, -1, -1};
+
+	int nodeG3Relations[RN] = {39, -1, -1};
+	int nodeG4Relations[RN] = {160, -1, -1};
+	int nodeG5Relations[RN] = {41, -1, -1};
+	int nodeG6Relations[RN] = {36, -1, -1};
+	
+	int nodeM1Relations[RN] = {29, -1, -1};
+	int nodeM2Relations[RN] = {44, -1, -1};
+	int nodeM3Relations[RN] = {46, -1, -1};
+	int nodeM6Relations[RN] = {42, -1, -1};
+
+	int nodeS3Relations[RN] = {47, -1, -1};
+	int nodeS4Relations[RN] = {48, -1, -1};
+	int nodeS5Relations[RN] = {49, -1, -1};
+	int nodeS6Relations[RN] = {50, -1, -1};
+	int nodeS7Relations[RN] = {51, -1, -1};
+	int nodeS8Relations[RN] = {2, 45, -1};
+
+	int nodeB1Relations[RN] = {53, -1, -1};
+	int nodeB2Relations[RN] = {54, 72, -1};
+	int nodeB3Relations[RN] = {55, -1, -1};
+	int nodeB4Relations[RN] = {4, 58, -1};
+	int nodeB7Relations[RN] = {57, -1, -1};
+	int nodeB8Relations[RN] = {52, -1, -1};
+
+	int nodeH3Relations[RN] = {59, -1, -1};
+	int nodeH4Relations[RN] = {164, -1, -1};
+	int nodeH5Relations[RN] = {61, -1, -1};
+	int nodeH6Relations[RN] = {56, -1, -1};
+
+	int nodeN1Relations[RN] = {163, -1, -1};
+	int nodeN2Relations[RN] = {64, -1, -1};
+	int nodeN3Relations[RN] = {66, -1, -1};
+	int nodeN6Relations[RN] = {62, -1, -1};
+
+	int nodeT3Relations[RN] = {67, -1, -1};
+	int nodeT4Relations[RN] = {68, -1, -1};
+	int nodeT5Relations[RN] = {69, -1, -1};
+	int nodeT6Relations[RN] = {70, 48, -1};
+	int nodeT7Relations[RN] = {71, -1, -1};
+	int nodeT8Relations[RN] = {9, 65, -1};
+
+	int nodeC1Relations[RN] = {73, -1, -1};
+	int nodeC2Relations[RN] = {74, 92, -1};
+	int nodeC3Relations[RN] = {75, -1, -1};
+	int nodeC4Relations[RN] = {10, 78, -1};
+	int nodeC7Relations[RN] = {77, -1, -1};
+	int nodeC8Relations[RN] = {72, -1, -1};
+
+	int nodeI3Relations[RN] = {79, -1, -1};
+	int nodeI4Relations[RN] = {168, -1, -1};
+	int nodeI5Relations[RN] = {81, -1, -1};
+	int nodeI6Relations[RN] = {76, -1, -1};
+
+	int nodeO1Relations[RN] = {167, -1, -1};
+	int nodeO2Relations[RN] = {84, -1, -1};
+	int nodeO3Relations[RN] = {86, -1, -1};
+	int nodeO6Relations[RN] = {82, -1, -1};
+
+	int nodeU3Relations[RN] = {87, -1, -1};
+	int nodeU4Relations[RN] = {88, -1, -1};
+	int nodeU5Relations[RN] = {89, -1, -1};
+	int nodeU6Relations[RN] = {90, 68, -1};
+	int nodeU7Relations[RN] = {91, -1, -1};
+	int nodeU8Relations[RN] = {7, 85, -1};
+
+	int nodeD1Relations[RN] = {93, -1, -1};
+	int nodeD2Relations[RN] = {94, 112, -1};
+	int nodeD3Relations[RN] = {95, -1, -1};
+	int nodeD4Relations[RN] = {12, 98, -1};
+	int nodeD7Relations[RN] = {97, -1, -1};
+	int nodeD8Relations[RN] = {92, -1, -1};
+
+	int nodeJ3Relations[RN] = {99, -1, -1};
+	int nodeJ4Relations[RN] = {172, -1, -1};
+	int nodeJ5Relations[RN] = {101, -1, -1};
+	int nodeJ6Relations[RN] = {96, -1, -1};
+
+	int nodeP1Relations[RN] = {171, -1, -1};
+	int nodeP2Relations[RN] = {104, -1, -1};
+	int nodeP3Relations[RN] = {106, -1, -1};
+	int nodeP6Relations[RN] = {102, -1, -1};
+
+	int nodeV3Relations[RN] = {107, -1, -1};
+	int nodeV4Relations[RN] = {108, -1, -1};
+	int nodeV5Relations[RN] = {109, -1, -1};
+	int nodeV6Relations[RN] = {110, 88, -1};
+	int nodeV7Relations[RN] = {111, -1, -1};
+	int nodeV8Relations[RN] = {15, 105, -1};
+
+	int nodeE1Relations[RN] = {113, -1, -1};
+	int nodeE2Relations[RN] = {114, 132, -1};
+	int nodeE3Relations[RN] = {115, -1, -1};
+	int nodeE4Relations[RN] = {16, 118, -1};
+	int nodeE7Relations[RN] = {117, -1, -1};
+	int nodeE8Relations[RN] = {112, -1, -1};
+
+	int nodeK3Relations[RN] = {119, -1, -1};
+	int nodeK4Relations[RN] = {176, -1, -1};
+	int nodeK5Relations[RN] = {121, -1, -1};
+	int nodeK6Relations[RN] = {116, -1, -1};
+
+	int nodeQ1Relations[RN] = {175, -1, -1};
+	int nodeQ2Relations[RN] = {124, -1, -1};
+	int nodeQ3Relations[RN] = {126, -1, -1};
+	int nodeQ6Relations[RN] = {122, -1, -1};
+
+	int nodeW3Relations[RN] = {127, -1, -1};
+	int nodeW4Relations[RN] = {128, -1, -1};
+	int nodeW5Relations[RN] = {129, -1, -1};
+	int nodeW6Relations[RN] = {130, 108, -1};
+	int nodeW7Relations[RN] = {131, -1, -1};
+	int nodeW8Relations[RN] = {19, 125, -1};
+
+	int nodeF1Relations[RN] = {133, -1, -1};
+	int nodeF2Relations[RN] = {134, -1, -1};
+	int nodeF3Relations[RN] = {135, -1, -1};
+	int nodeF4Relations[RN] = {21, 138, -1};
+	int nodeF7Relations[RN] = {137, -1, -1};
+	int nodeF8Relations[RN] = {132, -1, -1};
+
+	int nodeL3Relations[RN] = {139, -1, -1};
+	int nodeL4Relations[RN] = {152, -1, -1};
+	int nodeL6Relations[RN] = {140, -1, -1};
+	int nodeL5Relations[RN] = {136, -1, -1};
+
+	int nodeR1Relations[RN] = {179, -1, -1};
+	int nodeR2Relations[RN] = {144, -1, -1};
+	int nodeR3Relations[RN] = {146, -1, -1};
+	int nodeR6Relations[RN] = {142, -1, -1};
+
+	int nodeX3Relations[RN] = {147, -1, -1};
+	int nodeX4Relations[RN] = {148, -1, -1};
+	int nodeX5Relations[RN] = {149, -1, -1};
+	int nodeX6Relations[RN] = {150, 128, -1};
+	int nodeX7Relations[RN] = {151, -1, -1};
+	int nodeX8Relations[RN] = {22, 145, -1};
+
+	int nodeZ1Relations[RN] = {153, 154, 157};
+	int nodeZ2Relations[RN] = {25, -1, -1};
+	int nodeZ3Relations[RN] = {26, -1, -1};
+	int nodeZ4Relations[RN] = {157, -1, -1};
+	int nodeZ5Relations[RN] = {157, -1, -1};
+	int nodeZ6Relations[RN] = {158, 63, -1};
+	int nodeZ7Relations[RN] = {159, -1, -1};
+	int nodeZ8Relations[RN] = {152, -1, -1};
+
+	int bridgeNodeG4Relations[RN] = {162, -1, -1};
+	int bridgeNodeH5Relations[RN] = {60, -1, -1};
+	int bridgeNodeM2Relations[RN] = {43, -1, -1};
+	int bridgeNodeN1Relations[RN] = {161, -1, -1};
+
+	int bridgeNodeH4Relations[RN] = {166, -1, -1};
+	int bridgeNodeI5Relations[RN] = {80, -1, -1};
+	int bridgeNodeN2Relations[RN] = {63, -1, -1};
+	int bridgeNodeO1Relations[RN] = {165, -1, -1};
+
+	int bridgeNodeI4Relations[RN] = {170, -1, -1};
+	int bridgeNodeJ5Relations[RN] = {100, -1, -1};
+	int bridgeNodeO2Relations[RN] = {83, -1, -1};
+	int bridgeNodeP1Relations[RN] = {169, -1, -1};
+
+	int bridgeNodeJ4Relations[RN] = {174, -1, -1};
+	int bridgeNodeK5Relations[RN] = {120, -1, -1};
+	int bridgeNodeP2Relations[RN] = {103, -1, -1};
+	int bridgeNodeQ1Relations[RN] = {173, -1, -1};
+
+	int bridgeNodeK4Relations[RN] = {178, -1, -1};
+	int bridgeNodeL5Relations[RN] = {141, -1, -1};
+	int bridgeNodeQ2Relations[RN] = {123, -1, -1};
+	int bridgeNodeR1Relations[RN] = {177, -1, -1};
+
+	//DEFINICION CALE DE UNA VIA	
+	nodeA5G2 = createNode(0, "A5G2", 3, nodeA5G2Relations);//Comparte la capacidad con G2
+	nodeA6G1 = createNode(1, "A6G1", 3, nodeA6G1Relations);//Comparte la capacidad con G1
+	nodeM5S1 = createNode(2, "M5S1", 3, nodeM5S1Relations);//Comparte la capacidad con M5
+	nodeM4S2 = createNode(3, "M4S2", 3, nodeM4S2Relations);//Comparte la capacidad con M4
+	nodeB5H2 = createNode(4, "B5H2", 3, nodeB5H2Relations);//Comparte la capacidad con H2
+	nodeB6H1 = createNode(5, "B6H1", 3, nodeB6H1Relations);//Comparte la capacidad con H1
+	nodeO4U2 = createNode(6, "O4U2", 3, nodeO4U2Relations);//Comparte la capacidad con U2
+	nodeO5U1 = createNode(7, "O5U1", 3, nodeO5U1Relations);//Comparte la capacidad con U1
+	nodeN4T2 = createNode(8, "N4T2", 3, nodeN4T2Relations);//Comparte la capacidad con T2
+	nodeN5T1 = createNode(9, "N5T1", 3, nodeN5T1Relations);//Comparte la capacidad con T1
+	nodeC5I2 = createNode(10, "C5I2", 3, nodeC5I2Relations);//Comparte la capacidad con I2
+	nodeC6I1 = createNode(11, "C6I1", 3, nodeC6I1Relations);//Comparte la capacidad con I1
+	nodeD5J2 = createNode(12, "D5J2", 3, nodeD5J2Relations);//Comparte la capacidad con J2
+	nodeD6J1 = createNode(13, "D6J1", 3, nodeD6J1Relations);//Comparte la capacidad con J1
+	nodeP4V2 = createNode(14, "P4V2", 3, nodeP4V2Relations);//Comparte la capacidad con V2
+	nodeP5V1 = createNode(15, "P5V1", 3, nodeP5V1Relations);//Comparte la capacidad con V1
+	nodeE5K2 = createNode(16, "E5K2", 3, nodeE5K2Relations);//Comparte la capacidad con K2
+	nodeE6K1 = createNode(17, "E6K1", 3, nodeE6K1Relations);//Comparte la capacidad con K1
+	nodeQ4W2 = createNode(18, "Q4W2", 3, nodeQ4W2Relations);//Comparte la capacidad con W2
+	nodeQ5W1 = createNode(19, "Q5W1", 3, nodeQ5W1Relations);//Comparte la capacidad con W1
+	nodeF6L1 = createNode(20, "F6L1", 3, nodeF6L1Relations);//Comparte la capacidad con L1
+	nodeF5L2 = createNode(21, "F5L2", 3, nodeF5L2Relations);//Comparte la capacidad con L2
+	nodeR5X1 = createNode(22, "R5X1", 3, nodeR5X1Relations);//Comparte la capacidad con X1
+	nodeR4X2 = createNode(23, "R4X2", 3, nodeR4X2Relations);//Comparte la capacidad con X2
 
 	//Nodos de Y
-	//int *reacheabledNodes[2] = {31, 40};
-	nodeY1 = createNode(24, "Y1", 1);
-	nodeY2 = createNode(25, "Y2", 1);//Pista
-	nodeY3 = createNode(26, "Y3", 1);//Pista
-	nodeY4 = createNode(27, "Y4", 1);//Pista
-	nodeY5 = createNode(28, "Y5", 1);//Pista
-	nodeY6 = createNode(29, "Y6", 1);
-	nodeY7 = createNode(30, "Y7", 1);
-	nodeY8 = createNode(31, "Y8", 1);
+	nodeY1 = createNode(24, "Y1", 1, nodeY1Relations);
+	nodeY2 = createNode(25, "Y2", 1, nodeY2Relations);//Pista
+	nodeY3 = createNode(26, "Y3", 1, nodeY3Relations);//Pista
+	nodeY4 = createNode(27, "Y4", 1, nodeY4Relations);//Pista
+	nodeY5 = createNode(28, "Y5", 1, nodeY5Relations);//Pista
+	nodeY6 = createNode(29, "Y6", 1, nodeY6Relations);
+	nodeY7 = createNode(30, "Y7", 1, nodeY7Relations);
+	nodeY8 = createNode(31, "Y8", 1, nodeY8Relations);
 
 
 	//Nodos de la A
-	nodeA1 = createNode(32, "A1", 3);
-	nodeA2 = createNode(33, "A2", 3);
-	nodeA3 = createNode(34, "A3", 3);
-	nodeA4 = createNode(35, "A4", 3);
-	nodeA7 = createNode(36, "A7", 3);
-	nodeA8 = createNode(37, "A8", 3);
+	nodeA1 = createNode(32, "A1", 3, nodeA1Relations);
+	nodeA2 = createNode(33, "A2", 3, nodeA2Relations);
+	nodeA3 = createNode(34, "A3", 3, nodeA3Relations);
+	nodeA4 = createNode(35, "A4", 3, nodeA4Relations);
+	nodeA7 = createNode(36, "A7", 3, nodeA7Relations);
+	nodeA8 = createNode(37, "A8", 3, nodeA8Relations);
 
 	//Nodos de la G
-	nodeG3 = createNode(38, "G3", 3);
-	nodeG4 = createNode(39, "G4", 3);
-	nodeG5 = createNode(40, "G5", 3);
-	nodeG6 = createNode(41, "G6", 3);
+	nodeG3 = createNode(38, "G3", 3, nodeG3Relations);
+	nodeG4 = createNode(39, "G4", 3, nodeG4Relations);
+	nodeG5 = createNode(40, "G5", 3, nodeG5Relations);
+	nodeG6 = createNode(41, "G6", 3, nodeG6Relations);
 
 	//Nodos de la M
-	nodeM1 = createNode(42, "M1", 3);
-	nodeM2 = createNode(43, "M2", 3);
-	nodeM3 = createNode(44, "M3", 3);
-	nodeM6 = createNode(45, "M6", 3);
+	nodeM1 = createNode(42, "M1", 3, nodeM1Relations);
+	nodeM2 = createNode(43, "M2", 3, nodeM2Relations);
+	nodeM3 = createNode(44, "M3", 3, nodeM3Relations);
+	nodeM6 = createNode(45, "M6", 3, nodeM6Relations);
 
 	//Nodos de la S
-	nodeS3 = createNode(46, "S3", 3);
-	nodeS4 = createNode(47, "S4", 3);
-	nodeS5 = createNode(48, "S5", 3);
-	nodeS6 = createNode(49, "S6", 3);
-	nodeS7 = createNode(50, "S7", 3);
-	nodeS8 = createNode(51, "S8", 3);
+	nodeS3 = createNode(46, "S3", 3, nodeS3Relations);
+	nodeS4 = createNode(47, "S4", 3, nodeS4Relations);
+	nodeS5 = createNode(48, "S5", 3, nodeS5Relations);
+	nodeS6 = createNode(49, "S6", 3, nodeS6Relations);
+	nodeS7 = createNode(50, "S7", 3, nodeS7Relations);
+	nodeS8 = createNode(51, "S8", 3, nodeS8Relations);
 
 	//Nodos de la B
-	nodeB1 = createNode(52, "B1", 3);
-	nodeB2 = createNode(53, "B2", 3);
-	nodeB3 = createNode(54, "B3", 3);
-	nodeB4 = createNode(55, "B4", 3);
-	nodeB7 = createNode(56, "B7", 3);
-	nodeB8 = createNode(57, "B8", 3);
+	nodeB1 = createNode(52, "B1", 3, nodeB1Relations);
+	nodeB2 = createNode(53, "B2", 3, nodeB2Relations);
+	nodeB3 = createNode(54, "B3", 3, nodeB3Relations);
+	nodeB4 = createNode(55, "B4", 3, nodeB4Relations);
+	nodeB7 = createNode(56, "B7", 3, nodeB7Relations);
+	nodeB8 = createNode(57, "B8", 3, nodeB8Relations);
 
 	//Nodos de la H
-	nodeH3 = createNode(58, "H3", 3);
-	nodeH4 = createNode(59, "H4", 3);
-	nodeH5 = createNode(60, "H5", 3);
-	nodeH6 = createNode(61, "H6", 3);
+	nodeH3 = createNode(58, "H3", 3, nodeH3Relations);
+	nodeH4 = createNode(59, "H4", 3, nodeH4Relations);
+	nodeH5 = createNode(60, "H5", 3, nodeH5Relations);
+	nodeH6 = createNode(61, "H6", 3, nodeH6Relations);
 
 	//Nodos de la N
-	nodeN1 = createNode(62, "N1", 3);
-	nodeN2 = createNode(63, "N2", 3);
-	nodeN3 = createNode(64, "N3", 3);
-	nodeN6 = createNode(65, "N6", 3);
+	nodeN1 = createNode(62, "N1", 3, nodeN1Relations);
+	nodeN2 = createNode(63, "N2", 3, nodeN2Relations);
+	nodeN3 = createNode(64, "N3", 3, nodeN3Relations);
+	nodeN6 = createNode(65, "N6", 3, nodeN6Relations);
 
 	//Nodos de la T
-	nodeT3 = createNode(66, "T3", 3);
-	nodeT4 = createNode(67, "T4", 3);
-	nodeT5 = createNode(68, "T5", 3);
-	nodeT6 = createNode(69, "T6", 3);
-	nodeT7 = createNode(70, "T7", 3);
-	nodeT8 = createNode(71, "T8", 3);
+	nodeT3 = createNode(66, "T3", 3, nodeT3Relations);
+	nodeT4 = createNode(67, "T4", 3, nodeT4Relations);
+	nodeT5 = createNode(68, "T5", 3, nodeT5Relations);
+	nodeT6 = createNode(69, "T6", 3, nodeT6Relations);
+	nodeT7 = createNode(70, "T7", 3, nodeT7Relations);
+	nodeT8 = createNode(71, "T8", 3, nodeT8Relations);
 
 	//Nodos de C
-	nodeC1 = createNode(72, "C1", 3);
-	nodeC2 = createNode(73, "C2", 3);
-	nodeC3 = createNode(74, "C3", 3);
-	nodeC4 = createNode(75, "C4", 3);
-	nodeC7 = createNode(76, "C7", 3);
-	nodeC8 = createNode(77, "C8", 3);
+	nodeC1 = createNode(72, "C1", 3, nodeC1Relations);
+	nodeC2 = createNode(73, "C2", 3, nodeC2Relations);
+	nodeC3 = createNode(74, "C3", 3, nodeC3Relations);
+	nodeC4 = createNode(75, "C4", 3, nodeC4Relations);
+	nodeC7 = createNode(76, "C7", 3, nodeC7Relations);
+	nodeC8 = createNode(77, "C8", 3, nodeC8Relations);
 
 	//Nodos de I
-	nodeI3 = createNode(78, "I3", 3);
-	nodeI4 = createNode(79, "I4", 3);
-	nodeI5 = createNode(80, "I5", 3);
-	nodeI6 = createNode(81, "I6", 3);
+	nodeI3 = createNode(78, "I3", 3, nodeI3Relations);
+	nodeI4 = createNode(79, "I4", 3, nodeI4Relations);
+	nodeI5 = createNode(80, "I5", 3, nodeI5Relations);
+	nodeI6 = createNode(81, "I6", 3, nodeI6Relations);
 
 	//Nodos de O
-	nodeO1 = createNode(82, "O1", 3);
-	nodeO2 = createNode(83, "O2", 3);
-	nodeO3 = createNode(84, "O3", 3);
-	nodeO6 = createNode(85, "O6", 3);
+	nodeO1 = createNode(82, "O1", 3, nodeO1Relations);
+	nodeO2 = createNode(83, "O2", 3, nodeO2Relations);
+	nodeO3 = createNode(84, "O3", 3, nodeO3Relations);
+	nodeO6 = createNode(85, "O6", 3, nodeO6Relations);
 
 	//Nodos de U
-	nodeU3 = createNode(86, "U3", 3);
-	nodeU4 = createNode(87, "U4", 3);
-	nodeU5 = createNode(88, "U5", 3);
-	nodeU6 = createNode(89, "U6", 3);
-	nodeU7 = createNode(90, "U7", 3);
-	nodeU8 = createNode(91, "U8", 3);
+	nodeU3 = createNode(86, "U3", 3, nodeU3Relations);
+	nodeU4 = createNode(87, "U4", 3, nodeU4Relations);
+	nodeU5 = createNode(88, "U5", 3, nodeU5Relations);
+	nodeU6 = createNode(89, "U6", 3, nodeU6Relations);
+	nodeU7 = createNode(90, "U7", 3, nodeU7Relations);
+	nodeU8 = createNode(91, "U8", 3, nodeU8Relations);
 
 	//Nodos de D
-	nodeD1 = createNode(92, "D1", 3);
-	nodeD2 = createNode(93, "D2", 3);
-	nodeD3 = createNode(94, "D3", 3);
-	nodeD4 = createNode(95, "D4", 3);
-	nodeD7 = createNode(96, "D7", 3);
-	nodeD8 = createNode(97, "D8", 3);
+	nodeD1 = createNode(92, "D1", 3, nodeD1Relations);
+	nodeD2 = createNode(93, "D2", 3, nodeD2Relations);
+	nodeD3 = createNode(94, "D3", 3, nodeD3Relations);
+	nodeD4 = createNode(95, "D4", 3, nodeD4Relations);
+	nodeD7 = createNode(96, "D7", 3, nodeD7Relations);
+	nodeD8 = createNode(97, "D8", 3, nodeD8Relations);
 
 	//Nodos de J
-	nodeJ3 = createNode(98, "J3", 3);
-	nodeJ4 = createNode(99, "J4", 3);
-	nodeJ5 = createNode(100, "J5", 3);
-	nodeJ6 = createNode(101, "J6", 3);
+	nodeJ3 = createNode(98, "J3", 3, nodeJ3Relations);
+	nodeJ4 = createNode(99, "J4", 3, nodeJ4Relations);
+	nodeJ5 = createNode(100, "J5", 3, nodeJ5Relations);
+	nodeJ6 = createNode(101, "J6", 3, nodeJ6Relations);
 
 	//Nodos de P
-	nodeP1 = createNode(102, "P1", 3);
-	nodeP2 = createNode(103, "P2", 3);
-	nodeP3 = createNode(104, "P3", 3);
-	nodeP6 = createNode(105, "P6", 3);
+	nodeP1 = createNode(102, "P1", 3, nodeP1Relations);
+	nodeP2 = createNode(103, "P2", 3, nodeP2Relations);
+	nodeP3 = createNode(104, "P3", 3, nodeP3Relations);
+	nodeP6 = createNode(105, "P6", 3, nodeP6Relations);
 
 	//Nodos de V
-	nodeV3 = createNode(106, "V3", 3);
-	nodeV4 = createNode(107, "V4", 3);
-	nodeV5 = createNode(108, "V5", 3);
-	nodeV6 = createNode(109, "V6", 3);
-	nodeV7 = createNode(110, "V7", 3);
-	nodeV8 = createNode(111, "V8", 3);
+	nodeV3 = createNode(106, "V3", 3, nodeV3Relations);
+	nodeV4 = createNode(107, "V4", 3, nodeV4Relations);
+	nodeV5 = createNode(108, "V5", 3, nodeV5Relations);
+	nodeV6 = createNode(109, "V6", 3, nodeV6Relations);
+	nodeV7 = createNode(110, "V7", 3, nodeV7Relations);
+	nodeV8 = createNode(111, "V8", 3, nodeV8Relations);
 
 	//Nodos de E
-	nodeE1 = createNode(112, "E1", 3);
-	nodeE2 = createNode(113, "E2", 3);
-	nodeE3 = createNode(114, "E3", 3);
-	nodeE4 = createNode(115, "E4", 3);
-	nodeE7 = createNode(116, "E7", 3);
-	nodeE8 = createNode(117, "E8", 3);
+	nodeE1 = createNode(112, "E1", 3, nodeE1Relations);
+	nodeE2 = createNode(113, "E2", 3, nodeE2Relations);
+	nodeE3 = createNode(114, "E3", 3, nodeE3Relations);
+	nodeE4 = createNode(115, "E4", 3, nodeE4Relations);
+	nodeE7 = createNode(116, "E7", 3, nodeE7Relations);
+	nodeE8 = createNode(117, "E8", 3, nodeE8Relations);
 
 	//Nodos de K
-	nodeK3 = createNode(118, "K3", 3);
-	nodeK4 = createNode(119, "K4", 3);
-	nodeK5 = createNode(120, "K5", 3);
-	nodeK6 = createNode(121, "K6", 3);
+	nodeK3 = createNode(118, "K3", 3, nodeK3Relations);
+	nodeK4 = createNode(119, "K4", 3, nodeK4Relations);
+	nodeK5 = createNode(120, "K5", 3, nodeK5Relations);
+	nodeK6 = createNode(121, "K6", 3, nodeK6Relations);
 
 	//Nodos de Q
-	nodeQ1 = createNode(122, "Q1", 3);
-	nodeQ2 = createNode(123, "Q2", 3);
-	nodeQ3 = createNode(124, "Q3", 3);
-	nodeQ6 = createNode(125, "Q6", 3);
+	nodeQ1 = createNode(122, "Q1", 3, nodeQ1Relations);
+	nodeQ2 = createNode(123, "Q2", 3, nodeQ2Relations);
+	nodeQ3 = createNode(124, "Q3", 3, nodeQ3Relations);
+	nodeQ6 = createNode(125, "Q6", 3, nodeQ6Relations);
 
 	//Nodos de W
-	nodeW3 = createNode(126, "W3", 3);
-	nodeW4 = createNode(127, "W4", 3);
-	nodeW5 = createNode(128, "W5", 3);
-	nodeW6 = createNode(129, "W6", 3);
-	nodeW7 = createNode(130, "W7", 3);
-	nodeW8 = createNode(131, "W8", 3);
+	nodeW3 = createNode(126, "W3", 3, nodeW3Relations);
+	nodeW4 = createNode(127, "W4", 3, nodeW4Relations);
+	nodeW5 = createNode(128, "W5", 3, nodeW5Relations);
+	nodeW6 = createNode(129, "W6", 3, nodeW6Relations);
+	nodeW7 = createNode(130, "W7", 3, nodeW7Relations);
+	nodeW8 = createNode(131, "W8", 3, nodeW8Relations);
 
 	//Nodos de F
-	nodeF1 = createNode(132, "F1", 3);
-	nodeF2 = createNode(133, "F2", 3);
-	nodeF3 = createNode(134, "F3", 3);
-	nodeF4 = createNode(135, "F4", 3);
-	nodeF7 = createNode(136, "F7", 3);
-	nodeF8 = createNode(137, "F8", 3);
+	nodeF1 = createNode(132, "F1", 3, nodeF1Relations);
+	nodeF2 = createNode(133, "F2", 3, nodeF2Relations);
+	nodeF3 = createNode(134, "F3", 3, nodeF3Relations);
+	nodeF4 = createNode(135, "F4", 3, nodeF4Relations);
+	nodeF7 = createNode(136, "F7", 3, nodeF7Relations);
+	nodeF8 = createNode(137, "F8", 3, nodeF8Relations);
 
 	//Nodos de L
-	nodeL3 = createNode(138, "L3", 3);
-	nodeL4 = createNode(139, "L4", 3);
-	nodeL6 = createNode(140, "L6", 3);
-	nodeL5 = createNode(141, "L5", 3);
+	nodeL3 = createNode(138, "L3", 3, nodeL3Relations);
+	nodeL4 = createNode(139, "L4", 3, nodeL4Relations);
+	nodeL6 = createNode(140, "L6", 3, nodeL6Relations);
+	nodeL5 = createNode(141, "L5", 3, nodeL5Relations);
 
 
 	//Nodos de R
-	nodeR1 = createNode(142, "R1", 3);
-	nodeR2 = createNode(143, "R2", 3);
-	nodeR3 = createNode(144, "R3", 3);
-	nodeR6 = createNode(145, "R6", 3);
+	nodeR1 = createNode(142, "R1", 3, nodeR1Relations);
+	nodeR2 = createNode(143, "R2", 3, nodeR2Relations);
+	nodeR3 = createNode(144, "R3", 3, nodeR3Relations);
+	nodeR6 = createNode(145, "R6", 3, nodeR6Relations);
 
 	//Nodos de X
-	nodeX3 = createNode(146, "X3", 3);
-	nodeX4 = createNode(147, "X4", 3);
-	nodeX5 = createNode(148, "X5", 3);
-	nodeX6 = createNode(149, "X6", 3);
-	nodeX7 = createNode(150, "X7", 3);
-	nodeX8 = createNode(151, "X8", 3);
+	nodeX3 = createNode(146, "X3", 3, nodeX3Relations);
+	nodeX4 = createNode(147, "X4", 3, nodeX4Relations);
+	nodeX5 = createNode(148, "X5", 3, nodeX5Relations);
+	nodeX6 = createNode(149, "X6", 3, nodeX6Relations);
+	nodeX7 = createNode(150, "X7", 3, nodeX7Relations);
+	nodeX8 = createNode(151, "X8", 3, nodeX8Relations);
 
 	//Nodos de la Z
-	nodeZ1 = createNode(152, "Z1", 1);
-	nodeZ2 = createNode(153, "Z2", 1);//Pista
-	nodeZ3 = createNode(154, "Z3", 1);//Pista
-	nodeZ4 = createNode(155, "Z4", 1);//Pista
-	nodeZ5 = createNode(156, "Z5", 1);//Pista
-	nodeZ6 = createNode(157, "Z6", 1);
-	nodeZ7 = createNode(158, "Z7", 1);
-	nodeZ8 = createNode(159, "Z8", 1);
+	nodeZ1 = createNode(152, "Z1", 1, nodeZ1Relations);
+	nodeZ2 = createNode(153, "Z2", 1, nodeZ2Relations);//Pista
+	nodeZ3 = createNode(154, "Z3", 1, nodeZ3Relations);//Pista
+	nodeZ4 = createNode(155, "Z4", 1, nodeZ4Relations);//Pista
+	nodeZ5 = createNode(156, "Z5", 1, nodeZ5Relations);//Pista
+	nodeZ6 = createNode(157, "Z6", 1, nodeZ6Relations);
+	nodeZ7 = createNode(158, "Z7", 1, nodeZ7Relations);
+	nodeZ8 = createNode(159, "Z8", 1, nodeZ8Relations);
 
 	//Puente Bailey
 	//Larry
-	bridgeNodeG4 = createNode(160, "bridgeNodeG4", 3);
-	bridgeNodeH5 = createNode(161, "bridgeNodeH5", 3);
-	bridgeNodeM2 = createNode(162, "bridgeNodeM2", 3);
-	bridgeNodeN1 = createNode(163, "bridgeNodeN1", 3);
+	bridgeNodeG4 = createNode(160, "bridgeNodeG4", 3, bridgeNodeG4Relations);
+	bridgeNodeH5 = createNode(161, "bridgeNodeH5", 3, bridgeNodeH5Relations);
+	bridgeNodeM2 = createNode(162, "bridgeNodeM2", 3, bridgeNodeM2Relations);
+	bridgeNodeN1 = createNode(163, "bridgeNodeN1", 3, bridgeNodeN1Relations);
 	Larry = createBridge("Larry", bridgeNodeM2, bridgeNodeG4, bridgeNodeN1, bridgeNodeH5);
 
 	//Curly
-	bridgeNodeH4 = createNode(164, "bridgeNodeH4", 3);
-	bridgeNodeI5 = createNode(165, "bridgeNodeI5", 3);
-	bridgeNodeN2 = createNode(166, "bridgeNodeN2", 3);
-	bridgeNodeO1 = createNode(167, "bridgeNodeO1", 3);
+	bridgeNodeH4 = createNode(164, "bridgeNodeH4", 3, bridgeNodeH4Relations);
+	bridgeNodeI5 = createNode(165, "bridgeNodeI5", 3, bridgeNodeI5Relations);
+	bridgeNodeN2 = createNode(166, "bridgeNodeN2", 3, bridgeNodeN2Relations);
+	bridgeNodeO1 = createNode(167, "bridgeNodeO1", 3, bridgeNodeO1Relations);
 	Curly = createBridge("Curly", bridgeNodeN2, bridgeNodeH4, bridgeNodeO1, bridgeNodeI5);
 
 	//Moe
-	bridgeNodeI4 = createNode(168, "bridgeNodeI4", 3);
-	bridgeNodeJ5 = createNode(169, "bridgeNodeJ5", 3);
-	bridgeNodeO2 = createNode(170, "bridgeNodeO2", 3);
-	bridgeNodeP1 = createNode(171, "bridgeNodeP1", 3);
+	bridgeNodeI4 = createNode(168, "bridgeNodeI4", 3, bridgeNodeI4Relations);
+	bridgeNodeJ5 = createNode(169, "bridgeNodeJ5", 3, bridgeNodeJ5Relations);
+	bridgeNodeO2 = createNode(170, "bridgeNodeO2", 3, bridgeNodeO2Relations);
+	bridgeNodeP1 = createNode(171, "bridgeNodeP1", 3, bridgeNodeP1Relations);
 	Moe = createBridge("Moe", bridgeNodeO2, bridgeNodeI4, bridgeNodeP1, bridgeNodeJ5);
 
 	//Shemp
-	bridgeNodeJ4 = createNode(172, "bridgeNodeJ4", 3);
-	bridgeNodeK5 = createNode(173, "bridgeNodeK5", 3);
-	bridgeNodeP2 = createNode(174, "bridgeNodeP2", 3);
-	bridgeNodeQ1 = createNode(175, "bridgeNodeQ1", 3);
+	bridgeNodeJ4 = createNode(172, "bridgeNodeJ4", 3, bridgeNodeJ4Relations);
+	bridgeNodeK5 = createNode(173, "bridgeNodeK5", 3, bridgeNodeK5Relations);
+	bridgeNodeP2 = createNode(174, "bridgeNodeP2", 3, bridgeNodeP2Relations);
+	bridgeNodeQ1 = createNode(175, "bridgeNodeQ1", 3, bridgeNodeQ1Relations);
 	Shemp = createBridge("Shemp", bridgeNodeP2, bridgeNodeJ4, bridgeNodeQ1, bridgeNodeK5);
 
 	//Joe
-	bridgeNodeK4 = createNode(176, "bridgeNodeK4", 3);
-	bridgeNodeL5 = createNode(177, "bridgeNodeL5", 3);
-	bridgeNodeQ2 = createNode(178, "bridgeNodeQ2", 3);
-	bridgeNodeR1 = createNode(179, "bridgeNodeR1", 3);
+	bridgeNodeK4 = createNode(176, "bridgeNodeK4", 3, bridgeNodeK4Relations);
+	bridgeNodeL5 = createNode(177, "bridgeNodeL5", 3, bridgeNodeL5Relations);
+	bridgeNodeQ2 = createNode(178, "bridgeNodeQ2", 3, bridgeNodeQ2Relations);
+	bridgeNodeR1 = createNode(179, "bridgeNodeR1", 3, bridgeNodeR1Relations);
 	Joe = createBridge("Joe", bridgeNodeQ2, bridgeNodeK4, bridgeNodeR1, bridgeNodeL5);
 	
 	//DEFINICION DE RELACIONES
@@ -1249,8 +1461,10 @@ void dijkstra_test(){
 
 int main(int argc, char *argv[]) {
 	init();
-	//dijkstra_test();
+	fillGraph(threadville);
+	dijkstra_test();
 
+	/*
 	VEHICULE *orangeBus = createBus("BUS-NARANJA");
 	orangeBus->colorSpeed = orange;
 	orangeBus->route = createRoute();
@@ -1298,7 +1512,7 @@ int main(int argc, char *argv[]) {
 	orangeBus->route->destinations->next->next->next->next->next->next->next->next->next = destinyM1;
 
 	displayDestinations(orangeBus->route->destinations);
-	
+	*/
     return 0;
 //
 //	init();
