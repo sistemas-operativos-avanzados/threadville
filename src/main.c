@@ -5,6 +5,7 @@
 #include <unistd.h>
 #include <pthread.h>
 
+#include "lib/threadville_globals.h"
 #include "lib/threadville_functions.h"
 #include "lib/threadville_graph.h"
 
@@ -269,6 +270,10 @@ NODE *bridgeNodeK4;//Left North
 NODE *bridgeNodeL5;//Right North
 NODE *bridgeNodeQ2;//Left South
 NODE *bridgeNodeR1;//Right South
+
+
+
+
 
 void init(){
     puts("Iniciando Threadville");

@@ -3,7 +3,7 @@
 #define TV_GRAPH
 
 
-#define V 10
+//#define V 10
 
 // Otro grafo de ejemplo
 
