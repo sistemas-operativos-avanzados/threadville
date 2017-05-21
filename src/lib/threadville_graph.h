@@ -2,9 +2,6 @@
 
 #define TV_GRAPH
 
-
-//#define V 10
-
 // Otro grafo de ejemplo
 
 //int graph[V][V] = {{0, 4, 0, 0, 0, 0, 0, 8, 0},
