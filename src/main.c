@@ -1435,83 +1435,64 @@ void dijkstra_test(){
 
     int paths[V];
 
-    dijkstra(graph, 1, paths);
+    dijkstra(graph, 24, paths);
 
     printf("\n\n-- \n");
     int p1[V];
     initResultArray(p1);
-    thePath(1, 0, paths, p1);
+    thePath(24, 78, paths, p1);
 
-    printf("\n");
-    int p2[V];
-    initResultArray(p2);
-    thePath(1, 4, paths, p2);
-
-    printf("\n");
-    int p3[V];
-    initResultArray(p3);
-    thePath(1, 5, paths, p3);
-
-    printf("\n");
-    int p4[V];
-    initResultArray(p4);
-    thePath(1, 6, paths, p4);
+	printf("\n");
+	for(int k = V - 1; k >= 0; k--){
+		findNode(p1[k], threadville);
+	}
 }
 
 
 int main(int argc, char *argv[]) {
 	init();
 	fillGraph(threadville);
-	dijkstra_test();
-
-	/*
+	//dijkstra_test();	
+	
 	VEHICULE *orangeBus = createBus("BUS-NARANJA");
 	orangeBus->colorSpeed = orange;
 	orangeBus->route = createRoute();
-	puts("RUTA DE M2 a M1 = [M2, M3, S3, S4, S5, S6, S7, S8, M6, M1]");
-		
-	DESTINY *destinyM2 = createDestiny();
-	destinyM2->node = nodeM2;
-
-	DESTINY *destinyM3 = createDestiny();
-	destinyM3->node = nodeM3;
-
-	DESTINY *destinyS3 = createDestiny();
-	destinyS3->node = nodeS3;
-
-	DESTINY *destinyS4 = createDestiny();
-	destinyS4->node = nodeS4;
-
-	DESTINY *destinyS5 = createDestiny();
-	destinyS5->node = nodeS5;
-
-	DESTINY *destinyS6 = createDestiny();
-	destinyS6->node = nodeS6;
+	puts("RUTA DE A1 a I3 = [A1, A2, B1, B2, C1, C2, C3, C4, I3]");
 	
-	DESTINY *destinyS7 = createDestiny();
-	destinyS7->node = nodeS7;
-
-	DESTINY *destinyS8 = createDestiny();
-	destinyS8->node = nodeS8;
+	int orageBusPath[V];
+	dijkstra(graph, 32, orageBusPath);//Dijkstra desde Y1
 	
-	DESTINY *destinyM6 = createDestiny();
-	destinyM6->node = nodeM6;
+	printf("\n\n-- \n");
+    	int pathY1I3[V];
+    	initResultArray(pathY1I3);
+    	thePath(32, 78, orageBusPath, pathY1I3);
 
-	DESTINY *destinyM1 = createDestiny();
-	destinyM1->node = nodeM1;
+	for(int k = V - 1; k >= 0; k--){
+		if(pathY1I3[k] != INT_MAX){			
+			NODE *node = findNode(pathY1I3[k], threadville);
+		}
+	}
 
-	orangeBus->route->destinations = destinyM2;
-	orangeBus->route->destinations->next = destinyM3;
-	orangeBus->route->destinations->next->next = destinyS3;
-	orangeBus->route->destinations->next->next->next = destinyS4;
-	orangeBus->route->destinations->next->next->next->next = destinyS5;
-	orangeBus->route->destinations->next->next->next->next->next = destinyS6;
-	orangeBus->route->destinations->next->next->next->next->next->next = destinyS7;
-	orangeBus->route->destinations->next->next->next->next->next->next->next = destinyS8;
-	orangeBus->route->destinations->next->next->next->next->next->next->next->next = destinyM6;
-	orangeBus->route->destinations->next->next->next->next->next->next->next->next->next = destinyM1;
+	//GENARAR RUTA  - WORKING ON
+	/*printf("\n");
+	ROUTE *orageBusRoute = createRoute(); 
+	orageBusRoute->destinations = createDestiny();
 
-	displayDestinations(orangeBus->route->destinations);
+	
+	DESTINY *i = orageBusRoute->destinations;
+	for(int k = V - 1; k >= 0; k--){
+		if(pathY1I3[k] != INT_MAX){
+			DESTINY *destiny = createDestiny();
+			destiny->node = findNode(pathY1I3[k], threadville);
+			i =  destiny;
+			i = i->next;
+			i = createDestiny();
+		}
+	}
+
+	orangeBus->route = orageBusRoute;
+	//printf("HACE %s", orangeBus->route->destinations->node->name);
+	//displayDestinations(orageBusRoute->destinations);
 	*/
     return 0;
 //

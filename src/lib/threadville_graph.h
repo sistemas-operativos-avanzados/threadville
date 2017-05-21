@@ -95,15 +95,18 @@ result.
 
 */
 void thePath(int from, int to, int paths[], int result[]){
+    
+    //Incluir el ultimo nodo
+    result[0] = to;
+    int i = 1;
 
-    int i = 0;
+    //Crear path
     while(paths[to] != from){
-//        printf("from %d - to %d - paths[to] %d \n", from, to, paths[to]);
-        result[i] = paths[to];
+	result[i] = paths[to];
         to = paths[to];
         i++;
     }
-
+   
     //Reversa
     result[i] = from;
     for(; i > 0; i--){
