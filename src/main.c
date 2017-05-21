@@ -274,6 +274,44 @@ NODE *bridgeNodeL5;//Right North
 NODE *bridgeNodeQ2;//Left South
 NODE *bridgeNodeR1;//Right South
 
+
+void setNodePaths(THREADVILLE *threadville) {
+    initGraph();
+    int count = 0;
+    NODE *i = threadville -> nodes;
+    for(; i != NULL; i = i->next){
+        count++;
+        if(i -> next != NULL){
+            printf("%d.\tNODE %d - %s --> NEXT %d - %s\n", count, i -> id, i -> name, i -> next -> id, i -> next -> name);
+            graph[i -> id][i -> next -> id] = 1; // <== Hay un camino de i a i->next con peso = 1
+        }
+    }
+
+    printf("ID %d \n", threadville -> nodes -> id);
+
+    int k;
+    for(k = 0; k < V; k++){
+        dijkstra(graph, k, threadville -> nodes -> node_paths);
+    }
+//
+//    printf("\n\n-- \n");
+//    int p1[V];
+//    initResultArray(p1);
+//    thePath(1, 0, paths, p1);
+
+
+
+
+//    int k, j;
+//    for(k = 0; k < V; k++){
+//        for(j = 0; j < V; j++){
+//            printf("%d", graph[k][j]);
+//        }
+//        printf("\n");
+//    }
+}
+
+
 void init(){
     puts("Iniciando Threadville");
 	threadville = createThreadville();
@@ -288,7 +326,7 @@ void init(){
 //	ligthBlue = createColor("LIGTHBLUE", 3);
 //	orange = createColor("ORANGE", 1);
 
-	//DEFINICION CALE DE UNA VIA
+	//DEFINICION CALLE DE UNA VIA
 	nodeA5G2 = createNode(0, "A5G2", 3);//Comparte la capacidad con G2
 	nodeA6G1 = createNode(1, "A6G1", 3);//Comparte la capacidad con G1
 	nodeM5S1 = createNode(2, "M5S1", 3);//Comparte la capacidad con M5
@@ -587,7 +625,7 @@ void init(){
 	nodeS5->next = nodeS6;
 	nodeS6->next = nodeS7;
 	nodeS7->next = nodeS8;
-	nodeS8->next = nodeB1;
+	nodeS8->next = nodeB1;   // <=== No es M1?
 
 	//Nodos de B
 	nodeB1->next = nodeB2;
@@ -778,6 +816,10 @@ void init(){
 
 	//Joe
 	bridgeNodeK4->next = bridgeNodeR1;
+
+
+
+	setNodePaths(threadville);
 }
 
 void teardDown(){
@@ -1250,55 +1292,54 @@ void dijkstra_test(){
 
 int main(int argc, char *argv[]) {
 	init();
-	//dijkstra_test();
 
-	VEHICULE *orangeBus = createBus("BUS-NARANJA");
-	orangeBus->colorSpeed = orange;
-	orangeBus->route = createRoute();
-	puts("RUTA DE M2 a M1 = [M2, M3, S3, S4, S5, S6, S7, S8, M6, M1]");
-
-	DESTINY *destinyM2 = createDestiny();
-	destinyM2->node = nodeM2;
-
-	DESTINY *destinyM3 = createDestiny();
-	destinyM3->node = nodeM3;
-
-	DESTINY *destinyS3 = createDestiny();
-	destinyS3->node = nodeS3;
-
-	DESTINY *destinyS4 = createDestiny();
-	destinyS4->node = nodeS4;
-
-	DESTINY *destinyS5 = createDestiny();
-	destinyS5->node = nodeS5;
-
-	DESTINY *destinyS6 = createDestiny();
-	destinyS6->node = nodeS6;
-
-	DESTINY *destinyS7 = createDestiny();
-	destinyS7->node = nodeS7;
-
-	DESTINY *destinyS8 = createDestiny();
-	destinyS8->node = nodeS8;
-
-	DESTINY *destinyM6 = createDestiny();
-	destinyM6->node = nodeM6;
-
-	DESTINY *destinyM1 = createDestiny();
-	destinyM1->node = nodeM1;
-
-	orangeBus->route->destinations = destinyM2;
-	orangeBus->route->destinations->next = destinyM3;
-	orangeBus->route->destinations->next->next = destinyS3;
-	orangeBus->route->destinations->next->next->next = destinyS4;
-	orangeBus->route->destinations->next->next->next->next = destinyS5;
-	orangeBus->route->destinations->next->next->next->next->next = destinyS6;
-	orangeBus->route->destinations->next->next->next->next->next->next = destinyS7;
-	orangeBus->route->destinations->next->next->next->next->next->next->next = destinyS8;
-	orangeBus->route->destinations->next->next->next->next->next->next->next->next = destinyM6;
-	orangeBus->route->destinations->next->next->next->next->next->next->next->next->next = destinyM1;
-
-	displayDestinations(orangeBus->route->destinations);
+//	VEHICULE *orangeBus = createBus("BUS-NARANJA");
+//	orangeBus->colorSpeed = orange;
+//	orangeBus->route = createRoute();
+//	puts("RUTA DE M2 a M1 = [M2, M3, S3, S4, S5, S6, S7, S8, M6, M1]");
+//
+//	DESTINY *destinyM2 = createDestiny();
+//	destinyM2->node = nodeM2;
+//
+//	DESTINY *destinyM3 = createDestiny();
+//	destinyM3->node = nodeM3;
+//
+//	DESTINY *destinyS3 = createDestiny();
+//	destinyS3->node = nodeS3;
+//
+//	DESTINY *destinyS4 = createDestiny();
+//	destinyS4->node = nodeS4;
+//
+//	DESTINY *destinyS5 = createDestiny();
+//	destinyS5->node = nodeS5;
+//
+//	DESTINY *destinyS6 = createDestiny();
+//	destinyS6->node = nodeS6;
+//
+//	DESTINY *destinyS7 = createDestiny();
+//	destinyS7->node = nodeS7;
+//
+//	DESTINY *destinyS8 = createDestiny();
+//	destinyS8->node = nodeS8;
+//
+//	DESTINY *destinyM6 = createDestiny();
+//	destinyM6->node = nodeM6;
+//
+//	DESTINY *destinyM1 = createDestiny();
+//	destinyM1->node = nodeM1;
+//
+//	orangeBus->route->destinations = destinyM2;
+//	orangeBus->route->destinations->next = destinyM3;
+//	orangeBus->route->destinations->next->next = destinyS3;
+//	orangeBus->route->destinations->next->next->next = destinyS4;
+//	orangeBus->route->destinations->next->next->next->next = destinyS5;
+//	orangeBus->route->destinations->next->next->next->next->next = destinyS6;
+//	orangeBus->route->destinations->next->next->next->next->next->next = destinyS7;
+//	orangeBus->route->destinations->next->next->next->next->next->next->next = destinyS8;
+//	orangeBus->route->destinations->next->next->next->next->next->next->next->next = destinyM6;
+//	orangeBus->route->destinations->next->next->next->next->next->next->next->next->next = destinyM1;
+//
+//	displayDestinations(orangeBus->route->destinations);
 
     return 0;
 //

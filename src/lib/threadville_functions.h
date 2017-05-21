@@ -54,6 +54,7 @@ typedef struct NODE {
 	struct VEHICULE *vehicule_1;
 	struct VEHICULE *vehicule_2;
 	struct VEHICULE *vehicule_3;
+	int node_paths[V];
 }NODE;
 
 typedef struct THREADVILLE {
@@ -298,8 +299,8 @@ NODE* findNode(int index, THREADVILLE *threadville){
 			printf("NODE NAME:  %s\n", i->name);
 			return i;
 		}
-
 	}
+	return NULL;
 }
 
 

@@ -3,6 +3,7 @@
 #define TV_GLOBALS
 
 
-#define V 10
+#define V 180
+
 
 #endif
