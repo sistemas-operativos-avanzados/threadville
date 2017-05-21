@@ -5,5 +5,7 @@
 
 #define V 180
 
+#define RN 3
+
 
 #endif
