@@ -2,60 +2,21 @@
 
 #define TV_GRAPH
 
-
-//int graph[V][V] = {
-////                   M1 M3 S1 S2 S3 S4 S5 S6 S7 S8
-//                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, //M1
-//                    {0, 0, 0, 0, 1, 0, 0, 0, 0, 0}, //M3
-//                    {0, 0, 0, 1, 0, 0, 0, 0, 0, 0}, //S1
-//                    {0, 0, 0, 0, 1, 0, 0, 0, 0, 0}, //S2
-//                    {0, 0, 0, 0, 0, 1, 0, 0, 0, 0}, //S3
-//                    {0, 0, 0, 0, 0, 0, 1, 0, 0, 0}, //S4
-//                    {0, 0, 0, 0, 0, 0, 0, 1, 0, 0}, //S5
-//                    {0, 0, 0, 0, 0, 0, 0, 0, 1, 0}, //S6
-//                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, //S7
-//                    {1, 0, 1, 0, 0, 0, 0, 0, 0, 0}, //S8
-//                  };
-
-
+/*int graph[V][V] = {
+//                   M1 M3 S1 S2 S3 S4 S5 S6 S7 S8
+                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, //M1
+                    {0, 0, 0, 0, 1, 0, 0, 0, 0, 0}, //M3
+                    {0, 0, 0, 1, 0, 0, 0, 0, 0, 0}, //S1
+                    {0, 0, 0, 0, 1, 0, 0, 0, 0, 0}, //S2
+                    {0, 0, 0, 0, 0, 1, 0, 0, 0, 0}, //S3
+                    {0, 0, 0, 0, 0, 0, 1, 0, 0, 0}, //S4
+                    {0, 0, 0, 0, 0, 0, 0, 1, 0, 0}, //S5
+                    {0, 0, 0, 0, 0, 0, 0, 0, 1, 0}, //S6
+                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, //S7
+                    {1, 0, 1, 0, 0, 0, 0, 0, 0, 0}, //S8
+                  };
+*/
 int graph[V][V];
-
-void initGraph(){
-
-    int i, j;
-    for(i = 0; i < V; i++){
-        for(j = 0; j < V; j++){
-            graph[i][j] = 0;
-        }
-    }
-}
-
-////Llenar la matriz con segun las relaciones de Threadville
-//void fillGraph(THREADVILLE *threadville){
-//	//Llenar con ceros la matriz
-//	for(int r = 0; r < V; r++){
-//		for(int h = 0; h < V; h++){
-//			graph[r][h] = 0;
-//		}
-//	}
-//	//Recorrer todos los nodos de Threadvile
-//	NODE *node = threadville->nodes;
-//	for(; node != NULL; node = node->next){
-//		int reacheabledNodes[RN];
-//		int id = node->id;
-//
-//		//Assignar nodo alcanzables
-//		for(int y = 0; y < RN; y++){
-//			reacheabledNodes[y] = node->reacheabledNodes[y];
-//		}
-//		for(int i = 0; i < RN; i++){
-//			if(reacheabledNodes[i] != -1){
-//				graph[id][reacheabledNodes[i]] = 1;
-//				printf("GRAPH POSITION [%i][%i] =  %i\n", id, reacheabledNodes[i], graph[id][reacheabledNodes[i]]);
-//			}
-//		}
-//	}
-//}
 
 //Funcion para encontrar el vertice con la distancia minima de un conjunto de vertices un no incluidos en el
 //shortest path tree

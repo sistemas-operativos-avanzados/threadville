@@ -537,7 +537,7 @@ void init(){
 	int bridgeNodeQ2Relations[RN] = {123, -1, -1};
 	int bridgeNodeR1Relations[RN] = {177, -1, -1};
 
-	//DEFINICION CALE DE UNA VIA
+	//DEFINICION CALLE DE UNA VIA
 	nodeA5G2 = createNode(0, "A5G2", 3, nodeA5G2Relations);//Comparte la capacidad con G2
 	nodeA6G1 = createNode(1, "A6G1", 3, nodeA6G1Relations);//Comparte la capacidad con G1
 	nodeM5S1 = createNode(2, "M5S1", 3, nodeM5S1Relations);//Comparte la capacidad con M5

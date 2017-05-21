@@ -3,6 +3,7 @@
 #ifndef TV_ADT
 
 #define TV_ADT
+#define RN 3
 
 //Estructura para color y velocidad de un vehiculo
 typedef struct COLORSPEED{
@@ -301,8 +302,9 @@ NODE* findNode(int index, THREADVILLE *threadville){
 	for(; i != NULL; i = i->next){
 		if(i->id == index){
 			printf("NODE NAME:  %s\n", i->name);
-			return i;
+			return i;			
 		}
+		
 	}
 	return NULL;
 }
@@ -335,9 +337,5 @@ void addStop(VEHICULE *vehicule, NODE *stop){
 	currentStops = newStop;
 }
 
-
-int someNumber(){
-	return 11;
-}
 
 #endif
