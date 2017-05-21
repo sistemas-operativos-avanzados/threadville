@@ -31,3 +31,14 @@
 # Debug files
 *.dSYM/
 *.su
+
+**target/
+
+*.iml
+*.ipr
+*.iws
+*.idea/
+
+CMakeLists.txt
+cmake-build-debug/
+c-samples/
