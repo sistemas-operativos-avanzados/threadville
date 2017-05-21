@@ -2,24 +2,7 @@
 
 #define TV_GRAPH
 
-
-#define V 10
-
-// Otro grafo de ejemplo
-
-//int graph[V][V] = {{0, 4, 0, 0, 0, 0, 0, 8, 0},
-//					{4, 0, 8, 0, 0, 0, 0, 11, 0},
-//					{0, 8, 0, 7, 0, 4, 0, 0, 2},
-//					{0, 0, 7, 0, 9, 14, 0, 0, 0},
-//					{0, 0, 0, 9, 0, 10, 0, 0, 0},
-//					{0, 0, 4, 14, 10, 0, 2, 0, 0},
-//					{0, 0, 0, 0, 0, 2, 0, 1, 6},
-//					{8, 11, 0, 0, 0, 0, 1, 0, 7},
-//					{0, 0, 2, 0, 0, 0, 6, 7, 0}
-//					};
-
-
-int graph[V][V] = {
+/*int graph[V][V] = {
 //                   M1 M3 S1 S2 S3 S4 S5 S6 S7 S8
                     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, //M1
                     {0, 0, 0, 0, 1, 0, 0, 0, 0, 0}, //M3
@@ -32,7 +15,8 @@ int graph[V][V] = {
                     {0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, //S7
                     {1, 0, 1, 0, 0, 0, 0, 0, 0, 0}, //S8
                   };
-
+*/
+int graph[V][V];
 
 //Funcion para encontrar el vertice con la distancia minima de un conjunto de vertices un no incluidos en el
 //shortest path tree
@@ -66,19 +50,22 @@ result.
 */
 void thePath(int from, int to, int paths[], int result[]){
 
-    int i = 0;
+    //Incluir el ultimo nodo
+    result[0] = to;
+    int i = 1;
+
+    //Crear path
     while(paths[to] != from){
-//        printf("from %d - to %d - paths[to] %d \n", from, to, paths[to]);
-        result[i] = paths[to];
+	result[i] = paths[to];
         to = paths[to];
         i++;
     }
 
     //Reversa
     result[i] = from;
-    for(; i > 0; i--){
-        printf("%d -> ",  result[i]);
-    }
+//    for(; i > 0; i--){
+//        printf("%d -> ",  result[i]);
+//    }
 
 }
 
@@ -100,13 +87,13 @@ void initResultArray(int result[]){
 
 
 void printSolution(int dist[], int paths[], int n){
-    printf("Distancia desde el nodo origen\n");
-    int i;
-    for (i = 0; i < V; i++){
-        printf("%d \t\t %d\n", i, dist[i]);
-    }
-
-    printPath(paths);
+//    printf("Distancia desde el nodo origen\n");
+//    int i;
+//    for (i = 0; i < V; i++){
+//        printf("%d \t\t %d\n", i, dist[i]);
+//    }
+//
+//    printPath(paths);
 }
 
 
@@ -161,7 +148,6 @@ void dijkstra(int graph[V][V], int src, int paths[]){
 
 	printSolution(dist, paths, V);
 }
-
 
 
 #endif
