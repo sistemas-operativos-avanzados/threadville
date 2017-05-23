@@ -301,14 +301,12 @@ NODE* findNode(int index, THREADVILLE *threadville){
 	NODE *i = threadville->nodes;
 	for(; i != NULL; i = i->next){
 		if(i->id == index){
-			printf("NODE NAME:  %s\n", i->name);
 			return i;			
 		}
 		
 	}
 	return NULL;
 }
-
 
 ROUTE* newRoute(STOP *cStop){
 	STOP *currentStop = cStop;

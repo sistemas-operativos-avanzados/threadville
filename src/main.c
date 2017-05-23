@@ -303,7 +303,6 @@ void fillGraph(THREADVILLE *threadville){
 		for(int i = 0; i < RN; i++){
 			if(reacheabledNodes[i] != -1){
 				graph[id][reacheabledNodes[i]] = 1;
-//				printf("GRAPH POSITION [%i][%i] =  %i\n", id, reacheabledNodes[i], graph[id][reacheabledNodes[i]]);
 			}
 		}
 	}
@@ -794,8 +793,6 @@ void init(){
 
 	//Nodos de Y
 	nodeY1->next = nodeY2;
-	//fillGraph(nodeY1, 2);
-
 	nodeY2->next = nodeY3;
 	nodeY3->next = nodeY4;
 	nodeY4->next = nodeY5;
@@ -1499,48 +1496,45 @@ void dijkstra_test(){
 	}
 }
 
+void generateRoute(VEHICULE *vehicule, NODE *start, NODE *end){
+	vehicule->route = createRoute();
+	int startID = start->id;
+	int endID = end->id;
+    	int path[V];
+	NODE *node = start;
+    	initResultArray(path);
+    	thePath(startID, endID, node->node_paths, path);
+
+	ROUTE *route = createRoute();
+	route->destinations = createDestiny();
+	DESTINY *destiny = route->destinations;
+
+	for(int k = V - 1; k >= 0; k--){
+		if(path[k] != INT_MAX){
+			destiny->node = findNode(path[k], threadville);			
+			destiny->next = createDestiny();
+			
+			//Si es el ultimo nodo de la ruta, setear en NULL
+			if(k == 0){
+				destiny->next = NULL;
+			}else{
+				destiny = destiny->next;
+			}
+		}		
+	}
+	vehicule->route = route;
+}
 
 int main(int argc, char *argv[]) {
 	init();
 
 	VEHICULE *orangeBus = createBus("BUS-NARANJA");
 	orangeBus->colorSpeed = orange;
-	orangeBus->route = createRoute();
 
-	int orageBusPath[V];
-
-	printf("\n\n-- \n");
-    	int pathY1I3[V];
-    	initResultArray(pathY1I3);
-    	thePath(nodeZ1 -> id, nodeG6 -> id, nodeZ1 -> node_paths, pathY1I3);
-
-	for(int k = V - 1; k >= 0; k--){
-		if(pathY1I3[k] != INT_MAX){
-			NODE *node = findNode(pathY1I3[k], threadville);
-		}
-	}
-
-	//GENARAR RUTA  - WORKING ON
-	/*printf("\n");
-	ROUTE *orageBusRoute = createRoute();
-	orageBusRoute->destinations = createDestiny();
-
-
-	DESTINY *i = orageBusRoute->destinations;
-	for(int k = V - 1; k >= 0; k--){
-		if(pathY1I3[k] != INT_MAX){
-			DESTINY *destiny = createDestiny();
-			destiny->node = findNode(pathY1I3[k], threadville);
-			i =  destiny;
-			i = i->next;
-			i = createDestiny();
-		}
-	}
-
-	orangeBus->route = orageBusRoute;
-	//printf("HACE %s", orangeBus->route->destinations->node->name);
-	//displayDestinations(orageBusRoute->destinations);
-	*/
+	//GENARAR RUTA
+	generateRoute(orangeBus, nodeB4, nodeI3);
+	displayDestinations(orangeBus->route->destinations);
+	
     return 0;
 //
 //	init();
