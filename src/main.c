@@ -508,7 +508,7 @@ void init(){
 	int nodeZ3Relations[RN] = {26, -1, -1};
 	int nodeZ4Relations[RN] = {157, -1, -1};
 	int nodeZ5Relations[RN] = {157, -1, -1};
-	int nodeZ6Relations[RN] = {158, 63, -1};
+	int nodeZ6Relations[RN] = {143, 158, -1};
 	int nodeZ7Relations[RN] = {159, -1, -1};
 	int nodeZ8Relations[RN] = {152, -1, -1};
 
@@ -1009,23 +1009,33 @@ void init(){
 
 	//Puente Bailey
 	//Larry
-	bridgeNodeG4->next = bridgeNodeN1;
-	bridgeNodeN1->next = bridgeNodeH4;
+	bridgeNodeG4->next = bridgeNodeM2;
+	bridgeNodeM2->next = bridgeNodeN1;
+	bridgeNodeN1->next = bridgeNodeH5;
 
 	//Curly
-	bridgeNodeH4->next = bridgeNodeO1;
-	bridgeNodeO1->next = bridgeNodeI4;
+	bridgeNodeH5->next = bridgeNodeH4;
+	bridgeNodeH4->next = bridgeNodeN2;
+	bridgeNodeN2->next = bridgeNodeO1;
+	bridgeNodeO1->next = bridgeNodeI5;
 
 	//Moe
-	bridgeNodeI4->next = bridgeNodeP1;
-	bridgeNodeP1->next = bridgeNodeJ4;
+	bridgeNodeI5->next = bridgeNodeI4;
+	bridgeNodeI4->next = bridgeNodeO2;
+	bridgeNodeO2->next = bridgeNodeP1;
+	bridgeNodeP1->next = bridgeNodeJ5;
 
 	//Shemp
-	bridgeNodeJ4->next = bridgeNodeQ1;
-	bridgeNodeQ1->next = bridgeNodeK4;
+	bridgeNodeJ5->next = bridgeNodeJ4;
+	bridgeNodeJ4->next = bridgeNodeP2;
+	bridgeNodeP2->next = bridgeNodeQ1;
+	bridgeNodeQ1->next = bridgeNodeK5;
 
 	//Joe
-	bridgeNodeK4->next = bridgeNodeR1;
+	bridgeNodeK5->next = bridgeNodeK4;
+	bridgeNodeK4->next = bridgeNodeQ2;
+	bridgeNodeQ2->next = bridgeNodeR1;
+	bridgeNodeR1->next = bridgeNodeL5;
 
 
 	fillGraph(threadville);
@@ -1492,23 +1502,17 @@ void dijkstra_test(){
 
 int main(int argc, char *argv[]) {
 	init();
-//	fillGraph(threadville);
-	//dijkstra_test();
 
 	VEHICULE *orangeBus = createBus("BUS-NARANJA");
 	orangeBus->colorSpeed = orange;
 	orangeBus->route = createRoute();
-	puts("RUTA DE A1 a I3 = [A1, A2, B1, B2, C1, C2, C3, C4, I3]");
 
 	int orageBusPath[V];
-//	dijkstra(graph, 32, orageBusPath);//Dijkstra desde Y1
-
 
 	printf("\n\n-- \n");
-    int pathY1I3[V];
-    initResultArray(pathY1I3);
-//    thePath(32, 78, nodeA1 -> node_paths, pathY1I3);
-    thePath(nodeC3 -> id, nodeI4 -> id, nodeC3 -> node_paths, pathY1I3);
+    	int pathY1I3[V];
+    	initResultArray(pathY1I3);
+    	thePath(nodeZ1 -> id, nodeG6 -> id, nodeZ1 -> node_paths, pathY1I3);
 
 	for(int k = V - 1; k >= 0; k--){
 		if(pathY1I3[k] != INT_MAX){
