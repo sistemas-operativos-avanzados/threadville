@@ -65,6 +65,7 @@ typedef struct NODE {
 	struct VEHICULE *vehicule_3;
 	int node_paths[V];
         int x, y;
+
 }NODE;
 
 typedef struct THREADVILLE {
@@ -283,6 +284,7 @@ void displayDestinations(DESTINY *destinations){
     for(; i != NULL; i = i->next){
             printf("DESTINY - NODE NAME:  %s\n", i->node->name);
     }
+
 }
 
 void displayRoutes(ROUTE *routes){
