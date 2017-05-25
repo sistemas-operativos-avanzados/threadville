@@ -1337,7 +1337,7 @@ void dijkstra_test(){
 }
 
 
-int main(int argc, char *argv[]) {
+/*int main(int argc, char *argv[]) {
 
     dijkstra_test();
     return 0;
@@ -1365,4 +1365,4 @@ int main(int argc, char *argv[]) {
 
     // headless();
 //    return 0;
-}
+}*/

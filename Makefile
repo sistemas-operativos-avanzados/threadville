@@ -12,15 +12,17 @@ ODIR=target
 all: clean $(EXECUTABLE)
 
 build:
-	$(CC) -c $(SOURCES) 
+	$(CC) -c `pkg-config --cflags gtk+-3.0` `pkg-config --libs gtk+-3.0` $(SOURCES) 
 	mv *.o src/ 
 
 $(EXECUTABLE): $(ODIR) build
-	$(CC) $(OBJECTS) -o $(ODIR)/$(EXECUTABLE)
+	$(CC) $(OBJECTS) -o $(ODIR)/$(EXECUTABLE) `pkg-config --cflags gtk+-3.0` `pkg-config --libs gtk+-3.0` -pthread
 
 $(ODIR):
 	mkdir target/
 
 clean:
-	rm -f $(OBJECTS) 
+	rm -f $(OBJECTS)  
 	rm -rf target/
+
+
