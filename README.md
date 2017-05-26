@@ -2,7 +2,7 @@ ThreadVille
 ===========
 
 > Raquel Elizondo Barrios  
-> Oscar Rodríguez Arroyo
+> Oscar Rodríguez Arroyo  
 > Nelson Mendez Montero  
 > Jose Daniel Salazar Vargas  
 > Carlos Martin Flores Gonzalez  
