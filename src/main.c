@@ -504,22 +504,67 @@ static gboolean on_tick (gpointer user_data) {
 
 
 static void add_vehicule(GtkWidget *widget, gpointer data) {
-    
+    /*int paradas[21] = {101, 104, 108, 103, 104, 108, 20, 21, 109, 147, 146, 58, 55, 143, 54, 51, 139, 138, 12, 13, 101};
+    int cantidadParadas = 21;
+    //Bus Lombriz - Naranja> M3, O6, C8, C3, O3, Q6, E8, E3, Q3, X4, X7, L6, J3, V4, J6, H3, T4, T7, H6, A8, A3, M3
+
+    int paradas[11] = {0, 6, 11, 71, 87, 99, 159, 153, 148, 88, 82};
+    int cantidadParadas = 11;
+    //Periferica Grande - Roja> A1, D1, F2, L4, Z (dandole la vuelta), R2, X5, U5, S6, M1, Y (dandole la vuelta)
+*/
+
+    int paradas[2] = {27, 0};
+    int cantidadParadas = 2;
+    //Periferica Norte - Verde> E2, L3*, F2, L4, Z (dandole la vuelta), toma la pista hacia el Oeste Y (dandole la vuelta), G6, B1, E2
+/*
+    int paradas[10] = {9, 59, 11, 71, 87, 99, 74, 48, 2, 9};
+    int cantidadParadas = 10;
+    //Periferica Norte - Verde> E2, L3*, F2, L4, Z (dandole la vuelta), toma la pista hacia el Oeste Y (dandole la vuelta), G6, B1, E2
+     
+     int paradas[7] = {111, 157, 150, 100, 82, 77, 111};
+     int cantidadParadas = 7;
+//Periferica Sur - Azul> R3, W5, T6, M6, Y (dandole la vuelta), toma la pista hacia el Este Z (dandole la vuelta), R3
+
+	int paradas[7] = {65, 105, 151, 90, 50, 4, 65};
+        int cantidadParadas = 7;
+//Bus Blanco> I4, O3, T5, N1, H6, C1, I4
+
+	int paradas[7] = {153, 92, 52, 6, 67, 107, 153};
+        int cantidadParadas = 7;
+//Bus Gris> U5, O1, I6, D1, J4, P3, U5
+
+
+	int paradas[7] = {54, 8, 69, 109, 155, 94, 54};
+        int cantidadParadas = 7;
+	//Bus Negro> J6, E1, K4, Q3, V5, P1, J6
+
+
+	int paradas[5] = {47, 36, 0, 11, 147};
+        int cantidadParadas = 5;
+	//Bus Rosa> F5L1, A6, A1, F2, F5L1
+
+	int paradas[5] = {148, 112, 123, 159, 148};
+        int cantidadParadas = 5;
+	//Bus Celeste> S6, M5S1, R4X2, X5, S6
+	*/
+
     g_print("Vehicule\n");
     
     int rc;
-    vehicules[contadorHilos]= createCar("v");
+    vehicules[contadorHilos]= createBus("BUS-NARANJA");
     
+
     srand(time(NULL));
-    vehicules[contadorHilos]->cantidadParadas=rand()%4+2;
+    vehicules[contadorHilos]->cantidadParadas = cantidadParadas;
     vehicules[contadorHilos]->paradas=(NODE*) calloc(vehicules[contadorHilos]->cantidadParadas, sizeof(NODE));
-    int i;
-    for(i=0; i<vehicules[contadorHilos]->cantidadParadas; i++){
-        int valor= rand()%9+2;
-        vehicules[contadorHilos]->paradas[i]=listaParadas[valor];                       
-        printf("valor %d\n", valor);
-    } // for     
-    
+
+	for(int i = 0; i < cantidadParadas; i++){	
+         vehicules[contadorHilos]->paradas[i]=listaParadas[paradas[i]];
+         }
+           
+    vehicules[contadorHilos]->x = listaParadas[paradas[0]]->x;
+    vehicules[contadorHilos]->y = listaParadas[paradas[0]]->y;
+
     printf("creating thread %d\n", contadorHilos);
     rc = pthread_create(&threads[contadorHilos], NULL, update_car_position, (void *)vehicules[contadorHilos]);
     if (rc)
@@ -536,7 +581,7 @@ static void add_Ambulance(GtkWidget *widget, gpointer data) {
     
     g_print("Ambulance\n");
     
-} // print_hello
+} // print_helloz
 
 //******************************************************************************
 // ******************* MAIN ****************************************************
@@ -559,7 +604,7 @@ int main(int argc, char *argv[]) {
     ////GENARAR RUTA
     //generateRoute(orangeBus, nodeB4, nodeI3);
     
-    generateRoute(orangeBus, listaParadas[27], nodeI3);
+    generateRoute(orangeBus, listaParadass[27], nodeI3);
     
     displayDestinations(orangeBus->route->destinations);
 */
@@ -598,6 +643,8 @@ int main(int argc, char *argv[]) {
     button = gtk_button_new_with_label("Vehicule");
     gtk_fixed_put(GTK_FIXED(fixed), button, 1000, 50);
     gtk_widget_set_size_request(button, 80, 30); 
+
+    
     g_signal_connect(button, "clicked", G_CALLBACK(add_vehicule), NULL);
     
     button2 = gtk_button_new_with_label("Ambulance");

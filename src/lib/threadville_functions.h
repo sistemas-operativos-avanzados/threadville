@@ -205,13 +205,20 @@ VEHICULE* createBus(char *id){
 	bus->status = 0;
 	bus->type = 2;
 	bus->longCapability = 2;
-	//bus->availableRides = 2;
-	bus->delay = 5;
+	bus->delay = 3;
 	bus->next = NULL;
 	bus->colorSpeed = NULL;
 	bus->route = NULL;
 	bus->stops = NULL;
-
+        
+        bus->x=0; 
+        bus->y=0; 
+        bus->dx=1;
+        bus->dy=0;
+        bus->width=20;
+        bus->height=20;    
+        bus->run=true;
+        bus->speed=3;
 	return bus;
 }
 
