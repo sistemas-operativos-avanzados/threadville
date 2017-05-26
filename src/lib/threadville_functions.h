@@ -168,8 +168,8 @@ VEHICULE* createCar(char *id){
 	car->route = NULL;
 	car->stops = NULL;
         
-        car->x=30; //nodeY1.x;
-        car->y=0; //nodeY1.y;
+        //car->x=30; //nodeY1.x;
+        //car->y=0; //nodeY1.y;
         car->dx=1;
         car->dy=0;
         car->width=20;
