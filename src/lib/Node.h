@@ -1081,7 +1081,7 @@ void asignarNodosALista(){
         listaParadas[35]=nodeF4;
         listaParadas[36]=nodeA6G1;
         listaParadas[37]=nodeA5G2;        
-	listaParadas[38]=nodeB6H1;
+		listaParadas[38]=nodeB6H1;
         listaParadas[39]=nodeB5H2;        
         
         listaParadas[40]=nodeC6I1;	
@@ -1165,15 +1165,15 @@ void asignarNodosALista(){
         listaParadas[111]=nodeR3;
         listaParadas[112]=nodeM5S1;        	
         listaParadas[113]=nodeM4S2;
-	listaParadas[114]=nodeN5T1;
+		listaParadas[114]=nodeN5T1;
         listaParadas[115]=nodeN4T2;        	
         listaParadas[116]=nodeO5U1;
-	listaParadas[117]=nodeO4U2;
+		listaParadas[117]=nodeO4U2;
         listaParadas[118]=nodeP5V1;        
         listaParadas[119]=nodeP4V2;	
                 
         listaParadas[120]=nodeQ5W1;	
-	listaParadas[121]=nodeQ4W2;
+		listaParadas[121]=nodeQ4W2;
         listaParadas[122]=nodeR5X1;	
         listaParadas[123]=nodeR4X2;
         listaParadas[124]=nodeS8;
