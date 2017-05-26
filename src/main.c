@@ -1,11 +1,13 @@
 
 #include <string.h>
+#include <limits.h>
 #include <cairo.h>
 #include <gtk/gtk.h>
 #include <pthread.h>
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <glib/gmacros.h>
 
 #include "lib/threadville_globals.h"
@@ -543,246 +545,74 @@ static void add_Ambulance(GtkWidget *widget, gpointer data) {
 
 
 int main(int argc, char *argv[]) {
-    
-    init();
-    asignarNodosALista();
-    cargarCordenadasNodos();
+
+	init();
+	asignarNodosALista();
+	cargarCordenadasNodos();
+
+	for(int i = 0; i < V; i++){
+//		for(int j = 0; j < V; j++){
+			if(graph[27][i] != 0) {
+				printf("0 - %d, %d \n", i, graph[27][i]);
+			}
+			if(graph[155][i] != 0) {
+				printf("155 - %d, %d \n", i, graph[155][i]);
+			}
+
+//		}
+//		printf("\n");
+	}
 
 
-
-/*
-    VEHICULE *orangeBus = createBus("BUS-NARANJA");
-    orangeBus->colorSpeed = orange;
-
-    ////GENARAR RUTA
-    //generateRoute(orangeBus, nodeB4, nodeI3);
-    
-    generateRoute(orangeBus, listaParadas[27], nodeI3);
-    
-    displayDestinations(orangeBus->route->destinations);
-*/
+	/*
+	GtkWidget *window;
+	GtkWidget *button;
+	GtkWidget *button2;
+	GtkWidget *button_box;
+	GtkWidget *fixed;
 
 
+	gtk_init(&argc, &argv);
+	GError *error = NULL;
 
-	
-    GtkWidget *window;
-    GtkWidget *button;
-    GtkWidget *button2;
-    GtkWidget *button_box;
-    GtkWidget *fixed;    
-    
-    
-    gtk_init(&argc, &argv);
-    GError * error = NULL;
+	if (error) {
+		printf("%s\n", error->message);
+	}
 
-    if (error) {
-        printf("%s\n", error->message);
-    }
-
-    window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-    gtk_window_set_default_size(GTK_WINDOW(window), WIDTH, HEIGTH);
-    gtk_window_set_title(GTK_WINDOW(window), "SOA");
-    g_signal_connect(window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
+	window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+	gtk_window_set_default_size(GTK_WINDOW(window), WIDTH, HEIGTH);
+	gtk_window_set_title(GTK_WINDOW(window), "SOA");
+	g_signal_connect(window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
 
 
-    fixed = gtk_fixed_new();
-    gtk_container_add(GTK_CONTAINER(window), fixed);
-    
-    drawing = gtk_drawing_area_new();
-    gtk_fixed_put(GTK_FIXED(fixed), drawing, 0, 0);
-    gtk_widget_set_size_request(drawing, WIDTH_DA, HEIGTH_DA); 
-    g_signal_connect(drawing, "draw", G_CALLBACK(on_draw), NULL);
-    
-    button = gtk_button_new_with_label("Vehicule");
-    gtk_fixed_put(GTK_FIXED(fixed), button, 1000, 50);
-    gtk_widget_set_size_request(button, 80, 30); 
-    g_signal_connect(button, "clicked", G_CALLBACK(add_vehicule), NULL);
-    
-    button2 = gtk_button_new_with_label("Ambulance");
-    gtk_fixed_put(GTK_FIXED(fixed), button2, 1000, 100);
-    gtk_widget_set_size_request(button2, 80, 30); 
-    g_signal_connect(button2, "clicked", G_CALLBACK(add_Ambulance), NULL);    
-    
-    
-    gtk_widget_show_all(window);
-    
-    tick_cb = g_timeout_add(1000 / FPS / 2, (GSourceFunc) on_tick, GINT_TO_POINTER(size)); 
-    
+	fixed = gtk_fixed_new();
+	gtk_container_add(GTK_CONTAINER(window), fixed);
 
-    
-    gtk_main();
-    
-    return 0;
+	drawing = gtk_drawing_area_new();
+	gtk_fixed_put(GTK_FIXED(fixed), drawing, 0, 0);
+	gtk_widget_set_size_request(drawing, WIDTH_DA, HEIGTH_DA);
+	g_signal_connect(drawing, "draw", G_CALLBACK(on_draw), NULL);
 
-} // main
+	button = gtk_button_new_with_label("Vehicule");
+	gtk_fixed_put(GTK_FIXED(fixed), button, 1000, 50);
+	gtk_widget_set_size_request(button, 80, 30);
+	g_signal_connect(button, "clicked", G_CALLBACK(add_vehicule), NULL);
 
-/*
-    int rc;
-    vehicules[contadorHilos]= createCar("v");
-    printf("creating thread %ld\n", contadorHilos);
-    rc = pthread_create(&threads[contadorHilos], NULL, update_car_position, (void *)vehicules[contadorHilos]);
-    if (rc)
-    {
-            printf("error, return frim pthread creation\n");
-            exit(4);
-    }
-    contadorHilos++;    
-*/
+	button2 = gtk_button_new_with_label("Ambulance");
+	gtk_fixed_put(GTK_FIXED(fixed), button2, 1000, 100);
+	gtk_widget_set_size_request(button2, 80, 30);
+	g_signal_connect(button2, "clicked", G_CALLBACK(add_Ambulance), NULL);
 
 
+	gtk_widget_show_all(window);
 
-/*
+	tick_cb = g_timeout_add(1000 / FPS / 2, (GSourceFunc) on_tick, GINT_TO_POINTER(size));
 
-#include <gtk/gtk.h>
 
-int main(int argc, char *argv[]) {
+	gtk_main();
 
-  GtkWidget *window;
-  GtkWidget *vbox;
+	*/
 
-  GtkWidget *menubar;
-  GtkWidget *fileMenu;
-  GtkWidget *fileMi;
-  GtkWidget *quitMi;
+	return 0;
 
-  gtk_init(&argc, &argv);
-
-  window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-  gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER);
-  gtk_window_set_default_size(GTK_WINDOW(window), 300, 200);
-  gtk_window_set_title(GTK_WINDOW(window), "Simple menu");
-
-  vbox = gtk_vbox_new(FALSE, 0);
-  gtk_container_add(GTK_CONTAINER(window), vbox);
-
-  menubar = gtk_menu_bar_new();
-  fileMenu = gtk_menu_new();
-
-  fileMi = gtk_menu_item_new_with_label("File");
-  quitMi = gtk_menu_item_new_with_label("Quit");
-
-  gtk_menu_item_set_submenu(GTK_MENU_ITEM(fileMi), fileMenu);
-  gtk_menu_shell_append(GTK_MENU_SHELL(fileMenu), quitMi);
-  gtk_menu_shell_append(GTK_MENU_SHELL(menubar), fileMi);
-  gtk_box_pack_start(GTK_BOX(vbox), menubar, FALSE, FALSE, 0);
-
-  g_signal_connect(G_OBJECT(window), "destroy",
-        G_CALLBACK(gtk_main_quit), NULL);
-
-  g_signal_connect(G_OBJECT(quitMi), "activate",
-        G_CALLBACK(gtk_main_quit), NULL);
-
-  gtk_widget_show_all(window);
-
-  gtk_main();
-
-  return 0;
 }
-*/
-
-/*
-#include <gtk/gtk.h>
-
-int main(int argc, char *argv[]) {
-
-  GtkWidget *window;
-  GtkWidget *vbox;
-  
-  GtkWidget *toolbar;
-  GtkToolItem *newTb;
-  GtkToolItem *openTb;
-  GtkToolItem *saveTb;
-  GtkToolItem *sep;
-  GtkToolItem *exitTb;
-
-  gtk_init(&argc, &argv);
-
-  window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-  gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER);
-  gtk_window_set_default_size(GTK_WINDOW(window), 300, 200);
-  gtk_window_set_title(GTK_WINDOW(window), "toolbar");
-
-  vbox = gtk_vbox_new(FALSE, 0);
-  gtk_container_add(GTK_CONTAINER(window), vbox);
-
-  toolbar = gtk_toolbar_new();
-  gtk_toolbar_set_style(GTK_TOOLBAR(toolbar), GTK_TOOLBAR_ICONS);
-
-  newTb = gtk_tool_button_new_from_stock(GTK_STOCK_NEW);
-  gtk_toolbar_insert(GTK_TOOLBAR(toolbar), newTb, -1);
-
-  openTb = gtk_tool_button_new_from_stock(GTK_STOCK_OPEN);
-  gtk_toolbar_insert(GTK_TOOLBAR(toolbar), openTb, -1);
-
-  saveTb = gtk_tool_button_new_from_stock(GTK_STOCK_SAVE);
-  gtk_toolbar_insert(GTK_TOOLBAR(toolbar), saveTb, -1);
-
-  sep = gtk_separator_tool_item_new();
-  gtk_toolbar_insert(GTK_TOOLBAR(toolbar), sep, -1); 
-
-  exitTb = gtk_tool_button_new_from_stock(GTK_STOCK_QUIT);
-  gtk_toolbar_insert(GTK_TOOLBAR(toolbar), exitTb, -1);
-
-  gtk_box_pack_start(GTK_BOX(vbox), toolbar, FALSE, FALSE, 5);
-
-  g_signal_connect(G_OBJECT(exitTb), "clicked", 
-        G_CALLBACK(gtk_main_quit), NULL);
-
-  g_signal_connect(G_OBJECT(window), "destroy",
-        G_CALLBACK(gtk_main_quit), NULL);
-
-  gtk_widget_show_all(window);
-
-  gtk_main();
-
-  return 0;
-}
- * 
- * */
-
-/*
-
-#include <gtk/gtk.h>
-
-int main(int argc, char *argv[]) {
-    
-  GtkWidget *window;
-  GtkWidget *fixed;
-
-  GtkWidget *btn1;
-  GtkWidget *btn2;
-  GtkWidget *btn3;
-
-  gtk_init(&argc, &argv);
-
-  window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-  gtk_window_set_title(GTK_WINDOW(window), "GtkFixed");
-  gtk_window_set_default_size(GTK_WINDOW(window), 300, 200);
-  gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER);
-
-  fixed = gtk_fixed_new();
-  gtk_container_add(GTK_CONTAINER(window), fixed);
-
-  btn1 = gtk_button_new_with_label("Button");
-  gtk_fixed_put(GTK_FIXED(fixed), btn1, 150, 50);
-  gtk_widget_set_size_request(btn1, 80, 30);
-
-  btn2 = gtk_button_new_with_label("Button");
-  gtk_fixed_put(GTK_FIXED(fixed), btn2, 15, 15);
-  gtk_widget_set_size_request(btn2, 80, 30);
-
-  btn3 = gtk_button_new_with_label("Button");
-  gtk_fixed_put(GTK_FIXED(fixed), btn3, 100, 100);
-  gtk_widget_set_size_request(btn3, 80, 30);
-
-  g_signal_connect(G_OBJECT(window), "destroy", 
-      G_CALLBACK(gtk_main_quit), NULL);
-
-  gtk_widget_show_all(window);
-
-  gtk_main();
-
-  return 0;
-}
- * 
- * */

@@ -2,7 +2,6 @@
 
 
 #define TV_ADT
-#define RN 3
 
 //Estructura para color y velocidad de un vehiculo
 typedef struct COLORSPEED{
@@ -42,15 +41,22 @@ typedef struct VEHICULE{
 	int delay;
 	struct VEHICULE *next;
 
-        bool run;
-        int x, y;
-        int dx, dy;
-        int speed;
-        int width, height;
-        int cantidadParadas;
-        struct NODE **paradas;
+	bool run;
+	int x, y;
+	int dx, dy;
+	int speed;
+	int width, height;
+	int cantidadParadas;
+	struct NODE **paradas;
 	
 }VEHICULE;
+
+
+
+struct PATH_RULE {
+	int destiny;
+	int pathWeight;
+};
 
 //Estructura que define cada punto en el mapa
 typedef struct NODE {
@@ -64,7 +70,8 @@ typedef struct NODE {
 	struct VEHICULE *vehicule_2;
 	struct VEHICULE *vehicule_3;
 	int node_paths[V];
-        int x, y;
+	struct PATH_RULE pathRules[V];
+	int x, y;
 
 }NODE;
 
@@ -168,14 +175,14 @@ VEHICULE* createCar(char *id){
 	car->route = NULL;
 	car->stops = NULL;
         
-        car->x=30; //nodeY1.x;
-        car->y=0; //nodeY1.y;
-        car->dx=1;
-        car->dy=0;
-        car->width=20;
-        car->height=20;    
-        car->run=true;
-        car->speed=3;
+	car->x=30; //nodeY1.x;
+	car->y=0; //nodeY1.y;
+	car->dx=1;
+	car->dy=0;
+	car->width=20;
+	car->height=20;
+	car->run=true;
+	car->speed=3;
 
        
 //        numero = rand () % (N-M+1) + M;   // Este está entre M y N

@@ -1,6 +1,12 @@
 #include "map.h"
 
 
+int pathWeight = 5;
+int highwayWeight = 1;
+
+int customPathWeights[V][V];
+
+
 //THREADVILLE
 THREADVILLE *threadville;
 
@@ -277,6 +283,16 @@ void setNodePaths(THREADVILLE *threadville) {
     }
 }
 
+void initCustomPathWeights(){
+
+	for(int r = 0; r < V; r++){
+		for(int h = 0; h < V; h++){
+			customPathWeights[r][h] = 0;
+		}
+	}
+
+}
+
 //Llenar la matriz con segun las relaciones de Threadville
 void fillGraph(THREADVILLE *threadville){
 	//Llenar con ceros la matriz
@@ -295,9 +311,14 @@ void fillGraph(THREADVILLE *threadville){
 		for(int y = 0; y < RN; y++){
 			reacheabledNodes[y] = node->reacheabledNodes[y];
 		}
+
 		for(int i = 0; i < RN; i++){
 			if(reacheabledNodes[i] != -1){
-				graph[id][reacheabledNodes[i]] = 1;
+				if(customPathWeights[id][reacheabledNodes[i]] != 0){
+					graph[id][reacheabledNodes[i]] = customPathWeights[id][reacheabledNodes[i]];
+				} else {
+					graph[id][reacheabledNodes[i]] = pathWeight;
+				}
 			}
 		}
 	}
@@ -307,6 +328,7 @@ void fillGraph(THREADVILLE *threadville){
 void init(){
     puts("Iniciando Threadville");
 	threadville = createThreadville();
+	initCustomPathWeights();
 
 //	red = createColor("RED", 1);
 //	blue = createColor("BLUE", 2);
@@ -500,7 +522,7 @@ void init(){
 	int nodeZ1Relations[RN] = {153, 154, 157};
 	int nodeZ2Relations[RN] = {25, -1, -1};
 	int nodeZ3Relations[RN] = {26, -1, -1};
-	int nodeZ4Relations[RN] = {157, -1, -1};
+	int nodeZ4Relations[RN] = {157, 27, -1};
 	int nodeZ5Relations[RN] = {157, -1, -1};
 	int nodeZ6Relations[RN] = {143, 158, -1};
 	int nodeZ7Relations[RN] = {159, -1, -1};
@@ -1030,8 +1052,12 @@ void init(){
 	bridgeNodeR1->next = bridgeNodeL5;
 
 
+	//Pesos de rutas personalizadas
+	customPathWeights[155][27] = highwayWeight;
+
 	fillGraph(threadville);
 	setNodePaths(threadville);
+
 } // init
 
 
