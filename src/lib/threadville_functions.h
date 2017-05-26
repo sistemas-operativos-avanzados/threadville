@@ -1,8 +1,8 @@
-//TV_ADT: Threadville Abstract Data Types
-
 #ifndef TV_ADT
 
+
 #define TV_ADT
+#define RN 3
 
 //Estructura para color y velocidad de un vehiculo
 typedef struct COLORSPEED{
@@ -40,7 +40,16 @@ typedef struct VEHICULE{
 	struct STOP *stops;
 	struct ROUTE *route;
 	int delay;
-	struct VEHICULE *next;	
+	struct VEHICULE *next;
+
+        bool run;
+        int x, y;
+        int dx, dy;
+        int speed;
+        int width, height;
+        int cantidadParadas;
+        struct NODE **paradas;
+	
 }VEHICULE;
 
 //Estructura que define cada punto en el mapa
@@ -49,11 +58,14 @@ typedef struct NODE {
 	int id;
 	int capability;
 	int allowTravel;//Indica si se puede pasar por el nodo, se utiliza cuando un nodo esta en reparaciones o es parte de un puente
-	//int *reacheabledNodes[3];
+	int reacheabledNodes[RN];
 	struct NODE *next;
 	struct VEHICULE *vehicule_1;
 	struct VEHICULE *vehicule_2;
 	struct VEHICULE *vehicule_3;
+	int node_paths[V];
+        int x, y;
+
 }NODE;
 
 typedef struct THREADVILLE {
@@ -155,7 +167,19 @@ VEHICULE* createCar(char *id){
 	car->colorSpeed = NULL;
 	car->route = NULL;
 	car->stops = NULL;
+        
+        car->x=30; //nodeY1.x;
+        car->y=0; //nodeY1.y;
+        car->dx=1;
+        car->dy=0;
+        car->width=20;
+        car->height=20;    
+        car->run=true;
+        car->speed=3;
 
+       
+//        numero = rand () % (N-M+1) + M;   // Este está entre M y N
+        
 	return car;
 }
 
@@ -201,12 +225,16 @@ void releaseVehicule(VEHICULE *car){
 }
 
 //NODES
-NODE* createNode(int id, char *name, int capability){
+NODE* createNode(int id, char *name, int capability, int reacheabledNodes[]){
 	NODE *node = malloc(sizeof(NODE));
 	node->id = id;
-	//node->reacheabledNodes = reacheabledNodes;
 	node->name = strdup(name);
 	node->capability = capability;
+
+	//Assignar nodo alcanzables
+	for(int i = 0; i < RN; i++){
+		node->reacheabledNodes[i] = reacheabledNodes[i];
+	}
 
 	//Reservar espacio en memoria para los vehiculos que puede albergar el nodo
 	switch(capability){
@@ -252,18 +280,19 @@ void releaseBridge(BRIDGE *bridge){
 
 //Display structs
 void displayDestinations(DESTINY *destinations){
-	DESTINY *i = destinations;
-	for(; i != NULL; i = i->next){
-		printf("DESTINY - NODE NAME:  %s\n", i->node->name);
-	}
+    DESTINY *i = destinations;
+    for(; i != NULL; i = i->next){
+            printf("DESTINY - NODE NAME:  %s\n", i->node->name);
+    }
+
 }
 
 void displayRoutes(ROUTE *routes){
-	ROUTE *i = routes;
-	for(; i != NULL; i = i->next){
-		printf("NUEVA RUTA:\n");
-		displayDestinations(i->destinations);
-	}
+    ROUTE *i = routes;
+    for(; i != NULL; i = i->next){
+            printf("NUEVA RUTA:\n");
+            displayDestinations(i->destinations);
+    }
 }
 
 void displayVehicules(VEHICULE *vehicules){
@@ -295,13 +324,12 @@ NODE* findNode(int index, THREADVILLE *threadville){
 	NODE *i = threadville->nodes;
 	for(; i != NULL; i = i->next){
 		if(i->id == index){
-			printf("NODE NAME:  %s\n", i->name);
 			return i;			
 		}
 		
 	}
+	return NULL;
 }
-
 
 ROUTE* newRoute(STOP *cStop){
 	STOP *currentStop = cStop;
@@ -331,8 +359,6 @@ void addStop(VEHICULE *vehicule, NODE *stop){
 }
 
 
-int someNumber(){
-	return 11;
-}
-
 #endif
+
+

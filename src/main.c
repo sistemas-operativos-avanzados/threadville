@@ -1,783 +1,27 @@
-#include <stdio.h>
-#include <stdlib.h>
+
 #include <string.h>
 #include <limits.h>
-#include <unistd.h>
+#include <cairo.h>
+#include <gtk/gtk.h>
 #include <pthread.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <glib/gmacros.h>
+
+#include "lib/threadville_globals.h"
+
 
 #include "lib/threadville_functions.h"
 #include "lib/threadville_graph.h"
+#include "lib/Node.h"
 
-//THREADVILLE
-THREADVILLE *threadville;
 
-//COLORES
-COLORSPEED *red;
-COLORSPEED *blue;
-COLORSPEED *green;
-COLORSPEED *white;
-COLORSPEED *black;
-COLORSPEED *grey;
-COLORSPEED *pink;
-COLORSPEED *ligthBlue;
-COLORSPEED *orange;
+#include "lib/Vehicule.h"
 
-//Nodos de la Y
-NODE *nodeY1;
-NODE *nodeY2;//Pista
-NODE *nodeY3;//Pista
-NODE *nodeY4;//Pista
-NODE *nodeY5;//Pista
-NODE *nodeY6;
-NODE *nodeY7;
-NODE *nodeY8;
 
-//DEFINICION CALE DE UNA VIA
-NODE *nodeA5G2;//Comparte la capacidad con G2
-NODE *nodeA6G1;//Comparte la capacidad con G1
-NODE *nodeM5S1;//Comparte la capacidad con M5
-NODE *nodeM4S2;//Comparte la capacidad con M4
-NODE *nodeB5H2;//Comparte la capacidad con H2
-NODE *nodeB6H1;//Comparte la capacidad con H1
-NODE *nodeO4U2;//Comparte la capacidad con U2
-NODE *nodeO5U1;//Comparte la capacidad con U1
-NODE *nodeN4T2;//Comparte la capacidad con T2
-NODE *nodeN5T1;//Comparte la capacidad con T1
-NODE *nodeC5I2;//Comparte la capacidad con I2
-NODE *nodeC6I1;//Comparte la capacidad con I1
-NODE *nodeD5J2;//Comparte la capacidad con J2
-NODE *nodeD6J1;//Comparte la capacidad con J1
-NODE *nodeP4V2;//Comparte la capacidad con V2
-NODE *nodeP5V1;//Comparte la capacidad con V1
-NODE *nodeE5K2;//Comparte la capacidad con K2
-NODE *nodeE6K1;//Comparte la capacidad con K1
-NODE *nodeQ4W2;//Comparte la capacidad con W2
-NODE *nodeQ5W1;//Comparte la capacidad con W1
-NODE *nodeF6L1;//Comparte la capacidad con L1
-NODE *nodeF5L2;//Comparte la capacidad con L2
-NODE *nodeR5X1;//Comparte la capacidad con X1
-NODE *nodeR4X2;//Comparte la capacidad con X2
 
-//Nodos de la A
-NODE *nodeA1;
-NODE *nodeA2;
-NODE *nodeA3;
-NODE *nodeA4;
-NODE *nodeA7;
-NODE *nodeA8;
-
-//Nodos de l
-NODE *nodeG3;
-NODE *nodeG4;
-NODE *nodeG5;
-NODE *nodeG6;
-
-//Nodos de l
-NODE *nodeM1;
-NODE *nodeM2;
-NODE *nodeM3;
-NODE *nodeM6;
-
-//Nodos de l
-NODE *nodeS3;
-NODE *nodeS4;
-NODE *nodeS5;
-NODE *nodeS6;
-NODE *nodeS7;
-NODE *nodeS8;
-
-//Nodos de l
-NODE *nodeB1;
-NODE *nodeB2;
-NODE *nodeB3;
-NODE *nodeB4;
-NODE *nodeB7;
-NODE *nodeB8;
-
-//Nodos de l
-NODE *nodeH3;
-NODE *nodeH4;
-NODE *nodeH5;
-NODE *nodeH6;
-
-//Nodos de l
-NODE *nodeN1;
-NODE *nodeN2;
-NODE *nodeN3;
-NODE *nodeN6;
-
-//Nodos de l
-NODE *nodeT3;
-NODE *nodeT4;
-NODE *nodeT5;
-NODE *nodeT6;
-NODE *nodeT7;
-NODE *nodeT8;
-
-//Nodos de C
-NODE *nodeC1;
-NODE *nodeC2;
-NODE *nodeC3;
-NODE *nodeC4;
-NODE *nodeC7;
-NODE *nodeC8;
-
-//Nodos de I
-NODE *nodeI3;
-NODE *nodeI4;
-NODE *nodeI5;
-NODE *nodeI6;
-
-//Nodos de O
-NODE *nodeO1;
-NODE *nodeO2;
-NODE *nodeO3;
-NODE *nodeO6;
-
-//Nodos de U
-NODE *nodeU3;
-NODE *nodeU4;
-NODE *nodeU5;
-NODE *nodeU6;
-NODE *nodeU7;
-NODE *nodeU8;
-
-//Nodos de D
-NODE *nodeD1;
-NODE *nodeD2;
-NODE *nodeD3;
-NODE *nodeD4;
-NODE *nodeD7;
-NODE *nodeD8;
-
-//Nodos de J
-NODE *nodeJ3;
-NODE *nodeJ4;
-NODE *nodeJ5;
-NODE *nodeJ6;
-
-//Nodos de P
-NODE *nodeP1;
-NODE *nodeP2;
-NODE *nodeP3;
-NODE *nodeP6;
-
-//Nodos de V
-NODE *nodeV3;
-NODE *nodeV4;
-NODE *nodeV5;
-NODE *nodeV6;
-NODE *nodeV7;
-NODE *nodeV8;
-
-//Nodos de E
-NODE *nodeE1;
-NODE *nodeE2;
-NODE *nodeE3;
-NODE *nodeE4;
-NODE *nodeE7;
-NODE *nodeE8;
-
-//Nodos de K
-NODE *nodeK3;
-NODE *nodeK4;
-NODE *nodeK5;
-NODE *nodeK6;
-
-//Nodos de Q
-NODE *nodeQ1;
-NODE *nodeQ2;
-NODE *nodeQ3;
-NODE *nodeQ6;
-
-//Nodos de W
-NODE *nodeW3;
-NODE *nodeW4;
-NODE *nodeW5;
-NODE *nodeW6;
-NODE *nodeW7;
-NODE *nodeW8;
-
-//Nodos de F
-NODE *nodeF1;
-NODE *nodeF2;
-NODE *nodeF3;
-NODE *nodeF4;
-NODE *nodeF7;
-NODE *nodeF8;
-
-//Nodos de L
-NODE *nodeL3;
-NODE *nodeL4;
-NODE *nodeL6;
-NODE *nodeL5;
-
-
-//Nodos de R
-NODE *nodeR1;
-NODE *nodeR2;
-NODE *nodeR3;
-NODE *nodeR6;
-
-//Nodos de X
-NODE *nodeX3;
-NODE *nodeX4;
-NODE *nodeX5;
-NODE *nodeX6;
-NODE *nodeX7;
-NODE *nodeX8;
-
-//Nodos de la Z
-NODE *nodeZ1;
-NODE *nodeZ2;//Pista
-NODE *nodeZ3;//Pista
-NODE *nodeZ4;//Pista
-NODE *nodeZ5;//Pista
-NODE *nodeZ6;
-NODE *nodeZ7;
-NODE *nodeZ8;
-
-//Puentes Bailey
-//Larry
-BRIDGE *Larry;
-NODE *bridgeNodeG4;//Left North
-NODE *bridgeNodeH5;//Right North
-NODE *bridgeNodeM2;//Left South
-NODE *bridgeNodeN1;//Right South
-
-//Curly
-BRIDGE *Curly;
-NODE *bridgeNodeH4;//Left North
-NODE *bridgeNodeI5;//Right North
-NODE *bridgeNodeN2;//Left South
-NODE *bridgeNodeO1;//Right South
-
-//Moe
-BRIDGE *Moe;
-NODE *bridgeNodeI4;//Left North
-NODE *bridgeNodeJ5;//Right North
-NODE *bridgeNodeO2;//Left South
-NODE *bridgeNodeP1;//Right South
-
-//Shemp
-BRIDGE *Shemp;
-NODE *bridgeNodeJ4;//Left North
-NODE *bridgeNodeK5;//Right North
-NODE *bridgeNodeP2;//Left South
-NODE *bridgeNodeQ1;//Right South
-
-//Joe
-BRIDGE *Joe;
-NODE *bridgeNodeK4;//Left North
-NODE *bridgeNodeL5;//Right North
-NODE *bridgeNodeQ2;//Left South
-NODE *bridgeNodeR1;//Right South
-
-void init(){
-    puts("Iniciando Threadville");
-	threadville = createThreadville();
-
-//	red = createColor("RED", 1);
-//	blue = createColor("BLUE", 2);
-//	green = createColor("GREEN", 2);
-//	white = createColor("WHITE", 3);
-//	black = createColor("BLACK", 1);
-//	grey = createColor("GREY", 3);
-//	pink = createColor("PINK", 1);
-//	ligthBlue = createColor("LIGTHBLUE", 3);
-//	orange = createColor("ORANGE", 1);
-
-	//DEFINICION CALE DE UNA VIA
-	nodeA5G2 = createNode(0, "A5G2", 3);//Comparte la capacidad con G2
-	nodeA6G1 = createNode(1, "A6G1", 3);//Comparte la capacidad con G1
-	nodeM5S1 = createNode(2, "M5S1", 3);//Comparte la capacidad con M5
-	nodeM4S2 = createNode(3, "M4S2", 3);//Comparte la capacidad con M4
-	nodeB5H2 = createNode(4, "B5H2", 3);//Comparte la capacidad con H2
-	nodeB6H1 = createNode(5, "B6H1", 3);//Comparte la capacidad con H1
-	nodeO4U2 = createNode(6, "O4U2", 3);//Comparte la capacidad con U2
-	nodeO5U1 = createNode(7, "O5U1", 3);//Comparte la capacidad con U1
-	nodeN4T2 = createNode(8, "N4T2", 3);//Comparte la capacidad con T2
-	nodeN5T1 = createNode(9, "N5T1", 3);//Comparte la capacidad con T1
-	nodeC5I2 = createNode(10, "C5I2", 3);//Comparte la capacidad con I2
-	nodeC6I1 = createNode(11, "C6I1", 3);//Comparte la capacidad con I1
-	nodeD5J2 = createNode(12, "D5J2", 3);//Comparte la capacidad con J2
-	nodeD6J1 = createNode(13, "D6J1", 3);//Comparte la capacidad con J1
-	nodeP4V2 = createNode(14, "P4V2", 3);//Comparte la capacidad con V2
-	nodeP5V1 = createNode(15, "P5V1", 3);//Comparte la capacidad con V1
-	nodeE5K2 = createNode(16, "E5K2", 3);//Comparte la capacidad con K2
-	nodeE6K1 = createNode(17, "E6K1", 3);//Comparte la capacidad con K1
-	nodeQ4W2 = createNode(18, "Q4W2", 3);//Comparte la capacidad con W2
-	nodeQ5W1 = createNode(19, "Q5W1", 3);//Comparte la capacidad con W1
-	nodeF6L1 = createNode(20, "F6L1", 3);//Comparte la capacidad con L1
-	nodeF5L2 = createNode(21, "F5L2", 3);//Comparte la capacidad con L2
-	nodeR5X1 = createNode(22, "R5X1", 3);//Comparte la capacidad con X1
-	nodeR4X2 = createNode(23, "R4X2", 3);//Comparte la capacidad con X2
-
-	//Nodos de Y
-	//int *reacheabledNodes[2] = {31, 40};
-	nodeY1 = createNode(24, "Y1", 1);
-	nodeY2 = createNode(25, "Y2", 1);//Pista
-	nodeY3 = createNode(26, "Y3", 1);//Pista
-	nodeY4 = createNode(27, "Y4", 1);//Pista
-	nodeY5 = createNode(28, "Y5", 1);//Pista
-	nodeY6 = createNode(29, "Y6", 1);
-	nodeY7 = createNode(30, "Y7", 1);
-	nodeY8 = createNode(31, "Y8", 1);
-
-
-	//Nodos de la A
-	nodeA1 = createNode(32, "A1", 3);
-	nodeA2 = createNode(33, "A2", 3);
-	nodeA3 = createNode(34, "A3", 3);
-	nodeA4 = createNode(35, "A4", 3);
-	nodeA7 = createNode(36, "A7", 3);
-	nodeA8 = createNode(37, "A8", 3);
-
-	//Nodos de la G
-	nodeG3 = createNode(38, "G3", 3);
-	nodeG4 = createNode(39, "G4", 3);
-	nodeG5 = createNode(40, "G5", 3);
-	nodeG6 = createNode(41, "G6", 3);
-
-	//Nodos de la M
-	nodeM1 = createNode(42, "M1", 3);
-	nodeM2 = createNode(43, "M2", 3);
-	nodeM3 = createNode(44, "M3", 3);
-	nodeM6 = createNode(45, "M6", 3);
-
-	//Nodos de la S
-	nodeS3 = createNode(46, "S3", 3);
-	nodeS4 = createNode(47, "S4", 3);
-	nodeS5 = createNode(48, "S5", 3);
-	nodeS6 = createNode(49, "S6", 3);
-	nodeS7 = createNode(50, "S7", 3);
-	nodeS8 = createNode(51, "S8", 3);
-
-	//Nodos de la B
-	nodeB1 = createNode(52, "B1", 3);
-	nodeB2 = createNode(53, "B2", 3);
-	nodeB3 = createNode(54, "B3", 3);
-	nodeB4 = createNode(55, "B4", 3);
-	nodeB7 = createNode(56, "B7", 3);
-	nodeB8 = createNode(57, "B8", 3);
-
-	//Nodos de la H
-	nodeH3 = createNode(58, "H3", 3);
-	nodeH4 = createNode(59, "H4", 3);
-	nodeH5 = createNode(60, "H5", 3);
-	nodeH6 = createNode(61, "H6", 3);
-
-	//Nodos de la N
-	nodeN1 = createNode(62, "N1", 3);
-	nodeN2 = createNode(63, "N2", 3);
-	nodeN3 = createNode(64, "N3", 3);
-	nodeN6 = createNode(65, "N6", 3);
-
-	//Nodos de la T
-	nodeT3 = createNode(66, "T3", 3);
-	nodeT4 = createNode(67, "T4", 3);
-	nodeT5 = createNode(68, "T5", 3);
-	nodeT6 = createNode(69, "T6", 3);
-	nodeT7 = createNode(70, "T7", 3);
-	nodeT8 = createNode(71, "T8", 3);
-
-	//Nodos de C
-	nodeC1 = createNode(72, "C1", 3);
-	nodeC2 = createNode(73, "C2", 3);
-	nodeC3 = createNode(74, "C3", 3);
-	nodeC4 = createNode(75, "C4", 3);
-	nodeC7 = createNode(76, "C7", 3);
-	nodeC8 = createNode(77, "C8", 3);
-
-	//Nodos de I
-	nodeI3 = createNode(78, "I3", 3);
-	nodeI4 = createNode(79, "I4", 3);
-	nodeI5 = createNode(80, "I5", 3);
-	nodeI6 = createNode(81, "I6", 3);
-
-	//Nodos de O
-	nodeO1 = createNode(82, "O1", 3);
-	nodeO2 = createNode(83, "O2", 3);
-	nodeO3 = createNode(84, "O3", 3);
-	nodeO6 = createNode(85, "O6", 3);
-
-	//Nodos de U
-	nodeU3 = createNode(86, "U3", 3);
-	nodeU4 = createNode(87, "U4", 3);
-	nodeU5 = createNode(88, "U5", 3);
-	nodeU6 = createNode(89, "U6", 3);
-	nodeU7 = createNode(90, "U7", 3);
-	nodeU8 = createNode(91, "U8", 3);
-
-	//Nodos de D
-	nodeD1 = createNode(92, "D1", 3);
-	nodeD2 = createNode(93, "D2", 3);
-	nodeD3 = createNode(94, "D3", 3);
-	nodeD4 = createNode(95, "D4", 3);
-	nodeD7 = createNode(96, "D7", 3);
-	nodeD8 = createNode(97, "D8", 3);
-
-	//Nodos de J
-	nodeJ3 = createNode(98, "J3", 3);
-	nodeJ4 = createNode(99, "J4", 3);
-	nodeJ5 = createNode(100, "J5", 3);
-	nodeJ6 = createNode(101, "J6", 3);
-
-	//Nodos de P
-	nodeP1 = createNode(102, "P1", 3);
-	nodeP2 = createNode(103, "P2", 3);
-	nodeP3 = createNode(104, "P3", 3);
-	nodeP6 = createNode(105, "P6", 3);
-
-	//Nodos de V
-	nodeV3 = createNode(106, "V3", 3);
-	nodeV4 = createNode(107, "V4", 3);
-	nodeV5 = createNode(108, "V5", 3);
-	nodeV6 = createNode(109, "V6", 3);
-	nodeV7 = createNode(110, "V7", 3);
-	nodeV8 = createNode(111, "V8", 3);
-
-	//Nodos de E
-	nodeE1 = createNode(112, "E1", 3);
-	nodeE2 = createNode(113, "E2", 3);
-	nodeE3 = createNode(114, "E3", 3);
-	nodeE4 = createNode(115, "E4", 3);
-	nodeE7 = createNode(116, "E7", 3);
-	nodeE8 = createNode(117, "E8", 3);
-
-	//Nodos de K
-	nodeK3 = createNode(118, "K3", 3);
-	nodeK4 = createNode(119, "K4", 3);
-	nodeK5 = createNode(120, "K5", 3);
-	nodeK6 = createNode(121, "K6", 3);
-
-	//Nodos de Q
-	nodeQ1 = createNode(122, "Q1", 3);
-	nodeQ2 = createNode(123, "Q2", 3);
-	nodeQ3 = createNode(124, "Q3", 3);
-	nodeQ6 = createNode(125, "Q6", 3);
-
-	//Nodos de W
-	nodeW3 = createNode(126, "W3", 3);
-	nodeW4 = createNode(127, "W4", 3);
-	nodeW5 = createNode(128, "W5", 3);
-	nodeW6 = createNode(129, "W6", 3);
-	nodeW7 = createNode(130, "W7", 3);
-	nodeW8 = createNode(131, "W8", 3);
-
-	//Nodos de F
-	nodeF1 = createNode(132, "F1", 3);
-	nodeF2 = createNode(133, "F2", 3);
-	nodeF3 = createNode(134, "F3", 3);
-	nodeF4 = createNode(135, "F4", 3);
-	nodeF7 = createNode(136, "F7", 3);
-	nodeF8 = createNode(137, "F8", 3);
-
-	//Nodos de L
-	nodeL3 = createNode(138, "L3", 3);
-	nodeL4 = createNode(139, "L4", 3);
-	nodeL6 = createNode(140, "L6", 3);
-	nodeL5 = createNode(141, "L5", 3);
-
-
-	//Nodos de R
-	nodeR1 = createNode(142, "R1", 3);
-	nodeR2 = createNode(143, "R2", 3);
-	nodeR3 = createNode(144, "R3", 3);
-	nodeR6 = createNode(145, "R6", 3);
-
-	//Nodos de X
-	nodeX3 = createNode(146, "X3", 3);
-	nodeX4 = createNode(147, "X4", 3);
-	nodeX5 = createNode(148, "X5", 3);
-	nodeX6 = createNode(149, "X6", 3);
-	nodeX7 = createNode(150, "X7", 3);
-	nodeX8 = createNode(151, "X8", 3);
-
-	//Nodos de la Z
-	nodeZ1 = createNode(152, "Z1", 1);
-	nodeZ2 = createNode(153, "Z2", 1);//Pista
-	nodeZ3 = createNode(154, "Z3", 1);//Pista
-	nodeZ4 = createNode(155, "Z4", 1);//Pista
-	nodeZ5 = createNode(156, "Z5", 1);//Pista
-	nodeZ6 = createNode(157, "Z6", 1);
-	nodeZ7 = createNode(158, "Z7", 1);
-	nodeZ8 = createNode(159, "Z8", 1);
-
-	//Puente Bailey
-	//Larry
-	bridgeNodeG4 = createNode(160, "bridgeNodeG4", 3);
-	bridgeNodeH5 = createNode(161, "bridgeNodeH5", 3);
-	bridgeNodeM2 = createNode(162, "bridgeNodeM2", 3);
-	bridgeNodeN1 = createNode(163, "bridgeNodeN1", 3);
-	Larry = createBridge("Larry", bridgeNodeM2, bridgeNodeG4, bridgeNodeN1, bridgeNodeH5);
-
-	//Curly
-	bridgeNodeH4 = createNode(164, "bridgeNodeH4", 3);
-	bridgeNodeI5 = createNode(165, "bridgeNodeI5", 3);
-	bridgeNodeN2 = createNode(166, "bridgeNodeN2", 3);
-	bridgeNodeO1 = createNode(167, "bridgeNodeO1", 3);
-	Curly = createBridge("Curly", bridgeNodeN2, bridgeNodeH4, bridgeNodeO1, bridgeNodeI5);
-
-	//Moe
-	bridgeNodeI4 = createNode(168, "bridgeNodeI4", 3);
-	bridgeNodeJ5 = createNode(169, "bridgeNodeJ5", 3);
-	bridgeNodeO2 = createNode(170, "bridgeNodeO2", 3);
-	bridgeNodeP1 = createNode(171, "bridgeNodeP1", 3);
-	Moe = createBridge("Moe", bridgeNodeO2, bridgeNodeI4, bridgeNodeP1, bridgeNodeJ5);
-
-	//Shemp
-	bridgeNodeJ4 = createNode(172, "bridgeNodeJ4", 3);
-	bridgeNodeK5 = createNode(173, "bridgeNodeK5", 3);
-	bridgeNodeP2 = createNode(174, "bridgeNodeP2", 3);
-	bridgeNodeQ1 = createNode(175, "bridgeNodeQ1", 3);
-	Shemp = createBridge("Shemp", bridgeNodeP2, bridgeNodeJ4, bridgeNodeQ1, bridgeNodeK5);
-
-	//Joe
-	bridgeNodeK4 = createNode(176, "bridgeNodeK4", 3);
-	bridgeNodeL5 = createNode(177, "bridgeNodeL5", 3);
-	bridgeNodeQ2 = createNode(178, "bridgeNodeQ2", 3);
-	bridgeNodeR1 = createNode(179, "bridgeNodeR1", 3);
-	Joe = createBridge("Joe", bridgeNodeQ2, bridgeNodeK4, bridgeNodeR1, bridgeNodeL5);
-	
-	//DEFINICION DE RELACIONES
-	threadville->nodes = nodeY1;
-
-	//Nodos de Y
-	nodeY1->next = nodeY2;
-	//fillGraph(nodeY1, 2);
-
-	nodeY2->next = nodeY3;
-	nodeY3->next = nodeY4;
-	nodeY4->next = nodeY5;
-	nodeY5->next = nodeY6;
-	nodeY6->next = nodeY7;
-	nodeY7->next = nodeY8;
-	nodeY8->next = nodeA1;
-
-
-	//Nodos de A
-	nodeA1->next = nodeA2;
-	nodeA2->next = nodeA3;
-	nodeA3->next = nodeA4;
-	nodeA4->next = nodeA5G2;
-	nodeA5G2->next = nodeA6G1;
-	nodeA6G1->next = nodeA7;
-	nodeA7->next = nodeA8;
-	nodeA8->next = nodeG3;
-
-	//Nodos de G
-	nodeG3->next = nodeG4;
-	nodeG4->next = nodeG5;
-	nodeG5->next = nodeG6;
-	nodeG6->next = nodeM1;
-
-	//Nodos de M
-	nodeM1->next = nodeM2;
-	nodeM2->next = nodeM3;
-	nodeM3->next = nodeM4S2;
-	nodeM4S2->next = nodeM5S1;
-	nodeM5S1->next = nodeM6;
-	nodeM6->next = nodeS3;
-
-	//Nodos de S
-	nodeS3->next = nodeS4;
-	nodeS4->next = nodeS5;
-	nodeS5->next = nodeS6;
-	nodeS6->next = nodeS7;
-	nodeS7->next = nodeS8;
-	nodeS8->next = nodeB1;
-
-	//Nodos de B
-	nodeB1->next = nodeB2;
-	nodeB2->next = nodeB3;
-	nodeB3->next = nodeB4;
-	nodeB4->next = nodeB5H2;
-	nodeB5H2->next = nodeB6H1;
-	nodeB6H1->next = nodeB7;
-	nodeB7->next = nodeB8;
-	nodeB8->next = nodeH3;
-
-	//Nodos de H
-	nodeH3->next = nodeH4;
-	nodeH4->next = nodeH5;
-	nodeH5->next = nodeH6;
-	nodeH6->next = nodeN1;
-
-	//Nodos de N
-	nodeN1->next = nodeN2;
-	nodeN2->next = nodeN3;
-	nodeN3->next = nodeN4T2;
-	nodeN4T2->next = nodeN5T1;
-	nodeN5T1->next = nodeN6;
-	nodeN6->next = nodeT3;
-
-	//Nodos de T
-	nodeT3->next = nodeT4;
-	nodeT4->next = nodeT5;
-	nodeT5->next = nodeT6;
-	nodeT6->next = nodeT7;
-	nodeT7->next = nodeT8;
-	nodeT8->next = nodeC1;
-
-	//Nodos de C
-	nodeC1->next = nodeC2;
-	nodeC2->next = nodeC3;
-	nodeC3->next = nodeC4;
-	nodeC4->next = nodeC5I2;
-	nodeC5I2->next = nodeC6I1;
-	nodeC6I1->next = nodeC7;
-	nodeC7->next = nodeC8;
-	nodeC8->next = nodeI3;
-
-	//Nodos de I
-	nodeI3->next = nodeI4;
-	nodeI4->next = nodeI5;
-	nodeI5->next = nodeI6;
-	nodeI6->next = nodeO1;
-
-	//Nodos de O
-	nodeO1->next = nodeO2;
-	nodeO2->next = nodeO3;
-	nodeO3->next = nodeO4U2;
-	nodeO4U2->next = nodeO5U1;
-	nodeO5U1->next = nodeO6;
-	nodeO6->next = nodeU3;
-
-	//Nodos de U
-	nodeU3->next = nodeU4;
-	nodeU4->next = nodeU5;
-	nodeU5->next = nodeU6;
-	nodeU6->next = nodeU7;
-	nodeU7->next = nodeU8;
-	nodeU8->next = nodeD1;
-
-	//Nodos de D
-	nodeD1->next = nodeD2;
-	nodeD2->next = nodeD3;
-	nodeD3->next = nodeD4;
-	nodeD4->next = nodeD5J2;
-	nodeD5J2->next = nodeD6J1;
-	nodeD6J1->next = nodeD7;
-	nodeD7->next = nodeD8;
-	nodeD8->next = nodeJ3;
-
-	//Nodos de J
-	nodeJ3->next = nodeJ4;
-	nodeJ4->next = nodeJ5;
-	nodeJ5->next = nodeJ6;
-	nodeJ6->next = nodeP1;
-
-	//Nodos de P
-	nodeP1->next = nodeP2; 
-	nodeP2->next = nodeP3;
-	nodeP3->next = nodeP4V2;
-	nodeP4V2->next = nodeP5V1;
-	nodeP5V1->next = nodeP6;
-	nodeP6->next = nodeV3;
-
-	//Nodos de V
-	nodeV3->next = nodeV4;
-	nodeV4->next = nodeV5;
-	nodeV5->next = nodeV6;
-	nodeV6->next = nodeV7;
-	nodeV7->next = nodeV8;
-	nodeV8->next = nodeE1;
-	
-	//Nodos de E
-	nodeE1->next = nodeE2;
-	nodeE2->next = nodeE3;
-	nodeE3->next = nodeE4;
-	nodeE4->next = nodeE5K2;
-	nodeE5K2->next = nodeE6K1;
-	nodeE6K1->next = nodeE7;
-	nodeE7->next = nodeE8;
-	nodeE8->next = nodeK3;
-
-	//Nodos de K
-	nodeK3->next = nodeK4;
-	nodeK4->next = nodeK5;
-	nodeK5->next = nodeK6;
-	nodeK6->next = nodeQ1;
-
-	//Nodos de Q
-	nodeQ1->next = nodeQ2; 
-	nodeQ2->next = nodeQ3;
-	nodeQ3->next = nodeQ4W2;
-	nodeQ4W2->next = nodeQ5W1;
-	nodeQ5W1->next = nodeQ6;
-	nodeQ6->next = nodeW3;
-
-	//Nodos de W
-	nodeW3->next= nodeW4;
-	nodeW4->next = nodeW5;
-	nodeW5->next = nodeW6;
-	nodeW6->next = nodeW7;
-	nodeW7->next = nodeW8;
-	nodeW8->next = nodeF1;
-
-	//Nodos de F
-	nodeF1->next = nodeF2;
-	nodeF2->next = nodeF3;
-	nodeF3->next = nodeF4;
-	nodeF4->next = nodeF5L2;
-	nodeF5L2->next = nodeF6L1;
-	nodeF6L1->next = nodeF7;
-	nodeF7->next = nodeF8;
-	nodeF8->next = nodeL3;
-
-	//Nodos de L
-	nodeL3->next = nodeL4;
-	nodeL4->next = nodeL5;
-	nodeL5->next = nodeL6;
-	nodeL6->next = nodeR1;
-
-	//Nodos de R
-	nodeR1->next = nodeR2; 
-	nodeR2->next = nodeR3;
-	nodeR3->next = nodeR4X2;
-	nodeR4X2->next = nodeR5X1;
-	nodeR5X1->next = nodeR6;
-	nodeR6->next = nodeX3;
-
-	//Nodos de X
-	nodeX3->next = nodeX4;
-	nodeX4->next = nodeX5;
-	nodeX5->next = nodeX6;
-	nodeX6->next = nodeX7;
-	nodeX7->next = nodeX8;
-	nodeX8->next = nodeZ1;
-
-	//Nodos de Z
-	nodeZ1->next = nodeZ2;
-	nodeZ2->next = nodeZ3;
-	nodeZ3->next = nodeZ4;
-	nodeZ4->next = nodeZ5;
-	nodeZ5->next = nodeZ6;
-	nodeZ6->next = nodeZ7;
-	nodeZ7->next = nodeZ8;
-	nodeZ8->next = bridgeNodeG4;
-
-	//Puente Bailey
-	//Larry
-	bridgeNodeG4->next = bridgeNodeN1;
-	bridgeNodeN1->next = bridgeNodeH4;
-
-	//Curly
-	bridgeNodeH4->next = bridgeNodeO1;
-	bridgeNodeO1->next = bridgeNodeI4;
-
-	//Moe
-	bridgeNodeI4->next = bridgeNodeP1;
-	bridgeNodeP1->next = bridgeNodeJ4;
-
-	//Shemp
-	bridgeNodeJ4->next = bridgeNodeQ1;
-	bridgeNodeQ1->next = bridgeNodeK4;
-
-	//Joe
-	bridgeNodeK4->next = bridgeNodeR1;
-}
 
 void teardDown(){
 
@@ -1108,7 +352,7 @@ void singleRun(){
 //	orangeBus->stops->next->next = stopC8;
 //    	displayStops(orangeBus->stops);
 
- 
+
     //Bus
 //    releaseVehicule(redBus);
 //    releaseVehicule(blueBus);
@@ -1142,7 +386,6 @@ void makeBus(){
     void *result;
     int s;
     /*pthread_t aThread;
-
     s = pthread_create(&aThread, NULL, move, redBus);
     if(s != 0){
         printf("fallo en crear thread %d", s);
@@ -1217,111 +460,331 @@ void headless(){
     exit(0);
 }
 
+//******************************************************************************
 
-// Esta funcion es para mostrar como funciona las funciones de rutas. Se puede borrar luego
-void dijkstra_test(){
+#define FPS 60
 
-    int paths[V];
+static gint64 last_tick = 0;
+static guint tick_cb = 0;
+static guint size =32;
 
-    dijkstra(graph, 1, paths);
+// Area de bubujado
+static GtkWidget *drawing;
 
-    printf("\n\n-- \n");
-    int p1[V];
-    initResultArray(p1);
-    thePath(1, 0, paths, p1);
 
-    printf("\n");
-    int p2[V];
-    initResultArray(p2);
-    thePath(1, 4, paths, p2);
+static void on_draw (GtkWidget *widget, cairo_t *cr, gpointer user_data) {
+    
+    draw_background(cr);
+   
+    int i;
+    for(i=0; i<contadorHilos; i++){
+        draw_car(cr, vehicules[i]);
+    } // for
 
-    printf("\n");
-    int p3[V];
-    initResultArray(p3);
-    thePath(1, 5, paths, p3);
+    
+} // on_draw
 
-    printf("\n");
-    int p4[V];
-    initResultArray(p4);
-    thePath(1, 6, paths, p4);
+
+static gboolean on_tick (gpointer user_data) {
+    gint64 current = g_get_real_time ();
+    gboolean changed = FALSE;
+    if ((current - last_tick) < (1000/ FPS)) {
+        last_tick = current;
+        return G_SOURCE_CONTINUE;
+    }
+
+    //update_car_position(&carro2);
+
+    gtk_widget_queue_draw_area(drawing, 0, 0, WIDTH, HEIGTH);
+
+    last_tick = current;
+    return G_SOURCE_CONTINUE;
 }
+
+
+
+static void add_vehicule(GtkWidget *widget, gpointer data) {
+    
+    g_print("Vehicule\n");
+    
+    int rc;
+    vehicules[contadorHilos]= createCar("v");
+    
+    srand(time(NULL));
+    vehicules[contadorHilos]->cantidadParadas=rand()%4+2;
+    vehicules[contadorHilos]->paradas=(NODE*) calloc(vehicules[contadorHilos]->cantidadParadas, sizeof(NODE));
+    int i;
+    for(i=0; i<vehicules[contadorHilos]->cantidadParadas; i++){
+        int valor= rand()%9+2;
+        vehicules[contadorHilos]->paradas[i]=listaParadas[valor];                       
+        printf("valor %d\n", valor);
+    } // for     
+    
+    printf("creating thread %d\n", contadorHilos);
+    rc = pthread_create(&threads[contadorHilos], NULL, update_car_position, (void *)vehicules[contadorHilos]);
+    if (rc)
+    {
+            printf("error, return frim pthread creation\n");
+            exit(4);
+    }
+    contadorHilos++;
+  
+    
+} // print_hello
+
+static void add_Ambulance(GtkWidget *widget, gpointer data) {
+    
+    g_print("Ambulance\n");
+    
+} // print_hello
+
+//******************************************************************************
+// ******************* MAIN ****************************************************
+//*****************************************************************************
+
 
 
 int main(int argc, char *argv[]) {
-	init();
-	//dijkstra_test();
+    
+    init();
+    asignarNodosALista();
+    cargarCordenadasNodos();
 
-	VEHICULE *orangeBus = createBus("BUS-NARANJA");
-	orangeBus->colorSpeed = orange;
-	orangeBus->route = createRoute();
-	puts("RUTA DE M2 a M1 = [M2, M3, S3, S4, S5, S6, S7, S8, M6, M1]");
-		
-	DESTINY *destinyM2 = createDestiny();
-	destinyM2->node = nodeM2;
 
-	DESTINY *destinyM3 = createDestiny();
-	destinyM3->node = nodeM3;
 
-	DESTINY *destinyS3 = createDestiny();
-	destinyS3->node = nodeS3;
+/*
+    VEHICULE *orangeBus = createBus("BUS-NARANJA");
+    orangeBus->colorSpeed = orange;
 
-	DESTINY *destinyS4 = createDestiny();
-	destinyS4->node = nodeS4;
+    ////GENARAR RUTA
+    //generateRoute(orangeBus, nodeB4, nodeI3);
+    
+    generateRoute(orangeBus, listaParadas[27], nodeI3);
+    
+    displayDestinations(orangeBus->route->destinations);
+*/
 
-	DESTINY *destinyS5 = createDestiny();
-	destinyS5->node = nodeS5;
 
-	DESTINY *destinyS6 = createDestiny();
-	destinyS6->node = nodeS6;
+
 	
-	DESTINY *destinyS7 = createDestiny();
-	destinyS7->node = nodeS7;
+    GtkWidget *window;
+    GtkWidget *button;
+    GtkWidget *button2;
+    GtkWidget *button_box;
+    GtkWidget *fixed;    
+    
+    
+    gtk_init(&argc, &argv);
+    GError * error = NULL;
 
-	DESTINY *destinyS8 = createDestiny();
-	destinyS8->node = nodeS8;
-	
-	DESTINY *destinyM6 = createDestiny();
-	destinyM6->node = nodeM6;
+    if (error) {
+        printf("%s\n", error->message);
+    }
 
-	DESTINY *destinyM1 = createDestiny();
-	destinyM1->node = nodeM1;
+    window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+    gtk_window_set_default_size(GTK_WINDOW(window), WIDTH, HEIGTH);
+    gtk_window_set_title(GTK_WINDOW(window), "SOA");
+    g_signal_connect(window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
 
-	orangeBus->route->destinations = destinyM2;
-	orangeBus->route->destinations->next = destinyM3;
-	orangeBus->route->destinations->next->next = destinyS3;
-	orangeBus->route->destinations->next->next->next = destinyS4;
-	orangeBus->route->destinations->next->next->next->next = destinyS5;
-	orangeBus->route->destinations->next->next->next->next->next = destinyS6;
-	orangeBus->route->destinations->next->next->next->next->next->next = destinyS7;
-	orangeBus->route->destinations->next->next->next->next->next->next->next = destinyS8;
-	orangeBus->route->destinations->next->next->next->next->next->next->next->next = destinyM6;
-	orangeBus->route->destinations->next->next->next->next->next->next->next->next->next = destinyM1;
 
-	displayDestinations(orangeBus->route->destinations);
-	
+    fixed = gtk_fixed_new();
+    gtk_container_add(GTK_CONTAINER(window), fixed);
+    
+    drawing = gtk_drawing_area_new();
+    gtk_fixed_put(GTK_FIXED(fixed), drawing, 0, 0);
+    gtk_widget_set_size_request(drawing, WIDTH_DA, HEIGTH_DA); 
+    g_signal_connect(drawing, "draw", G_CALLBACK(on_draw), NULL);
+    
+    button = gtk_button_new_with_label("Vehicule");
+    gtk_fixed_put(GTK_FIXED(fixed), button, 1000, 50);
+    gtk_widget_set_size_request(button, 80, 30); 
+    g_signal_connect(button, "clicked", G_CALLBACK(add_vehicule), NULL);
+    
+    button2 = gtk_button_new_with_label("Ambulance");
+    gtk_fixed_put(GTK_FIXED(fixed), button2, 1000, 100);
+    gtk_widget_set_size_request(button2, 80, 30); 
+    g_signal_connect(button2, "clicked", G_CALLBACK(add_Ambulance), NULL);    
+    
+    
+    gtk_widget_show_all(window);
+    
+    tick_cb = g_timeout_add(1000 / FPS / 2, (GSourceFunc) on_tick, GINT_TO_POINTER(size)); 
+    
+
+    
+    gtk_main();
+    
     return 0;
-//
-//	init();
-//	singleRun();
-//	teardDown();
 
-    // int opt;
+} // main
 
-    // while ((opt = getopt(argc, argv, ":x")) != -1) {
+/*
+    int rc;
+    vehicules[contadorHilos]= createCar("v");
+    printf("creating thread %ld\n", contadorHilos);
+    rc = pthread_create(&threads[contadorHilos], NULL, update_car_position, (void *)vehicules[contadorHilos]);
+    if (rc)
+    {
+            printf("error, return frim pthread creation\n");
+            exit(4);
+    }
+    contadorHilos++;    
+*/
 
-    //     printf("opt = %d \n", opt);
 
-    //     switch (opt) {
-    //         case 'x':
-    //             puts("levantar UI");
-    //             break;
-    //         default:
-    //             puts("Mensaje de ayuda");
-    //             break;
-    //     }
-    //     return 0;
-    // }
 
-    // headless();
-//    return 0;
+/*
+
+#include <gtk/gtk.h>
+
+int main(int argc, char *argv[]) {
+
+  GtkWidget *window;
+  GtkWidget *vbox;
+
+  GtkWidget *menubar;
+  GtkWidget *fileMenu;
+  GtkWidget *fileMi;
+  GtkWidget *quitMi;
+
+  gtk_init(&argc, &argv);
+
+  window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+  gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER);
+  gtk_window_set_default_size(GTK_WINDOW(window), 300, 200);
+  gtk_window_set_title(GTK_WINDOW(window), "Simple menu");
+
+  vbox = gtk_vbox_new(FALSE, 0);
+  gtk_container_add(GTK_CONTAINER(window), vbox);
+
+  menubar = gtk_menu_bar_new();
+  fileMenu = gtk_menu_new();
+
+  fileMi = gtk_menu_item_new_with_label("File");
+  quitMi = gtk_menu_item_new_with_label("Quit");
+
+  gtk_menu_item_set_submenu(GTK_MENU_ITEM(fileMi), fileMenu);
+  gtk_menu_shell_append(GTK_MENU_SHELL(fileMenu), quitMi);
+  gtk_menu_shell_append(GTK_MENU_SHELL(menubar), fileMi);
+  gtk_box_pack_start(GTK_BOX(vbox), menubar, FALSE, FALSE, 0);
+
+  g_signal_connect(G_OBJECT(window), "destroy",
+        G_CALLBACK(gtk_main_quit), NULL);
+
+  g_signal_connect(G_OBJECT(quitMi), "activate",
+        G_CALLBACK(gtk_main_quit), NULL);
+
+  gtk_widget_show_all(window);
+
+  gtk_main();
+
+  return 0;
 }
+*/
+
+/*
+#include <gtk/gtk.h>
+
+int main(int argc, char *argv[]) {
+
+  GtkWidget *window;
+  GtkWidget *vbox;
+  
+  GtkWidget *toolbar;
+  GtkToolItem *newTb;
+  GtkToolItem *openTb;
+  GtkToolItem *saveTb;
+  GtkToolItem *sep;
+  GtkToolItem *exitTb;
+
+  gtk_init(&argc, &argv);
+
+  window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+  gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER);
+  gtk_window_set_default_size(GTK_WINDOW(window), 300, 200);
+  gtk_window_set_title(GTK_WINDOW(window), "toolbar");
+
+  vbox = gtk_vbox_new(FALSE, 0);
+  gtk_container_add(GTK_CONTAINER(window), vbox);
+
+  toolbar = gtk_toolbar_new();
+  gtk_toolbar_set_style(GTK_TOOLBAR(toolbar), GTK_TOOLBAR_ICONS);
+
+  newTb = gtk_tool_button_new_from_stock(GTK_STOCK_NEW);
+  gtk_toolbar_insert(GTK_TOOLBAR(toolbar), newTb, -1);
+
+  openTb = gtk_tool_button_new_from_stock(GTK_STOCK_OPEN);
+  gtk_toolbar_insert(GTK_TOOLBAR(toolbar), openTb, -1);
+
+  saveTb = gtk_tool_button_new_from_stock(GTK_STOCK_SAVE);
+  gtk_toolbar_insert(GTK_TOOLBAR(toolbar), saveTb, -1);
+
+  sep = gtk_separator_tool_item_new();
+  gtk_toolbar_insert(GTK_TOOLBAR(toolbar), sep, -1); 
+
+  exitTb = gtk_tool_button_new_from_stock(GTK_STOCK_QUIT);
+  gtk_toolbar_insert(GTK_TOOLBAR(toolbar), exitTb, -1);
+
+  gtk_box_pack_start(GTK_BOX(vbox), toolbar, FALSE, FALSE, 5);
+
+  g_signal_connect(G_OBJECT(exitTb), "clicked", 
+        G_CALLBACK(gtk_main_quit), NULL);
+
+  g_signal_connect(G_OBJECT(window), "destroy",
+        G_CALLBACK(gtk_main_quit), NULL);
+
+  gtk_widget_show_all(window);
+
+  gtk_main();
+
+  return 0;
+}
+ * 
+ * */
+
+/*
+
+#include <gtk/gtk.h>
+
+int main(int argc, char *argv[]) {
+    
+  GtkWidget *window;
+  GtkWidget *fixed;
+
+  GtkWidget *btn1;
+  GtkWidget *btn2;
+  GtkWidget *btn3;
+
+  gtk_init(&argc, &argv);
+
+  window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+  gtk_window_set_title(GTK_WINDOW(window), "GtkFixed");
+  gtk_window_set_default_size(GTK_WINDOW(window), 300, 200);
+  gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER);
+
+  fixed = gtk_fixed_new();
+  gtk_container_add(GTK_CONTAINER(window), fixed);
+
+  btn1 = gtk_button_new_with_label("Button");
+  gtk_fixed_put(GTK_FIXED(fixed), btn1, 150, 50);
+  gtk_widget_set_size_request(btn1, 80, 30);
+
+  btn2 = gtk_button_new_with_label("Button");
+  gtk_fixed_put(GTK_FIXED(fixed), btn2, 15, 15);
+  gtk_widget_set_size_request(btn2, 80, 30);
+
+  btn3 = gtk_button_new_with_label("Button");
+  gtk_fixed_put(GTK_FIXED(fixed), btn3, 100, 100);
+  gtk_widget_set_size_request(btn3, 80, 30);
+
+  g_signal_connect(G_OBJECT(window), "destroy", 
+      G_CALLBACK(gtk_main_quit), NULL);
+
+  gtk_widget_show_all(window);
+
+  gtk_main();
+
+  return 0;
+}
+ * 
+ * */

@@ -42,3 +42,10 @@
 CMakeLists.txt
 cmake-build-debug/
 c-samples/
+
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/

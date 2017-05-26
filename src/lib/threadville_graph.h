@@ -2,25 +2,7 @@
 
 #define TV_GRAPH
 
-
-//#define V 180
-#define V 10
-
-// Otro grafo de ejemplo
-
-//int graph[V][V] = {{0, 4, 0, 0, 0, 0, 0, 8, 0},
-//					{4, 0, 8, 0, 0, 0, 0, 11, 0},
-//					{0, 8, 0, 7, 0, 4, 0, 0, 2},
-//					{0, 0, 7, 0, 9, 14, 0, 0, 0},
-//					{0, 0, 0, 9, 0, 10, 0, 0, 0},
-//					{0, 0, 4, 14, 10, 0, 2, 0, 0},
-//					{0, 0, 0, 0, 0, 2, 0, 1, 6},
-//					{8, 11, 0, 0, 0, 0, 1, 0, 7},
-//					{0, 0, 2, 0, 0, 0, 6, 7, 0}
-//					};
-
-
-int graph[V][V] = {
+/*int graph[V][V] = {
 //                   M1 M3 S1 S2 S3 S4 S5 S6 S7 S8
                     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, //M1
                     {0, 0, 0, 0, 1, 0, 0, 0, 0, 0}, //M3
@@ -33,26 +15,8 @@ int graph[V][V] = {
                     {0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, //S7
                     {1, 0, 1, 0, 0, 0, 0, 0, 0, 0}, //S8
                   };
-
-//int graph[V][V];
-
-//Llenar la matriz con segun las relaciones de Threadville
-/*void fillGraph(int nodeID, int relations[], int size){
-	for(int i = 0; i < size; i++){		
-		graph[nodeID][relations[i]] = 1;
-		printf("GRAPH POSITION %i\n", graph[nodeID][relations[i]]);
-	}
-};*/
-
-/*void fillGraph(NODE *node, int size){
-	int nodeID = node->id;
-	int reachabledNodes[size] = node->reachabledNodes;
-	
-	for(int i = 0; i < size; i++){		
-		graph[nodeID][reachabledNodes[i]] = 1;
-		printf("GRAPH POSITION %i\n", graph[nodeID][reachabledNodes[i]]);
-	}
-};*/
+*/
+int graph[V][V];
 
 //Funcion para encontrar el vertice con la distancia minima de un conjunto de vertices un no incluidos en el
 //shortest path tree
@@ -74,31 +38,31 @@ int minDistance(int dist[], int sptSet[]){
 Se genera la ruta desde el nodo "from" al nodo "to". El array de "paths" contiene los nodos por donde se pasa a
 partir del nodo from. paths[i] contiene el numero de nodo que precede a j dentro del camino mas corto Para hallar
 el camino mas corto, se siguen los punteros de paths hacia atras, desde el destino hacia el origen.
-
 Ejemplo:
 thePath(1, 0, {9, 0, 9, 2, 1, 4, 5, 6, 7, 8}, {MAX_INT, MAX_INT, MAX_INT, MAX_INT, MAX_INT, MAX_INT, MAX_INT, MAX_INT, MAX_INT, MAX_INT});
-
 Para ir del nodo 1 al 0, utilizando los punteros {9, 0, 9, 2, 1, 4, 5, 6, 7, 8}, primero se va a posicion paths[0] = 9.
 Como el valor de paths[0] es diferente de "to", entonces se asignas paths[0] en result. Luego se va a posicion paths[9] = 8,
 se repite la misma verificacion y se itera hasta que el valor de paths[i] = "to". Al final se le hace un "reverse" a
 result.
-
 */
 void thePath(int from, int to, int paths[], int result[]){
 
-    int i = 0;
+    //Incluir el ultimo nodo
+    result[0] = to;
+    int i = 1;
+
+    //Crear path
     while(paths[to] != from){
-//        printf("from %d - to %d - paths[to] %d \n", from, to, paths[to]);
-        result[i] = paths[to];
+	result[i] = paths[to];
         to = paths[to];
         i++;
     }
 
     //Reversa
     result[i] = from;
-    for(; i > 0; i--){
-        printf("%d -> ",  result[i]);
-    }
+//    for(; i > 0; i--){
+//        printf("%d -> ",  result[i]);
+//    }
 
 }
 
@@ -120,13 +84,13 @@ void initResultArray(int result[]){
 
 
 void printSolution(int dist[], int paths[], int n){
-    printf("Distancia desde el nodo origen\n");
-    int i;
-    for (i = 0; i < V; i++){
-        printf("%d \t\t %d\n", i, dist[i]);
-    }
-
-    printPath(paths);
+//    printf("Distancia desde el nodo origen\n");
+//    int i;
+//    for (i = 0; i < V; i++){
+//        printf("%d \t\t %d\n", i, dist[i]);
+//    }
+//
+//    printPath(paths);
 }
 
 
@@ -183,4 +147,6 @@ void dijkstra(int graph[V][V], int src, int paths[]){
 }
 
 
+
 #endif
+
