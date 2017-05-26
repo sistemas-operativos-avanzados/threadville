@@ -501,9 +501,36 @@ static gboolean on_tick (gpointer user_data) {
     return G_SOURCE_CONTINUE;
 }
 
-
-
 static void add_vehicule(GtkWidget *widget, gpointer data) {
+    
+    g_print("Vehicule\n");
+    
+    int rc;
+    vehicules[contadorHilos]= createCar("v");
+    
+    srand(time(NULL));
+    vehicules[contadorHilos]->cantidadParadas=rand()%4+2;
+    vehicules[contadorHilos]->paradas=(NODE*) calloc(vehicules[contadorHilos]->cantidadParadas, sizeof(NODE));
+    int i;
+    for(i=0; i<vehicules[contadorHilos]->cantidadParadas; i++){
+        int valor= rand()%9+2;
+        vehicules[contadorHilos]->paradas[i]=listaParadas[valor];                       
+        printf("valor %d\n", valor);
+    } // for     
+    
+    printf("creating thread %d\n", contadorHilos);
+    rc = pthread_create(&threads[contadorHilos], NULL, update_car_position, (void *)vehicules[contadorHilos]);
+    if (rc)
+    {
+            printf("error, return frim pthread creation\n");
+            exit(4);
+    }
+    contadorHilos++;
+  
+    
+} // print_hello
+
+static void add_bus(GtkWidget *widget, gpointer data) {
     /*int paradas[21] = {101, 104, 108, 103, 104, 108, 20, 21, 109, 147, 146, 58, 55, 143, 54, 51, 139, 138, 12, 13, 101};
     int cantidadParadas = 21;
     //Bus Lombriz - Naranja> M3, O6, C8, C3, O3, Q6, E8, E3, Q3, X4, X7, L6, J3, V4, J6, H3, T4, T7, H6, A8, A3, M3
@@ -513,8 +540,8 @@ static void add_vehicule(GtkWidget *widget, gpointer data) {
     //Periferica Grande - Roja> A1, D1, F2, L4, Z (dandole la vuelta), R2, X5, U5, S6, M1, Y (dandole la vuelta)
 */
 
-    int paradas[2] = {27, 0};
-    int cantidadParadas = 2;
+    int paradas[10] = {9, 59, 11, 71, 87, 99, 74, 48, 2, 9};
+    int cantidadParadas = 10;
     //Periferica Norte - Verde> E2, L3*, F2, L4, Z (dandole la vuelta), toma la pista hacia el Oeste Y (dandole la vuelta), G6, B1, E2
 /*
     int paradas[10] = {9, 59, 11, 71, 87, 99, 74, 48, 2, 9};
@@ -558,12 +585,15 @@ static void add_vehicule(GtkWidget *widget, gpointer data) {
     vehicules[contadorHilos]->cantidadParadas = cantidadParadas;
     vehicules[contadorHilos]->paradas=(NODE*) calloc(vehicules[contadorHilos]->cantidadParadas, sizeof(NODE));
 
-	for(int i = 0; i < cantidadParadas; i++){	
-         vehicules[contadorHilos]->paradas[i]=listaParadas[paradas[i]];
+	for(int i = 0; i <= cantidadParadas; i++){
+	
+         vehicules[contadorHilos]->paradas[i]=listaParadas[i];
+printf("LUCHA %s\n", listaParadas[i]->name);
          }
-           
-    vehicules[contadorHilos]->x = listaParadas[paradas[0]]->x;
-    vehicules[contadorHilos]->y = listaParadas[paradas[0]]->y;
+          
+    
+    vehicules[contadorHilos]->x = listaParadas[0]->x;
+    vehicules[contadorHilos]->y = listaParadas[0]->y;
 
     printf("creating thread %d\n", contadorHilos);
     rc = pthread_create(&threads[contadorHilos], NULL, update_car_position, (void *)vehicules[contadorHilos]);
@@ -645,7 +675,7 @@ int main(int argc, char *argv[]) {
     gtk_widget_set_size_request(button, 80, 30); 
 
     
-    g_signal_connect(button, "clicked", G_CALLBACK(add_vehicule), NULL);
+    g_signal_connect(button, "clicked", G_CALLBACK(add_bus), NULL);
     
     button2 = gtk_button_new_with_label("Ambulance");
     gtk_fixed_put(GTK_FIXED(fixed), button2, 1000, 100);
