@@ -6,6 +6,8 @@ RUN apt-get update
 RUN apt-get install -y build-essential
 RUN apt-get install -y libgtk-3-dev
 
+RUN apt-get install -y git-core
+
 # Replace 1000 with your user / group id
 RUN export uid=1000 gid=1000 && \
     mkdir -p /home/developer && \
@@ -19,8 +21,12 @@ RUN export uid=1000 gid=1000 && \
 USER developer
 ENV HOME /home/developer
 
-WORKDIR /tv
 
-ADD target/threadville /tv
+RUN git clone https://github.com/sistemas-operativos-avanzados/threadville.git /home/developer/threadville && \
+    cd /home/developer/threadville && \
+    git checkout integracion && \
+    make
 
-ENTRYPOINT ["/tv/threadville"]
+WORKDIR /home/developer/threadville
+
+ENTRYPOINT ["target/threadville"]
