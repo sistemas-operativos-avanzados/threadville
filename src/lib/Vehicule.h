@@ -1,6 +1,7 @@
 
 //#include "map.h"
 //#include "Node.h"
+#include <stdbool.h>
 #include "threadville_functions.h"
 #include "threadville_globals.h"
 

@@ -30,5 +30,7 @@ int contadorHilos=0;
 
 #define P 168//48 36
 
+#define FPS 60
+
 #endif
 

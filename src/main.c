@@ -286,85 +286,6 @@ void teardDown(){
 	releaseThreadville(threadville);
 }
 
-void singleRun(){
-
-//	//BUSES
-//	//Periferica Grande - Roja
-//	//A1, D1, F2, L4, Z (dandole la vuelta), R2, X5, U5, S6, M1, Y (dandole la vuelta)
-//	VEHICULE *redBus = createBus("PERIFERICA-GRANDE");
-//	redBus->colorSpeed = red;
-//
-//
-//	//Periferica Norte - Verde
-//	//E2, L3*, F2, L4, Z (dandole la vuelta), toma la pista hacia el Oeste Y (dandole la vuelta), G6, B1, E2
-//	VEHICULE *greenBus = createBus("PERIFERICA-NORTE");
-//	greenBus->colorSpeed = green;
-//
-//	//Periferica Sur - Azul
-//	//R3, W5, T6, M6, Y (dandole la vuelta), toma la pista hacia el Este Z (dandole la vuelta), R3
-//	VEHICULE *blueBus = createBus("PERIFERICA-SUR");
-//	blueBus->colorSpeed = blue;
-//
-//	//Bus Blanco
-//	//I4, O3, T5, N1, H6, C1, I4
-//	VEHICULE *whiteBus = createBus("BUS-BLANCO");
-//	whiteBus->colorSpeed = white;
-//
-//	//Bus Gris
-//	//U5, O1, I6, D1, J4, P3, U5
-//	VEHICULE *greyBus = createBus("BUS-GRIS");
-//	greyBus->colorSpeed = grey;
-//
-//	//Bus Negro
-//	//J6, E1, K4, Q3, V5, P1, J6
-//	VEHICULE *blackBus = createBus("BUS-NEGRO");
-//	blackBus->colorSpeed = black;
-//
-//	//Bus Rosa
-//	//F5L1, A6, A1, F2, F5L1
-//	VEHICULE *pinkBus = createBus("BUS-ROSA");
-//	pinkBus->colorSpeed = pink;
-//
-//	//Bus Celeste
-//	//S6, M5S1, R4X2, X5, S6
-//	VEHICULE *ligthBlueBus = createBus("BUS-CELESTE");
-//	ligthBlueBus->colorSpeed = ligthBlue;
-//
-//	//Bus Lombriz - Naranja
-//	//M3, O6, C8, C3, O3, Q6, E8, E3, Q3, X4, X7, L6, J3, V4, J6, H3, T4, T7, H6, A8, A3, M3
-//	VEHICULE *orangeBus = createBus("BUS-NARANJA");
-//	orangeBus->colorSpeed = orange;
-//
-//	//Crear una paradas - Destinos
-//	//addStop(orangeBus, nodeM3);
-//	STOP *stopM3 = createStop();
-//	stopM3->stop = nodeM3;
-//	orangeBus->stops = stopM3;
-//
-//	//addStop(orangeBus, nodeO6);
-//	STOP *stopO6 = createStop();
-//	stopO6->stop = nodeO6;
-//	orangeBus->stops->next = stopO6;
-
-	//addStop(orangeBus, nodeC8);
-//	STOP *stopC8 = createStop();
-//	stopC8->stop = nodeC8;
-//	orangeBus->stops->next->next = stopC8;
-//    	displayStops(orangeBus->stops);
-
-
-    //Bus
-//    releaseVehicule(redBus);
-//    releaseVehicule(blueBus);
-//    releaseVehicule(greenBus);
-//    releaseVehicule(whiteBus);
-//    releaseVehicule(blackBus);
-//    releaseVehicule(pinkBus);
-//    releaseVehicule(orangeBus);
-//    releaseVehicule(greyBus);
-//    releaseVehicule(ligthBlueBus);
-}
-
 void* move(void* param){
     puts("En thread!!");
 
@@ -438,7 +359,6 @@ void headless(){
 
         switch (userOpt[0]){
             case 'i':
-                singleRun();
                 break;
             case 'a':
                 makeAmbulance();
@@ -461,8 +381,6 @@ void headless(){
 }
 
 //******************************************************************************
-
-#define FPS 60
 
 static gint64 last_tick = 0;
 static guint tick_cb = 0;
@@ -648,28 +566,12 @@ static void add_Ambulance(GtkWidget *widget, gpointer data) {
 
 
 int main(int argc, char *argv[]) {
-    
-    init();
-    asignarNodosALista();
-    cargarCordenadasNodos();
+
+	init();
+	asignarNodosALista();
+	cargarCordenadasNodos();
 
 
-
-/*
-    VEHICULE *orangeBus = createBus("BUS-NARANJA");
-    orangeBus->colorSpeed = orange;
-
-    ////GENARAR RUTA
-    //generateRoute(orangeBus, nodeB4, nodeI3);
-    
-    generateRoute(orangeBus, listaParadass[27], nodeI3);
-    
-    displayDestinations(orangeBus->route->destinations);
-*/
-
-
-
-	
     GtkWidget *window;
     GtkWidget *button;
     GtkWidget *button2;
@@ -777,175 +679,4 @@ int main(int argc, char *argv[]) {
     
     return 0;
 
-} // main
-
-/*
-    int rc;
-    vehicules[contadorHilos]= createCar("v");
-    printf("creating thread %ld\n", contadorHilos);
-    rc = pthread_create(&threads[contadorHilos], NULL, update_car_position, (void *)vehicules[contadorHilos]);
-    if (rc)
-    {
-            printf("error, return frim pthread creation\n");
-            exit(4);
-    }
-    contadorHilos++;    
-*/
-
-
-
-/*
-
-#include <gtk/gtk.h>
-
-int main(int argc, char *argv[]) {
-
-  GtkWidget *window;
-  GtkWidget *vbox;
-
-  GtkWidget *menubar;
-  GtkWidget *fileMenu;
-  GtkWidget *fileMi;
-  GtkWidget *quitMi;
-
-  gtk_init(&argc, &argv);
-
-  window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-  gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER);
-  gtk_window_set_default_size(GTK_WINDOW(window), 300, 200);
-  gtk_window_set_title(GTK_WINDOW(window), "Simple menu");
-
-  vbox = gtk_vbox_new(FALSE, 0);
-  gtk_container_add(GTK_CONTAINER(window), vbox);
-
-  menubar = gtk_menu_bar_new();
-  fileMenu = gtk_menu_new();
-
-  fileMi = gtk_menu_item_new_with_label("File");
-  quitMi = gtk_menu_item_new_with_label("Quit");
-
-  gtk_menu_item_set_submenu(GTK_MENU_ITEM(fileMi), fileMenu);
-  gtk_menu_shell_append(GTK_MENU_SHELL(fileMenu), quitMi);
-  gtk_menu_shell_append(GTK_MENU_SHELL(menubar), fileMi);
-  gtk_box_pack_start(GTK_BOX(vbox), menubar, FALSE, FALSE, 0);
-
-  g_signal_connect(G_OBJECT(window), "destroy",
-        G_CALLBACK(gtk_main_quit), NULL);
-
-  g_signal_connect(G_OBJECT(quitMi), "activate",
-        G_CALLBACK(gtk_main_quit), NULL);
-
-  gtk_widget_show_all(window);
-
-  gtk_main();
-
-  return 0;
-}
-*/
-
-/*
-#include <gtk/gtk.h>
-
-int main(int argc, char *argv[]) {
-
-  GtkWidget *window;
-  GtkWidget *vbox;
-  
-  GtkWidget *toolbar;
-  GtkToolItem *newTb;
-  GtkToolItem *openTb;
-  GtkToolItem *saveTb;
-  GtkToolItem *sep;
-  GtkToolItem *exitTb;
-
-  gtk_init(&argc, &argv);
-
-  window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-  gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER);
-  gtk_window_set_default_size(GTK_WINDOW(window), 300, 200);
-  gtk_window_set_title(GTK_WINDOW(window), "toolbar");
-
-  vbox = gtk_vbox_new(FALSE, 0);
-  gtk_container_add(GTK_CONTAINER(window), vbox);
-
-  toolbar = gtk_toolbar_new();
-  gtk_toolbar_set_style(GTK_TOOLBAR(toolbar), GTK_TOOLBAR_ICONS);
-
-  newTb = gtk_tool_button_new_from_stock(GTK_STOCK_NEW);
-  gtk_toolbar_insert(GTK_TOOLBAR(toolbar), newTb, -1);
-
-  openTb = gtk_tool_button_new_from_stock(GTK_STOCK_OPEN);
-  gtk_toolbar_insert(GTK_TOOLBAR(toolbar), openTb, -1);
-
-  saveTb = gtk_tool_button_new_from_stock(GTK_STOCK_SAVE);
-  gtk_toolbar_insert(GTK_TOOLBAR(toolbar), saveTb, -1);
-
-  sep = gtk_separator_tool_item_new();
-  gtk_toolbar_insert(GTK_TOOLBAR(toolbar), sep, -1); 
-
-  exitTb = gtk_tool_button_new_from_stock(GTK_STOCK_QUIT);
-  gtk_toolbar_insert(GTK_TOOLBAR(toolbar), exitTb, -1);
-
-  gtk_box_pack_start(GTK_BOX(vbox), toolbar, FALSE, FALSE, 5);
-
-  g_signal_connect(G_OBJECT(exitTb), "clicked", 
-        G_CALLBACK(gtk_main_quit), NULL);
-
-  g_signal_connect(G_OBJECT(window), "destroy",
-        G_CALLBACK(gtk_main_quit), NULL);
-
-  gtk_widget_show_all(window);
-
-  gtk_main();
-
-  return 0;
-}
- * 
- * */
-
-/*
-
-#include <gtk/gtk.h>
-
-int main(int argc, char *argv[]) {
-    
-  GtkWidget *window;
-  GtkWidget *fixed;
-
-  GtkWidget *btn1;
-  GtkWidget *btn2;
-  GtkWidget *btn3;
-
-  gtk_init(&argc, &argv);
-
-  window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-  gtk_window_set_title(GTK_WINDOW(window), "GtkFixed");
-  gtk_window_set_default_size(GTK_WINDOW(window), 300, 200);
-  gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER);
-
-  fixed = gtk_fixed_new();
-  gtk_container_add(GTK_CONTAINER(window), fixed);
-
-  btn1 = gtk_button_new_with_label("Button");
-  gtk_fixed_put(GTK_FIXED(fixed), btn1, 150, 50);
-  gtk_widget_set_size_request(btn1, 80, 30);
-
-  btn2 = gtk_button_new_with_label("Button");
-  gtk_fixed_put(GTK_FIXED(fixed), btn2, 15, 15);
-  gtk_widget_set_size_request(btn2, 80, 30);
-
-  btn3 = gtk_button_new_with_label("Button");
-  gtk_fixed_put(GTK_FIXED(fixed), btn3, 100, 100);
-  gtk_widget_set_size_request(btn3, 80, 30);
-
-  g_signal_connect(G_OBJECT(window), "destroy", 
-      G_CALLBACK(gtk_main_quit), NULL);
-
-  gtk_widget_show_all(window);
-
-  gtk_main();
-
-  return 0;
-}
- * 
- * */
+} 
