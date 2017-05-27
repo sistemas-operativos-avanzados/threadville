@@ -522,7 +522,7 @@ void init(){
 	int nodeZ1Relations[RN] = {153, 154, 157};
 	int nodeZ2Relations[RN] = {25, -1, -1};
 	int nodeZ3Relations[RN] = {26, -1, -1};
-	int nodeZ4Relations[RN] = {157, 27, -1};
+	int nodeZ4Relations[RN] = {157, -1, -1};
 	int nodeZ5Relations[RN] = {157, -1, -1};
 	int nodeZ6Relations[RN] = {143, 158, -1};
 	int nodeZ7Relations[RN] = {159, -1, -1};

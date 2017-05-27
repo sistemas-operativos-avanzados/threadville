@@ -286,85 +286,6 @@ void teardDown(){
 	releaseThreadville(threadville);
 }
 
-void singleRun(){
-
-//	//BUSES
-//	//Periferica Grande - Roja
-//	//A1, D1, F2, L4, Z (dandole la vuelta), R2, X5, U5, S6, M1, Y (dandole la vuelta)
-//	VEHICULE *redBus = createBus("PERIFERICA-GRANDE");
-//	redBus->colorSpeed = red;
-//
-//
-//	//Periferica Norte - Verde
-//	//E2, L3*, F2, L4, Z (dandole la vuelta), toma la pista hacia el Oeste Y (dandole la vuelta), G6, B1, E2
-//	VEHICULE *greenBus = createBus("PERIFERICA-NORTE");
-//	greenBus->colorSpeed = green;
-//
-//	//Periferica Sur - Azul
-//	//R3, W5, T6, M6, Y (dandole la vuelta), toma la pista hacia el Este Z (dandole la vuelta), R3
-//	VEHICULE *blueBus = createBus("PERIFERICA-SUR");
-//	blueBus->colorSpeed = blue;
-//
-//	//Bus Blanco
-//	//I4, O3, T5, N1, H6, C1, I4
-//	VEHICULE *whiteBus = createBus("BUS-BLANCO");
-//	whiteBus->colorSpeed = white;
-//
-//	//Bus Gris
-//	//U5, O1, I6, D1, J4, P3, U5
-//	VEHICULE *greyBus = createBus("BUS-GRIS");
-//	greyBus->colorSpeed = grey;
-//
-//	//Bus Negro
-//	//J6, E1, K4, Q3, V5, P1, J6
-//	VEHICULE *blackBus = createBus("BUS-NEGRO");
-//	blackBus->colorSpeed = black;
-//
-//	//Bus Rosa
-//	//F5L1, A6, A1, F2, F5L1
-//	VEHICULE *pinkBus = createBus("BUS-ROSA");
-//	pinkBus->colorSpeed = pink;
-//
-//	//Bus Celeste
-//	//S6, M5S1, R4X2, X5, S6
-//	VEHICULE *ligthBlueBus = createBus("BUS-CELESTE");
-//	ligthBlueBus->colorSpeed = ligthBlue;
-//
-//	//Bus Lombriz - Naranja
-//	//M3, O6, C8, C3, O3, Q6, E8, E3, Q3, X4, X7, L6, J3, V4, J6, H3, T4, T7, H6, A8, A3, M3
-//	VEHICULE *orangeBus = createBus("BUS-NARANJA");
-//	orangeBus->colorSpeed = orange;
-//
-//	//Crear una paradas - Destinos
-//	//addStop(orangeBus, nodeM3);
-//	STOP *stopM3 = createStop();
-//	stopM3->stop = nodeM3;
-//	orangeBus->stops = stopM3;
-//
-//	//addStop(orangeBus, nodeO6);
-//	STOP *stopO6 = createStop();
-//	stopO6->stop = nodeO6;
-//	orangeBus->stops->next = stopO6;
-
-	//addStop(orangeBus, nodeC8);
-//	STOP *stopC8 = createStop();
-//	stopC8->stop = nodeC8;
-//	orangeBus->stops->next->next = stopC8;
-//    	displayStops(orangeBus->stops);
-
-
-    //Bus
-//    releaseVehicule(redBus);
-//    releaseVehicule(blueBus);
-//    releaseVehicule(greenBus);
-//    releaseVehicule(whiteBus);
-//    releaseVehicule(blackBus);
-//    releaseVehicule(pinkBus);
-//    releaseVehicule(orangeBus);
-//    releaseVehicule(greyBus);
-//    releaseVehicule(ligthBlueBus);
-}
-
 void* move(void* param){
     puts("En thread!!");
 
@@ -438,7 +359,6 @@ void headless(){
 
         switch (userOpt[0]){
             case 'i':
-                singleRun();
                 break;
             case 'a':
                 makeAmbulance();
@@ -461,8 +381,6 @@ void headless(){
 }
 
 //******************************************************************************
-
-#define FPS 60
 
 static gint64 last_tick = 0;
 static guint tick_cb = 0;
@@ -550,27 +468,16 @@ int main(int argc, char *argv[]) {
 	asignarNodosALista();
 	cargarCordenadasNodos();
 
-//	for(int i = 0; i < V; i++){
-//		for(int j = 0; j < V; j++){
-//            if(graph[i][j] != 0) {
-//                printf("%d ", graph[i][j]);
-//            }
-//
-//		}
-//		printf("\n");
-//	}
+
+    GtkWidget *window;
+    GtkWidget *button;
+    GtkWidget *button2;
+    GtkWidget *button_box;
+    GtkWidget *fixed;
 
 
-	/*
-	GtkWidget *window;
-	GtkWidget *button;
-	GtkWidget *button2;
-	GtkWidget *button_box;
-	GtkWidget *fixed;
-
-
-	gtk_init(&argc, &argv);
-	GError *error = NULL;
+    gtk_init(&argc, &argv);
+    GError * error = NULL;
 
 	if (error) {
 		printf("%s\n", error->message);
@@ -606,10 +513,9 @@ int main(int argc, char *argv[]) {
 	tick_cb = g_timeout_add(1000 / FPS / 2, (GSourceFunc) on_tick, GINT_TO_POINTER(size));
 
 
-	gtk_main();
 
-	*/
+    gtk_main();
 
-	return 0;
+    return 0;
 
-}
+} // main
