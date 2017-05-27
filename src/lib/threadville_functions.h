@@ -1,3 +1,5 @@
+#include <semaphore.h>
+
 #ifndef TV_ADT
 
 
@@ -72,13 +74,18 @@ typedef struct THREADVILLE {
 	struct NODE *nodes;
 }THREADVILLE;
 
-//Estructura que define los puentes, se utiliza 4 nodos para definir la relacion en el mapa de ambas vias a pesar de ser un camino de un solo carril. Cada uno de los nodos tiene capacidad 3, por lo que se cumple que la capacidad de los puentes es de 6 carros
+// Estructura que define los puentes, se utiliza 4 nodos para definir la relacion en el mapa 
+// de ambas vias a pesar de ser un camino de un solo carril. Cada uno de los nodos tiene 
+// capacidad 3, por lo que se cumple que la capacidad de los puentes es de 6 carros
 typedef struct BRIDGE {
 	char *id;
 	struct NODE *northLeftNode;
 	struct NODE *southLeftNode;
 	struct NODE *northRightNode;
 	struct NODE *southRightNode;
+
+	sem_t controlSemaphore[2];
+
 }BRIDGE;
 
 
@@ -358,6 +365,16 @@ void addStop(VEHICULE *vehicule, NODE *stop){
 	currentStops = newStop;
 }
 
+void semaphoresBridgeControlInit(BRIDGE *bridge){
+	int i=0;
+	sem_t semaphore;
+
+	for (i = 0; i < 2; ++i){
+		semaphore = bridge->controlSemaphore[i];
+	    sem_init(&semaphore,0,1);
+	}
+
+}
 
 #endif
 

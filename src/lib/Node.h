@@ -754,6 +754,7 @@ void init(){
 	bridgeNodeM2 = createNode(162, "bridgeNodeM2", 3, bridgeNodeM2Relations);
 	bridgeNodeN1 = createNode(163, "bridgeNodeN1", 3, bridgeNodeN1Relations);
 	Larry = createBridge("Larry", bridgeNodeM2, bridgeNodeG4, bridgeNodeN1, bridgeNodeH5);
+	semaphoresBridgeControlInit(Larry);
 
 	//Curly
 	bridgeNodeH4 = createNode(164, "bridgeNodeH4", 3, bridgeNodeH4Relations);
@@ -761,6 +762,7 @@ void init(){
 	bridgeNodeN2 = createNode(166, "bridgeNodeN2", 3, bridgeNodeN2Relations);
 	bridgeNodeO1 = createNode(167, "bridgeNodeO1", 3, bridgeNodeO1Relations);
 	Curly = createBridge("Curly", bridgeNodeN2, bridgeNodeH4, bridgeNodeO1, bridgeNodeI5);
+	semaphoresBridgeControlInit(Curly);
 
 	//Moe
 	bridgeNodeI4 = createNode(168, "bridgeNodeI4", 3, bridgeNodeI4Relations);
@@ -768,6 +770,7 @@ void init(){
 	bridgeNodeO2 = createNode(170, "bridgeNodeO2", 3, bridgeNodeO2Relations);
 	bridgeNodeP1 = createNode(171, "bridgeNodeP1", 3, bridgeNodeP1Relations);
 	Moe = createBridge("Moe", bridgeNodeO2, bridgeNodeI4, bridgeNodeP1, bridgeNodeJ5);
+	semaphoresBridgeControlInit(Moe);
 
 	//Shemp
 	bridgeNodeJ4 = createNode(172, "bridgeNodeJ4", 3, bridgeNodeJ4Relations);
@@ -775,6 +778,7 @@ void init(){
 	bridgeNodeP2 = createNode(174, "bridgeNodeP2", 3, bridgeNodeP2Relations);
 	bridgeNodeQ1 = createNode(175, "bridgeNodeQ1", 3, bridgeNodeQ1Relations);
 	Shemp = createBridge("Shemp", bridgeNodeP2, bridgeNodeJ4, bridgeNodeQ1, bridgeNodeK5);
+	semaphoresBridgeControlInit(Shemp);
 
 	//Joe
 	bridgeNodeK4 = createNode(176, "bridgeNodeK4", 3, bridgeNodeK4Relations);
@@ -782,6 +786,7 @@ void init(){
 	bridgeNodeQ2 = createNode(178, "bridgeNodeQ2", 3, bridgeNodeQ2Relations);
 	bridgeNodeR1 = createNode(179, "bridgeNodeR1", 3, bridgeNodeR1Relations);
 	Joe = createBridge("Joe", bridgeNodeQ2, bridgeNodeK4, bridgeNodeR1, bridgeNodeL5);
+	semaphoresBridgeControlInit(Joe);
 	
 	//DEFINICION DE RELACIONES
 	threadville->nodes = nodeY1;
