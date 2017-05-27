@@ -121,7 +121,62 @@ static void draw_background (cairo_t * cr) {
                 cairo_fill (cr);
             }
         } // for y
-    } // for x 
+    } // for x
+
+        cairo_set_font_size(cr, 54);
+        cairo_move_to(cr, 100, 100);
+        cairo_show_text(cr, "A");        
+        cairo_move_to(cr, 260, 100);
+        cairo_show_text(cr, "B");        
+        cairo_move_to(cr, 420, 100);
+        cairo_show_text(cr, "C");                
+        cairo_move_to(cr, 580, 100);
+        cairo_show_text(cr, "D");                 
+        cairo_move_to(cr, 740, 100);
+        cairo_show_text(cr, "E");                 
+        cairo_move_to(cr, 900, 100);
+        cairo_show_text(cr, "F");
+        
+        cairo_move_to(cr, 100, 240);
+        cairo_show_text(cr, "G");
+        cairo_move_to(cr, 260, 240);
+        cairo_show_text(cr, "H");
+        cairo_move_to(cr, 420, 240);
+        cairo_show_text(cr, "I");
+        cairo_move_to(cr, 580, 240);
+        cairo_show_text(cr, "J");
+        cairo_move_to(cr, 740, 240);
+        cairo_show_text(cr, "K");
+        cairo_move_to(cr, 900, 240);
+        cairo_show_text(cr, "L");        
+        
+
+        cairo_move_to(cr, 100, 475);
+        cairo_show_text(cr, "M");
+        cairo_move_to(cr, 260, 475);
+        cairo_show_text(cr, "N");
+        cairo_move_to(cr, 420, 475);
+        cairo_show_text(cr, "O");
+        cairo_move_to(cr, 580, 475);
+        cairo_show_text(cr, "P");
+        cairo_move_to(cr, 740, 475);
+        cairo_show_text(cr, "Q");
+        cairo_move_to(cr, 900, 475);
+        cairo_show_text(cr, "R");
+        
+        cairo_move_to(cr, 100, 615);
+        cairo_show_text(cr, "S");       
+        cairo_move_to(cr, 260, 615);
+        cairo_show_text(cr, "T"); 
+        cairo_move_to(cr, 420, 615);
+        cairo_show_text(cr, "U"); 
+        cairo_move_to(cr, 580, 615);
+        cairo_show_text(cr, "V"); 
+        cairo_move_to(cr, 740, 615);
+        cairo_show_text(cr, "W"); 
+        cairo_move_to(cr, 900, 615);
+        cairo_show_text(cr, "X");  
+ 
      
 } // draw_background
 
