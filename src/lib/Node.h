@@ -1,6 +1,12 @@
 #include "map.h"
 
 
+int regularPathWeight = 5;
+int highwayWeight = 1;
+
+int customPathWeights[V][V];
+
+
 //THREADVILLE
 THREADVILLE *threadville;
 
@@ -277,6 +283,16 @@ void setNodePaths(THREADVILLE *threadville) {
     }
 }
 
+void initCustomPathWeights(){
+
+	for(int r = 0; r < V; r++){
+		for(int h = 0; h < V; h++){
+			customPathWeights[r][h] = 0;
+		}
+	}
+
+}
+
 //Llenar la matriz con segun las relaciones de Threadville
 void fillGraph(THREADVILLE *threadville){
 	//Llenar con ceros la matriz
@@ -295,9 +311,14 @@ void fillGraph(THREADVILLE *threadville){
 		for(int y = 0; y < RN; y++){
 			reacheabledNodes[y] = node->reacheabledNodes[y];
 		}
+
 		for(int i = 0; i < RN; i++){
 			if(reacheabledNodes[i] != -1){
-				graph[id][reacheabledNodes[i]] = 1;
+				if(customPathWeights[id][reacheabledNodes[i]] != 0){
+					graph[id][reacheabledNodes[i]] = customPathWeights[id][reacheabledNodes[i]];
+				} else {
+					graph[id][reacheabledNodes[i]] = regularPathWeight;
+				}
 			}
 		}
 	}
@@ -307,6 +328,7 @@ void fillGraph(THREADVILLE *threadville){
 void init(){
     puts("Iniciando Threadville");
 	threadville = createThreadville();
+	initCustomPathWeights();
 
 //	red = createColor("RED", 1);
 //	blue = createColor("BLUE", 2);
@@ -1035,8 +1057,15 @@ void init(){
 	bridgeNodeR1->next = bridgeNodeL5;
 
 
+	//Pesos de rutas personalizadas
+	customPathWeights[153][25] = highwayWeight;
+	customPathWeights[154][26] = highwayWeight;
+	customPathWeights[27][155] = highwayWeight;
+	customPathWeights[28][156] = highwayWeight;
+
 	fillGraph(threadville);
 	setNodePaths(threadville);
+
 } // init
 
 
@@ -1086,7 +1115,7 @@ void asignarNodosALista(){
         listaParadas[35]=nodeF4;
         listaParadas[36]=nodeA6G1;
         listaParadas[37]=nodeA5G2;        
-	listaParadas[38]=nodeB6H1;
+		listaParadas[38]=nodeB6H1;
         listaParadas[39]=nodeB5H2;        
         
         listaParadas[40]=nodeC6I1;	
@@ -1170,15 +1199,15 @@ void asignarNodosALista(){
         listaParadas[111]=nodeR3;
         listaParadas[112]=nodeM5S1;        	
         listaParadas[113]=nodeM4S2;
-	listaParadas[114]=nodeN5T1;
+		listaParadas[114]=nodeN5T1;
         listaParadas[115]=nodeN4T2;        	
         listaParadas[116]=nodeO5U1;
-	listaParadas[117]=nodeO4U2;
+		listaParadas[117]=nodeO4U2;
         listaParadas[118]=nodeP5V1;        
         listaParadas[119]=nodeP4V2;	
                 
         listaParadas[120]=nodeQ5W1;	
-	listaParadas[121]=nodeQ4W2;
+		listaParadas[121]=nodeQ4W2;
         listaParadas[122]=nodeR5X1;	
         listaParadas[123]=nodeR4X2;
         listaParadas[124]=nodeS8;

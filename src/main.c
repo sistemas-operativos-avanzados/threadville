@@ -286,85 +286,6 @@ void teardDown(){
 	releaseThreadville(threadville);
 }
 
-void singleRun(){
-
-//	//BUSES
-//	//Periferica Grande - Roja
-//	//A1, D1, F2, L4, Z (dandole la vuelta), R2, X5, U5, S6, M1, Y (dandole la vuelta)
-//	VEHICULE *redBus = createBus("PERIFERICA-GRANDE");
-//	redBus->colorSpeed = red;
-//
-//
-//	//Periferica Norte - Verde
-//	//E2, L3*, F2, L4, Z (dandole la vuelta), toma la pista hacia el Oeste Y (dandole la vuelta), G6, B1, E2
-//	VEHICULE *greenBus = createBus("PERIFERICA-NORTE");
-//	greenBus->colorSpeed = green;
-//
-//	//Periferica Sur - Azul
-//	//R3, W5, T6, M6, Y (dandole la vuelta), toma la pista hacia el Este Z (dandole la vuelta), R3
-//	VEHICULE *blueBus = createBus("PERIFERICA-SUR");
-//	blueBus->colorSpeed = blue;
-//
-//	//Bus Blanco
-//	//I4, O3, T5, N1, H6, C1, I4
-//	VEHICULE *whiteBus = createBus("BUS-BLANCO");
-//	whiteBus->colorSpeed = white;
-//
-//	//Bus Gris
-//	//U5, O1, I6, D1, J4, P3, U5
-//	VEHICULE *greyBus = createBus("BUS-GRIS");
-//	greyBus->colorSpeed = grey;
-//
-//	//Bus Negro
-//	//J6, E1, K4, Q3, V5, P1, J6
-//	VEHICULE *blackBus = createBus("BUS-NEGRO");
-//	blackBus->colorSpeed = black;
-//
-//	//Bus Rosa
-//	//F5L1, A6, A1, F2, F5L1
-//	VEHICULE *pinkBus = createBus("BUS-ROSA");
-//	pinkBus->colorSpeed = pink;
-//
-//	//Bus Celeste
-//	//S6, M5S1, R4X2, X5, S6
-//	VEHICULE *ligthBlueBus = createBus("BUS-CELESTE");
-//	ligthBlueBus->colorSpeed = ligthBlue;
-//
-//	//Bus Lombriz - Naranja
-//	//M3, O6, C8, C3, O3, Q6, E8, E3, Q3, X4, X7, L6, J3, V4, J6, H3, T4, T7, H6, A8, A3, M3
-//	VEHICULE *orangeBus = createBus("BUS-NARANJA");
-//	orangeBus->colorSpeed = orange;
-//
-//	//Crear una paradas - Destinos
-//	//addStop(orangeBus, nodeM3);
-//	STOP *stopM3 = createStop();
-//	stopM3->stop = nodeM3;
-//	orangeBus->stops = stopM3;
-//
-//	//addStop(orangeBus, nodeO6);
-//	STOP *stopO6 = createStop();
-//	stopO6->stop = nodeO6;
-//	orangeBus->stops->next = stopO6;
-
-	//addStop(orangeBus, nodeC8);
-//	STOP *stopC8 = createStop();
-//	stopC8->stop = nodeC8;
-//	orangeBus->stops->next->next = stopC8;
-//    	displayStops(orangeBus->stops);
-
-
-    //Bus
-//    releaseVehicule(redBus);
-//    releaseVehicule(blueBus);
-//    releaseVehicule(greenBus);
-//    releaseVehicule(whiteBus);
-//    releaseVehicule(blackBus);
-//    releaseVehicule(pinkBus);
-//    releaseVehicule(orangeBus);
-//    releaseVehicule(greyBus);
-//    releaseVehicule(ligthBlueBus);
-}
-
 void* move(void* param){
     puts("En thread!!");
 
@@ -438,7 +359,6 @@ void headless(){
 
         switch (userOpt[0]){
             case 'i':
-                singleRun();
                 break;
             case 'a':
                 makeAmbulance();
@@ -461,8 +381,6 @@ void headless(){
 }
 
 //******************************************************************************
-
-#define FPS 60
 
 static gint64 last_tick = 0;
 static guint tick_cb = 0;
@@ -501,8 +419,6 @@ static gboolean on_tick (gpointer user_data) {
     return G_SOURCE_CONTINUE;
 }
 
-
-
 static void add_vehicule(GtkWidget *widget, gpointer data) {
     
     g_print("Vehicule\n");
@@ -532,13 +448,116 @@ static void add_vehicule(GtkWidget *widget, gpointer data) {
     contadorHilos++;
   
     
-} // print_hello
+} 
+
+void add_bus(char *id, int cantidadParadas, int paradas[]){
+	char *_id = id;    
+	int rc;
+    
+    g_print("BUS\n");
+    vehicules[contadorHilos]= createBus(_id);
+    
+
+    srand(time(NULL));
+    vehicules[contadorHilos]->cantidadParadas = cantidadParadas;
+    vehicules[contadorHilos]->paradas=(NODE*) calloc(vehicules[contadorHilos]->cantidadParadas, sizeof(NODE));
+
+	for(int i = 0; i < cantidadParadas; i++){
+	
+         vehicules[contadorHilos]->paradas[i]=listaParadas[paradas[i]];
+printf("RUTA %s\n", listaParadas[i]->name);
+         }
+          
+    
+    vehicules[contadorHilos]->x = listaParadas[paradas[0]]->x;
+    vehicules[contadorHilos]->y = listaParadas[paradas[0]]->y;
+
+    printf("creating thread %d\n", contadorHilos);
+    rc = pthread_create(&threads[contadorHilos], NULL, update_car_position, (void *)vehicules[contadorHilos]);
+    if (rc)
+    {
+            printf("error, return frim pthread creation\n");
+            exit(4);
+    }
+    contadorHilos++;
+}
+static void add_busNaranja(GtkWidget *widget, gpointer data) {
+    int paradas[21] = {101, 104, 108, 103, 104, 108, 20, 21, 109, 147, 146, 58, 55, 143, 54, 51, 139, 138, 12, 13, 101};
+    int cantidadParadas = 21;
+    char *name = "BUS-NARANJA";
+    add_bus(name, cantidadParadas, paradas);
+    //Bus Lombriz - Naranja> M3, O6, C8, C3, O3, Q6, E8, E3, Q3, X4, X7, L6, J3, V4, J6, H3, T4, T7, H6, A8, A3, M3
+}
+
+static void add_busRojo(GtkWidget *widget, gpointer data) {
+    int paradas[11] = {0, 6, 11, 71, 87, 99, 159, 153, 148, 88, 82};
+    int cantidadParadas = 11;
+    char *name = "BUS-ROJO";
+    add_bus(name, cantidadParadas, paradas);
+    //Periferica Grande - Roja> A1, D1, F2, L4, Z (dandole la vuelta), R2, X5, U5, S6, M1, Y (dandole la vuelta)
+}
+
+static void add_busVerde(GtkWidget *widget, gpointer data) {
+    int paradas[10] = {9, 59, 11, 71, 87, 99, 74, 48, 2, 9};
+    int cantidadParadas = 10;
+    char *name = "BUS-VERDE";
+    add_bus(name, cantidadParadas, paradas);
+    //Periferica Norte - Verde> E2, L3*, F2, L4, Z (dandole la vuelta), toma la pista hacia el Oeste Y (dandole la vuelta), G6, B1, E2
+}
+ 
+static void add_busAzul(GtkWidget *widget, gpointer data) {   
+     int paradas[7] = {111, 157, 150, 100, 82, 77, 111};
+     int cantidadParadas = 7;
+     char *name = "BUS-AZUL";
+     add_bus(name, cantidadParadas, paradas);
+     //Periferica Sur - Azul> R3, W5, T6, M6, Y (dandole la vuelta), toma la pista hacia el Este Z (dandole la vuelta), R3
+}
+
+static void add_busBlanco(GtkWidget *widget, gpointer data) {
+	int paradas[7] = {65, 105, 151, 90, 50, 4, 65};
+        int cantidadParadas = 7;
+        char *name = "BUS-BLANCO";
+        add_bus(name, cantidadParadas, paradas);
+        //Bus Blanco> I4, O3, T5, N1, H6, C1, I4
+}
+
+static void add_busGris(GtkWidget *widget, gpointer data) {
+	int paradas[7] = {153, 92, 52, 6, 67, 107, 153};
+        int cantidadParadas = 7;
+        char *name = "BUS-GRIS";
+        add_bus(name, cantidadParadas, paradas);
+        //Bus Gris> U5, O1, I6, D1, J4, P3, U5
+}
+
+static void add_busNegro(GtkWidget *widget, gpointer data) {
+	int paradas[7] = {54, 8, 69, 109, 155, 94, 54};
+        int cantidadParadas = 7;
+        char *name = "BUS-NEGRO";
+        add_bus(name, cantidadParadas, paradas);
+	//Bus Negro> J6, E1, K4, Q3, V5, P1, J6
+}
+
+static void add_busRosa(GtkWidget *widget, gpointer data) {
+	int paradas[5] = {47, 36, 0, 11, 147};
+        int cantidadParadas = 5;
+        char *name = "BUS-ROSA";
+        add_bus(name, cantidadParadas, paradas);
+	//Bus Rosa> F5L1, A6, A1, F2, F5L1
+}
+
+static void add_busCeleste(GtkWidget *widget, gpointer data) {
+	int paradas[5] = {148, 112, 123, 159, 148};
+        int cantidadParadas = 5;
+        char *name = "BUS-CELESTE";
+        add_bus(name, cantidadParadas, paradas);
+	//Bus Celeste> S6, M5S1, R4X2, X5, S6   
+}
 
 static void add_Ambulance(GtkWidget *widget, gpointer data) {
     
     g_print("Ambulance\n");
     
-} // print_hello
+} // print_helloz
 
 //******************************************************************************
 // ******************* MAIN ****************************************************
@@ -547,31 +566,24 @@ static void add_Ambulance(GtkWidget *widget, gpointer data) {
 
 
 int main(int argc, char *argv[]) {
-    
-    init();
-    asignarNodosALista();
-    cargarCordenadasNodos();
+
+	init();
+	asignarNodosALista();
+	cargarCordenadasNodos();
 
 
-
-/*
-    VEHICULE *orangeBus = createBus("BUS-NARANJA");
-    orangeBus->colorSpeed = orange;
-
-    ////GENARAR RUTA
-    //generateRoute(orangeBus, nodeB4, nodeI3);
-    
-    generateRoute(orangeBus, listaParadas[27], nodeI3);
-    
-    displayDestinations(orangeBus->route->destinations);
-*/
-
-
-
-	
     GtkWidget *window;
     GtkWidget *button;
     GtkWidget *button2;
+    GtkWidget *buttonBusNaranja;
+    GtkWidget *buttonBusRojo;
+    GtkWidget *buttonBusVerde;
+    GtkWidget *buttonBusAzul;
+    GtkWidget *buttonBusBlanco;
+    GtkWidget *buttonBusNegro;
+    GtkWidget *buttonBusGris;
+    GtkWidget *buttonBusRosa;
+    GtkWidget *buttonBusCeleste;
     GtkWidget *button_box;
     GtkWidget *fixed;    
     
@@ -598,16 +610,65 @@ int main(int argc, char *argv[]) {
     g_signal_connect(drawing, "draw", G_CALLBACK(on_draw), NULL);
     
     button = gtk_button_new_with_label("Vehicule");
-    gtk_fixed_put(GTK_FIXED(fixed), button, 1000, 50);
-    gtk_widget_set_size_request(button, 80, 30); 
+    gtk_fixed_put(GTK_FIXED(fixed), button, 1000, 10);
+    gtk_widget_set_size_request(button, 80, 30);  
     g_signal_connect(button, "clicked", G_CALLBACK(add_vehicule), NULL);
     
     button2 = gtk_button_new_with_label("Ambulance");
-    gtk_fixed_put(GTK_FIXED(fixed), button2, 1000, 100);
+    gtk_fixed_put(GTK_FIXED(fixed), button2, 1000, 40);
     gtk_widget_set_size_request(button2, 80, 30); 
-    g_signal_connect(button2, "clicked", G_CALLBACK(add_Ambulance), NULL);    
+    g_signal_connect(button2, "clicked", G_CALLBACK(add_Ambulance), NULL);  
+
+    buttonBusNaranja = gtk_button_new_with_label("Naranja");
+    gtk_fixed_put(GTK_FIXED(fixed), buttonBusNaranja, 1000, 100);
+    gtk_widget_set_size_request(buttonBusNaranja, 80, 30);  
+    g_signal_connect(buttonBusNaranja, "clicked", G_CALLBACK(add_busNaranja), NULL);  
     
+    buttonBusVerde = gtk_button_new_with_label("Verde");
+    gtk_fixed_put(GTK_FIXED(fixed), buttonBusVerde, 1000, 130);
+    gtk_widget_set_size_request(buttonBusVerde, 80, 30);  
+    g_signal_connect(buttonBusVerde, "clicked", G_CALLBACK(add_busVerde), NULL);
+
+
+    buttonBusRojo = gtk_button_new_with_label("Rojo");
+    gtk_fixed_put(GTK_FIXED(fixed), buttonBusRojo, 1000, 160);
+    gtk_widget_set_size_request(buttonBusRojo, 80, 30);  
+    g_signal_connect(buttonBusRojo, "clicked", G_CALLBACK(add_busRojo), NULL);
+
+    buttonBusAzul = gtk_button_new_with_label("Azul");
+    gtk_fixed_put(GTK_FIXED(fixed), buttonBusAzul, 1000, 190);
+    gtk_widget_set_size_request(buttonBusAzul, 80, 30);  
+    g_signal_connect(buttonBusAzul, "clicked", G_CALLBACK(add_busAzul), NULL);
+
+
+    buttonBusBlanco = gtk_button_new_with_label("Blanco");
+    gtk_fixed_put(GTK_FIXED(fixed), buttonBusBlanco, 1000, 220);
+    gtk_widget_set_size_request(buttonBusBlanco, 80, 30);  
+    g_signal_connect(buttonBusBlanco, "clicked", G_CALLBACK(add_busBlanco), NULL);
+
+    buttonBusNegro = gtk_button_new_with_label("Negro");
+    gtk_fixed_put(GTK_FIXED(fixed), buttonBusNegro, 1000, 250);
+    gtk_widget_set_size_request(buttonBusNegro, 80, 30);  
+    g_signal_connect(buttonBusNegro, "clicked", G_CALLBACK(add_busNegro), NULL);
+
+
+    buttonBusGris = gtk_button_new_with_label("Gris");
+    gtk_fixed_put(GTK_FIXED(fixed), buttonBusGris, 1000, 390);
+    gtk_widget_set_size_request(buttonBusGris, 80, 30);  
+    g_signal_connect(buttonBusGris, "clicked", G_CALLBACK(add_busGris), NULL);
     
+    buttonBusRosa = gtk_button_new_with_label("Rosa");
+    gtk_fixed_put(GTK_FIXED(fixed), buttonBusRosa, 1000, 420);
+    gtk_widget_set_size_request(buttonBusRosa, 80, 30);  
+    g_signal_connect(buttonBusRosa, "clicked", G_CALLBACK(add_busRosa), NULL);
+
+
+    buttonBusCeleste = gtk_button_new_with_label("Celeste");
+    gtk_fixed_put(GTK_FIXED(fixed), buttonBusCeleste, 1000, 450);
+    gtk_widget_set_size_request(buttonBusCeleste, 80, 30);  
+    g_signal_connect(buttonBusCeleste, "clicked", G_CALLBACK(add_busCeleste), NULL);
+    
+
     gtk_widget_show_all(window);
     
     tick_cb = g_timeout_add(1000 / FPS / 2, (GSourceFunc) on_tick, GINT_TO_POINTER(size)); 
@@ -618,175 +679,4 @@ int main(int argc, char *argv[]) {
     
     return 0;
 
-} // main
-
-/*
-    int rc;
-    vehicules[contadorHilos]= createCar("v");
-    printf("creating thread %ld\n", contadorHilos);
-    rc = pthread_create(&threads[contadorHilos], NULL, update_car_position, (void *)vehicules[contadorHilos]);
-    if (rc)
-    {
-            printf("error, return frim pthread creation\n");
-            exit(4);
-    }
-    contadorHilos++;    
-*/
-
-
-
-/*
-
-#include <gtk/gtk.h>
-
-int main(int argc, char *argv[]) {
-
-  GtkWidget *window;
-  GtkWidget *vbox;
-
-  GtkWidget *menubar;
-  GtkWidget *fileMenu;
-  GtkWidget *fileMi;
-  GtkWidget *quitMi;
-
-  gtk_init(&argc, &argv);
-
-  window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-  gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER);
-  gtk_window_set_default_size(GTK_WINDOW(window), 300, 200);
-  gtk_window_set_title(GTK_WINDOW(window), "Simple menu");
-
-  vbox = gtk_vbox_new(FALSE, 0);
-  gtk_container_add(GTK_CONTAINER(window), vbox);
-
-  menubar = gtk_menu_bar_new();
-  fileMenu = gtk_menu_new();
-
-  fileMi = gtk_menu_item_new_with_label("File");
-  quitMi = gtk_menu_item_new_with_label("Quit");
-
-  gtk_menu_item_set_submenu(GTK_MENU_ITEM(fileMi), fileMenu);
-  gtk_menu_shell_append(GTK_MENU_SHELL(fileMenu), quitMi);
-  gtk_menu_shell_append(GTK_MENU_SHELL(menubar), fileMi);
-  gtk_box_pack_start(GTK_BOX(vbox), menubar, FALSE, FALSE, 0);
-
-  g_signal_connect(G_OBJECT(window), "destroy",
-        G_CALLBACK(gtk_main_quit), NULL);
-
-  g_signal_connect(G_OBJECT(quitMi), "activate",
-        G_CALLBACK(gtk_main_quit), NULL);
-
-  gtk_widget_show_all(window);
-
-  gtk_main();
-
-  return 0;
-}
-*/
-
-/*
-#include <gtk/gtk.h>
-
-int main(int argc, char *argv[]) {
-
-  GtkWidget *window;
-  GtkWidget *vbox;
-  
-  GtkWidget *toolbar;
-  GtkToolItem *newTb;
-  GtkToolItem *openTb;
-  GtkToolItem *saveTb;
-  GtkToolItem *sep;
-  GtkToolItem *exitTb;
-
-  gtk_init(&argc, &argv);
-
-  window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-  gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER);
-  gtk_window_set_default_size(GTK_WINDOW(window), 300, 200);
-  gtk_window_set_title(GTK_WINDOW(window), "toolbar");
-
-  vbox = gtk_vbox_new(FALSE, 0);
-  gtk_container_add(GTK_CONTAINER(window), vbox);
-
-  toolbar = gtk_toolbar_new();
-  gtk_toolbar_set_style(GTK_TOOLBAR(toolbar), GTK_TOOLBAR_ICONS);
-
-  newTb = gtk_tool_button_new_from_stock(GTK_STOCK_NEW);
-  gtk_toolbar_insert(GTK_TOOLBAR(toolbar), newTb, -1);
-
-  openTb = gtk_tool_button_new_from_stock(GTK_STOCK_OPEN);
-  gtk_toolbar_insert(GTK_TOOLBAR(toolbar), openTb, -1);
-
-  saveTb = gtk_tool_button_new_from_stock(GTK_STOCK_SAVE);
-  gtk_toolbar_insert(GTK_TOOLBAR(toolbar), saveTb, -1);
-
-  sep = gtk_separator_tool_item_new();
-  gtk_toolbar_insert(GTK_TOOLBAR(toolbar), sep, -1); 
-
-  exitTb = gtk_tool_button_new_from_stock(GTK_STOCK_QUIT);
-  gtk_toolbar_insert(GTK_TOOLBAR(toolbar), exitTb, -1);
-
-  gtk_box_pack_start(GTK_BOX(vbox), toolbar, FALSE, FALSE, 5);
-
-  g_signal_connect(G_OBJECT(exitTb), "clicked", 
-        G_CALLBACK(gtk_main_quit), NULL);
-
-  g_signal_connect(G_OBJECT(window), "destroy",
-        G_CALLBACK(gtk_main_quit), NULL);
-
-  gtk_widget_show_all(window);
-
-  gtk_main();
-
-  return 0;
-}
- * 
- * */
-
-/*
-
-#include <gtk/gtk.h>
-
-int main(int argc, char *argv[]) {
-    
-  GtkWidget *window;
-  GtkWidget *fixed;
-
-  GtkWidget *btn1;
-  GtkWidget *btn2;
-  GtkWidget *btn3;
-
-  gtk_init(&argc, &argv);
-
-  window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-  gtk_window_set_title(GTK_WINDOW(window), "GtkFixed");
-  gtk_window_set_default_size(GTK_WINDOW(window), 300, 200);
-  gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER);
-
-  fixed = gtk_fixed_new();
-  gtk_container_add(GTK_CONTAINER(window), fixed);
-
-  btn1 = gtk_button_new_with_label("Button");
-  gtk_fixed_put(GTK_FIXED(fixed), btn1, 150, 50);
-  gtk_widget_set_size_request(btn1, 80, 30);
-
-  btn2 = gtk_button_new_with_label("Button");
-  gtk_fixed_put(GTK_FIXED(fixed), btn2, 15, 15);
-  gtk_widget_set_size_request(btn2, 80, 30);
-
-  btn3 = gtk_button_new_with_label("Button");
-  gtk_fixed_put(GTK_FIXED(fixed), btn3, 100, 100);
-  gtk_widget_set_size_request(btn3, 80, 30);
-
-  g_signal_connect(G_OBJECT(window), "destroy", 
-      G_CALLBACK(gtk_main_quit), NULL);
-
-  gtk_widget_show_all(window);
-
-  gtk_main();
-
-  return 0;
-}
- * 
- * */
+} 
