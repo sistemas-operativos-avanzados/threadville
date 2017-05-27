@@ -1,7 +1,7 @@
 #include "map.h"
 
 
-int pathWeight = 5;
+int regularPathWeight = 5;
 int highwayWeight = 1;
 
 int customPathWeights[V][V];
@@ -317,7 +317,7 @@ void fillGraph(THREADVILLE *threadville){
 				if(customPathWeights[id][reacheabledNodes[i]] != 0){
 					graph[id][reacheabledNodes[i]] = customPathWeights[id][reacheabledNodes[i]];
 				} else {
-					graph[id][reacheabledNodes[i]] = pathWeight;
+					graph[id][reacheabledNodes[i]] = regularPathWeight;
 				}
 			}
 		}
@@ -1053,7 +1053,10 @@ void init(){
 
 
 	//Pesos de rutas personalizadas
-	customPathWeights[155][27] = highwayWeight;
+	customPathWeights[153][25] = highwayWeight;
+	customPathWeights[154][26] = highwayWeight;
+	customPathWeights[27][155] = highwayWeight;
+	customPathWeights[28][156] = highwayWeight;
 
 	fillGraph(threadville);
 	setNodePaths(threadville);

@@ -550,18 +550,15 @@ int main(int argc, char *argv[]) {
 	asignarNodosALista();
 	cargarCordenadasNodos();
 
-	for(int i = 0; i < V; i++){
+//	for(int i = 0; i < V; i++){
 //		for(int j = 0; j < V; j++){
-			if(graph[27][i] != 0) {
-				printf("0 - %d, %d \n", i, graph[27][i]);
-			}
-			if(graph[155][i] != 0) {
-				printf("155 - %d, %d \n", i, graph[155][i]);
-			}
-
+//            if(graph[i][j] != 0) {
+//                printf("%d ", graph[i][j]);
+//            }
+//
 //		}
 //		printf("\n");
-	}
+//	}
 
 
 	/*
