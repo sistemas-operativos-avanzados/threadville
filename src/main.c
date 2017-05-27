@@ -514,10 +514,12 @@ static void add_vehicule(GtkWidget *widget, gpointer data) {
     int i;
     for(i=0; i<vehicules[contadorHilos]->cantidadParadas; i++){
         int valor= rand()%9+2;
+        //int valor= rand () % (a-b+1) + b;   // Este está entre a y b
         vehicules[contadorHilos]->paradas[i]=listaParadas[valor];                       
         printf("valor %d\n", valor);
     } // for     
-    
+    vehicules[contadorHilos]->x=vehicules[contadorHilos]->paradas[0]->x;
+    vehicules[contadorHilos]->y=vehicules[contadorHilos]->paradas[0]->y; //0;
     printf("creating thread %d\n", contadorHilos);
     rc = pthread_create(&threads[contadorHilos], NULL, update_car_position, (void *)vehicules[contadorHilos]);
     if (rc)
