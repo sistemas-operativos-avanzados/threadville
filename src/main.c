@@ -546,8 +546,9 @@ static void add_busRosa(GtkWidget *widget, gpointer data) {
 }
 
 static void add_busCeleste(GtkWidget *widget, gpointer data) {
-	int paradas[5] = {148, 112, 123, 159, 148};
-        int cantidadParadas = 5;
+	//int paradas[5] = {148, 112, 123, 159, 148};
+    int paradas[5] = {13, 137};
+        int cantidadParadas = 2;
         char *name = "BUS-CELESTE";
         add_bus(name, cantidadParadas, paradas);
 	//Bus Celeste> S6, M5S1, R4X2, X5, S6   
