@@ -41,18 +41,28 @@ static void draw_car (cairo_t * cr, VEHICULE * vehicule) {
         else if(vehicule->speed==5)
             cairo_set_source_rgb (cr, 1.0, 1.0, 1.0);
         else if(vehicule->speed==6)
-            cairo_set_source_rgb (cr, 1.0, 1.0, 0.0);        
+            cairo_set_source_rgb (cr, 1.0, 1.0, 0.0);
         
-        cairo_arc(cr, vehicule->x, vehicule->y+10, TILESIZE/2, 0, 2*3.14);
-        cairo_fill (cr);
+        if(vehicule->type==1){
+        	cairo_arc(cr, vehicule->x, vehicule->y+10, TILESIZE/2, 0, 2*3.14);
+        	cairo_fill (cr);
+	}else{
+		cairo_rectangle(cr, vehicule->x-10, vehicule->y,TILESIZE,TILESIZE);
+                cairo_fill (cr);
+	}
         
         if(vehicule->speed!=4)
             cairo_set_source_rgb (cr, 0.0, 0.0, 0.0);
         else
             cairo_set_source_rgb (cr, 1.0, 1.0, 1.0);
+
+	
         cairo_move_to(cr, vehicule->x-8, vehicule->y+12);
+	
+		
+
         cairo_set_font_size(cr, 12);
-        cairo_show_text(cr, "A");        
+        cairo_show_text(cr, vehicule -> nextDestiny);
         
     }
     
@@ -87,6 +97,8 @@ void *update_car_position(void * car)
     //displayDestinations(tempCar->route->destinations);
     DESTINY *destinoActual = tempCar->route->destinations;
     destinoActual=destinoActual->next;
+    tempCar -> nextDestiny = tempCar -> paradas[p + 1] -> name;
+
 //    printf("Desti %d\n", destinoActual->node->x);
     bool mover=true;
     while(tempCar->run){
@@ -118,6 +130,7 @@ void *update_car_position(void * car)
 
                         printf("FIN\n");
                         usleep(tempCar->delay*1000000);
+                        tempCar -> nextDestiny = tempCar -> paradas[p + 1] -> name;
                     }else{
                         tempCar->run=false;
                         tempCar->x=0;
