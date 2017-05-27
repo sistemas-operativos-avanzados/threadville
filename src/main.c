@@ -535,6 +535,8 @@ static void add_vehicule(GtkWidget *widget, gpointer data) {
 void add_bus(char *id, int cantidadParadas, int paradas[]){
 	char *_id = id;    
 	int rc;
+    
+    g_print("BUS\n");
     vehicules[contadorHilos]= createBus(_id);
     
 
@@ -542,7 +544,7 @@ void add_bus(char *id, int cantidadParadas, int paradas[]){
     vehicules[contadorHilos]->cantidadParadas = cantidadParadas;
     vehicules[contadorHilos]->paradas=(NODE*) calloc(vehicules[contadorHilos]->cantidadParadas, sizeof(NODE));
 
-	for(int i = 0; i <= cantidadParadas; i++){
+	for(int i = 0; i < cantidadParadas; i++){
 	
          vehicules[contadorHilos]->paradas[i]=listaParadas[paradas[i]];
 printf("RUTA %s\n", listaParadas[i]->name);
@@ -564,8 +566,8 @@ printf("RUTA %s\n", listaParadas[i]->name);
 static void add_busNaranja(GtkWidget *widget, gpointer data) {
     int paradas[21] = {101, 104, 108, 103, 104, 108, 20, 21, 109, 147, 146, 58, 55, 143, 54, 51, 139, 138, 12, 13, 101};
     int cantidadParadas = 21;
-	char *name = "BUS-NARANJA";
-	add_bus(name, cantidadParadas, paradas);
+    char *name = "BUS-NARANJA";
+    add_bus(name, cantidadParadas, paradas);
     //Bus Lombriz - Naranja> M3, O6, C8, C3, O3, Q6, E8, E3, Q3, X4, X7, L6, J3, V4, J6, H3, T4, T7, H6, A8, A3, M3
 }
 
@@ -589,47 +591,47 @@ static void add_busAzul(GtkWidget *widget, gpointer data) {
      int paradas[7] = {111, 157, 150, 100, 82, 77, 111};
      int cantidadParadas = 7;
      char *name = "BUS-AZUL";
-add_bus(name, cantidadParadas, paradas);
-//Periferica Sur - Azul> R3, W5, T6, M6, Y (dandole la vuelta), toma la pista hacia el Este Z (dandole la vuelta), R3
+     add_bus(name, cantidadParadas, paradas);
+     //Periferica Sur - Azul> R3, W5, T6, M6, Y (dandole la vuelta), toma la pista hacia el Este Z (dandole la vuelta), R3
 }
 
 static void add_busBlanco(GtkWidget *widget, gpointer data) {
 	int paradas[7] = {65, 105, 151, 90, 50, 4, 65};
         int cantidadParadas = 7;
         char *name = "BUS-BLANCO";
-add_bus(name, cantidadParadas, paradas);
-//Bus Blanco> I4, O3, T5, N1, H6, C1, I4
+        add_bus(name, cantidadParadas, paradas);
+        //Bus Blanco> I4, O3, T5, N1, H6, C1, I4
 }
 
 static void add_busGris(GtkWidget *widget, gpointer data) {
 	int paradas[7] = {153, 92, 52, 6, 67, 107, 153};
         int cantidadParadas = 7;
-    char *name = "BUS-GRIS";
-add_bus(name, cantidadParadas, paradas);
-//Bus Gris> U5, O1, I6, D1, J4, P3, U5
+        char *name = "BUS-GRIS";
+        add_bus(name, cantidadParadas, paradas);
+        //Bus Gris> U5, O1, I6, D1, J4, P3, U5
 }
 
 static void add_busNegro(GtkWidget *widget, gpointer data) {
 	int paradas[7] = {54, 8, 69, 109, 155, 94, 54};
         int cantidadParadas = 7;
-    char *name = "BUS-NEGRO";
-add_bus(name, cantidadParadas, paradas);
+        char *name = "BUS-NEGRO";
+        add_bus(name, cantidadParadas, paradas);
 	//Bus Negro> J6, E1, K4, Q3, V5, P1, J6
 }
 
 static void add_busRosa(GtkWidget *widget, gpointer data) {
 	int paradas[5] = {47, 36, 0, 11, 147};
         int cantidadParadas = 5;
-    char *name = "BUS-ROSA";
-add_bus(name, cantidadParadas, paradas);
+        char *name = "BUS-ROSA";
+        add_bus(name, cantidadParadas, paradas);
 	//Bus Rosa> F5L1, A6, A1, F2, F5L1
 }
 
 static void add_busCeleste(GtkWidget *widget, gpointer data) {
 	int paradas[5] = {148, 112, 123, 159, 148};
         int cantidadParadas = 5;
-    char *name = "BUS-CELESTE";
-add_bus(name, cantidadParadas, paradas);
+        char *name = "BUS-CELESTE";
+        add_bus(name, cantidadParadas, paradas);
 	//Bus Celeste> S6, M5S1, R4X2, X5, S6   
 }
 
@@ -706,61 +708,61 @@ int main(int argc, char *argv[]) {
     g_signal_connect(drawing, "draw", G_CALLBACK(on_draw), NULL);
     
     button = gtk_button_new_with_label("Vehicule");
-    gtk_fixed_put(GTK_FIXED(fixed), button, 1000, 50);
+    gtk_fixed_put(GTK_FIXED(fixed), button, 1000, 10);
     gtk_widget_set_size_request(button, 80, 30);  
     g_signal_connect(button, "clicked", G_CALLBACK(add_vehicule), NULL);
     
     button2 = gtk_button_new_with_label("Ambulance");
-    gtk_fixed_put(GTK_FIXED(fixed), button2, 1000, 100);
+    gtk_fixed_put(GTK_FIXED(fixed), button2, 1000, 40);
     gtk_widget_set_size_request(button2, 80, 30); 
     g_signal_connect(button2, "clicked", G_CALLBACK(add_Ambulance), NULL);  
 
-    buttonBusNaranja = gtk_button_new_with_label("Bus-Naranja");
-    gtk_fixed_put(GTK_FIXED(fixed), buttonBusNaranja, 1000, 150);
+    buttonBusNaranja = gtk_button_new_with_label("Naranja");
+    gtk_fixed_put(GTK_FIXED(fixed), buttonBusNaranja, 1000, 100);
     gtk_widget_set_size_request(buttonBusNaranja, 80, 30);  
     g_signal_connect(buttonBusNaranja, "clicked", G_CALLBACK(add_busNaranja), NULL);  
     
-    buttonBusVerde = gtk_button_new_with_label("Bus-Verde");
-    gtk_fixed_put(GTK_FIXED(fixed), buttonBusVerde, 1000, 200);
+    buttonBusVerde = gtk_button_new_with_label("Verde");
+    gtk_fixed_put(GTK_FIXED(fixed), buttonBusVerde, 1000, 130);
     gtk_widget_set_size_request(buttonBusVerde, 80, 30);  
     g_signal_connect(buttonBusVerde, "clicked", G_CALLBACK(add_busVerde), NULL);
 
 
-    buttonBusRojo = gtk_button_new_with_label("Bus-Rojo");
-    gtk_fixed_put(GTK_FIXED(fixed), buttonBusRojo, 1000, 250);
+    buttonBusRojo = gtk_button_new_with_label("Rojo");
+    gtk_fixed_put(GTK_FIXED(fixed), buttonBusRojo, 1000, 160);
     gtk_widget_set_size_request(buttonBusRojo, 80, 30);  
     g_signal_connect(buttonBusRojo, "clicked", G_CALLBACK(add_busRojo), NULL);
 
-    buttonBusAzul = gtk_button_new_with_label("Bus-Azul");
-    gtk_fixed_put(GTK_FIXED(fixed), buttonBusAzul, 1000, 300);
+    buttonBusAzul = gtk_button_new_with_label("Azul");
+    gtk_fixed_put(GTK_FIXED(fixed), buttonBusAzul, 1000, 190);
     gtk_widget_set_size_request(buttonBusAzul, 80, 30);  
     g_signal_connect(buttonBusAzul, "clicked", G_CALLBACK(add_busAzul), NULL);
 
 
-    buttonBusBlanco = gtk_button_new_with_label("Bus-Blanco");
-    gtk_fixed_put(GTK_FIXED(fixed), buttonBusBlanco, 1000, 350);
+    buttonBusBlanco = gtk_button_new_with_label("Blanco");
+    gtk_fixed_put(GTK_FIXED(fixed), buttonBusBlanco, 1000, 220);
     gtk_widget_set_size_request(buttonBusBlanco, 80, 30);  
     g_signal_connect(buttonBusBlanco, "clicked", G_CALLBACK(add_busBlanco), NULL);
 
-    buttonBusNegro = gtk_button_new_with_label("Bus-Negro");
-    gtk_fixed_put(GTK_FIXED(fixed), buttonBusNegro, 1000, 400);
+    buttonBusNegro = gtk_button_new_with_label("Negro");
+    gtk_fixed_put(GTK_FIXED(fixed), buttonBusNegro, 1000, 250);
     gtk_widget_set_size_request(buttonBusNegro, 80, 30);  
     g_signal_connect(buttonBusNegro, "clicked", G_CALLBACK(add_busNegro), NULL);
 
 
-    buttonBusGris = gtk_button_new_with_label("Bus-Blanco");
-    gtk_fixed_put(GTK_FIXED(fixed), buttonBusGris, 1000, 450);
+    buttonBusGris = gtk_button_new_with_label("Gris");
+    gtk_fixed_put(GTK_FIXED(fixed), buttonBusGris, 1000, 390);
     gtk_widget_set_size_request(buttonBusGris, 80, 30);  
     g_signal_connect(buttonBusGris, "clicked", G_CALLBACK(add_busGris), NULL);
     
-    buttonBusRosa = gtk_button_new_with_label("Bus-Rosa");
-    gtk_fixed_put(GTK_FIXED(fixed), buttonBusRosa, 1000, 500);
+    buttonBusRosa = gtk_button_new_with_label("Rosa");
+    gtk_fixed_put(GTK_FIXED(fixed), buttonBusRosa, 1000, 420);
     gtk_widget_set_size_request(buttonBusRosa, 80, 30);  
     g_signal_connect(buttonBusRosa, "clicked", G_CALLBACK(add_busRosa), NULL);
 
 
-    buttonBusCeleste = gtk_button_new_with_label("Bus-Celeste");
-    gtk_fixed_put(GTK_FIXED(fixed), buttonBusCeleste, 1000, 550);
+    buttonBusCeleste = gtk_button_new_with_label("Celeste");
+    gtk_fixed_put(GTK_FIXED(fixed), buttonBusCeleste, 1000, 450);
     gtk_widget_set_size_request(buttonBusCeleste, 80, 30);  
     g_signal_connect(buttonBusCeleste, "clicked", G_CALLBACK(add_busCeleste), NULL);
     
