@@ -4,6 +4,7 @@
 #include <stdbool.h>
 #include "threadville_functions.h"
 #include "threadville_globals.h"
+#include <math.h>
 
 #define NUM_VEHICULE 100
 
@@ -47,7 +48,7 @@ static void draw_car (cairo_t * cr, VEHICULE * vehicule) {
         	cairo_arc(cr, vehicule->x, vehicule->y+10, TILESIZE/2, 0, 2*3.14);
         	cairo_fill (cr);
 	}else{
-		cairo_rectangle(cr, vehicule->x-10, vehicule->y,TILESIZE,TILESIZE);
+		cairo_rectangle(cr, vehicule->x-10, vehicule->y,TILESIZE+TILESIZE*fabs(vehicule->dx),TILESIZE+TILESIZE*fabs(vehicule->dy));
                 cairo_fill (cr);
 	}
         
