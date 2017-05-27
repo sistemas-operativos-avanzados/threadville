@@ -163,6 +163,7 @@ void releaseColor(COLORSPEED *colorSpeed){
 
 //VEHICULES
 VEHICULE* createCar(char *id){
+
 	VEHICULE *car = malloc(sizeof(VEHICULE));
 	car->id = strdup(id);
 	car->status = 0;
@@ -175,14 +176,16 @@ VEHICULE* createCar(char *id){
 	car->route = NULL;
 	car->stops = NULL;
         
-        car->x=30; //nodeY1.x;
-        car->y=0; //nodeY1.y;
+        //car->x=30; //nodeY1.x;
+        //car->y=0; //nodeY1.y;
         car->dx=1;
         car->dy=0;
-        car->width=20;
-        car->height=20;    
+        car->width=TILESIZE;
+        car->height=TILESIZE;    
         car->run=true;
-        car->speed=3;
+        srand(time(NULL));
+        car->speed=rand()%7;
+        printf("Cs: %d\n", car->speed);
 
        
 //        numero = rand () % (N-M+1) + M;   // Este está entre M y N
