@@ -609,15 +609,10 @@ int main(int argc, char *argv[]) {
     gtk_widget_set_size_request(drawing, WIDTH_DA, HEIGTH_DA); 
     g_signal_connect(drawing, "draw", G_CALLBACK(on_draw), NULL);
     
-    button = gtk_button_new_with_label("Vehicule");
+    button = gtk_button_new_with_label("Vehiculo");
     gtk_fixed_put(GTK_FIXED(fixed), button, 1000, 10);
     gtk_widget_set_size_request(button, 80, 30);  
     g_signal_connect(button, "clicked", G_CALLBACK(add_vehicule), NULL);
-    
-    button2 = gtk_button_new_with_label("Ambulance");
-    gtk_fixed_put(GTK_FIXED(fixed), button2, 1000, 40);
-    gtk_widget_set_size_request(button2, 80, 30); 
-    g_signal_connect(button2, "clicked", G_CALLBACK(add_Ambulance), NULL);  
 
     buttonBusNaranja = gtk_button_new_with_label("Naranja");
     gtk_fixed_put(GTK_FIXED(fixed), buttonBusNaranja, 1000, 100);

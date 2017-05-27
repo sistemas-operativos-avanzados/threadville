@@ -63,7 +63,7 @@ static void draw_car (cairo_t * cr, VEHICULE * vehicule) {
 		
 
         cairo_set_font_size(cr, 12);
-        cairo_show_text(cr, "A");        
+        cairo_show_text(cr, vehicule -> nextDestiny);
         
     }
     
@@ -98,6 +98,8 @@ void *update_car_position(void * car)
     //displayDestinations(tempCar->route->destinations);
     DESTINY *destinoActual = tempCar->route->destinations;
     destinoActual=destinoActual->next;
+    tempCar -> nextDestiny = tempCar -> paradas[p + 1] -> name;
+
 //    printf("Desti %d\n", destinoActual->node->x);
     bool mover=true;
     while(tempCar->run){
@@ -129,6 +131,7 @@ void *update_car_position(void * car)
 
                         printf("FIN\n");
                         usleep(tempCar->delay*1000000);
+                        tempCar -> nextDestiny = tempCar -> paradas[p + 1] -> name;
                     }else{
                         tempCar->run=false;
                         tempCar->x=0;
