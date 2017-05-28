@@ -94,7 +94,8 @@ typedef struct BRIDGE {
 	struct NODE *southRightNode;
 
 	// 2 semáforos por puente 
-	sem_t controlSemaphore[2];
+	bool north_semaphore;
+	bool south_semaphore;
 
 }BRIDGE;
 
@@ -381,23 +382,20 @@ void addStop(VEHICULE *vehicule, NODE *stop){
 }
 
 void semaphoresBridgeControlInit(BRIDGE *bridge){
-	int i=0;
-	sem_t semaphore;
-
-	for (i = 0; i < 2; ++i){
-		semaphore = bridge->controlSemaphore[i];
-	    sem_init(&semaphore,0,1);
-	}
-
+	bridge->north_semaphore = true;
+	bridge->south_semaphore = false;
 }
 
 void semaphoresBridgeControlWait(BRIDGE *bridge){
-	int i = 0; 
-	for (i = 0; i < 2; ++i){
-		sem_wait(&bridge->controlSemaphore[i]);
+	if(bridge->north_semaphore){
+		//car needs to wait
+		bridge->north_semaphore = false;
+		bridge->south_semaphore = true;
 	}
-	for (i = 0; i < 2; ++i){
-		sem_destroy(&bridge->controlSemaphore[i]);
+	if(bridge->south_semaphore){
+		//car needs to wait
+		bridge->north_semaphore = false;
+		bridge->south_semaphore = true;
 	}
 }
 
