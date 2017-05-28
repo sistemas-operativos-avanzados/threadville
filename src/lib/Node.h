@@ -1063,7 +1063,6 @@ void init(){
 
 } // init
 
-
 // ********************** cargarNodos
 
 void asignarNodosALista(){
@@ -1110,7 +1109,7 @@ void asignarNodosALista(){
         listaParadas[35]=nodeF4;
         listaParadas[36]=nodeA6G1;
         listaParadas[37]=nodeA5G2;        
-		listaParadas[38]=nodeB6H1;
+	listaParadas[38]=nodeB6H1;
         listaParadas[39]=nodeB5H2;        
         
         listaParadas[40]=nodeC6I1;	
@@ -1150,102 +1149,127 @@ void asignarNodosALista(){
         listaParadas[71]=nodeL4;
         listaParadas[72]=nodeY8;
         listaParadas[73]=nodeY1;        
-        listaParadas[74]=nodeY2;        
-        listaParadas[75]=nodeZ2;
-        listaParadas[76]=nodeZ1;
-        listaParadas[77]=nodeZ8;
-        listaParadas[78]=nodeY3;
-        listaParadas[79]=nodeZ3;        
+        listaParadas[74]=nodeY2;
         
-        listaParadas[80]=nodeY4;
-        listaParadas[81]=nodeZ4;        
-        listaParadas[82]=nodeY7;
-        listaParadas[83]=nodeY6;
-        listaParadas[84]=nodeY5;        
-        listaParadas[85]=nodeZ5;
-        listaParadas[86]=nodeZ6;
-        listaParadas[87]=nodeZ7;        
-        listaParadas[88]=nodeM1;
-        listaParadas[89]=nodeM2;        
+        listaParadas[75]=bridgeNodeG4;
+        listaParadas[76]=bridgeNodeH5;
+        listaParadas[77]=bridgeNodeH4;
+        listaParadas[78]=bridgeNodeI5;
+        listaParadas[79]=bridgeNodeI4;        
+        listaParadas[80]=bridgeNodeJ5;
+        listaParadas[81]=bridgeNodeJ4;        
+        listaParadas[82]=bridgeNodeK5;
+        listaParadas[83]=bridgeNodeK4;
+        listaParadas[84]=bridgeNodeL5;
+        
+        listaParadas[85]=nodeZ2;
+        listaParadas[86]=nodeZ1;
+        listaParadas[87]=nodeZ8;        
+        listaParadas[88]=nodeY3;
+        listaParadas[89]=nodeZ3;        
 
-        listaParadas[90]=nodeN1;
-        listaParadas[91]=nodeN2;        
-        listaParadas[92]=nodeO1;
-        listaParadas[93]=nodeO2;        
-        listaParadas[94]=nodeP1;
-        listaParadas[95]=nodeP2;        
-        listaParadas[96]=nodeQ1;
-        listaParadas[97]=nodeQ2;              
-        listaParadas[98]=nodeR1;
-        listaParadas[99]=nodeR2;
+        listaParadas[90]=nodeY4;
+        listaParadas[91]=nodeZ4;        
+        listaParadas[92]=nodeY7;
+        listaParadas[93]=nodeY6;        
+        listaParadas[94]=nodeY5;
+        listaParadas[95]=bridgeNodeM2;        
+        listaParadas[96]=bridgeNodeN1;
+        listaParadas[97]=bridgeNodeN2;              
+        listaParadas[98]=bridgeNodeO1;
+        listaParadas[99]=bridgeNodeO2;
         
-        listaParadas[100]=nodeM6;
-        listaParadas[101]=nodeM3;        
-        listaParadas[102]=nodeN6;
-        listaParadas[103]=nodeN3;
-        listaParadas[104]=nodeO6;
-        listaParadas[105]=nodeO3;        
-        listaParadas[106]=nodeP6;
-        listaParadas[107]=nodeP3;        
-        listaParadas[108]=nodeQ6;
-        listaParadas[109]=nodeQ3;        
+        listaParadas[100]=bridgeNodeP1;
+        listaParadas[101]=bridgeNodeP2;        
+        listaParadas[102]=bridgeNodeQ1;
+        listaParadas[103]=bridgeNodeQ2;
+        listaParadas[104]=bridgeNodeR1;
         
-        listaParadas[110]=nodeR6;
-        listaParadas[111]=nodeR3;
-        listaParadas[112]=nodeM5S1;        	
-        listaParadas[113]=nodeM4S2;
-		listaParadas[114]=nodeN5T1;
-        listaParadas[115]=nodeN4T2;        	
-        listaParadas[116]=nodeO5U1;
-		listaParadas[117]=nodeO4U2;
-        listaParadas[118]=nodeP5V1;        
-        listaParadas[119]=nodeP4V2;	
+        listaParadas[105]=nodeZ5;        
+        listaParadas[106]=nodeZ6;
+        listaParadas[107]=nodeZ7;
+        
+        listaParadas[108]=nodeM1;
+        listaParadas[109]=nodeM2;        
+        
+        listaParadas[110]=nodeN1;
+        listaParadas[111]=nodeN2;
+        listaParadas[112]=nodeO1;        	
+        listaParadas[113]=nodeO2;
+	listaParadas[114]=nodeP1;
+        listaParadas[115]=nodeP2;        	
+        listaParadas[116]=nodeQ1;
+	listaParadas[117]=nodeQ2;
+        listaParadas[118]=nodeR1;        
+        listaParadas[119]=nodeR2;	
                 
-        listaParadas[120]=nodeQ5W1;	
-		listaParadas[121]=nodeQ4W2;
-        listaParadas[122]=nodeR5X1;	
-        listaParadas[123]=nodeR4X2;
-        listaParadas[124]=nodeS8;
-        listaParadas[125]=nodeS3;        
-        listaParadas[126]=nodeT8;
-        listaParadas[127]=nodeT3;        
-        listaParadas[128]=nodeU8;
-        listaParadas[129]=nodeU3;
+        listaParadas[120]=nodeM6;	
+	listaParadas[121]=nodeM3;
+        listaParadas[122]=nodeN6;	
+        listaParadas[123]=nodeN3;
+        listaParadas[124]=nodeO6;
+        listaParadas[125]=nodeO3;        
+        listaParadas[126]=nodeP6;
+        listaParadas[127]=nodeP3;        
+        listaParadas[128]=nodeQ6;
+        listaParadas[129]=nodeQ3;
 
         
-        listaParadas[130]=nodeV8;
-        listaParadas[131]=nodeV3; 
-        listaParadas[132]=nodeW8;        
-        listaParadas[133]=nodeW3;         
-        listaParadas[134]=nodeX8;
-        listaParadas[135]=nodeX3;
-        listaParadas[136]=nodeS7;
-        listaParadas[137]=nodeS4;       
-        listaParadas[138]=nodeT7;
-        listaParadas[139]=nodeT4;        
+        listaParadas[130]=nodeR6;
+        listaParadas[131]=nodeR3; 
+        listaParadas[132]=nodeM5S1;        
+        listaParadas[133]=nodeM4S2;         
+        listaParadas[134]=nodeN5T1;
+        listaParadas[135]=nodeN4T2;
+        listaParadas[136]=nodeO5U1;
+        listaParadas[137]=nodeO4U2;       
+        listaParadas[138]=nodeP5V1;
+        listaParadas[139]=nodeP4V2;        
         
-        listaParadas[140]=nodeU7;
-        listaParadas[141]=nodeU4;        
-        listaParadas[142]=nodeV7;
-        listaParadas[143]=nodeV4;
-        listaParadas[144]=nodeW7;
-        listaParadas[145]=nodeW4;        
-        listaParadas[146]=nodeX7;
-        listaParadas[147]=nodeX4;
-        listaParadas[148]=nodeS6;
-        listaParadas[149]=nodeS5;        
+        listaParadas[140]=nodeQ5W1;
+        listaParadas[141]=nodeQ4W2;        
+        listaParadas[142]=nodeR5X1;
+        listaParadas[143]=nodeR4X2;
+        listaParadas[144]=nodeS8;
+        listaParadas[145]=nodeS3;        
+        listaParadas[146]=nodeT8;
+        listaParadas[147]=nodeT3;
+        listaParadas[148]=nodeU8;
+        listaParadas[149]=nodeU3;        
         
-        listaParadas[150]=nodeT6;
-        listaParadas[151]=nodeT5;
-        listaParadas[152]=nodeU6;
-        listaParadas[153]=nodeU5;
-        listaParadas[154]=nodeV6;        
-        listaParadas[155]=nodeV5;        
-        listaParadas[156]=nodeW6;
-        listaParadas[157]=nodeW5;        
-        listaParadas[158]=nodeX6;
-        listaParadas[159]=nodeX5;
+        listaParadas[150]=nodeV8;
+        listaParadas[151]=nodeV3;
+        listaParadas[152]=nodeW8;
+        listaParadas[153]=nodeW3;
+        listaParadas[154]=nodeX8;        
+        listaParadas[155]=nodeX3;        
+        listaParadas[156]=nodeS7;
+        listaParadas[157]=nodeS4;        
+        listaParadas[158]=nodeT7;
+        listaParadas[159]=nodeT4;
     
+        listaParadas[160]=nodeU7;
+        listaParadas[161]=nodeU4;
+        listaParadas[162]=nodeV7;
+        listaParadas[163]=nodeV4;
+        listaParadas[164]=nodeW7;        
+        listaParadas[165]=nodeW4;        
+        listaParadas[166]=nodeX7;
+        listaParadas[167]=nodeX4;        
+        listaParadas[168]=nodeS6;
+        listaParadas[169]=nodeS5;
+
+        listaParadas[170]=nodeT6;
+        listaParadas[171]=nodeT5;
+        listaParadas[172]=nodeU6;
+        listaParadas[173]=nodeU5;
+        listaParadas[174]=nodeV6;        
+        listaParadas[175]=nodeV5;        
+        listaParadas[176]=nodeW6;
+        listaParadas[177]=nodeW5;        
+        listaParadas[178]=nodeX6;
+        listaParadas[179]=nodeX5;        
+        
     
 } // asignarNodosALista
 
@@ -1258,28 +1282,29 @@ void cargarCordenadasNodos () {
             if(map2[x][y]==5){
                 listaParadas[p]->x=y*TILESIZE+10;
                 listaParadas[p]->y=x*TILESIZE;
-               // printf("...N: %d\n", p);
-               // printf("...Px: %d\n", listaParadas[p]->x);
-               // printf("...Py: %d\n", listaParadas[p]->y);
-              //  printf("----------------\n");
                 p++;
                 t++;
             } else if(map2[x][y]==6){
                 listaParadas[p]->x=y*TILESIZE;
                 listaParadas[p]->y=x*TILESIZE;
-                //nodos[p+12].x=y*TILESIZE;
-                //nodos[p+12].y=x*TILESIZE;
-               // printf("...N: %d\n", p);
-               // printf("...Px: %d\n", listaParadas[p]->x);
-               // printf("...Py: %d\n", listaParadas[p]->y);
-               // printf("----------------\n");
                 p++;
                 t++;
-            } // if          
+            }else if(map2[x][y]==8){
+                listaParadas[p]->x=y*TILESIZE;
+                listaParadas[p]->y=x*TILESIZE;
+                p++;
+                t++;
+            }else if(map2[x][y]==9){
+                listaParadas[p]->x=y*TILESIZE+10; // 20
+                listaParadas[p]->y=x*TILESIZE;
+                p++;
+                t++;
+            }         
         } // for y
     } // for x
     printf("...T: %d\n", t);    
 } // cargarNodos
+
 
 // ******* dijkstra_test ******
 

@@ -85,6 +85,7 @@ bool near_car(VEHICULE *car1, VEHICULE *car2) {
 } // near_car
 
 
+
 void *update_car_position(void * car)
 {
     
@@ -95,7 +96,7 @@ void *update_car_position(void * car)
         //generateRoute(tempCar, tempCar->paradas[h], tempCar->paradas[h+1]);
     
     generateRoute(tempCar, tempCar->paradas[p], tempCar->paradas[p+1]);
-    //displayDestinations(tempCar->route->destinations);
+    displayDestinations(tempCar->route->destinations);
     DESTINY *destinoActual = tempCar->route->destinations;
     destinoActual=destinoActual->next;
     tempCar -> nextDestiny = tempCar -> paradas[p + 1] -> name;
@@ -125,19 +126,43 @@ void *update_car_position(void * car)
                 }else{
                     ++p;
                     if(p < tempCar->cantidadParadas-1){
-                        generateRoute(tempCar, tempCar->paradas[p], tempCar->paradas[p+1]);
+                        generateRoute(tempCar, tempCar->paradas[p%tempCar->cantidadParadas], tempCar->paradas[(p+1)%tempCar->cantidadParadas]);
+                        printf("--------\n");
+                        displayDestinations(tempCar->route->destinations);
                         destinoActual = tempCar->route->destinations;
                         destinoActual=destinoActual->next;
 
-                        printf("FIN\n");
+                       // printf("FIN\n");
                         usleep(tempCar->delay*1000000);
                         tempCar -> nextDestiny = tempCar -> paradas[p + 1] -> name;
                     }else{
-                        tempCar->run=false;
-                        tempCar->x=0;
-                        tempCar->x=0;
-                        usleep(tempCar->delay*1000000);
-                        break;                        
+
+                        if(tempCar->type==1){
+                            tempCar->run=false;
+                            tempCar->x=0;
+                            tempCar->x=0;
+                            usleep(tempCar->delay*1000000);
+                            printf("FIN\n");
+                            break;
+                        }else {
+                            
+                            //p=p%tempCar->cantidadParadas;
+                            //p=0;
+                            printf("INI %d\n", p);
+                            
+                            generateRoute(tempCar, tempCar->paradas[p], tempCar->paradas[0]);
+                            printf("--------\n");
+                            displayDestinations(tempCar->route->destinations);
+                            destinoActual = tempCar->route->destinations;
+                            destinoActual=destinoActual->next;
+
+                            usleep(tempCar->delay*1000000);
+                            tempCar -> nextDestiny = tempCar -> paradas[0] -> name;
+                            p=-1;
+                            
+                        }
+
+                        
                     }
                 }                    
 
@@ -161,9 +186,17 @@ void *update_car_position(void * car)
             }
                 
         }else{
-            tempCar->run=false;
-            tempCar->x=0;
-            tempCar->y=0;
+            if(tempCar->type==1){
+                tempCar->run=false;
+                tempCar->x=0;
+                tempCar->y=0;
+                printf("FIN\n");
+            }else {
+                //p=p%tempCar->cantidadParadas;
+                p=0;
+                printf("IN F %d\n", p);
+                
+            }            
         }                
         
        usleep(tempCar->speed*10000);
@@ -172,5 +205,4 @@ void *update_car_position(void * car)
     } // while run
         
 } // update_car_position
-
 

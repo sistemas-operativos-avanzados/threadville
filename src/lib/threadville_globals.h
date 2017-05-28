@@ -5,7 +5,7 @@
 
 #define V 180
 
-#define N 160
+#define N 180
 
 #define RN 3
 
