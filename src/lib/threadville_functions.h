@@ -67,7 +67,7 @@ typedef struct NODE {
 	char *name;
 	int id;
 	int capability;
-	int allowTravel;//Indica si se puede pasar por el nodo, se utiliza cuando un nodo esta en reparaciones o es parte de un puente
+	bool allowTravel;//Indica si se puede pasar por el nodo, se utiliza cuando un nodo esta en reparaciones o es parte de un puente
 	int reacheabledNodes[RN];
 	struct NODE *next;
 	struct VEHICULE *vehicule_1;
@@ -92,10 +92,6 @@ typedef struct BRIDGE {
 	struct NODE *southLeftNode;
 	struct NODE *northRightNode;
 	struct NODE *southRightNode;
-
-	// 2 semáforos por puente 
-	bool north_semaphore;
-	bool south_semaphore;
 
 }BRIDGE;
 
@@ -381,21 +377,30 @@ void addStop(VEHICULE *vehicule, NODE *stop){
 	currentStops = newStop;
 }
 
+/*
+	Semáforos del norte permiten el paso
+	Semáforos del sur NO permiten el paso
+*/
 void semaphoresBridgeControlInit(BRIDGE *bridge){
-	bridge->north_semaphore = true;
-	bridge->south_semaphore = false;
+	bridge->northLeftNode->allowTravel = true;
+	bridge->southRightNode->allowTravel = false;
+	printf("Bridge = %s\n  North Semaphore = %d, South Semaphore = %d\n", bridge->id, bridge->northLeftNode->allowTravel , bridge->southRightNode->allowTravel );
 }
 
+/*
+	Si los semáforos del norte permiten el paso, los semáforos del sur NO
+	Si los semáforos del sur permiten el paso, los semáforos del norte NO 
+*/
 void semaphoresBridgeControlWait(BRIDGE *bridge){
-	if(bridge->north_semaphore){
+	if(bridge->northLeftNode->allowTravel){
 		//car needs to wait
-		bridge->north_semaphore = false;
-		bridge->south_semaphore = true;
+		bridge->northLeftNode->allowTravel = false;
+		bridge->southRightNode->allowTravel = true;
 	}
-	if(bridge->south_semaphore){
+	if(bridge->southRightNode->allowTravel){
 		//car needs to wait
-		bridge->north_semaphore = false;
-		bridge->south_semaphore = true;
+		bridge->northLeftNode->allowTravel = true;
+		bridge->southRightNode->allowTravel = false;
 	}
 }
 
