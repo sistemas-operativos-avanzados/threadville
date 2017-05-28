@@ -60,9 +60,9 @@ void thePath(int from, int to, int paths[], int result[]){
 
     //Reversa
     result[i] = from;
-//    for(; i > 0; i--){
-//        printf("%d -> ",  result[i]);
-//    }
+    for(; i > 0; i--){
+        printf("%d -> ",  result[i]);
+    }
 
 }
 

@@ -1,3 +1,5 @@
+#include <semaphore.h>
+
 #ifndef TV_ADT
 
 
@@ -65,7 +67,7 @@ typedef struct NODE {
 	char *name;
 	int id;
 	int capability;
-	int allowTravel;//Indica si se puede pasar por el nodo, se utiliza cuando un nodo esta en reparaciones o es parte de un puente
+	bool allowTravel;//Indica si se puede pasar por el nodo, se utiliza cuando un nodo esta en reparaciones o es parte de un puente
 	int reacheabledNodes[RN];
 	struct NODE *next;
 	struct VEHICULE *vehicule_1;
@@ -81,13 +83,16 @@ typedef struct THREADVILLE {
 	struct NODE *nodes;
 }THREADVILLE;
 
-//Estructura que define los puentes, se utiliza 4 nodos para definir la relacion en el mapa de ambas vias a pesar de ser un camino de un solo carril. Cada uno de los nodos tiene capacidad 3, por lo que se cumple que la capacidad de los puentes es de 6 carros
+// Estructura que define los puentes, se utiliza 4 nodos para definir la relacion en el mapa 
+// de ambas vias a pesar de ser un camino de un solo carril. Cada uno de los nodos tiene 
+// capacidad 3, por lo que se cumple que la capacidad de los puentes es de 6 carros
 typedef struct BRIDGE {
 	char *id;
 	struct NODE *northLeftNode;
 	struct NODE *southLeftNode;
 	struct NODE *northRightNode;
 	struct NODE *southRightNode;
+
 }BRIDGE;
 
 
@@ -206,7 +211,7 @@ VEHICULE* createAmbulance(char *id){
 	return ambulance;
 }
 
-VEHICULE* createBus(char *id){
+VEHICULE* createBus(char *id, int speed){
 	VEHICULE *bus = malloc(sizeof(VEHICULE));
 	bus->id = strdup(id);
 	bus->status = 0;
@@ -225,7 +230,7 @@ VEHICULE* createBus(char *id){
         bus->width=20;
         bus->height=20;    
         bus->run=true;
-        bus->speed=3;
+        bus->speed=speed;
 	return bus;
 }
 
@@ -372,6 +377,32 @@ void addStop(VEHICULE *vehicule, NODE *stop){
 	currentStops = newStop;
 }
 
+/*
+	Semáforos del norte permiten el paso
+	Semáforos del sur NO permiten el paso
+*/
+void semaphoresBridgeControlInit(BRIDGE *bridge){
+	bridge->northLeftNode->allowTravel = true;
+	bridge->southRightNode->allowTravel = false;
+	printf("Bridge = %s\n  North Semaphore = %d, South Semaphore = %d\n", bridge->id, bridge->northLeftNode->allowTravel , bridge->southRightNode->allowTravel );
+}
+
+/*
+	Si los semáforos del norte permiten el paso, los semáforos del sur NO
+	Si los semáforos del sur permiten el paso, los semáforos del norte NO 
+*/
+void semaphoresBridgeControlWait(BRIDGE *bridge){
+	if(bridge->northLeftNode->allowTravel){
+		//car needs to wait
+		bridge->northLeftNode->allowTravel = false;
+		bridge->southRightNode->allowTravel = true;
+	}
+	if(bridge->southRightNode->allowTravel){
+		//car needs to wait
+		bridge->northLeftNode->allowTravel = true;
+		bridge->southRightNode->allowTravel = false;
+	}
+}
 
 #endif
 
