@@ -1340,10 +1340,5 @@ void generateRoute(VEHICULE *vehicule, NODE *start, NODE *end){
 		}		
 	}
 
-	/*
-		¿La ruta tiene puentes? 
-			si - Activar semaforo con sem_wait
-	*/
-
 	vehicule->route = route;
 }
