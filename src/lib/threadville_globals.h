@@ -14,6 +14,16 @@
 
 int contadorHilos=0;
 
+int hiloBusNaranja=0;
+int hiloBusRojo=0;
+int hiloBusVerde=0;
+int hiloBusAzul=0;
+int hiloBusBlanco=0;
+int hiloBusNegro=0;
+int hiloBusGris=0;
+int hiloBusRosa=0;
+int hiloBusCeleste=0;
+
 #define WIDTH 1080
 #define HEIGTH 720
 
