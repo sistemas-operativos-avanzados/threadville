@@ -167,6 +167,8 @@ static void add_busNaranja(GtkWidget *widget, gpointer data) {
 
 static void off_busNaranja(GtkWidget *widget, gpointer data) {
     vehicules[hiloBusNaranja]->run = false;
+    vehicules[hiloBusNaranja]->x = 0;
+    vehicules[hiloBusNaranja]->y = 0; 
     gtk_widget_set_sensitive(buttonBusNaranja, true);
     gtk_widget_set_sensitive(buttonBusNaranjaOff, false);
 }
@@ -191,6 +193,8 @@ static void add_busRojo(GtkWidget *widget, gpointer data) {
 
 static void off_busRojo(GtkWidget *widget, gpointer data) {
     vehicules[hiloBusRojo]->run = false;
+    vehicules[hiloBusRojo]->x = 0;
+    vehicules[hiloBusRojo]->y = 0; 
     gtk_widget_set_sensitive(buttonBusRojo, true);
     gtk_widget_set_sensitive(buttonBusRojoOff, false);
 }
@@ -215,6 +219,8 @@ static void add_busVerde(GtkWidget *widget, gpointer data) {
 
 static void off_busVerde(GtkWidget *widget, gpointer data) {
     vehicules[hiloBusVerde]->run = false;
+    vehicules[hiloBusVerde]->x = 0;
+    vehicules[hiloBusVerde]->y = 0; 
     gtk_widget_set_sensitive(buttonBusVerde, true);
     gtk_widget_set_sensitive(buttonBusVerdeOff, false);
 }
@@ -239,6 +245,8 @@ static void add_busAzul(GtkWidget *widget, gpointer data) {
 
 static void off_busAzul(GtkWidget *widget, gpointer data) {  
      vehicules[hiloBusAzul]->run = false;
+     vehicules[hiloBusAzul]->x = 0;
+     vehicules[hiloBusAzul]->y = 0; 
      gtk_widget_set_sensitive(buttonBusAzul, true);
      gtk_widget_set_sensitive(buttonBusAzulOff, false);
 }
@@ -263,6 +271,8 @@ static void add_busBlanco(GtkWidget *widget, gpointer data) {
 
 static void off_busBlanco(GtkWidget *widget, gpointer data) {
      vehicules[hiloBusBlanco]->run = false;
+     vehicules[hiloBusBlanco]->x = 0;
+     vehicules[hiloBusBlanco]->y = 0; 
      gtk_widget_set_sensitive(buttonBusBlanco, true);
      gtk_widget_set_sensitive(buttonBusBlancoOff, false);
 }
@@ -287,6 +297,8 @@ static void add_busGris(GtkWidget *widget, gpointer data) {
 
 static void off_busGris(GtkWidget *widget, gpointer data) {
     vehicules[hiloBusGris]->run = false;
+    vehicules[hiloBusGris]->x = 0;
+    vehicules[hiloBusGris]->y = 0; 
     gtk_widget_set_sensitive(buttonBusGris, true);
     gtk_widget_set_sensitive(buttonBusGrisOff, false);
 }
@@ -310,6 +322,8 @@ static void add_busNegro(GtkWidget *widget, gpointer data) {
 
 static void off_busNegro(GtkWidget *widget, gpointer data) {
     vehicules[hiloBusNegro]->run = false;
+    vehicules[hiloBusNegro]->x = 0;
+    vehicules[hiloBusNegro]->y = 0; 
     gtk_widget_set_sensitive(buttonBusNegro, true);
     gtk_widget_set_sensitive(buttonBusNegroOff, false);
 }
@@ -333,6 +347,8 @@ static void add_busRosa(GtkWidget *widget, gpointer data) {
 
 static void off_busRosa(GtkWidget *widget, gpointer data) {
     vehicules[hiloBusRosa]->run = false;
+    vehicules[hiloBusRosa]->x = 0;
+    vehicules[hiloBusRosa]->y = 0; 
     gtk_widget_set_sensitive(buttonBusRosa, true);
     gtk_widget_set_sensitive(buttonBusRosaOff, false);
 }
@@ -355,7 +371,9 @@ static void add_busCeleste(GtkWidget *widget, gpointer data) {
 }
 
 static void off_busCeleste(GtkWidget *widget, gpointer data) {
-    vehicules[hiloBusCeleste]->run = false; 
+    vehicules[hiloBusCeleste]->run = false;
+    vehicules[hiloBusCeleste]->x = 0;
+    vehicules[hiloBusCeleste]->y = 0; 
     gtk_widget_set_sensitive(buttonBusCeleste, true);
     gtk_widget_set_sensitive(buttonBusCelesteOff, false); 
 }
