@@ -206,7 +206,7 @@ VEHICULE* createAmbulance(char *id){
 	return ambulance;
 }
 
-VEHICULE* createBus(char *id){
+VEHICULE* createBus(char *id, int speed){
 	VEHICULE *bus = malloc(sizeof(VEHICULE));
 	bus->id = strdup(id);
 	bus->status = 0;
@@ -225,7 +225,7 @@ VEHICULE* createBus(char *id){
         bus->width=20;
         bus->height=20;    
         bus->run=true;
-        bus->speed=3;
+        bus->speed=speed;
 	return bus;
 }
 
