@@ -48,7 +48,9 @@ typedef struct VEHICULE{
 	int width, height;
 	int cantidadParadas;
 	struct NODE **paradas;
-	
+
+	char *nextDestiny;
+
 }VEHICULE;
 
 
@@ -175,17 +177,16 @@ VEHICULE* createCar(char *id){
 	car->colorSpeed = NULL;
 	car->route = NULL;
 	car->stops = NULL;
-        
-        //car->x=30; //nodeY1.x;
-        //car->y=0; //nodeY1.y;
-        car->dx=1;
-        car->dy=0;
-        car->width=TILESIZE;
-        car->height=TILESIZE;    
-        car->run=true;
-        srand(time(NULL));
-        car->speed=rand()%7;
-        printf("Cs: %d\n", car->speed);
+
+	car->dx=1;
+	car->dy=0;
+	car->width=TILESIZE;
+	car->height=TILESIZE;
+	car->run=true;
+	srand(time(NULL));
+	car->speed=rand()%7;
+	car->nextDestiny = "-";
+//	printf("Cs: %d\n", car->speed);
 	return car;
 }
 
