@@ -24,6 +24,8 @@
     GtkWidget *window;
     GtkWidget *button;
     GtkWidget *button2;
+    GtkWidget *labelBuses;
+
     GtkWidget *buttonBusNaranja;
     GtkWidget *buttonBusNaranjaOff;
 
@@ -440,6 +442,11 @@ int main(int argc, char *argv[]) {
     gtk_fixed_put(GTK_FIXED(fixed), button2, 1000, 40);
     gtk_widget_set_size_request(button2, 80, 30); 
     g_signal_connect(button2, "clicked", G_CALLBACK(add_Ambulance), NULL);  
+
+    //Buses
+    labelBuses = gtk_label_new("Buses");
+    gtk_fixed_put(GTK_FIXED(fixed), labelBuses, 1000, 40);
+    gtk_widget_set_size_request(labelBuses, 80, 30); 
 
     //BOTONES BUS NARANJA
     buttonBusNaranja = gtk_button_new_with_label("Naranja");
