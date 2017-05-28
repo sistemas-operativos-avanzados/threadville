@@ -93,6 +93,7 @@ typedef struct BRIDGE {
 	struct NODE *northRightNode;
 	struct NODE *southRightNode;
 
+	// 2 semáforos por puente 
 	sem_t controlSemaphore[2];
 
 }BRIDGE;
@@ -388,6 +389,16 @@ void semaphoresBridgeControlInit(BRIDGE *bridge){
 	    sem_init(&semaphore,0,1);
 	}
 
+}
+
+void semaphoresBridgeControlWait(BRIDGE *bridge){
+	int i = 0; 
+	for (i = 0; i < 2; ++i){
+		sem_wait(&bridge->controlSemaphore[i]);
+	}
+	for (i = 0; i < 2; ++i){
+		sem_destroy(&bridge->controlSemaphore[i]);
+	}
 }
 
 #endif
