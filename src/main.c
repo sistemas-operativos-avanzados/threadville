@@ -24,6 +24,8 @@
     GtkWidget *window;
     GtkWidget *button;
     GtkWidget *button2;
+    GtkWidget *labelBuses;
+
     GtkWidget *buttonBusNaranja;
     GtkWidget *buttonBusNaranjaOff;
 
@@ -155,14 +157,15 @@ void init_busNaranja(){
     char *name = "BUS-NARANJA";
     hiloBusNaranja = contadorHilos;
     add_bus(name, cantidadParadas, paradas, 7);
-    gtk_widget_set_sensitive(buttonBusNaranja, false);
-    gtk_widget_set_sensitive(buttonBusNaranjaOff, true);
+    
 
     //Bus Lombriz - Naranja> M3, O6, C8, C3, O3, Q6, E8, E3, Q3, X4, X7, L6, J3, V4, J6, H3, T4, T7, H6, A8, A3, M3
 }
 
 static void add_busNaranja(GtkWidget *widget, gpointer data) {
     init_busNaranja();
+    gtk_widget_set_sensitive(buttonBusNaranja, false);
+    gtk_widget_set_sensitive(buttonBusNaranjaOff, true);
 }
 
 static void off_busNaranja(GtkWidget *widget, gpointer data) {
@@ -181,14 +184,14 @@ void init_busRojo() {
     char *name = "BUS-ROJO";
     hiloBusRojo = contadorHilos;
     add_bus(name, cantidadParadas, paradas, 1);
-    gtk_widget_set_sensitive(buttonBusRojo, false);
-    gtk_widget_set_sensitive(buttonBusRojoOff, true);
 
     //Periferica Grande - Roja> A1, D1, F2, L4, Z (dandole la vuelta), R2, X5, U5, S6, M1, Y (dandole la vuelta)
 }
 
 static void add_busRojo(GtkWidget *widget, gpointer data) {
     init_busRojo();
+    gtk_widget_set_sensitive(buttonBusRojo, false);
+    gtk_widget_set_sensitive(buttonBusRojoOff, true);
 }
 
 static void off_busRojo(GtkWidget *widget, gpointer data) {
@@ -207,14 +210,14 @@ void init_busVerde() {
     char *name = "BUS-VERDE";
     hiloBusVerde = contadorHilos;
     add_bus(name, cantidadParadas, paradas, 3);
-    gtk_widget_set_sensitive(buttonBusVerde, false);
-    gtk_widget_set_sensitive(buttonBusVerdeOff, true);
 
     //Periferica Norte - Verde> E2, L3*, F2, L4, Z (dandole la vuelta), toma la pista hacia el Oeste Y (dandole la vuelta), G6, B1, E2
 }
 
 static void add_busVerde(GtkWidget *widget, gpointer data) {
     init_busVerde();
+    gtk_widget_set_sensitive(buttonBusVerde, false);
+    gtk_widget_set_sensitive(buttonBusVerdeOff, true);
 }
 
 static void off_busVerde(GtkWidget *widget, gpointer data) {
@@ -233,14 +236,14 @@ void init_busAzul() {
      char *name = "BUS-AZUL";
      hiloBusAzul = contadorHilos;
      add_bus(name, cantidadParadas, paradas, 2);
-     gtk_widget_set_sensitive(buttonBusAzul, false);
-     gtk_widget_set_sensitive(buttonBusAzulOff, true);
 
      //Periferica Sur - Azul> R3, W5, T6, M6, Y (dandole la vuelta), toma la pista hacia el Este Z (dandole la vuelta), R3
 }
 
 static void add_busAzul(GtkWidget *widget, gpointer data) {   
      init_busAzul();
+     gtk_widget_set_sensitive(buttonBusAzul, false);
+     gtk_widget_set_sensitive(buttonBusAzulOff, true);
 }
 
 static void off_busAzul(GtkWidget *widget, gpointer data) {  
@@ -259,14 +262,14 @@ void init_busBlanco() {
      char *name = "BUS-BLANCO";
      hiloBusBlanco = contadorHilos;
      add_bus(name, cantidadParadas, paradas, 5);
-     gtk_widget_set_sensitive(buttonBusBlanco, false);
-     gtk_widget_set_sensitive(buttonBusBlancoOff, true);
 
      //Bus Blanco> I4, O3, T5, N1, H6, C1, I4
 }
 
 static void add_busBlanco(GtkWidget *widget, gpointer data) {
      init_busBlanco();
+     gtk_widget_set_sensitive(buttonBusBlanco, false);
+     gtk_widget_set_sensitive(buttonBusBlancoOff, true);
 }
 
 static void off_busBlanco(GtkWidget *widget, gpointer data) {
@@ -285,14 +288,14 @@ void init_busGris() {
     char *name = "BUS-GRIS";
     hiloBusGris = contadorHilos;
     add_bus(name, cantidadParadas, paradas, 8);
-    gtk_widget_set_sensitive(buttonBusGris, false);
-    gtk_widget_set_sensitive(buttonBusGrisOff, true);
 
     //Bus Gris> U5, O1, I6, D1, J4, P3, U5
 }
 
 static void add_busGris(GtkWidget *widget, gpointer data) {
     init_busGris();
+    gtk_widget_set_sensitive(buttonBusGris, false);
+    gtk_widget_set_sensitive(buttonBusGrisOff, true);
 }
 
 static void off_busGris(GtkWidget *widget, gpointer data) {
@@ -310,14 +313,14 @@ void init_busNegro() {
     char *name = "BUS-NEGRO";
     hiloBusNegro = contadorHilos;
     add_bus(name, cantidadParadas, paradas, 4);
-    gtk_widget_set_sensitive(buttonBusNegro, false);
-    gtk_widget_set_sensitive(buttonBusNegroOff, true);
     
     //Bus Negro> J6, E1, K4, Q3, V5, P1, J6
 }
 
 static void add_busNegro(GtkWidget *widget, gpointer data) { 
     init_busNegro();
+    gtk_widget_set_sensitive(buttonBusNegro, false);
+    gtk_widget_set_sensitive(buttonBusNegroOff, true);
 }
 
 static void off_busNegro(GtkWidget *widget, gpointer data) {
@@ -334,8 +337,6 @@ void init_busRosa() {
     int cantidadParadas = 5;
     char *name = "BUS-ROSA";
     hiloBusRosa = contadorHilos;
-    gtk_widget_set_sensitive(buttonBusRosa, false);
-    gtk_widget_set_sensitive(buttonBusRosaOff, true);
     add_bus(name, cantidadParadas, paradas, 9);
     
     //Bus Rosa> F5L1, A6, A1, F2, F5L1
@@ -343,6 +344,8 @@ void init_busRosa() {
 
 static void add_busRosa(GtkWidget *widget, gpointer data) {
     init_busRosa();
+    gtk_widget_set_sensitive(buttonBusNegro, false);
+    gtk_widget_set_sensitive(buttonBusNegroOff, true);
 }
 
 static void off_busRosa(GtkWidget *widget, gpointer data) {
@@ -360,14 +363,14 @@ void init_busCeleste() {
     char *name = "BUS-CELESTE";
     hiloBusCeleste = contadorHilos;
     add_bus(name, cantidadParadas, paradas, 10);
-    gtk_widget_set_sensitive(buttonBusCeleste, false);
-    gtk_widget_set_sensitive(buttonBusCelesteOff, true);
 
     //Bus Celeste> S6, M5S1, R4X2, X5, S6   
 }
 
 static void add_busCeleste(GtkWidget *widget, gpointer data) {
     init_busCeleste();  
+    gtk_widget_set_sensitive(buttonBusCeleste, false);
+    gtk_widget_set_sensitive(buttonBusCelesteOff, true);
 }
 
 static void off_busCeleste(GtkWidget *widget, gpointer data) {
@@ -435,6 +438,11 @@ int main(int argc, char *argv[]) {
     gtk_fixed_put(GTK_FIXED(fixed), button, 1000, 10);
     gtk_widget_set_size_request(button, 80, 30);  
     g_signal_connect(button, "clicked", G_CALLBACK(add_vehicule), NULL);
+
+    //Buses
+    labelBuses = gtk_label_new("Buses");
+    gtk_fixed_put(GTK_FIXED(fixed), labelBuses, 1000, 70);
+    gtk_widget_set_size_request(labelBuses, 80, 30); 
 
     //BOTONES BUS NARANJA
     buttonBusNaranja = gtk_button_new_with_label("Naranja");
