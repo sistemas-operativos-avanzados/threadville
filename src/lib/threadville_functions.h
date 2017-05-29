@@ -20,10 +20,7 @@ typedef struct ROUTE{
 //Estructura de vehiculo, utilizada para crear carros, ambulancias y buses
 typedef struct VEHICULE{
 	char *id;
-	int status; //1 for alive and 0 for dead.
 	int type; //1 carro, 2 para ambulancia, 3 para bus
-	int longCapability;
-	int availableRides;
 	struct ROUTE *route;
 	int delay;
 	struct VEHICULE *next;
@@ -53,9 +50,6 @@ typedef struct NODE {
 	bool allowTravel;//Indica si se puede pasar por el nodo, se utiliza cuando un nodo esta en reparaciones o es parte de un puente
 	int reacheabledNodes[RN];
 	struct NODE *next;
-	struct VEHICULE *vehicule_1;
-	struct VEHICULE *vehicule_2;
-	struct VEHICULE *vehicule_3;
 	int node_paths[V];
 	struct PATH_RULE pathRules[V];
 	int x, y;
@@ -125,10 +119,7 @@ VEHICULE* createCar(char *id){
 
 	VEHICULE *car = malloc(sizeof(VEHICULE));
 	car->id = strdup(id);
-	car->status = 0;
 	car->type = 1;
-	car->longCapability = 1;
-	//car->availableRides = 2;
 	car->delay = 3;
 	car->next = NULL;
 	car->route = NULL;
@@ -141,30 +132,13 @@ VEHICULE* createCar(char *id){
 	srand(time(NULL));
 	car->speed=rand()%7;
 	car->nextDestiny = "-";
-//	printf("Cs: %d\n", car->speed);
 	return car;
-}
-
-VEHICULE* createAmbulance(char *id){
-	VEHICULE *ambulance = malloc(sizeof(VEHICULE));
-	ambulance->id = strdup(id);
-	ambulance->status = 0;
-	ambulance->type = 2;
-	ambulance->longCapability = 1;
-	//ambulance->availableRides = 2;
-	ambulance->delay = 8;
-	ambulance->next = NULL;
-	ambulance->route = NULL;
-
-	return ambulance;
 }
 
 VEHICULE* createBus(char *id, int speed){
 	VEHICULE *bus = malloc(sizeof(VEHICULE));
 	bus->id = strdup(id);
-	bus->status = 0;
 	bus->type = 2;
-	bus->longCapability = 2;
 	bus->delay = 3;
 	bus->next = NULL;
 	bus->route = NULL;
@@ -199,20 +173,6 @@ NODE* createNode(int id, char *name, int capability, int reacheabledNodes[]){
 	//Assignar nodo alcanzables
 	for(int i = 0; i < RN; i++){
 		node->reacheabledNodes[i] = reacheabledNodes[i];
-	}
-
-	//Reservar espacio en memoria para los vehiculos que puede albergar el nodo
-	switch(capability){
-		case 1: {
-			node->vehicule_1 = createCar("new");
-			break;
-		}
-		default:{
-			node->vehicule_1 = createCar("new");
-			node->vehicule_2 = createCar("new");
-			node->vehicule_3 = createCar("new");
-			break;
-		}
 	}
 	return node;
 }

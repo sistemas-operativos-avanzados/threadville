@@ -20,60 +20,54 @@
 
 #include "lib/Vehicule.h"
 
+GtkWidget *window;
+GtkWidget *button;
+GtkWidget *button2;
+GtkWidget *labelBuses;
 
-    GtkWidget *window;
-    GtkWidget *button;
-    GtkWidget *button2;
-    GtkWidget *labelBuses;
+GtkWidget *buttonBusNaranja;
+GtkWidget *buttonBusNaranjaOff;
 
-    GtkWidget *buttonBusNaranja;
-    GtkWidget *buttonBusNaranjaOff;
+GtkWidget *buttonBusRojo;
+GtkWidget *buttonBusRojoOff;
 
-    GtkWidget *buttonBusRojo;
-    GtkWidget *buttonBusRojoOff;
+GtkWidget *buttonBusVerde;
+GtkWidget *buttonBusVerdeOff;
 
-    GtkWidget *buttonBusVerde;
-    GtkWidget *buttonBusVerdeOff;
+GtkWidget *buttonBusAzul;
+GtkWidget *buttonBusAzulOff;
 
-    GtkWidget *buttonBusAzul;
-    GtkWidget *buttonBusAzulOff;
+GtkWidget *buttonBusBlanco;
+GtkWidget *buttonBusBlancoOff;
 
-    GtkWidget *buttonBusBlanco;
-    GtkWidget *buttonBusBlancoOff;
+GtkWidget *buttonBusNegro;
+GtkWidget *buttonBusNegroOff;
 
-    GtkWidget *buttonBusNegro;
-    GtkWidget *buttonBusNegroOff;
+GtkWidget *buttonBusGris;
+GtkWidget *buttonBusGrisOff;
 
-    GtkWidget *buttonBusGris;
-    GtkWidget *buttonBusGrisOff;
+GtkWidget *buttonBusRosa;
+GtkWidget *buttonBusRosaOff;
 
-    GtkWidget *buttonBusRosa;
-    GtkWidget *buttonBusRosaOff;
+GtkWidget *buttonBusCeleste;
+GtkWidget *buttonBusCelesteOff;
 
-    GtkWidget *buttonBusCeleste;
-    GtkWidget *buttonBusCelesteOff;
-
-    GtkWidget *button_box;
-    GtkWidget *fixed;    
+GtkWidget *button_box;
+GtkWidget *fixed;    
     
 static gint64 last_tick = 0;
 static guint tick_cb = 0;
 static guint size =32;
 
-// Area de bubujado
 static GtkWidget *drawing;
 
 
-static void on_draw (GtkWidget *widget, cairo_t *cr, gpointer user_data) {
-    
-    draw_background(cr);
-   
+static void on_draw (GtkWidget *widget, cairo_t *cr, gpointer user_data) {   
+    draw_background(cr);   
     int i;
     for(i=0; i<contadorHilos; i++){
         draw_car(cr, vehicules[i]);
-    } // for
-
-    
+    } // for    
 } // on_draw
 
 
@@ -85,16 +79,13 @@ static gboolean on_tick (gpointer user_data) {
         return G_SOURCE_CONTINUE;
     }
 
-    //update_car_position(&carro2);
-
     gtk_widget_queue_draw_area(drawing, 0, 0, WIDTH, HEIGTH);
 
     last_tick = current;
     return G_SOURCE_CONTINUE;
 }
 
-static void add_vehicule(GtkWidget *widget, gpointer data) {
-    
+static void add_vehicule(GtkWidget *widget, gpointer data) {   
     g_print("Vehicule\n");
     
     int rc;
@@ -106,7 +97,6 @@ static void add_vehicule(GtkWidget *widget, gpointer data) {
     int i;
     for(i=0; i<vehicules[contadorHilos]->cantidadParadas; i++){
         int valor= rand()%9+2;
-        //int valor= rand () % (a-b+1) + b;   // Este está entre a y b
         vehicules[contadorHilos]->paradas[i]=listaParadas[valor];                       
         printf("valor %d\n", valor);
     } // for     
@@ -119,9 +109,7 @@ static void add_vehicule(GtkWidget *widget, gpointer data) {
             printf("error, return frim pthread creation\n");
             exit(4);
     }
-    contadorHilos++;
-  
-    
+    contadorHilos++;    
 } 
 
 void add_bus(char *id, int cantidadParadas, int paradas[], int speed){
@@ -130,19 +118,18 @@ void add_bus(char *id, int cantidadParadas, int paradas[], int speed){
     
         g_print("CREANDO BUS %s\n", _id);
         vehicules[contadorHilos]= createBus(_id, speed);   
-
-    srand(time(NULL));
-    vehicules[contadorHilos]->cantidadParadas = cantidadParadas;
-    vehicules[contadorHilos]->paradas=(NODE*) calloc(vehicules[contadorHilos]->cantidadParadas, sizeof(NODE));
+	srand(time(NULL));
+        vehicules[contadorHilos]->cantidadParadas = cantidadParadas;
+        vehicules[contadorHilos]->paradas=(NODE*) calloc(vehicules[contadorHilos]->cantidadParadas, sizeof(NODE));
 
 	for(int i = 0; i < cantidadParadas; i++){	
              vehicules[contadorHilos]->paradas[i]=listaParadas[paradas[i]];
          }
              
-    vehicules[contadorHilos]->x = listaParadas[paradas[0]]->x;
-    vehicules[contadorHilos]->y = listaParadas[paradas[0]]->y;
+        vehicules[contadorHilos]->x = listaParadas[paradas[0]]->x;
+        vehicules[contadorHilos]->y = listaParadas[paradas[0]]->y;
 
-    rc = pthread_create(&threads[contadorHilos], NULL, update_car_position, (void *)vehicules[contadorHilos]);
+        rc = pthread_create(&threads[contadorHilos], NULL, update_car_position, (void *)vehicules[contadorHilos]);
     if (rc)
     {
             printf("error, return frim pthread creation\n");
@@ -150,6 +137,7 @@ void add_bus(char *id, int cantidadParadas, int paradas[], int speed){
     }
     contadorHilos++;
 }
+
 //----------------------------------BUS NARANJA
 void init_busNaranja(){
     int paradas[21] = {101, 104, 108, 103, 104, 108, 20, 21, 109, 147, 146, 58, 55, 143, 54, 51, 139, 138, 12, 13, 101};
@@ -158,7 +146,6 @@ void init_busNaranja(){
     hiloBusNaranja = contadorHilos;
     add_bus(name, cantidadParadas, paradas, 7);
     
-
     //Bus Lombriz - Naranja> M3, O6, C8, C3, O3, Q6, E8, E3, Q3, X4, X7, L6, J3, V4, J6, H3, T4, T7, H6, A8, A3, M3
 }
 
@@ -393,18 +380,9 @@ void initBuses(){
 	init_busCeleste();
 }
 
-
-static void add_Ambulance(GtkWidget *widget, gpointer data) {
-    
-    g_print("Ambulance\n");
-    
-} // print_helloz
-
 //******************************************************************************
 // ******************* MAIN ****************************************************
 //*****************************************************************************
-
-
 
 int main(int argc, char *argv[]) {
 
@@ -555,11 +533,8 @@ int main(int argc, char *argv[]) {
     gtk_widget_show_all(window);
     
     tick_cb = g_timeout_add(1000 / FPS / 2, (GSourceFunc) on_tick, GINT_TO_POINTER(size)); 
-    
-
-    
+        
     gtk_main();
     
     return 0;
-
 } 
