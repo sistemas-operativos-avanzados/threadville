@@ -38,12 +38,20 @@ static void draw_car (cairo_t * cr, VEHICULE * vehicule) {
         else if(vehicule->speed==3)
             cairo_set_source_rgb (cr, 0.0, 1.0, 0.0);
         else if(vehicule->speed==4)
-            cairo_set_source_rgb (cr, 0.3, 0.3, 0.3);
+            cairo_set_source_rgb (cr, 0.7, 0.7, 0.7);
         else if(vehicule->speed==5)
             cairo_set_source_rgb (cr, 1.0, 1.0, 1.0);
         else if(vehicule->speed==6)
             cairo_set_source_rgb (cr, 1.0, 1.0, 0.0);
-        
+        else if(vehicule->speed==7)
+            cairo_set_source_rgb (cr, 1.0, 0.5, 0.0);
+        else if(vehicule->speed==8)
+            cairo_set_source_rgb (cr, 1.0, 1.0, 0.0);
+        else if(vehicule->speed==9)
+            cairo_set_source_rgb (cr, 1.0, 0.4, 0.45);
+        else if(vehicule->speed==10)
+            cairo_set_source_rgb (cr, 0.75, 0.9, 0.92);          
+
         if(vehicule->type==1){
         	cairo_arc(cr, vehicule->x, vehicule->y+10, TILESIZE/2, 0, 2*3.14);
         	cairo_fill (cr);
