@@ -13,17 +13,6 @@ THREADVILLE *threadville;
 
 NODE* listaParadas[N];
 
-//COLORES
-COLORSPEED *red;
-COLORSPEED *blue;
-COLORSPEED *green;
-COLORSPEED *white;
-COLORSPEED *black;
-COLORSPEED *grey;
-COLORSPEED *pink;
-COLORSPEED *ligthBlue;
-COLORSPEED *orange;
-
 //Nodos de la Y
 NODE *nodeY1;
 NODE *nodeY2;//Pista
@@ -329,16 +318,6 @@ void init(){
     puts("Iniciando Threadville");
 	threadville = createThreadville();
 	initCustomPathWeights();
-
-//	red = createColor("RED", 1);
-//	blue = createColor("BLUE", 2);
-//	green = createColor("GREEN", 2);
-//	white = createColor("WHITE", 3);
-//	black = createColor("BLACK", 1);
-//	grey = createColor("GREY", 3);
-//	pink = createColor("PINK", 1);
-//	ligthBlue = createColor("LIGTHBLUE", 3);
-//	orange = createColor("ORANGE", 1);
 
 	//Array de nodos alcanzables
 	int nodeA5G2Relations[RN] = {1, -1, -1};
@@ -771,46 +750,46 @@ void init(){
 
 	//Puente Bailey
 	//Larry
-	bridgeNodeG4 = createNode(160, "bridgeNodeG4", 3, bridgeNodeG4Relations);
-	bridgeNodeH5 = createNode(161, "bridgeNodeH5", 3, bridgeNodeH5Relations);
-	bridgeNodeM2 = createNode(162, "bridgeNodeM2", 3, bridgeNodeM2Relations);
-	bridgeNodeN1 = createNode(163, "bridgeNodeN1", 3, bridgeNodeN1Relations);
+	bridgeNodeG4 = createNode(160, "BG4", 3, bridgeNodeG4Relations);
+	bridgeNodeH5 = createNode(161, "BH5", 3, bridgeNodeH5Relations);
+	bridgeNodeM2 = createNode(162, "BM2", 3, bridgeNodeM2Relations);
+	bridgeNodeN1 = createNode(163, "BN1", 3, bridgeNodeN1Relations);
 	Larry = createBridge("Larry", bridgeNodeM2, bridgeNodeG4, bridgeNodeN1, bridgeNodeH5);
 	semaphoresBridgeControlInit(Larry);
 	semaphoresBridgeControlWait(Larry);
 
 	//Curly
-	bridgeNodeH4 = createNode(164, "bridgeNodeH4", 3, bridgeNodeH4Relations);
-	bridgeNodeI5 = createNode(165, "bridgeNodeI5", 3, bridgeNodeI5Relations);
-	bridgeNodeN2 = createNode(166, "bridgeNodeN2", 3, bridgeNodeN2Relations);
-	bridgeNodeO1 = createNode(167, "bridgeNodeO1", 3, bridgeNodeO1Relations);
+	bridgeNodeH4 = createNode(164, "BH4", 3, bridgeNodeH4Relations);
+	bridgeNodeI5 = createNode(165, "BI5", 3, bridgeNodeI5Relations);
+	bridgeNodeN2 = createNode(166, "BN2", 3, bridgeNodeN2Relations);
+	bridgeNodeO1 = createNode(167, "BO1", 3, bridgeNodeO1Relations);
 	Curly = createBridge("Curly", bridgeNodeN2, bridgeNodeH4, bridgeNodeO1, bridgeNodeI5);
 	semaphoresBridgeControlInit(Curly);
 	semaphoresBridgeControlWait(Curly);
 
 	//Moe
-	bridgeNodeI4 = createNode(168, "bridgeNodeI4", 3, bridgeNodeI4Relations);
-	bridgeNodeJ5 = createNode(169, "bridgeNodeJ5", 3, bridgeNodeJ5Relations);
-	bridgeNodeO2 = createNode(170, "bridgeNodeO2", 3, bridgeNodeO2Relations);
-	bridgeNodeP1 = createNode(171, "bridgeNodeP1", 3, bridgeNodeP1Relations);
+	bridgeNodeI4 = createNode(168, "BI4", 3, bridgeNodeI4Relations);
+	bridgeNodeJ5 = createNode(169, "BJ5", 3, bridgeNodeJ5Relations);
+	bridgeNodeO2 = createNode(170, "BO2", 3, bridgeNodeO2Relations);
+	bridgeNodeP1 = createNode(171, "BP1", 3, bridgeNodeP1Relations);
 	Moe = createBridge("Moe", bridgeNodeO2, bridgeNodeI4, bridgeNodeP1, bridgeNodeJ5);
 	semaphoresBridgeControlInit(Moe);
 	semaphoresBridgeControlWait(Moe);
 
 	//Shemp
-	bridgeNodeJ4 = createNode(172, "bridgeNodeJ4", 3, bridgeNodeJ4Relations);
-	bridgeNodeK5 = createNode(173, "bridgeNodeK5", 3, bridgeNodeK5Relations);
-	bridgeNodeP2 = createNode(174, "bridgeNodeP2", 3, bridgeNodeP2Relations);
-	bridgeNodeQ1 = createNode(175, "bridgeNodeQ1", 3, bridgeNodeQ1Relations);
+	bridgeNodeJ4 = createNode(172, "BJ4", 3, bridgeNodeJ4Relations);
+	bridgeNodeK5 = createNode(173, "BK5", 3, bridgeNodeK5Relations);
+	bridgeNodeP2 = createNode(174, "BP2", 3, bridgeNodeP2Relations);
+	bridgeNodeQ1 = createNode(175, "BQ1", 3, bridgeNodeQ1Relations);
 	Shemp = createBridge("Shemp", bridgeNodeP2, bridgeNodeJ4, bridgeNodeQ1, bridgeNodeK5);
 	semaphoresBridgeControlInit(Shemp);
 	semaphoresBridgeControlWait(Shemp);
 
 	//Joe
-	bridgeNodeK4 = createNode(176, "bridgeNodeK4", 3, bridgeNodeK4Relations);
-	bridgeNodeL5 = createNode(177, "bridgeNodeL5", 3, bridgeNodeL5Relations);
-	bridgeNodeQ2 = createNode(178, "bridgeNodeQ2", 3, bridgeNodeQ2Relations);
-	bridgeNodeR1 = createNode(179, "bridgeNodeR1", 3, bridgeNodeR1Relations);
+	bridgeNodeK4 = createNode(176, "BK4", 3, bridgeNodeK4Relations);
+	bridgeNodeL5 = createNode(177, "BL5", 3, bridgeNodeL5Relations);
+	bridgeNodeQ2 = createNode(178, "BQ2", 3, bridgeNodeQ2Relations);
+	bridgeNodeR1 = createNode(179, "BR1", 3, bridgeNodeR1Relations);
 	Joe = createBridge("Joe", bridgeNodeQ2, bridgeNodeK4, bridgeNodeR1, bridgeNodeL5);
 	semaphoresBridgeControlInit(Joe);
 	semaphoresBridgeControlWait(Joe);
@@ -1070,8 +1049,7 @@ void init(){
 
 	fillGraph(threadville);
 	setNodePaths(threadville);
-
-} // init
+} 
 
 // ********************** cargarNodos
 
@@ -1314,27 +1292,6 @@ void cargarCordenadasNodos () {
     } // for x
     printf("...T: %d\n", t);    
 } // cargarNodos
-
-
-// ******* dijkstra_test ******
-
-// Esta funcion es para mostrar como funciona las funciones de rutas. Se puede borrar luego
-void dijkstra_test(){
-
-    int paths[V];
-
-    dijkstra(graph, 24, paths);
-
-    printf("\n\n-- \n");
-    int p1[V];
-    initResultArray(p1);
-    thePath(24, 78, paths, p1);
-
-	printf("\n");
-	for(int k = V - 1; k >= 0; k--){
-		findNode(p1[k], threadville);
-	}
-}
 
 // ************** ruta entre dos nodos ************
 
