@@ -5,24 +5,11 @@
 
 #define TV_ADT
 
-//Estructura para color y velocidad de un vehiculo
-typedef struct COLORSPEED{
-	char *color;
-	int speed;
-	struct COLORSPEED *next;
-}COLORSPEED;
-
 //Estructura para crear un destino dentro de una ruta
 typedef struct DESTINY{
 	struct NODE *node;
 	struct DESTINY *next;
 }DESTINY;
-
-//Estructura para agregar los puntos o paradas que debe hacer un vehiculo, con estos puntos se crean las rutas
-typedef struct STOP{
-	struct NODE *stop;
-	struct STOP *next;
-}STOP;
 
 //Estructura para definir un lista de destinos ordenados que resuelven un camino de una parada (STOP) a otra parada para un vehiculo
 typedef struct ROUTE{
@@ -36,9 +23,7 @@ typedef struct VEHICULE{
 	int status; //1 for alive and 0 for dead.
 	int type; //1 carro, 2 para ambulancia, 3 para bus
 	int longCapability;
-	struct COLORSPEED *colorSpeed;
 	int availableRides;
-	struct STOP *stops;
 	struct ROUTE *route;
 	int delay;
 	struct VEHICULE *next;
@@ -54,8 +39,6 @@ typedef struct VEHICULE{
 	char *nextDestiny;
 
 }VEHICULE;
-
-
 
 struct PATH_RULE {
 	int destiny;
@@ -97,7 +80,6 @@ typedef struct BRIDGE {
 
 
 //ASIGNACION Y LIBERACION DE MEMORIA DE ESTRUCTURAS
-//STOPS
 THREADVILLE* createThreadville(){
 	THREADVILLE *threadville = malloc(sizeof(THREADVILLE));
 	threadville->nodes = NULL;
@@ -109,20 +91,6 @@ void releaseThreadville(THREADVILLE *threadville){
 		free(threadville);
 	}
 }
-
-//STOPS
-STOP* createStop(){
-	STOP *stop = malloc(sizeof(STOP));
-	stop->stop = NULL;
-	stop->next = NULL;
-	return stop;
-}
-
-void releaseStop(STOP *stop){
-	if(stop){
-		free(stop);
-	}
-}	
 
 //DESTINY
 DESTINY* createDestiny(){
@@ -152,22 +120,6 @@ void releaseRoute(ROUTE *route){
 	}
 }
 
-//COLOR SPEED 
-COLORSPEED* createColor(char *color, int speed){
-	COLORSPEED *colorSpeed = malloc(sizeof(COLORSPEED));
-	colorSpeed->color = strdup(color);
-	colorSpeed->speed = speed;
-	colorSpeed->next = NULL;
-	return colorSpeed;
-}
-
-void releaseColor(COLORSPEED *colorSpeed){
-	if(colorSpeed){
-		if(colorSpeed->color){free(colorSpeed->color);}
-	free(colorSpeed);
-	}
-}
-
 //VEHICULES
 VEHICULE* createCar(char *id){
 
@@ -179,9 +131,7 @@ VEHICULE* createCar(char *id){
 	//car->availableRides = 2;
 	car->delay = 3;
 	car->next = NULL;
-	car->colorSpeed = NULL;
 	car->route = NULL;
-	car->stops = NULL;
 
 	car->dx=1;
 	car->dy=0;
@@ -204,9 +154,7 @@ VEHICULE* createAmbulance(char *id){
 	//ambulance->availableRides = 2;
 	ambulance->delay = 8;
 	ambulance->next = NULL;
-	ambulance->colorSpeed = NULL;
 	ambulance->route = NULL;
-	ambulance->stops = NULL;
 
 	return ambulance;
 }
@@ -219,9 +167,7 @@ VEHICULE* createBus(char *id, int speed){
 	bus->longCapability = 2;
 	bus->delay = 3;
 	bus->next = NULL;
-	bus->colorSpeed = NULL;
 	bus->route = NULL;
-	bus->stops = NULL;
         
         bus->x=0; 
         bus->y=0; 
@@ -317,7 +263,7 @@ void displayRoutes(ROUTE *routes){
 void displayVehicules(VEHICULE *vehicules){
 	VEHICULE *i = vehicules;
 	for(; i != NULL; i = i->next){
-		printf("Vehicule ID:  %s color: %s\n", i->id, i->colorSpeed->color);
+		printf("Vehicule ID:  %s\n", i->id);
 		printf("RUTA:\n");
 		displayRoutes(i->route);
 	}
@@ -327,13 +273,6 @@ void displayNodes(NODE *nodes){
 	NODE *i = nodes;
 	for(; i != NULL; i = i->next){
 		printf("NODE ID:  %s\n", i->name);
-	}
-}
-
-void displayStops(STOP *stops){
-	STOP *i = stops;
-	for(; i != NULL; i = i->next){
-		printf("STOP -> NODE ID:  %s\n", i->stop->name);
 	}
 }
 
@@ -348,33 +287,6 @@ NODE* findNode(int index, THREADVILLE *threadville){
 		
 	}
 	return NULL;
-}
-
-ROUTE* newRoute(STOP *cStop){
-	STOP *currentStop = cStop;
-	ROUTE *newRoute = createRoute();
-	DESTINY *destinations = createDestiny();
-
-	newRoute->destinations = destinations;
-	destinations->node = currentStop->stop;	
-	if(currentStop->next != NULL){
-		//generateRoute(currentStop->stop, currentStop->next->stop, newRoute->destinations);
-	}
-	return newRoute;
-}
-
-void addStop(VEHICULE *vehicule, NODE *stop){
-	STOP *newStop = createStop();
-	newStop->stop = stop;
-
-	STOP *currentStops = vehicule->stops;
-	
-	while(currentStops != NULL){
-		currentStops = currentStops->next;
-	}
-
-	currentStops = createStop();	
-	currentStops = newStop;
 }
 
 /*
