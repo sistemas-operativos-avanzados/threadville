@@ -38,7 +38,7 @@ static void draw_car (cairo_t * cr, VEHICULE * vehicule) {
         else if(vehicule->speed==3)
             cairo_set_source_rgb (cr, 0.0, 1.0, 0.0);
         else if(vehicule->speed==4)
-            cairo_set_source_rgb (cr, 0.7, 0.7, 0.7);
+            cairo_set_source_rgb (cr, 0.0, 0.0, 0.0);
         else if(vehicule->speed==5)
             cairo_set_source_rgb (cr, 1.0, 1.0, 1.0);
         else if(vehicule->speed==6)
@@ -46,7 +46,7 @@ static void draw_car (cairo_t * cr, VEHICULE * vehicule) {
         else if(vehicule->speed==7)
             cairo_set_source_rgb (cr, 1.0, 0.5, 0.0);
         else if(vehicule->speed==8)
-            cairo_set_source_rgb (cr, 1.0, 1.0, 0.0);
+            cairo_set_source_rgb (cr, 0.7, 0.7, 0.7);
         else if(vehicule->speed==9)
             cairo_set_source_rgb (cr, 1.0, 0.4, 0.45);
         else if(vehicule->speed==10)
@@ -85,8 +85,10 @@ bool near_car(VEHICULE *car1, VEHICULE *car2) {
     if(igual==0)
         return false;
     
-    if((car1->x+car1->width + 5 >= car2->x && car1->x < car2->x) && (car1->y == car2->y) || (car1->y+car1->width + 5 >= car2->y && car1->y < car2->y) && (car1->x == car2->x))
+    if((car1->x+(car1->width + 5)*fabs(car1->dx) >= car2->x && car1->x < car2->x) && (car1->y == car2->y) || (car1->y+(car1->height + 5)*fabs(car1->dy) >= car2->y && car1->y < car2->y) && (car1->x == car2->x)){
+        //printf("AX %d\n", car1->x+(car1->width + 5)*fabs(car1->dx));
         return true;
+    }
     
     return false;
 
@@ -187,9 +189,15 @@ void *update_car_position(void * car)
                     }
             } // for            
             if(mover){
-                tempCar->x+=tempCar->dx;
-                tempCar->y+=tempCar->dy;            
+		if(destinoActual->node->especial && destinoActual->node->allowTravel==false){
+			printf("Estoy en el puente %s\n", destinoActual->node->name);
+		}else{
+			tempCar->x+=tempCar->dx;
+                	tempCar->y+=tempCar->dy;
+		}
+
             }else{
+		printf("choque \n");
                 usleep(10000);
             }
                 

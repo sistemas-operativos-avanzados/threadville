@@ -50,6 +50,7 @@ typedef struct NODE {
 	char *name;
 	int id;
 	int capability;
+	bool especial;
 	bool allowTravel;//Indica si se puede pasar por el nodo, se utiliza cuando un nodo esta en reparaciones o es parte de un puente
 	int reacheabledNodes[RN];
 	struct NODE *next;
@@ -173,8 +174,8 @@ VEHICULE* createBus(char *id, int speed){
         bus->y=0; 
         bus->dx=1;
         bus->dy=0;
-        bus->width=20;
-        bus->height=20;    
+        bus->width=19;
+        bus->height=19;    
         bus->run=true;
         bus->speed=speed;
 	return bus;
@@ -195,6 +196,7 @@ NODE* createNode(int id, char *name, int capability, int reacheabledNodes[]){
 	node->id = id;
 	node->name = strdup(name);
 	node->capability = capability;
+	node->especial=false;
 
 	//Assignar nodo alcanzables
 	for(int i = 0; i < RN; i++){
@@ -294,8 +296,12 @@ NODE* findNode(int index, THREADVILLE *threadville){
 	Semáforos del sur NO permiten el paso
 */
 void semaphoresBridgeControlInit(BRIDGE *bridge){
-	bridge->northLeftNode->allowTravel = true;
-	bridge->southRightNode->allowTravel = false;
+	bridge->northLeftNode->especial=true;
+	bridge->northLeftNode->allowTravel = false;
+
+	bridge->southRightNode->especial = true;
+	bridge->southRightNode->allowTravel = true;
+
 	printf("Bridge = %s\n  North Semaphore = %d, South Semaphore = %d\n", bridge->id, bridge->northLeftNode->allowTravel , bridge->southRightNode->allowTravel );
 }
 

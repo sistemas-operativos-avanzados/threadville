@@ -1278,7 +1278,7 @@ void cargarCordenadasNodos () {
                 p++;
                 t++;
             }else if(map2[x][y]==8){
-                listaParadas[p]->x=y*TILESIZE;
+                listaParadas[p]->x=y*TILESIZE+10;
                 listaParadas[p]->y=x*TILESIZE;
                 p++;
                 t++;
