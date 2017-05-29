@@ -93,7 +93,7 @@ static void draw_background (cairo_t * cr) {
     for(x=0; x<FILAS2;x++){
         for(y=0; y<COLUMNAS2; y++){
             if(map2[x][y]==1){
-                cairo_set_source_rgb (cr, 0.0, 0.0, 0.0);
+                cairo_set_source_rgb (cr, 0.5, 0.5, 0.5);
                 cairo_rectangle(cr,y*TILESIZE,x*TILESIZE,TILESIZE,TILESIZE);
                 cairo_fill (cr);
             }else if(map2[x][y]==2){
@@ -117,7 +117,7 @@ static void draw_background (cairo_t * cr) {
                 p++;
             }else if(map2[x][y]==5 || map2[x][y]==6){
                 //cairo_set_source_rgb (cr, 0.0, 0.0, 1.0);
-                cairo_set_source_rgb (cr, 0.0, 0.0, 0.0);
+                cairo_set_source_rgb (cr, 0.5, 0.5, 0.5);
                 cairo_rectangle(cr,y*TILESIZE,x*TILESIZE,TILESIZE,TILESIZE);
                 cairo_fill (cr);
             }
