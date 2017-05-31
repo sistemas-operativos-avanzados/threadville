@@ -1,6 +1,3 @@
-
-//#include "map.h"
-//#include "Node.h"
 #include <stdbool.h>
 #include "threadville_functions.h"
 #include "threadville_globals.h"
@@ -8,29 +5,11 @@
 
 #define NUM_VEHICULE 100
 
-
-//typedef struct {
-//    int carId;
-//    cairo_surface_t *image;
-//    int x, y;
-//    int dx, dy;
-//    int width, height;
-//    int speed;
-//    int espera;
-//    bool run;
-//    int cantidadParadas;
-//    Nodo* paradas;
-//    Parada* paradaInicial;
-//} Car;
-
-
 VEHICULE* vehicules[NUM_VEHICULE];
 pthread_t threads[NUM_VEHICULE];
 
-static void draw_car (cairo_t * cr, VEHICULE * vehicule) {
-    
+static void draw_car (cairo_t * cr, VEHICULE * vehicule) {   
     if(vehicule->run){
-        //printf("dibujar\n");
         if(vehicule->speed==1)
             cairo_set_source_rgb (cr, 1.0, 0.0, 0.0);
         else if(vehicule->speed==2)
@@ -64,12 +43,8 @@ static void draw_car (cairo_t * cr, VEHICULE * vehicule) {
             cairo_set_source_rgb (cr, 0.0, 0.0, 0.0);
         else
             cairo_set_source_rgb (cr, 1.0, 1.0, 1.0);
-
 	
         cairo_move_to(cr, vehicule->x-8, vehicule->y+12);
-	
-		
-
         cairo_set_font_size(cr, 12);
         cairo_show_text(cr, vehicule -> nextDestiny);
         
@@ -78,10 +53,8 @@ static void draw_car (cairo_t * cr, VEHICULE * vehicule) {
 } // draw_car
 
 
-bool near_car(VEHICULE *car1, VEHICULE *car2) {
-        
+bool near_car(VEHICULE *car1, VEHICULE *car2) {       
     int igual=memcmp(&car1, &car2, sizeof(car1));
-    //printf("Igual %d\n", igual);
     if(igual==0)
         return false;
     
@@ -94,24 +67,17 @@ bool near_car(VEHICULE *car1, VEHICULE *car2) {
 
 } // near_car
 
-
-
 void *update_car_position(void * car)
-{
-    
+{    
     VEHICULE* tempCar=car;    
     int p=0;
-    //int h;
-    //for(h=0; h<tempCar->cantidadParadas-1;h++)
-        //generateRoute(tempCar, tempCar->paradas[h], tempCar->paradas[h+1]);
-    
+
     generateRoute(tempCar, tempCar->paradas[p], tempCar->paradas[p+1]);
     displayDestinations(tempCar->route->destinations);
     DESTINY *destinoActual = tempCar->route->destinations;
     destinoActual=destinoActual->next;
     tempCar -> nextDestiny = tempCar -> paradas[p + 1] -> name;
 
-//    printf("Desti %d\n", destinoActual->node->x);
     bool mover=true;
     while(tempCar->run){
                    
@@ -142,7 +108,6 @@ void *update_car_position(void * car)
                         destinoActual = tempCar->route->destinations;
                         destinoActual=destinoActual->next;
 
-                       // printf("FIN\n");
                         usleep(tempCar->delay*1000000);
                         tempCar -> nextDestiny = tempCar -> paradas[p + 1] -> name;
                     }else{
@@ -155,9 +120,6 @@ void *update_car_position(void * car)
                             printf("FIN\n");
                             break;
                         }else {
-                            
-                            //p=p%tempCar->cantidadParadas;
-                            //p=0;
                             printf("INI %d\n", p);
                             
                             generateRoute(tempCar, tempCar->paradas[p], tempCar->paradas[0]);
@@ -171,7 +133,6 @@ void *update_car_position(void * car)
                             p=-1;
                             
                         }
-
                         
                     }
                 }                    
@@ -183,7 +144,6 @@ void *update_car_position(void * car)
                     if(!near_car(tempCar, vehicules[i])){
                         mover=true;
                     }else{
-                        //printf("No \n");
                         mover=false;
                         break;
                     }
@@ -208,7 +168,6 @@ void *update_car_position(void * car)
                 tempCar->y=0;
                 printf("FIN\n");
             }else {
-                //p=p%tempCar->cantidadParadas;
                 p=0;
                 printf("IN F %d\n", p);
                 

@@ -38,7 +38,7 @@ int hiloBusCeleste=0;
 #define FILAS2 34
 #define COLUMNAS2 52
 
-#define P 168//48 36
+#define P 168
 
 #define FPS 60
 
