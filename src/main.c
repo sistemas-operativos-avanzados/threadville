@@ -380,6 +380,15 @@ void initBuses(){
 	init_busCeleste();
 }
 
+void initSemaphoreBridges(){
+    semaphoresBridgeControlWait(Larry);
+   	semaphoresBridgeControlWait(Curly);
+    semaphoresBridgeControlWait(Moe);
+    semaphoresBridgeControlWait(Shemp);
+    semaphoresBridgeControlWait(Joe);
+}
+
+
 //******************************************************************************
 // ******************* MAIN ****************************************************
 //*****************************************************************************
@@ -390,6 +399,7 @@ int main(int argc, char *argv[]) {
 	asignarNodosALista();
 	cargarCordenadasNodos();
 	initBuses();
+    initSemaphoreBridges();
 
     gtk_init(&argc, &argv);
     GError * error = NULL;

@@ -252,6 +252,28 @@ NODE* findNode(int index, THREADVILLE *threadville){
 }
 
 /*
+	Si los semáforos del norte permiten el paso, los semáforos del sur NO
+	Si los semáforos del sur permiten el paso, los semáforos del norte NO 
+*/
+void semaphoresBridgeControlWait(BRIDGE *bridge){
+	while(true){
+		if(bridge->northLeftNode->allowTravel){
+			//car needs to wait
+			bridge->northLeftNode->allowTravel = false;
+			bridge->southRightNode->allowTravel = true;
+		}
+		if(bridge->southRightNode->allowTravel){
+			//car needs to wait
+			bridge->northLeftNode->allowTravel = true;
+			bridge->southRightNode->allowTravel = false;
+		}
+		usleep(1000000);
+		printf("Cambio de colores en semáforo\n");
+		break;
+	}
+}
+
+/*
 	Semáforos del norte permiten el paso
 	Semáforos del sur NO permiten el paso
 */
@@ -263,23 +285,23 @@ void semaphoresBridgeControlInit(BRIDGE *bridge){
 	bridge->southRightNode->allowTravel = true;
 
 	printf("Bridge = %s\n  North Semaphore = %d, South Semaphore = %d\n", bridge->id, bridge->northLeftNode->allowTravel , bridge->southRightNode->allowTravel );
-}
 
-/*
-	Si los semáforos del norte permiten el paso, los semáforos del sur NO
-	Si los semáforos del sur permiten el paso, los semáforos del norte NO 
-*/
-void semaphoresBridgeControlWait(BRIDGE *bridge){
-	if(bridge->northLeftNode->allowTravel){
-		//car needs to wait
-		bridge->northLeftNode->allowTravel = false;
-		bridge->southRightNode->allowTravel = true;
-	}
-	if(bridge->southRightNode->allowTravel){
-		//car needs to wait
-		bridge->northLeftNode->allowTravel = true;
-		bridge->southRightNode->allowTravel = false;
-	}
+	int rc;
+	pthread_t northSemaphore_thread;
+	rc = pthread_create(&northSemaphore_thread, NULL, &semaphoresBridgeControlWait, bridge);
+	if (rc)
+    {
+            printf("error, return frim pthread creation\n");
+            exit(4);
+    }
+
+	pthread_t southSemaphore_thread;
+	rc = pthread_create(&southSemaphore_thread, NULL, &semaphoresBridgeControlWait, bridge);
+	if (rc)
+    {
+            printf("error, return frim pthread creation\n");
+            exit(4);
+    }
 }
 
 #endif
