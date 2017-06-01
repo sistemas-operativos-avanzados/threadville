@@ -124,12 +124,12 @@ static void add_vehicule(GtkWidget *widget, gpointer data) {
     contadorHilos++;    
 } 
 
-void add_bus(char *id, int cantidadParadas, int paradas[], int speed){
+void add_bus(char *id, int cantidadParadas, int paradas[], int speed, int color){
 	char *_id = id;    
 	int rc;
     
         g_print("CREANDO BUS %s\n", _id);
-        vehicules[contadorHilos]= createBus(_id, speed);   
+        vehicules[contadorHilos]= createBus(_id, speed, color);
 	srand(time(NULL));
         vehicules[contadorHilos]->cantidadParadas = cantidadParadas;
         vehicules[contadorHilos]->paradas=(NODE*) calloc(vehicules[contadorHilos]->cantidadParadas, sizeof(NODE));
@@ -156,7 +156,7 @@ void init_busNaranja(){
     int cantidadParadas = 21;
     char *name = "BUS-NARANJA";
     hiloBusNaranja = contadorHilos;
-    add_bus(name, cantidadParadas, paradas, 7);
+    add_bus(name, cantidadParadas, paradas, 7, 7);
     
     //Bus Lombriz - Naranja> M3, O6, C8, C3, O3, Q6, E8, E3, Q3, X4, X7, L6, J3, V4, J6, H3, T4, T7, H6, A8, A3, M3
 }
@@ -182,7 +182,7 @@ void init_busRojo() {
     int cantidadParadas = 11;
     char *name = "BUS-ROJO";
     hiloBusRojo = contadorHilos;
-    add_bus(name, cantidadParadas, paradas, 1);
+    add_bus(name, cantidadParadas, paradas, 5, 1);
 
     //Periferica Grande - Roja> A1, D1, F2, L4, Z (dandole la vuelta), R2, X5, U5, S6, M1, Y (dandole la vuelta)
 }
@@ -208,7 +208,7 @@ void init_busVerde() {
     int cantidadParadas = 10;
     char *name = "BUS-VERDE";
     hiloBusVerde = contadorHilos;
-    add_bus(name, cantidadParadas, paradas, 3);
+    add_bus(name, cantidadParadas, paradas, 5, 3);
 
     //Periferica Norte - Verde> E2, L3*, F2, L4, Z (dandole la vuelta), toma la pista hacia el Oeste Y (dandole la vuelta), G6, B1, E2
 }
@@ -234,7 +234,7 @@ void init_busAzul() {
      int cantidadParadas = 7;
      char *name = "BUS-AZUL";
      hiloBusAzul = contadorHilos;
-     add_bus(name, cantidadParadas, paradas, 2);
+     add_bus(name, cantidadParadas, paradas, 5, 2);
 
      //Periferica Sur - Azul> R3, W5, T6, M6, Y (dandole la vuelta), toma la pista hacia el Este Z (dandole la vuelta), R3
 }
@@ -260,7 +260,7 @@ void init_busBlanco() {
      int cantidadParadas = 7;
      char *name = "BUS-BLANCO";
      hiloBusBlanco = contadorHilos;
-     add_bus(name, cantidadParadas, paradas, 5);
+     add_bus(name, cantidadParadas, paradas, 4, 5);
 
      //Bus Blanco> I4, O3, T5, N1, H6, C1, I4
 }
@@ -286,7 +286,7 @@ void init_busGris() {
     int cantidadParadas = 7;
     char *name = "BUS-GRIS";
     hiloBusGris = contadorHilos;
-    add_bus(name, cantidadParadas, paradas, 8);
+    add_bus(name, cantidadParadas, paradas, 4, 8);
 
     //Bus Gris> U5, O1, I6, D1, J4, P3, U5
 }
@@ -311,7 +311,7 @@ void init_busNegro() {
     int cantidadParadas = 7;
     char *name = "BUS-NEGRO";
     hiloBusNegro = contadorHilos;
-    add_bus(name, cantidadParadas, paradas, 4);
+    add_bus(name, cantidadParadas, paradas, 4, 4);
     
     //Bus Negro> J6, E1, K4, Q3, V5, P1, J6
 }
@@ -336,7 +336,7 @@ void init_busRosa() {
     int cantidadParadas = 5;
     char *name = "BUS-ROSA";
     hiloBusRosa = contadorHilos;
-    add_bus(name, cantidadParadas, paradas, 9);
+    add_bus(name, cantidadParadas, paradas, 3, 9);
     
     //Bus Rosa> F5L1, A6, A1, F2, F5L1
 }
@@ -361,7 +361,7 @@ void init_busCeleste() {
     int cantidadParadas = 5;
     char *name = "BUS-CELESTE";
     hiloBusCeleste = contadorHilos;
-    add_bus(name, cantidadParadas, paradas, 10);
+    add_bus(name, cantidadParadas, paradas, 3, 10);
 
     //Bus Celeste> S6, M5S1, R4X2, X5, S6   
 }
