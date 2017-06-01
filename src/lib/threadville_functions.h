@@ -29,6 +29,7 @@ typedef struct VEHICULE{
 	int x, y;
 	int dx, dy;
 	int speed;
+    int color;
 	int width, height;
 	int cantidadParadas;
 	struct NODE **paradas;
@@ -131,11 +132,12 @@ VEHICULE* createCar(char *id){
 	car->run=true;
 	srand(time(NULL));
 	car->speed=rand()%7;
+    car->color = car->speed;
 	car->nextDestiny = "-";
 	return car;
 }
 
-VEHICULE* createBus(char *id, int speed){
+VEHICULE* createBus(char *id, int speed, int color){
 	VEHICULE *bus = malloc(sizeof(VEHICULE));
 	bus->id = strdup(id);
 	bus->type = 2;
@@ -143,14 +145,15 @@ VEHICULE* createBus(char *id, int speed){
 	bus->next = NULL;
 	bus->route = NULL;
         
-        bus->x=0; 
-        bus->y=0; 
-        bus->dx=1;
-        bus->dy=0;
-        bus->width=20;
-        bus->height=20;    
-        bus->run=true;
-        bus->speed=speed;
+    bus->x=0;
+    bus->y=0;
+    bus->dx=1;
+    bus->dy=0;
+    bus->width=20;
+    bus->height=20;
+    bus->run=true;
+    bus->speed=speed;
+    bus->color = color;
 	return bus;
 }
 
