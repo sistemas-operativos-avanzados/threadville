@@ -21,8 +21,8 @@
 #include "lib/Vehicule.h"
 
 GtkWidget *window;
-GtkWidget *button;
-GtkWidget *button2;
+
+//Buses
 GtkWidget *labelBuses;
 
 GtkWidget *buttonBusNaranja;
@@ -53,7 +53,19 @@ GtkWidget *buttonBusCeleste;
 GtkWidget *buttonBusCelesteOff;
 
 GtkWidget *button_box;
-GtkWidget *fixed;    
+GtkWidget *fixed;   
+
+//Carros
+GtkWidget *labelCarroAleatorio;
+GtkWidget *labelCarroParams;
+GtkWidget *labelSample;
+GtkWidget *colorSelection;
+GList *colorList = NULL;
+
+GtkWidget *buttonCarroAleatorio;
+GtkWidget *buttonCarroParams;
+
+GtkWidget *inputDestinos;
     
 static gint64 last_tick = 0;
 static guint tick_cb = 0;
@@ -368,6 +380,66 @@ static void off_busCeleste(GtkWidget *widget, gpointer data) {
     gtk_widget_set_sensitive(buttonBusCelesteOff, false); 
 }
 
+static void validate_data(GtkWidget *widget, gpointer data){
+    const gchar *destinos;
+    int length;
+    int active;
+    destinos = gtk_entry_get_text(GTK_ENTRY(inputDestinos));
+    length = gtk_entry_get_text_length(GTK_ENTRY(inputDestinos));
+    active = gtk_combo_box_get_active(GTK_COMBO_BOX(colorSelection));
+
+    if(length > 0 && active > 0){
+    	gtk_widget_set_sensitive(buttonCarroParams, true);
+    }else{
+	gtk_widget_set_sensitive(buttonCarroParams, false);
+    }
+}
+
+static void add_configured_car(GtkWidget *widget, gpointer data){
+    const gchar *destinos;
+    int length;
+    int active;
+    destinos = gtk_entry_get_text(GTK_ENTRY(inputDestinos));
+    length = gtk_entry_get_text_length(GTK_ENTRY(inputDestinos));
+    active = gtk_combo_box_get_active(GTK_COMBO_BOX(colorSelection));
+    char destinosSplit[length];
+    char *destinosNodes;
+
+
+    int rc;
+    vehicules[contadorHilos]= createCar("v");
+    
+    srand(time(NULL));
+    vehicules[contadorHilos]->cantidadParadas=length;
+    //vehicules[contadorHilos]->color = active + 1;
+    vehicules[contadorHilos]->paradas=(NODE*) calloc(vehicules[contadorHilos]->cantidadParadas, sizeof(NODE));
+    int i;
+    
+    sprintf(destinosSplit, "%8s\n", destinos);
+    const char spliter[2] = ",";
+    destinosNodes = strtok(destinosSplit, spliter);
+
+    for(i=0; i<vehicules[contadorHilos]->cantidadParadas; i++){
+        int valor= destinosNodes[i];
+        vehicules[contadorHilos]->paradas[i]=listaParadas[valor];                       
+    } // for     
+
+    vehicules[contadorHilos]->x=vehicules[contadorHilos]->paradas[0]->x;
+    vehicules[contadorHilos]->y=vehicules[contadorHilos]->paradas[0]->y; //0;
+    
+    printf("creating thread %d\n", contadorHilos);
+    rc = pthread_create(&threads[contadorHilos], NULL, update_car_position, (void *)vehicules[contadorHilos]);
+    if (rc)
+    {
+            printf("error, return frim pthread creation\n");
+            exit(4);
+    }
+    contadorHilos++; 
+
+    gtk_entry_set_text(GTK_ENTRY(inputDestinos), "");
+    gtk_combo_box_set_active(GTK_COMBO_BOX(colorSelection), 0);
+}
+
 void initBuses(){
    	init_busNaranja();
 	init_busRojo();
@@ -412,49 +484,88 @@ int main(int argc, char *argv[]) {
     gtk_widget_set_size_request(drawing, WIDTH_DA, HEIGTH_DA); 
     g_signal_connect(drawing, "draw", G_CALLBACK(on_draw), NULL);
     
-    button = gtk_button_new_with_label("Vehiculo");
-    gtk_fixed_put(GTK_FIXED(fixed), button, 1000, 10);
-    gtk_widget_set_size_request(button, 80, 30);  
-    g_signal_connect(button, "clicked", G_CALLBACK(add_vehicule), NULL);
+    //Carros
+    //Aleatorios
+    labelCarroAleatorio = gtk_label_new("Carro aleatorio");
+    gtk_fixed_put(GTK_FIXED(fixed), labelCarroAleatorio, 1000, 10);
+    gtk_widget_set_size_request(labelCarroAleatorio, 80, 30);
+
+    buttonCarroAleatorio = gtk_button_new_with_label("Crear");
+    gtk_fixed_put(GTK_FIXED(fixed), buttonCarroAleatorio, 1020, 40);
+    gtk_widget_set_size_request(buttonCarroAleatorio, 80, 30);  
+    g_signal_connect(buttonCarroAleatorio, "clicked", G_CALLBACK(add_vehicule), NULL);
+
+    //Parametros
+    labelCarroParams = gtk_label_new("Carro configurable [min:0, max:179]");
+    gtk_fixed_put(GTK_FIXED(fixed), labelCarroParams, 1120, 10);
+    gtk_widget_set_size_request(labelCarroParams, 80, 30);
+
+    inputDestinos = gtk_entry_new();
+    gtk_fixed_put(GTK_FIXED(fixed), inputDestinos, 1120, 40);
+    gtk_widget_set_size_request(inputDestinos, 80, 30);
+    gtk_entry_set_placeholder_text(GTK_ENTRY(inputDestinos), "ei. 1, 3, 67, 2, 45");
+    g_signal_connect(inputDestinos, "changed", G_CALLBACK(validate_data), NULL);
+    
+    colorSelection = gtk_combo_box_text_new_with_entry();
+    gtk_fixed_put(GTK_FIXED(fixed), colorSelection, 1120, 70);
+    gtk_widget_set_size_request(colorSelection, 80, 30);  
+    gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(colorSelection),"Seleccione un color");
+    gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(colorSelection),"Naranja");
+    gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(colorSelection),"Verde");
+    gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(colorSelection),"Rojo");
+    gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(colorSelection),"Azul");
+    gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(colorSelection),"Blanco");
+    gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(colorSelection),"Negro");
+    gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(colorSelection),"Gris");
+    gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(colorSelection),"Rosa");
+    gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(colorSelection),"Celeste");
+    gtk_combo_box_set_active(GTK_COMBO_BOX(colorSelection), 0);
+    g_signal_connect(colorSelection, "changed", G_CALLBACK(validate_data), NULL);
+
+    buttonCarroParams = gtk_button_new_with_label("Crear");
+    gtk_widget_set_sensitive(buttonCarroParams, false);
+    gtk_fixed_put(GTK_FIXED(fixed), buttonCarroParams, 1120, 100);
+    gtk_widget_set_size_request(buttonCarroParams, 80, 30);  
+    g_signal_connect(buttonCarroParams, "clicked", G_CALLBACK(add_configured_car), NULL);    
 
     //Buses
     labelBuses = gtk_label_new("Buses");
-    gtk_fixed_put(GTK_FIXED(fixed), labelBuses, 1000, 70);
+    gtk_fixed_put(GTK_FIXED(fixed), labelBuses, 1000, 160);
     gtk_widget_set_size_request(labelBuses, 80, 30); 
 
     //BOTONES BUS NARANJA
     buttonBusNaranja = gtk_button_new_with_label("Naranja");
     gtk_widget_set_sensitive(buttonBusNaranja, false);
-    gtk_fixed_put(GTK_FIXED(fixed), buttonBusNaranja, 1000, 100);
+    gtk_fixed_put(GTK_FIXED(fixed), buttonBusNaranja, 1120, 250);
     gtk_widget_set_size_request(buttonBusNaranja, 80, 30);  
     g_signal_connect(buttonBusNaranja, "clicked", G_CALLBACK(add_busNaranja), NULL);
 
     buttonBusNaranjaOff = gtk_button_new_with_label("X");
-    gtk_fixed_put(GTK_FIXED(fixed), buttonBusNaranjaOff, 1080, 100);
+    gtk_fixed_put(GTK_FIXED(fixed), buttonBusNaranjaOff, 1200, 250);
     gtk_widget_set_size_request(buttonBusNaranjaOff, 20, 30);  
     g_signal_connect(buttonBusNaranjaOff, "clicked", G_CALLBACK(off_busNaranja), NULL);  
     
     //BOTONES BUS VERDE
     buttonBusVerde = gtk_button_new_with_label("Verde");
     gtk_widget_set_sensitive(buttonBusVerde, false);
-    gtk_fixed_put(GTK_FIXED(fixed), buttonBusVerde, 1000, 130);
+    gtk_fixed_put(GTK_FIXED(fixed), buttonBusVerde, 1120, 220);
     gtk_widget_set_size_request(buttonBusVerde, 80, 30);  
     g_signal_connect(buttonBusVerde, "clicked", G_CALLBACK(add_busVerde), NULL);
 
     buttonBusVerdeOff = gtk_button_new_with_label("X");
-    gtk_fixed_put(GTK_FIXED(fixed), buttonBusVerdeOff, 1080, 130);
+    gtk_fixed_put(GTK_FIXED(fixed), buttonBusVerdeOff, 1200, 220);
     gtk_widget_set_size_request(buttonBusVerdeOff, 20, 30);  
     g_signal_connect(buttonBusVerdeOff, "clicked", G_CALLBACK(off_busVerde), NULL);  
     
     //BOTONES BUS ROJO
     buttonBusRojo = gtk_button_new_with_label("Rojo");
     gtk_widget_set_sensitive(buttonBusRojo, false);
-    gtk_fixed_put(GTK_FIXED(fixed), buttonBusRojo, 1000, 160);
+    gtk_fixed_put(GTK_FIXED(fixed), buttonBusRojo, 1120, 190);
     gtk_widget_set_size_request(buttonBusRojo, 80, 30);  
     g_signal_connect(buttonBusRojo, "clicked", G_CALLBACK(add_busRojo), NULL);
 
     buttonBusRojoOff = gtk_button_new_with_label("X");
-    gtk_fixed_put(GTK_FIXED(fixed), buttonBusRojoOff, 1080, 160);
+    gtk_fixed_put(GTK_FIXED(fixed), buttonBusRojoOff, 1200, 190);
     gtk_widget_set_size_request(buttonBusRojoOff, 20, 30);  
     g_signal_connect(buttonBusRojoOff, "clicked", G_CALLBACK(off_busRojo), NULL);  
     
