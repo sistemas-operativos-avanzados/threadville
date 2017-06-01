@@ -411,7 +411,24 @@ static void add_configured_car(GtkWidget *widget, gpointer data){
     
     srand(time(NULL));
     vehicules[contadorHilos]->cantidadParadas=length;
-    vehicules[contadorHilos]->color = active;
+    //Colores
+    
+    //Rojo 1
+    //Azul 2
+    //Verde 3
+    //Negro 4
+    //Blanco 5
+    //Naranja 7
+    //Gris 8
+    //Rosa 9
+    //Celeste 10
+
+    if(active >= 6){
+	vehicules[contadorHilos]->color = active + 1;
+    }else{
+	vehicules[contadorHilos]->color = active;
+    }
+    
     vehicules[contadorHilos]->paradas=(NODE*) calloc(vehicules[contadorHilos]->cantidadParadas, sizeof(NODE));
     int i;
     
@@ -510,12 +527,13 @@ int main(int argc, char *argv[]) {
     gtk_fixed_put(GTK_FIXED(fixed), colorSelection, 1120, 70);
     gtk_widget_set_size_request(colorSelection, 80, 30);  
     gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(colorSelection),"Seleccione un color");
-    gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(colorSelection),"Naranja");
-    gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(colorSelection),"Verde");
+
     gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(colorSelection),"Rojo");
     gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(colorSelection),"Azul");
-    gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(colorSelection),"Blanco");
+    gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(colorSelection),"Verde");
     gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(colorSelection),"Negro");
+    gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(colorSelection),"Blanco");
+    gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(colorSelection),"Naranja");
     gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(colorSelection),"Gris");
     gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(colorSelection),"Rosa");
     gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(colorSelection),"Celeste");
