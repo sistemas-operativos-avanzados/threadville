@@ -22,6 +22,7 @@
 
 GtkWidget *window;
 GtkWidget *button;
+GtkWidget *buttonContar;
 GtkWidget *button2;
 GtkWidget *labelBuses;
 
@@ -92,14 +93,16 @@ static void add_vehicule(GtkWidget *widget, gpointer data) {
     vehicules[contadorHilos]= createCar("v");
     
     srand(time(NULL));
-    vehicules[contadorHilos]->cantidadParadas=rand()%4+2;
+    vehicules[contadorHilos]->cantidadParadas=(rand()%4+1)+2;
     vehicules[contadorHilos]->paradas=(NODE*) calloc(vehicules[contadorHilos]->cantidadParadas, sizeof(NODE));
+    vehicules[contadorHilos]->paradas[0]=listaParadas[72]; 
     int i;
-    for(i=0; i<vehicules[contadorHilos]->cantidadParadas; i++){
+    for(i=1; i<vehicules[contadorHilos]->cantidadParadas-1; i++){
         int valor= rand()%9+2;
         vehicules[contadorHilos]->paradas[i]=listaParadas[valor];                       
         printf("valor %d\n", valor);
-    } // for     
+    } // for
+    vehicules[contadorHilos]->paradas[vehicules[contadorHilos]->cantidadParadas-1]=listaParadas[87];
     vehicules[contadorHilos]->x=vehicules[contadorHilos]->paradas[0]->x;
     vehicules[contadorHilos]->y=vehicules[contadorHilos]->paradas[0]->y; //0;
     printf("creating thread %d\n", contadorHilos);
@@ -380,6 +383,11 @@ void initBuses(){
 	init_busCeleste();
 }
 
+void carrosEnPuente(){
+    int c=count_car(listaParadas[112], listaParadas[124]);
+    printf("CANTIDAD DE CARROS %d\n", c);
+} // carrosEnPuente 
+
 //******************************************************************************
 // ******************* MAIN ****************************************************
 //*****************************************************************************
@@ -416,6 +424,11 @@ int main(int argc, char *argv[]) {
     gtk_fixed_put(GTK_FIXED(fixed), button, 1000, 10);
     gtk_widget_set_size_request(button, 80, 30);  
     g_signal_connect(button, "clicked", G_CALLBACK(add_vehicule), NULL);
+
+    buttonContar = gtk_button_new_with_label("Contar");
+    gtk_fixed_put(GTK_FIXED(fixed), buttonContar, 1000, 40);
+    gtk_widget_set_size_request(buttonContar, 80, 30);  
+    g_signal_connect(buttonContar, "clicked", G_CALLBACK(carrosEnPuente), NULL); 
 
     //Buses
     labelBuses = gtk_label_new("Buses");

@@ -114,7 +114,7 @@ void *update_car_position(void * car)
                     if(p < tempCar->cantidadParadas-1){
                         generateRoute(tempCar, tempCar->paradas[p%tempCar->cantidadParadas], tempCar->paradas[(p+1)%tempCar->cantidadParadas]);
                         printf("--------\n");
-                        displayDestinations(tempCar->route->destinations);
+                        //displayDestinations(tempCar->route->destinations);
                         destinoActual = tempCar->route->destinations;
                         destinoActual=destinoActual->next;
 
@@ -134,7 +134,7 @@ void *update_car_position(void * car)
                             
                             generateRoute(tempCar, tempCar->paradas[p], tempCar->paradas[0]);
                             printf("--------\n");
-                            displayDestinations(tempCar->route->destinations);
+                            //displayDestinations(tempCar->route->destinations);
                             destinoActual = tempCar->route->destinations;
                             destinoActual=destinoActual->next;
 
@@ -167,7 +167,7 @@ void *update_car_position(void * car)
 		}
 
             }else{
-		printf("choque \n");
+		//printf("choque \n");
                 usleep(10000);
             }
                 
