@@ -148,8 +148,8 @@ VEHICULE* createBus(char *id, int speed){
         bus->y=0; 
         bus->dx=1;
         bus->dy=0;
-        bus->width=19;
-        bus->height=19;    
+        bus->width=TILESIZE*2;
+        bus->height=TILESIZE*2;    
         bus->run=true;
         bus->speed=speed;
 	return bus;

@@ -67,6 +67,16 @@ bool near_car(VEHICULE *car1, VEHICULE *car2) {
 
 } // near_car
 
+int count_car(NODE* n1, NODE* n2) { 
+    int i, c=0;
+    for(i=0; i<contadorHilos; i++){
+        if((vehicules[i]->y >= n1->y && vehicules[i]->y < n2->y) && vehicules[i]->x==n1->x){
+            c++;
+        }
+    } // fo
+    return c;
+} // count_car
+
 void *update_car_position(void * car)
 {    
     VEHICULE* tempCar=car;    
