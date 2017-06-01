@@ -626,36 +626,36 @@ int main(int argc, char *argv[]) {
     //BOTONES BUS GRIS 
     buttonBusGris = gtk_button_new_with_label("Gris");
     gtk_widget_set_sensitive(buttonBusGris, false);
-    gtk_fixed_put(GTK_FIXED(fixed), buttonBusGris, 1000, 390);
+    gtk_fixed_put(GTK_FIXED(fixed), buttonBusGris, 1240, 190);
     gtk_widget_set_size_request(buttonBusGris, 80, 30);  
     g_signal_connect(buttonBusGris, "clicked", G_CALLBACK(add_busGris), NULL);
 
     buttonBusGrisOff = gtk_button_new_with_label("X");
-    gtk_fixed_put(GTK_FIXED(fixed), buttonBusGrisOff, 1080, 390);
+    gtk_fixed_put(GTK_FIXED(fixed), buttonBusGrisOff, 1320, 190);
     gtk_widget_set_size_request(buttonBusGrisOff, 20, 30);  
     g_signal_connect(buttonBusGrisOff, "clicked", G_CALLBACK(off_busGris), NULL);  
     
     //BOTONES BUS ROSA    
     buttonBusRosa = gtk_button_new_with_label("Rosa");
     gtk_widget_set_sensitive(buttonBusRosa, false);
-    gtk_fixed_put(GTK_FIXED(fixed), buttonBusRosa, 1000, 420);
+    gtk_fixed_put(GTK_FIXED(fixed), buttonBusRosa, 1240, 220);
     gtk_widget_set_size_request(buttonBusRosa, 80, 30);  
     g_signal_connect(buttonBusRosa, "clicked", G_CALLBACK(add_busRosa), NULL);
 
     buttonBusRosaOff = gtk_button_new_with_label("X");
-    gtk_fixed_put(GTK_FIXED(fixed), buttonBusRosaOff, 1080, 420);
+    gtk_fixed_put(GTK_FIXED(fixed), buttonBusRosaOff, 1320, 220);
     gtk_widget_set_size_request(buttonBusRosaOff, 20, 30);  
     g_signal_connect(buttonBusRosaOff, "clicked", G_CALLBACK(off_busRosa), NULL);  
     
     //BOTONES BUS CELESTE
     buttonBusCeleste = gtk_button_new_with_label("Celeste");
     gtk_widget_set_sensitive(buttonBusCeleste, false);
-    gtk_fixed_put(GTK_FIXED(fixed), buttonBusCeleste, 1000, 450);
+    gtk_fixed_put(GTK_FIXED(fixed), buttonBusCeleste, 1240, 250);
     gtk_widget_set_size_request(buttonBusCeleste, 80, 30);  
     g_signal_connect(buttonBusCeleste, "clicked", G_CALLBACK(add_busCeleste), NULL);
 
     buttonBusCelesteOff = gtk_button_new_with_label("X");
-    gtk_fixed_put(GTK_FIXED(fixed), buttonBusCelesteOff, 1080, 450);
+    gtk_fixed_put(GTK_FIXED(fixed), buttonBusCelesteOff, 1320, 250);
     gtk_widget_set_size_request(buttonBusCelesteOff, 20, 30);  
     g_signal_connect(buttonBusCelesteOff, "clicked", G_CALLBACK(off_busCeleste), NULL);
 
