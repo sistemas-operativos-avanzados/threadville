@@ -150,14 +150,14 @@ void *update_car_position(void * car)
             } // for            
             if(mover){
 		if(destinoActual->node->especial && destinoActual->node->allowTravel==false){
-			printf("Estoy en el puente %s\n", destinoActual->node->name);
+			//printf("Estoy en el puente %s\n", destinoActual->node->name);
 		}else{
 			tempCar->x+=tempCar->dx;
                 	tempCar->y+=tempCar->dy;
 		}
 
             }else{
-		printf("choque \n");
+		        //printf("choque \n");
                 usleep(10000);
             }
                 

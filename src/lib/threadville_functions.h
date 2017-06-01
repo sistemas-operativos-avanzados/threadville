@@ -209,7 +209,7 @@ void releaseBridge(BRIDGE *bridge){
 void displayDestinations(DESTINY *destinations){
     DESTINY *i = destinations;
     for(; i != NULL; i = i->next){
-            printf("DESTINY - NODE NAME:  %s\n", i->node->name);
+            //printf("DESTINY - NODE NAME:  %s\n", i->node->name);
     }
 
 }
@@ -256,20 +256,71 @@ NODE* findNode(int index, THREADVILLE *threadville){
 	Si los semáforos del sur permiten el paso, los semáforos del norte NO 
 */
 void semaphoresBridgeControlWait(BRIDGE *bridge){
-	while(true){
+	/*while(true){
+		//sleep(5);
 		if(bridge->northLeftNode->allowTravel){
-			//car needs to wait
 			bridge->northLeftNode->allowTravel = false;
 			bridge->southRightNode->allowTravel = true;
+			printf("Cambio de colores en semáforo %s \n", bridge->id);
+			printf("Cambio en semaforo NORTE \n");
+			printf("Luz semáforo norte %s \n", bridge->northLeftNode->allowTravel ? "true" : "false");
+			printf("Luz semáforo sur %s \n", bridge->southLeftNode->allowTravel ? "true" : "false");
+			sleep(5);
+		}else {
+			if(bridge->southRightNode->allowTravel){
+				bridge->northLeftNode->allowTravel = true;
+				bridge->southRightNode->allowTravel = false;
+				printf("Cambio de colores en semáforo %s \n", bridge->id);
+				printf("Cambio en semaforo SUR \n");
+				printf("Luz semáforo norte %s \n", bridge->northLeftNode->allowTravel ? "true" : "false");
+				printf("Luz semáforo sur %s \n", bridge->southLeftNode->allowTravel ? "true" : "false");
+				sleep(5);
+			}
 		}
+		//printf("Cambio de colores en semáforo %s \n", bridge->id);
+		//printf("Luz semáforo norte %s \n", bridge->northLeftNode->allowTravel ? "true" : "false");
+		//printf("Luz semáforo sur %s \n", bridge->southLeftNode->allowTravel ? "true" : "false");
+		//sleep(5);
+		//validar que no haya carro en puente 
+	}*/
+	int random = rand()%2;
+	
+	sleep(random);
+
+	while(true){
+		printf("Cambiando los semáforos en puente %s \n", bridge->id);
+		
 		if(bridge->southRightNode->allowTravel){
-			//car needs to wait
-			bridge->northLeftNode->allowTravel = true;
+			printf("IF - Luz semáforo sur es %s \n", bridge->southRightNode->allowTravel ? "verde" : "roja");
+			//printf("IF - Luz semáforo norte es %s \n", bridge->northLeftNode->allowTravel ? "verde" : "roja");
+			sleep(2);
 			bridge->southRightNode->allowTravel = false;
+			printf("IF - Luz semáforo sur es %s \n", bridge->southRightNode->allowTravel ? "verde" : "roja");
+		}else{
+			printf("ELSE - Luz semáforo sur es %s \n", bridge->southRightNode->allowTravel ? "verde" : "roja");
+			sleep(2);
+			bridge->southRightNode->allowTravel = true;
+			printf("ELSE - Luz semáforo sur es %s \n", bridge->southRightNode->allowTravel ? "verde" : "roja");
 		}
-		usleep(1000000);
-		printf("Cambio de colores en semáforo\n");
-		break;
+
+		if(bridge->northLeftNode->allowTravel){
+			printf("IF - Luz semáforo sur es %s \n", bridge->northLeftNode->allowTravel ? "verde" : "roja");
+			//printf("IF - Luz semáforo norte es %s \n", bridge->northLeftNode->allowTravel ? "verde" : "roja");
+			sleep(2);
+			bridge->northLeftNode->allowTravel = false;
+			printf("IF - Luz semáforo sur es %s \n", bridge->southRightNode->allowTravel ? "verde" : "roja");
+		}else{
+			printf("ELSE - Luz semáforo sur es %s \n", bridge->northLeftNode->allowTravel ? "verde" : "roja");
+			sleep(2);
+			bridge->northLeftNode->allowTravel = true;
+			printf("ELSE - Luz semáforo sur es %s \n", bridge->northLeftNode->allowTravel ? "verde" : "roja");
+		}
+
+		//if(bridge->northLeftNode->allowTravel){
+			//printf("Luz semáforo norte es %s \n", bridge->northLeftNode->allowTravel ? "verde" : "roja");
+		//}
+		
+		sleep(10);
 	}
 }
 
@@ -282,7 +333,7 @@ void semaphoresBridgeControlInit(BRIDGE *bridge){
 	bridge->northLeftNode->allowTravel = false;
 
 	bridge->southRightNode->especial = true;
-	bridge->southRightNode->allowTravel = true;
+	bridge->southRightNode->allowTravel = false;
 
 	printf("Bridge = %s\n  North Semaphore = %d, South Semaphore = %d\n", bridge->id, bridge->northLeftNode->allowTravel , bridge->southRightNode->allowTravel );
 

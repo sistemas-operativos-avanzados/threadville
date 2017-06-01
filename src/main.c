@@ -399,7 +399,6 @@ int main(int argc, char *argv[]) {
 	asignarNodosALista();
 	cargarCordenadasNodos();
 	initBuses();
-    initSemaphoreBridges();
 
     gtk_init(&argc, &argv);
     GError * error = NULL;
@@ -544,6 +543,8 @@ int main(int argc, char *argv[]) {
     
     tick_cb = g_timeout_add(1000 / FPS / 2, (GSourceFunc) on_tick, GINT_TO_POINTER(size)); 
         
+    //initSemaphoreBridges();
+
     gtk_main();
     
     return 0;
