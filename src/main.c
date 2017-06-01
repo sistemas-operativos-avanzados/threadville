@@ -411,7 +411,7 @@ static void add_configured_car(GtkWidget *widget, gpointer data){
     
     srand(time(NULL));
     vehicules[contadorHilos]->cantidadParadas=length;
-    //vehicules[contadorHilos]->color = active + 1;
+    vehicules[contadorHilos]->color = active;
     vehicules[contadorHilos]->paradas=(NODE*) calloc(vehicules[contadorHilos]->cantidadParadas, sizeof(NODE));
     int i;
     
