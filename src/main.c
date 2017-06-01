@@ -178,8 +178,8 @@ static void off_busNaranja(GtkWidget *widget, gpointer data) {
 
 //----------------------------------BUS ROJO
 void init_busRojo() {
-    int paradas[11] = {0, 6, 11, 71, 87, 99, 159, 153, 148, 88, 82};
-    int cantidadParadas = 11;
+    int paradas[12] = {0, 6, 11, 71, 86, 119, 179, 173, 168, 108, 93, 60};
+    int cantidadParadas = 12;
     char *name = "BUS-ROJO";
     hiloBusRojo = contadorHilos;
     add_bus(name, cantidadParadas, paradas, 5, 1);
@@ -204,8 +204,8 @@ static void off_busRojo(GtkWidget *widget, gpointer data) {
 
 //----------------------------------BUS VERDE
 void init_busVerde() {
-    int paradas[10] = {9, 59, 11, 71, 87, 99, 74, 48, 2, 9};
-    int cantidadParadas = 10;
+    int paradas[6] = {9, 59, 87, 74, 48, 2};
+    int cantidadParadas = 6;
     char *name = "BUS-VERDE";
     hiloBusVerde = contadorHilos;
     add_bus(name, cantidadParadas, paradas, 5, 3);
@@ -230,8 +230,8 @@ static void off_busVerde(GtkWidget *widget, gpointer data) {
 
 //----------------------------------BUS AZUL
 void init_busAzul() {   
-     int paradas[7] = {111, 157, 150, 100, 82, 77, 111};
-     int cantidadParadas = 7;
+     int paradas[6] = {131, 177, 170, 120, 93, 91};
+     int cantidadParadas = 6;
      char *name = "BUS-AZUL";
      hiloBusAzul = contadorHilos;
      add_bus(name, cantidadParadas, paradas, 5, 2);
@@ -469,6 +469,15 @@ void initBuses(){
 	init_busCeleste();
 }
 
+void initSemaphoreBridges(){
+    semaphoresBridgeControlWait(Larry);
+   	semaphoresBridgeControlWait(Curly);
+    semaphoresBridgeControlWait(Moe);
+    semaphoresBridgeControlWait(Shemp);
+    semaphoresBridgeControlWait(Joe);
+}
+
+
 //******************************************************************************
 // ******************* MAIN ****************************************************
 //*****************************************************************************
@@ -663,6 +672,8 @@ int main(int argc, char *argv[]) {
     
     tick_cb = g_timeout_add(1000 / FPS / 2, (GSourceFunc) on_tick, GINT_TO_POINTER(size)); 
         
+    //initSemaphoreBridges();
+
     gtk_main();
     
     return 0;
