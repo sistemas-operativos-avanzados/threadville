@@ -21,8 +21,12 @@
 
 
 #include "lib/Vehicule.h"
+#include "lib/Semaphores.h"
 
 GtkWidget *window;
+GtkWidget *button;
+GtkWidget *buttonContar;
+GtkWidget *button2;
 
 //Buses
 GtkWidget *labelBuses;
@@ -76,8 +80,36 @@ static guint size =32;
 static GtkWidget *drawing;
 
 
-static void on_draw (GtkWidget *widget, cairo_t *cr, gpointer user_data) {   
-    draw_background(cr);   
+static void on_draw (GtkWidget *widget, cairo_t *cr, gpointer user_data) {
+    
+    draw_background(cr);
+    
+    // dibujar semaforos
+    draw_semaphore(cr, Larry->northLeftNode);
+    //draw_semaphore(cr, Larry->northRightNode);
+    //draw_semaphore(cr, Larry->southLeftNode);
+    draw_semaphore(cr, Larry->southRightNode);
+    
+    draw_semaphore(cr, Curly->northLeftNode);
+    //draw_semaphore(cr, Curly->northRightNode);
+    //draw_semaphore(cr, Curly->southLeftNode);
+    draw_semaphore(cr, Curly->southRightNode);    
+    
+    draw_semaphore(cr, Moe->northLeftNode);
+    //draw_semaphore(cr, Moe->northRightNode);
+    //draw_semaphore(cr, Moe->southLeftNode);
+    draw_semaphore(cr, Moe->southRightNode);    
+    
+    draw_semaphore(cr, Shemp->northLeftNode);
+    //draw_semaphore(cr, Shemp->northRightNode);
+    //draw_semaphore(cr, Shemp->southLeftNode);
+    draw_semaphore(cr, Shemp->southRightNode);    
+    
+    draw_semaphore(cr, Joe->northLeftNode);
+    //draw_semaphore(cr, Joe->northRightNode);
+    //draw_semaphore(cr, Joe->southLeftNode);
+    draw_semaphore(cr, Joe->southRightNode);    
+    
     int i;
     for(i=0; i<contadorHilos; i++){
         draw_car(cr, vehicules[i]);
@@ -106,14 +138,16 @@ static void add_vehicule(GtkWidget *widget, gpointer data) {
     vehicules[contadorHilos]= createCar("v");
     
     srand(time(NULL));
-    vehicules[contadorHilos]->cantidadParadas=rand()%4+2;
+    vehicules[contadorHilos]->cantidadParadas=(rand()%4+1)+2;
     vehicules[contadorHilos]->paradas=(NODE*) calloc(vehicules[contadorHilos]->cantidadParadas, sizeof(NODE));
+    vehicules[contadorHilos]->paradas[0]=listaParadas[72]; 
     int i;
-    for(i=0; i<vehicules[contadorHilos]->cantidadParadas; i++){
+    for(i=1; i<vehicules[contadorHilos]->cantidadParadas-1; i++){
         int valor= rand()%9+2;
         vehicules[contadorHilos]->paradas[i]=listaParadas[valor];                       
         printf("valor %d\n", valor);
-    } // for     
+    } // for
+    vehicules[contadorHilos]->paradas[vehicules[contadorHilos]->cantidadParadas-1]=listaParadas[87];
     vehicules[contadorHilos]->x=vehicules[contadorHilos]->paradas[0]->x;
     vehicules[contadorHilos]->y=vehicules[contadorHilos]->paradas[0]->y; //0;
     printf("creating thread %d\n", contadorHilos);
@@ -154,8 +188,8 @@ void add_bus(char *id, int cantidadParadas, int paradas[], int speed, int color)
 
 //----------------------------------BUS NARANJA
 void init_busNaranja(){
-    int paradas[21] = {101, 104, 108, 103, 104, 108, 20, 21, 109, 147, 146, 58, 55, 143, 54, 51, 139, 138, 12, 13, 101};
-    int cantidadParadas = 21;
+    int paradas[22] = {121, 124, 16, 17, 125, 128, 20, 21, 129, 167, 166, 58, 55, 163, 162, 54, 51, 159, 158, 50, 12, 13};
+    int cantidadParadas = 22;
     char *name = "BUS-NARANJA";
     hiloBusNaranja = contadorHilos;
     add_bus(name, cantidadParadas, paradas, 7, 7);
@@ -180,8 +214,8 @@ static void off_busNaranja(GtkWidget *widget, gpointer data) {
 
 //----------------------------------BUS ROJO
 void init_busRojo() {
-    int paradas[11] = {0, 6, 11, 71, 87, 99, 159, 153, 148, 88, 82};
-    int cantidadParadas = 11;
+    int paradas[12] = {0, 6, 11, 71, 86, 119, 179, 173, 168, 108, 92, 60};
+    int cantidadParadas = 12;
     char *name = "BUS-ROJO";
     hiloBusRojo = contadorHilos;
     add_bus(name, cantidadParadas, paradas, 5, 1);
@@ -206,8 +240,8 @@ static void off_busRojo(GtkWidget *widget, gpointer data) {
 
 //----------------------------------BUS VERDE
 void init_busVerde() {
-    int paradas[10] = {9, 59, 11, 71, 87, 99, 74, 48, 2, 9};
-    int cantidadParadas = 10;
+    int paradas[6] = {9, 59, 87, 92, 48, 2};
+    int cantidadParadas = 6;
     char *name = "BUS-VERDE";
     hiloBusVerde = contadorHilos;
     add_bus(name, cantidadParadas, paradas, 5, 3);
@@ -232,8 +266,8 @@ static void off_busVerde(GtkWidget *widget, gpointer data) {
 
 //----------------------------------BUS AZUL
 void init_busAzul() {   
-     int paradas[7] = {111, 157, 150, 100, 82, 77, 111};
-     int cantidadParadas = 7;
+     int paradas[6] = {131, 177, 170, 120, 92, 87};
+     int cantidadParadas = 6;
      char *name = "BUS-AZUL";
      hiloBusAzul = contadorHilos;
      add_bus(name, cantidadParadas, paradas, 5, 2);
@@ -258,8 +292,8 @@ static void off_busAzul(GtkWidget *widget, gpointer data) {
 
 //----------------------------------BUS BLANCO
 void init_busBlanco() {
-     int paradas[7] = {65, 105, 151, 90, 50, 4, 65};
-     int cantidadParadas = 7;
+     int paradas[6] = {65, 125, 171, 110, 50, 4};
+     int cantidadParadas = 6;
      char *name = "BUS-BLANCO";
      hiloBusBlanco = contadorHilos;
      add_bus(name, cantidadParadas, paradas, 4, 5);
@@ -284,8 +318,8 @@ static void off_busBlanco(GtkWidget *widget, gpointer data) {
 
 //----------------------------------BUS GRIS
 void init_busGris() {
-    int paradas[7] = {153, 92, 52, 6, 67, 107, 153};
-    int cantidadParadas = 7;
+    int paradas[6] = {173, 112, 52, 6, 67, 127};
+    int cantidadParadas = 6;
     char *name = "BUS-GRIS";
     hiloBusGris = contadorHilos;
     add_bus(name, cantidadParadas, paradas, 4, 8);
@@ -309,8 +343,8 @@ static void off_busGris(GtkWidget *widget, gpointer data) {
 
 //----------------------------------BUS NEGRO
 void init_busNegro() {
-    int paradas[7] = {54, 8, 69, 109, 155, 94, 54};
-    int cantidadParadas = 7;
+    int paradas[6] = {54, 8, 69, 129, 175, 114};
+    int cantidadParadas = 6;
     char *name = "BUS-NEGRO";
     hiloBusNegro = contadorHilos;
     add_bus(name, cantidadParadas, paradas, 4, 4);
@@ -334,8 +368,8 @@ static void off_busNegro(GtkWidget *widget, gpointer data) {
 
 //----------------------------------BUS ROSA
 void init_busRosa() {
-    int paradas[5] = {47, 36, 0, 11, 147};
-    int cantidadParadas = 5;
+    int paradas[4] = {47, 36, 0, 11};
+    int cantidadParadas = 4;
     char *name = "BUS-ROSA";
     hiloBusRosa = contadorHilos;
     add_bus(name, cantidadParadas, paradas, 3, 9);
@@ -345,8 +379,8 @@ void init_busRosa() {
 
 static void add_busRosa(GtkWidget *widget, gpointer data) {
     init_busRosa();
-    gtk_widget_set_sensitive(buttonBusNegro, false);
-    gtk_widget_set_sensitive(buttonBusNegroOff, true);
+    gtk_widget_set_sensitive(buttonBusRosa, false);
+    gtk_widget_set_sensitive(buttonBusRosaOff, true);
 }
 
 static void off_busRosa(GtkWidget *widget, gpointer data) {
@@ -359,8 +393,8 @@ static void off_busRosa(GtkWidget *widget, gpointer data) {
 
 //----------------------------------BUS CELESTE
 void init_busCeleste() {
-    int paradas[5] = {148, 112, 123, 159, 148};
-    int cantidadParadas = 5;
+    int paradas[4] = {168, 132, 143, 179};
+    int cantidadParadas = 4;
     char *name = "BUS-CELESTE";
     hiloBusCeleste = contadorHilos;
     add_bus(name, cantidadParadas, paradas, 3, 10);
@@ -526,6 +560,22 @@ void initBuses(){
 	init_busCeleste();
 }
 
+
+void carrosEnPuente(){
+    int c=count_car(listaParadas[112], listaParadas[124]);
+    printf("CANTIDAD DE CARROS %d\n", c);
+} // carrosEnPuente 
+
+void initSemaphoreBridges(){
+    semaphoresBridgeControlWait(Larry);
+   	semaphoresBridgeControlWait(Curly);
+    semaphoresBridgeControlWait(Moe);
+    semaphoresBridgeControlWait(Shemp);
+    semaphoresBridgeControlWait(Joe);
+}
+
+
+
 //******************************************************************************
 // ******************* MAIN ****************************************************
 //*****************************************************************************
@@ -602,6 +652,11 @@ int main(int argc, char *argv[]) {
     gtk_fixed_put(GTK_FIXED(fixed), buttonCarroParams, 1120, 100);
     gtk_widget_set_size_request(buttonCarroParams, 80, 30);  
     g_signal_connect(buttonCarroParams, "clicked", G_CALLBACK(add_configured_car), NULL);    
+
+    buttonContar = gtk_button_new_with_label("Contar");
+    gtk_fixed_put(GTK_FIXED(fixed), buttonContar, 1020, 80);
+    gtk_widget_set_size_request(buttonContar, 80, 30);  
+    g_signal_connect(buttonContar, "clicked", G_CALLBACK(carrosEnPuente), NULL); 
 
     //Buses
     labelBuses = gtk_label_new("Buses");
@@ -720,6 +775,8 @@ int main(int argc, char *argv[]) {
     
     tick_cb = g_timeout_add(1000 / FPS / 2, (GSourceFunc) on_tick, GINT_TO_POINTER(size)); 
         
+    //initSemaphoreBridges();
+
     gtk_main();
 
     

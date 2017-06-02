@@ -58,12 +58,24 @@ bool near_car(VEHICULE *car1, VEHICULE *car2) {
     if(igual==0)
         return false;
     
-    if((car1->x+car1->width + 5 >= car2->x && car1->x < car2->x) && (car1->y == car2->y) || (car1->y+car1->width + 5 >= car2->y && car1->y < car2->y) && (car1->x == car2->x))
+    if((car1->x+(car1->width + 5)*fabs(car1->dx) >= car2->x && car1->x < car2->x) && (car1->y == car2->y) || (car1->y+(car1->height + 5)*fabs(car1->dy) >= car2->y && car1->y < car2->y) && (car1->x == car2->x)){
+        //printf("AX %d\n", car1->x+(car1->width + 5)*fabs(car1->dx));
         return true;
+    }
     
     return false;
 
 } // near_car
+
+int count_car(NODE* n1, NODE* n2) { 
+    int i, c=0;
+    for(i=0; i<contadorHilos; i++){
+        if((vehicules[i]->y >= n1->y && vehicules[i]->y < n2->y) && vehicules[i]->x==n1->x){
+            c++;
+        }
+    } // fo
+    return c;
+} // count_car
 
 void *update_car_position(void * car)
 {    
@@ -102,7 +114,7 @@ void *update_car_position(void * car)
                     if(p < tempCar->cantidadParadas-1){
                         generateRoute(tempCar, tempCar->paradas[p%tempCar->cantidadParadas], tempCar->paradas[(p+1)%tempCar->cantidadParadas]);
                         printf("--------\n");
-                        displayDestinations(tempCar->route->destinations);
+                        //displayDestinations(tempCar->route->destinations);
                         destinoActual = tempCar->route->destinations;
                         destinoActual=destinoActual->next;
 
@@ -122,7 +134,7 @@ void *update_car_position(void * car)
                             
                             generateRoute(tempCar, tempCar->paradas[p], tempCar->paradas[0]);
                             printf("--------\n");
-                            displayDestinations(tempCar->route->destinations);
+                            //displayDestinations(tempCar->route->destinations);
                             destinoActual = tempCar->route->destinations;
                             destinoActual=destinoActual->next;
 
@@ -147,9 +159,15 @@ void *update_car_position(void * car)
                     }
             } // for            
             if(mover){
-                tempCar->x+=tempCar->dx;
-                tempCar->y+=tempCar->dy;            
+		if(destinoActual->node->especial && destinoActual->node->allowTravel==false){
+			//printf("Estoy en el puente %s\n", destinoActual->node->name);
+		}else{
+			tempCar->x+=tempCar->dx;
+                	tempCar->y+=tempCar->dy;
+		}
+
             }else{
+
                 usleep(10000);
             }
                 
