@@ -10,26 +10,26 @@ pthread_t threads[NUM_VEHICULE];
 
 static void draw_car (cairo_t * cr, VEHICULE * vehicule) {   
     if(vehicule->run){
-        if(vehicule->speed==1)
+        if(vehicule->color==1)
             cairo_set_source_rgb (cr, 1.0, 0.0, 0.0);
-        else if(vehicule->speed==2)
+        else if(vehicule->color==2)
             cairo_set_source_rgb (cr, 0.0, 0.0, 1.0);
-        else if(vehicule->speed==3)
+        else if(vehicule->color==3)
             cairo_set_source_rgb (cr, 0.0, 1.0, 0.0);
-        else if(vehicule->speed==4)
+        else if(vehicule->color==4)
             cairo_set_source_rgb (cr, 0.0, 0.0, 0.0);
-        else if(vehicule->speed==5)
+        else if(vehicule->color==5)
             cairo_set_source_rgb (cr, 1.0, 1.0, 1.0);
-        else if(vehicule->speed==6)
+        else if(vehicule->color==6)
             cairo_set_source_rgb (cr, 1.0, 1.0, 0.0);
-        else if(vehicule->speed==7)
+        else if(vehicule->color==7)
             cairo_set_source_rgb (cr, 1.0, 0.5, 0.0);
-        else if(vehicule->speed==8)
+        else if(vehicule->color==8)
             cairo_set_source_rgb (cr, 0.7, 0.7, 0.7);
-        else if(vehicule->speed==9)
+        else if(vehicule->color==9)
             cairo_set_source_rgb (cr, 1.0, 0.4, 0.45);
-        else if(vehicule->speed==10)
-            cairo_set_source_rgb (cr, 0.75, 0.9, 0.92);          
+        else if(vehicule->color==10)
+            cairo_set_source_rgb (cr, 0.75, 0.9, 0.92);
 
         if(vehicule->type==1){
         	cairo_arc(cr, vehicule->x, vehicule->y+10, TILESIZE/2, 0, 2*3.14);
@@ -39,7 +39,7 @@ static void draw_car (cairo_t * cr, VEHICULE * vehicule) {
                 cairo_fill (cr);
 	}
         
-        if(vehicule->speed!=4)
+        if(vehicule->color!=4)
             cairo_set_source_rgb (cr, 0.0, 0.0, 0.0);
         else
             cairo_set_source_rgb (cr, 1.0, 1.0, 1.0);
@@ -160,14 +160,14 @@ void *update_car_position(void * car)
             } // for            
             if(mover){
 		if(destinoActual->node->especial && destinoActual->node->allowTravel==false){
-			printf("Estoy en el puente %s\n", destinoActual->node->name);
+			//printf("Estoy en el puente %s\n", destinoActual->node->name);
 		}else{
 			tempCar->x+=tempCar->dx;
                 	tempCar->y+=tempCar->dy;
 		}
 
             }else{
-		//printf("choque \n");
+
                 usleep(10000);
             }
                 
