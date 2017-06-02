@@ -441,7 +441,6 @@ char** str_split(char* a_str, const char a_delim)
     delim[0] = a_delim;
     delim[1] = 0;
 
-    /* Count how many elements will be extracted. */
     while (*tmp)
     {
         if (a_delim == *tmp)
@@ -452,11 +451,7 @@ char** str_split(char* a_str, const char a_delim)
         tmp++;
     }
 
-    /* Add space for trailing token. */
     count += last_comma < (a_str + strlen(a_str) - 1);
-
-    /* Add space for terminating null string so caller
-       knows where the list of returned strings ends. */
     count++;
 
     result = malloc(sizeof(char*) * count);
@@ -489,7 +484,6 @@ static void add_configured_car(GtkWidget *widget, gpointer data){
     active = gtk_combo_box_get_active(GTK_COMBO_BOX(colorSelection));
     char destinosSplit[length];
 
-    int i = 0;
     char** tokens;
     sprintf(destinosSplit, "%8s\n", destinos);
     tokens = str_split(destinosSplit, ',');
@@ -519,19 +513,23 @@ static void add_configured_car(GtkWidget *widget, gpointer data){
     
     vehicules[contadorHilos]->paradas=(NODE*) calloc(vehicules[contadorHilos]->cantidadParadas, sizeof(NODE));
 
+vehicules[contadorHilos]->paradas[0]=listaParadas[72]; 
+    int position = 1;
     if (tokens)
     {
         int i;
         for (i = 0; *(tokens + i); i++)
         {
-            printf("index=[%i]\n", atoi(*(tokens + i)));
-            vehicules[contadorHilos]->paradas[i]=listaParadas[atoi(*(tokens + i))];
+            vehicules[contadorHilos]->paradas[position]=listaParadas[atoi(*(tokens + i))];
             free(*(tokens + i));
+            position++;
         }
         printf("\n");
         free(tokens);
     }
 
+    vehicules[contadorHilos]->paradas[position]=listaParadas[87];
+   
     vehicules[contadorHilos]->x=vehicules[contadorHilos]->paradas[0]->x;
     vehicules[contadorHilos]->y=vehicules[contadorHilos]->paradas[0]->y; //0;
     
