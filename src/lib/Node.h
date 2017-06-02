@@ -315,8 +315,7 @@ void fillGraph(THREADVILLE *threadville){
 
 
 void init(){
-    puts("Iniciando Threadville");
-	threadville = createThreadville();
+        threadville = createThreadville();
 	initCustomPathWeights();
 
 	//Array de nodos alcanzables
@@ -1257,8 +1256,6 @@ void asignarNodosALista(){
 } // asignarNodosALista
 
 void cargarCordenadasNodos () {
-    printf("********************** Cargar Nodos *****************************\n");
-
     int x, y, p=0, t=0;
     for(x=0; x<FILAS2;x++){
         for(y=0; y<COLUMNAS2; y++){
@@ -1284,8 +1281,7 @@ void cargarCordenadasNodos () {
                 t++;
             }         
         } // for y
-    } // for x
-    printf("...T: %d\n", t);    
+    } // for x   
 } // cargarNodos
 
 // ************** ruta entre dos nodos ************

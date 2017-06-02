@@ -46,9 +46,6 @@ void thePath(int from, int to, int paths[], int result[]){
 
     //Reversa
     result[i] = from;
-    for(; i > 0; i--){
-        //printf("%d -> ",  result[i]);
-    }
 
 }
 
@@ -56,7 +53,7 @@ void printPath(int path[]){
 
     int p;
     for(p = 0; p < V; p++){
-        //printf("\t%d", path[p]);
+        printf("\t%d", path[p]);
     }
 
 }

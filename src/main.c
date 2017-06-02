@@ -8,6 +8,8 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <stddef.h>
+#include <assert.h>
 #include <glib/gmacros.h>
 
 #include "lib/threadville_globals.h"
@@ -143,12 +145,11 @@ static void add_vehicule(GtkWidget *widget, gpointer data) {
     for(i=1; i<vehicules[contadorHilos]->cantidadParadas-1; i++){
         int valor= rand()%9+2;
         vehicules[contadorHilos]->paradas[i]=listaParadas[valor];                       
-        printf("valor %d\n", valor);
     } // for
     vehicules[contadorHilos]->paradas[vehicules[contadorHilos]->cantidadParadas-1]=listaParadas[87];
     vehicules[contadorHilos]->x=vehicules[contadorHilos]->paradas[0]->x;
     vehicules[contadorHilos]->y=vehicules[contadorHilos]->paradas[0]->y; //0;
-    printf("creating thread %d\n", contadorHilos);
+
     rc = pthread_create(&threads[contadorHilos], NULL, update_car_position, (void *)vehicules[contadorHilos]);
     if (rc)
     {
@@ -162,7 +163,6 @@ void add_bus(char *id, int cantidadParadas, int paradas[], int speed, int color)
 	char *_id = id;    
 	int rc;
     
-        g_print("CREANDO BUS %s\n", _id);
         vehicules[contadorHilos]= createBus(_id, speed, color);
 	srand(time(NULL));
         vehicules[contadorHilos]->cantidadParadas = cantidadParadas;
@@ -429,6 +429,50 @@ static void validate_data(GtkWidget *widget, gpointer data){
     }
 }
 
+char** str_split(char* a_str, const char a_delim)
+{
+    char** result    = 0;
+    size_t count     = 0;
+    char* tmp        = a_str;
+    char* last_comma = 0;
+    char delim[2];
+    delim[0] = a_delim;
+    delim[1] = 0;
+
+    while (*tmp)
+    {
+        if (a_delim == *tmp)
+        {
+            count++;
+            last_comma = tmp;
+        }
+        tmp++;
+    }
+
+    count += last_comma < (a_str + strlen(a_str) - 1);
+    count++;
+
+    result = malloc(sizeof(char*) * count);
+
+    if (result)
+    {
+        size_t idx  = 0;
+        char* token = strtok(a_str, delim);
+
+        while (token)
+        {
+            assert(idx < count);
+            *(result + idx++) = strdup(token);
+            token = strtok(0, delim);
+        }
+        assert(idx == count - 1);
+        *(result + idx) = 0;
+    }
+
+    return result;
+}
+
+
 static void add_configured_car(GtkWidget *widget, gpointer data){
     const gchar *destinos;
     int length;
@@ -437,8 +481,10 @@ static void add_configured_car(GtkWidget *widget, gpointer data){
     length = gtk_entry_get_text_length(GTK_ENTRY(inputDestinos));
     active = gtk_combo_box_get_active(GTK_COMBO_BOX(colorSelection));
     char destinosSplit[length];
-    char *destinosNodes;
 
+    char** tokens;
+    sprintf(destinosSplit, "%8s\n", destinos);
+    tokens = str_split(destinosSplit, ',');
 
     int rc;
     vehicules[contadorHilos]= createCar("v");
@@ -464,21 +510,26 @@ static void add_configured_car(GtkWidget *widget, gpointer data){
     }
     
     vehicules[contadorHilos]->paradas=(NODE*) calloc(vehicules[contadorHilos]->cantidadParadas, sizeof(NODE));
-    int i;
-    
-    sprintf(destinosSplit, "%8s\n", destinos);
-    const char spliter[2] = ",";
-    destinosNodes = strtok(destinosSplit, spliter);
 
-    for(i=0; i<vehicules[contadorHilos]->cantidadParadas; i++){
-        int valor= destinosNodes[i];
-        vehicules[contadorHilos]->paradas[i]=listaParadas[valor];                       
-    } // for     
+vehicules[contadorHilos]->paradas[0]=listaParadas[72]; 
+    int position = 1;
+    if (tokens)
+    {
+        int i;
+        for (i = 0; *(tokens + i); i++)
+        {
+            vehicules[contadorHilos]->paradas[position]=listaParadas[atoi(*(tokens + i))];
+            free(*(tokens + i));
+            position++;
+        }
+        free(tokens);
+    }
 
+    vehicules[contadorHilos]->paradas[position]=listaParadas[87];
+   
     vehicules[contadorHilos]->x=vehicules[contadorHilos]->paradas[0]->x;
     vehicules[contadorHilos]->y=vehicules[contadorHilos]->paradas[0]->y; //0;
     
-    printf("creating thread %d\n", contadorHilos);
     rc = pthread_create(&threads[contadorHilos], NULL, update_car_position, (void *)vehicules[contadorHilos]);
     if (rc)
     {
@@ -570,7 +621,7 @@ int main(int argc, char *argv[]) {
     inputDestinos = gtk_entry_new();
     gtk_fixed_put(GTK_FIXED(fixed), inputDestinos, 1120, 40);
     gtk_widget_set_size_request(inputDestinos, 80, 30);
-    gtk_entry_set_placeholder_text(GTK_ENTRY(inputDestinos), "ei. 1, 3, 67, 2, 45");
+    gtk_entry_set_placeholder_text(GTK_ENTRY(inputDestinos), "ei. 1,3,67,2,45");
     g_signal_connect(inputDestinos, "changed", G_CALLBACK(validate_data), NULL);
     
     colorSelection = gtk_combo_box_text_new_with_entry();
@@ -721,6 +772,7 @@ int main(int argc, char *argv[]) {
     //initSemaphoreBridges();
 
     gtk_main();
+
     
     return 0;
 } 
