@@ -59,7 +59,6 @@ bool near_car(VEHICULE *car1, VEHICULE *car2) {
         return false;
     
     if((car1->x+(car1->width + 5)*fabs(car1->dx) >= car2->x && car1->x < car2->x) && (car1->y == car2->y) || (car1->y+(car1->height + 5)*fabs(car1->dy) >= car2->y && car1->y < car2->y) && (car1->x == car2->x)){
-        //printf("AX %d\n", car1->x+(car1->width + 5)*fabs(car1->dx));
         return true;
     }
     
@@ -113,8 +112,6 @@ void *update_car_position(void * car)
                     ++p;
                     if(p < tempCar->cantidadParadas-1){
                         generateRoute(tempCar, tempCar->paradas[p%tempCar->cantidadParadas], tempCar->paradas[(p+1)%tempCar->cantidadParadas]);
-                        printf("--------\n");
-                        //displayDestinations(tempCar->route->destinations);
                         destinoActual = tempCar->route->destinations;
                         destinoActual=destinoActual->next;
 
@@ -127,14 +124,9 @@ void *update_car_position(void * car)
                             tempCar->x=0;
                             tempCar->x=0;
                             usleep(tempCar->delay*1000000);
-                            printf("FIN\n");
                             break;
                         }else {
-                            printf("INI %d\n", p);
-                            
                             generateRoute(tempCar, tempCar->paradas[p], tempCar->paradas[0]);
-                            printf("--------\n");
-                            //displayDestinations(tempCar->route->destinations);
                             destinoActual = tempCar->route->destinations;
                             destinoActual=destinoActual->next;
 
@@ -160,7 +152,7 @@ void *update_car_position(void * car)
             } // for            
             if(mover){
 		if(destinoActual->node->especial && destinoActual->node->allowTravel==false){
-			//printf("Estoy en el puente %s\n", destinoActual->node->name);
+
 		}else{
 			tempCar->x+=tempCar->dx;
                 	tempCar->y+=tempCar->dy;
@@ -176,12 +168,9 @@ void *update_car_position(void * car)
                 tempCar->run=false;
                 tempCar->x=0;
                 tempCar->y=0;
-                printf("FIN\n");
             }else {
                 p=0;
-                printf("IN F %d\n", p);
-                
-            }            
+	    }            
         }                
         
        usleep(tempCar->speed*10000);

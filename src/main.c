@@ -145,12 +145,11 @@ static void add_vehicule(GtkWidget *widget, gpointer data) {
     for(i=1; i<vehicules[contadorHilos]->cantidadParadas-1; i++){
         int valor= rand()%9+2;
         vehicules[contadorHilos]->paradas[i]=listaParadas[valor];                       
-        printf("valor %d\n", valor);
     } // for
     vehicules[contadorHilos]->paradas[vehicules[contadorHilos]->cantidadParadas-1]=listaParadas[87];
     vehicules[contadorHilos]->x=vehicules[contadorHilos]->paradas[0]->x;
     vehicules[contadorHilos]->y=vehicules[contadorHilos]->paradas[0]->y; //0;
-    printf("creating thread %d\n", contadorHilos);
+
     rc = pthread_create(&threads[contadorHilos], NULL, update_car_position, (void *)vehicules[contadorHilos]);
     if (rc)
     {
@@ -164,7 +163,6 @@ void add_bus(char *id, int cantidadParadas, int paradas[], int speed, int color)
 	char *_id = id;    
 	int rc;
     
-        g_print("CREANDO BUS %s\n", _id);
         vehicules[contadorHilos]= createBus(_id, speed, color);
 	srand(time(NULL));
         vehicules[contadorHilos]->cantidadParadas = cantidadParadas;
@@ -524,7 +522,6 @@ vehicules[contadorHilos]->paradas[0]=listaParadas[72];
             free(*(tokens + i));
             position++;
         }
-        printf("\n");
         free(tokens);
     }
 
@@ -533,7 +530,6 @@ vehicules[contadorHilos]->paradas[0]=listaParadas[72];
     vehicules[contadorHilos]->x=vehicules[contadorHilos]->paradas[0]->x;
     vehicules[contadorHilos]->y=vehicules[contadorHilos]->paradas[0]->y; //0;
     
-    printf("creating thread %d\n", contadorHilos);
     rc = pthread_create(&threads[contadorHilos], NULL, update_car_position, (void *)vehicules[contadorHilos]);
     if (rc)
     {
