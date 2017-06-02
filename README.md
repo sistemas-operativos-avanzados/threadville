@@ -10,6 +10,7 @@ ThreadVille
 ## Contenidos 
 - Construccion
 - Ejecucion 
+- Comprobación
 
 
 ## Construccion
@@ -22,4 +23,11 @@ make
 ```bash
 target/threadville
 
+```
+
+## Comprobación
+El primer comando es para ver cual es el ```pid``` de ```threadville```. El segundo cuenta el número de hilos.
+```bash
+ps -a
+ps -o nlwp <PID>
 ```
