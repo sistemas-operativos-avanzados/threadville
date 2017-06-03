@@ -24,7 +24,7 @@ ENV HOME /home/developer
 
 RUN git clone https://github.com/sistemas-operativos-avanzados/threadville.git /home/developer/threadville && \
     cd /home/developer/threadville && \
-    git checkout integracion && \
+    git checkout v1.2 && \
     make
 
 WORKDIR /home/developer/threadville
