@@ -58,7 +58,12 @@ bool near_car(VEHICULE *car1, VEHICULE *car2) {
     if(igual==0)
         return false;
     
-    if((car1->x+(car1->width + 5)*fabs(car1->dx) >= car2->x && car1->x < car2->x) && (car1->y == car2->y) || (car1->y+(car1->height + 5)*fabs(car1->dy) >= car2->y && car1->y < car2->y) && (car1->x == car2->x)){
+    if(
+            (car1->x+(car1->width + 5)*fabs(car1->dx) >= car2->x && car1->x < car2->x && (car1->y == car2->y) && car1->dx==1) ||
+            (car2->x+(car2->width + 5)*fabs(car2->dx) >= car1->x && car1->x > car2->x && (car1->y == car2->y) && car1->dx==-1) ||
+            ((car1->y+(car1->height + 5)*fabs(car1->dy) >= car2->y && car1->y < car2->y) && (car1->x == car2->x) && car1->dy==1) ||
+            ((car2->y+(car2->height + 5)*fabs(car2->dy) >= car1->y && car1->y > car2->y) && (car1->x == car2->x) && car1->dy==-1)
+    ){
         return true;
     }
     

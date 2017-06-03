@@ -143,10 +143,10 @@ static void add_vehicule(GtkWidget *widget, gpointer data) {
     vehicules[contadorHilos]->paradas[0]=listaParadas[72]; 
     int i;
     for(i=1; i<vehicules[contadorHilos]->cantidadParadas-1; i++){
-        int valor= rand()%9+2;
+        int valor= rand()%170+2;
         vehicules[contadorHilos]->paradas[i]=listaParadas[valor];                       
     } // for
-    vehicules[contadorHilos]->paradas[vehicules[contadorHilos]->cantidadParadas-1]=listaParadas[87];
+    vehicules[contadorHilos]->paradas[vehicules[contadorHilos]->cantidadParadas-1]=listaParadas[105];
     vehicules[contadorHilos]->x=vehicules[contadorHilos]->paradas[0]->x;
     vehicules[contadorHilos]->y=vehicules[contadorHilos]->paradas[0]->y; //0;
 
@@ -525,7 +525,7 @@ vehicules[contadorHilos]->paradas[0]=listaParadas[72];
         free(tokens);
     }
 
-    vehicules[contadorHilos]->paradas[position]=listaParadas[87];
+    vehicules[contadorHilos]->paradas[position]=listaParadas[105];
    
     vehicules[contadorHilos]->x=vehicules[contadorHilos]->paradas[0]->x;
     vehicules[contadorHilos]->y=vehicules[contadorHilos]->paradas[0]->y; //0;
