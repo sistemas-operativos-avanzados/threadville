@@ -4,7 +4,6 @@ ThreadVille
 > Raquel Elizondo Barrios  
 > Oscar Rodríguez Arroyo  
 > Nelson Mendez Montero  
-> Jose Daniel Salazar Vargas  
 > Carlos Martin Flores Gonzalez  
 
 ## Contenidos 
@@ -15,19 +14,18 @@ ThreadVille
 
 ## Construccion
 ```bash
-make
+$ make
 
 ```
 
 ## Ejecucion
 ```bash
-target/threadville
+$ target/threadville
 
 ```
 
-## Comprobación
-El primer comando es para ver cual es el ```pid``` de ```threadville```. El segundo cuenta el número de hilos.
+## Usando Docker
 ```bash
-ps -a
-ps -o nlwp <PID>
+$ sudo docker build -t threadville .
+$ sudo docker run -ti --rm -e DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v $HOME/.Xauthority:/home/developer/.Xauthority --net=host --pid=host --ipc=host threadville
 ```
