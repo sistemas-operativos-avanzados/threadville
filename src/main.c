@@ -131,7 +131,7 @@ static gboolean on_tick (gpointer user_data) {
     return G_SOURCE_CONTINUE;
 }
 
-static void add_vehicule(GtkWidget *widget, gpointer data) {   
+static void add_vehicule(GtkWidget *widget, gpointer data) {
     g_print("Vehicule\n");
     
     int rc;
@@ -156,8 +156,8 @@ static void add_vehicule(GtkWidget *widget, gpointer data) {
             printf("error, return frim pthread creation\n");
             exit(4);
     }
-    contadorHilos++;    
-} 
+    contadorHilos++;
+}
 
 void add_bus(char *id, int cantidadParadas, int paradas[], int speed, int color){
 	char *_id = id;    
@@ -647,10 +647,10 @@ int main(int argc, char *argv[]) {
     gtk_widget_set_size_request(buttonCarroParams, 80, 30);  
     g_signal_connect(buttonCarroParams, "clicked", G_CALLBACK(add_configured_car), NULL);    
 
-    buttonContar = gtk_button_new_with_label("Contar");
-    gtk_fixed_put(GTK_FIXED(fixed), buttonContar, 1020, 80);
-    gtk_widget_set_size_request(buttonContar, 80, 30);  
-    g_signal_connect(buttonContar, "clicked", G_CALLBACK(carrosEnPuente), NULL); 
+//    buttonContar = gtk_button_new_with_label("Contar");
+//    gtk_fixed_put(GTK_FIXED(fixed), buttonContar, 1020, 80);
+//    gtk_widget_set_size_request(buttonContar, 80, 30);
+//    g_signal_connect(buttonContar, "clicked", G_CALLBACK(carrosEnPuente), NULL);
 
     //Buses
     labelBuses = gtk_label_new("Buses");
